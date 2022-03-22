@@ -5,20 +5,20 @@ import java.util.ArrayList;
 public class Cloud {
 
 
-    private ArrayList<Student> studentArray ;
+    private ArrayList<Student> studentSpots;
     private int cloudCapacity;
 
     public Cloud(int cloudCapacity){
 
         this.cloudCapacity = cloudCapacity;
-        this.studentArray = new ArrayList<Student>();
+        this.studentSpots = new ArrayList<Student>();
 
     }
     public void refillCloud(ArrayList<Student> newStudentArray)
     {
         for(int i = 0; i < newStudentArray.size(); i++){
             //copying the new students in the arraylist from the parameter
-            this.studentArray.set(i,newStudentArray.get(i));
+            this.studentSpots.set(i,newStudentArray.get(i));
         }
 
     }
