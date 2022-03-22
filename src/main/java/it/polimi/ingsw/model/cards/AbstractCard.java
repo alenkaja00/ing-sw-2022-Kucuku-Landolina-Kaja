@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.cards;
 
-public class AbstractCard {
+public abstract class AbstractCard {
     private int price;
     public void run(){
     }
