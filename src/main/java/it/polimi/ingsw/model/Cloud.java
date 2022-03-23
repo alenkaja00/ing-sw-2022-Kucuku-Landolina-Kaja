@@ -23,9 +23,16 @@ public class Cloud {
 
     }
 
-    public void removeStudent()
+    public ArrayList<Student> removeStudent()
     {
+        ArrayList<Student> ret = new ArrayList<>();
+        for(int i = 0 ; i < this.cloudCapacity ; i++)
+        {
+            ret.add(this.studentSpots.get(i));
+            this.studentSpots.remove(i);
 
+        }
+        return ret;
 
     }
 
