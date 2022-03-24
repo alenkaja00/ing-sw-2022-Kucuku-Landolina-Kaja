@@ -10,7 +10,7 @@ public class Deck {
     private ArrayList<HelperCard> deck = new ArrayList<HelperCard>();
 
 
-    public Deck(Wizard wizardID) {
+    public Deck() {
         this.wizardID=wizardID;
         for(int i=0;i<10;i++)
         {

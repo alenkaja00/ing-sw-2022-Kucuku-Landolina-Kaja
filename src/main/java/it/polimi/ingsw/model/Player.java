@@ -17,7 +17,7 @@ public class Player{
         this.towerColor = towerColor;
         this.wizardID = wizardID
         this.deck = new Deck();
-        this.myDashboard= new Dashboard(int numberPlayers);
+        this.myDashboard= new Dashboard( numberPlayers);
 
     }
 
