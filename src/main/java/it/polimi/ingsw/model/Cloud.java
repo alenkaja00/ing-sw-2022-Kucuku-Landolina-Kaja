@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Cloud {
 
 
-    private ArrayList<Student> studentSpots;
+    private ArrayList<ColoredDisc> studentSpots;
     private int cloudCapacity;
 
     public Cloud(int cloudCapacity){
 
         this.cloudCapacity = cloudCapacity;
-        this.studentSpots = new ArrayList<Student>();
+        this.studentSpots = new ArrayList<ColoredDisc>();
 
     }
-    public void refillCloud(ArrayList<Student> newStudentArray)
+    public void refillCloud(ArrayList<ColoredDisc> newStudentArray)
     {
         for(int i = 0; i < newStudentArray.size(); i++){
             //copying the new students in the arraylist from the parameter
@@ -23,9 +23,9 @@ public class Cloud {
 
     }
 
-    public ArrayList<Student> removeStudent()
+    public ArrayList<ColoredDisc> removeStudent()
     {
-        ArrayList<Student> ret = new ArrayList<>();
+        ArrayList<ColoredDisc> ret = new ArrayList<ColoredDisc>();
         for(int i = 0 ; i < this.cloudCapacity ; i++)
         {
             ret.add(this.studentSpots.get(i));

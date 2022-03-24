@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model;
 
-public enum Student {
+public enum ColoredDisc {
     YELLOW,
     BLUE,
     GREEN,
