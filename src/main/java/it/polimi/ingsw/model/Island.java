@@ -1,40 +1,26 @@
 package it.polimi.ingsw.model;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Island {
-
     private int ID;
     private int playerNumber;
-    private ArrayList<Integer> graphicalIsland ;
-    private ArrayList<Student> students;
-    private int islandTowers [];
+    private ArrayList<Integer> graphicalIsland = new ArrayList<>();
+    private HashMap<ColoredDisc, Integer> students = new HashMap<ColoredDisc, Integer>();
+    private ArrayList<Tower> towerList = new ArrayList<Tower>();
 
-    public Island(int ID,int playerNumber){
-
+    public Island(int ID){
         this.ID = ID;
-        this.playerNumber = playerNumber;
-        this.graphicalIsland = new ArrayList<>();
-        graphicalIsland.add(ID);
-        // at the beginning, the island number x corresponds to the graphical island number x
-
-
-        islandTowers = new int[playerNumber];
-        for(int i= 0; i<playerNumber;i++)
-        {
-            islandTowers[i]=0;
-        }
-        // islandTowers may contain two or three integers, depending on the number of players
-        // islandTowers[0]--> number of 1st player towers, islandTowers[1]--> number of 2nd player towers and so on
-
-
+        this.graphicalIsland.add(ID); // at the beginning, the island number x corresponds to the graphical island number x
     }
 
-    public  int evaluateInfluence()
+    /*
+    public  int returnInfluenceData()
     {
         int player;
         int influence[] = new int[playerNumber];
@@ -58,25 +44,61 @@ public class Island {
             }
         }
         return pos;
+    }*/
+
+    public HashMap<ColoredDisc, Integer> getStudents()
+    {
+        return (HashMap<ColoredDisc, Integer>) students.clone();
     }
 
-    public void addStudent(Student newStudent)
+    public void addStudent(ColoredDisc newStudent)
     {
-        this.students.add(newStudent);
+        students.put(newStudent, students.get(newStudent) + 1);
 
     }
 
-    public void removeStudent(Student newStudent)
+    public ColoredDisc removeStudent(ColoredDisc newStudent) throws IllegalArgumentException
     {
-        for(int i= 0; i<students.size();i++)
+        if (students.get(newStudent) > 0)
         {
-            if(students.get(i).equals(newStudent))
-            {
-                students.remove(i);
-                return;
-            }
+            students.put(newStudent, students.get(newStudent) - 1);
+            return  newStudent;
+        }
+        else
+        {
+            throw new IllegalArgumentException();
+        }
+//        for(int i= 0; i<students.size();i++)
+//        {
+//            if(students.get(i).equals(newStudent))
+//            {
+//                students.remove(i);
+//                return newStudent;
+//            }
+//        }
+    }
+
+    public Tower[] getTowers()
+    {
+        return (Tower[])towerList.stream().toArray();
+    }
+
+    public void AddTower(Tower myTower)
+    {
+        towerList.add(myTower);
+    }
+
+    public Tower RemoveTower(Tower myTower) throws IllegalArgumentException
+    {
+        if (towerList.contains(myTower))
+        {
+            towerList.remove(myTower);
+            return myTower;
+        }
+        else
+        {
+            throw new IllegalArgumentException();
         }
 
     }
-
 }
