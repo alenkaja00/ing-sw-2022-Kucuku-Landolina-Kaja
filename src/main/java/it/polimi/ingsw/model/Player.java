@@ -15,9 +15,9 @@ public class Player{
         this.ID= ID;
         this.nickname = nickname;
         this.towerColor = towerColor;
-        this.wizardID = wizardID
+        this.wizardID = wizardID;
         this.deck = new Deck();
-        this.myDashboard= new Dashboard(int numberPlayers);
+        this.myDashboard= new Dashboard(numberPlayers);
 
     }
 

@@ -12,7 +12,7 @@ public class Dashboard {
     private ArrayList<ColoredDisc> professorSpots = new ArrayList<ColoredDisc>();
     private int towerNumber;
 
-    public void Dashboard(int playerNumber) throws IndexOutOfBoundsException
+    public Dashboard(int playerNumber) throws IndexOutOfBoundsException
     {
         switch (playerNumber)
         {
