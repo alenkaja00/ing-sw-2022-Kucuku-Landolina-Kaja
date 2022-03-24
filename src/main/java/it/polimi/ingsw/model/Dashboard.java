@@ -1,43 +1,98 @@
 package it.polimi.ingsw.model;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Dashboard {
-    private ColoredDisc entranceSpots[] = new ColoredDisc[9];
+    private int maxTowers;
+    private int maxEntrance;
+    private ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
+    private HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
+    private ArrayList<ColoredDisc> professorSpots = new ArrayList<ColoredDisc>();
+    private int towerNumber;
 
-    private Map<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
-
-    private ColoredDisc professorSpots[] = new ColoredDisc[5];
-    private Tower towerSpots[] = new Tower[8];
-
-    public void Dashboard() {
-
+    public void Dashboard(int playerNumber) throws IndexOutOfBoundsException
+    {
+        switch (playerNumber)
+        {
+            case 2:
+                maxTowers = 8;
+                maxEntrance = 7;
+                break;
+            case 3:
+                maxTowers = 6;
+                maxEntrance = 9;
+                break;
+            default:
+                throw new IndexOutOfBoundsException();
+        }
     }
 
-    public void FillEntrance() {
-
+    public void AddToEntrance(ColoredDisc myStudent) throws IndexOutOfBoundsException
+    {
+        if (entranceSpots.size() + 1 > maxEntrance)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+        else
+        {
+            entranceSpots.add(myStudent);
+        }
     }
 
-    public void GetFromCloud() {
-
+    public void RemoveFromEntrance(ColoredDisc myStudent) throws InvalidParameterException
+    {
+        if (entranceSpots.contains(myStudent))
+        {
+            entranceSpots.remove(myStudent);
+        }
+        else
+        {
+            throw new InvalidParameterException();
+        }
     }
 
-    public void MoveToTables() {
-
+    public void MoveToTables(ColoredDisc myStudent) throws InvalidParameterException, IndexOutOfBoundsException
+    {
+        if (tables.get(myStudent)<10)
+        {
+            RemoveFromEntrance(myStudent);
+            tables.put(myStudent, tables.get(myStudent)+1);
+        }
+        else
+        {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
-    public void MoveToIsland() {
-
+    public void RemoveTower() throws IndexOutOfBoundsException
+    {
+        if (towerNumber>0)
+        {
+            towerNumber--;
+        }
+        else
+        {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
-    public void RemoveTower() {
-
+    public void AddTower() throws IndexOutOfBoundsException
+    {
+        if (towerNumber<maxTowers)
+        {
+            towerNumber++;
+        }
+        else
+        {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
-    public void AddTower() {
-
+    public int TowerNumber()
+    {
+        return towerNumber;
     }
 
 }
