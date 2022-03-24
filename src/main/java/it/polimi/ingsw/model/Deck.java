@@ -1,17 +1,20 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.cards.HelperCard;
+import it.polimi.ingsw.model.cards.Wizard;
 
 import java.util.ArrayList;
 
 public class Deck {
-    private String wizardName;
-    private ArrayList<HelperCard> deck;
+    private Wizard wizardID;
+    private ArrayList<HelperCard> deck = new ArrayList<HelperCard>(10);
+
 
     public Deck() {
-        this.deck = new ArrayList<HelperCard>(10);
-        for (int i = 0; i < deck.size(); i++) {
+        for(int i=0;i<10;i++)
+        {
             deck.get(i).setUsed(false);
+            deck.get(i).setMaxMoves(motherNatureMoves(i));
         }
     }
     //calculate mother nature moves given the card
@@ -19,6 +22,14 @@ public class Deck {
         return index/2+1;
     }
     //return the remaining cards of the player
+
+
+    public HelperCard useCard(){
+    }
+
+
+
+
     public ArrayList<HelperCard> returnCards(){
         ArrayList<HelperCard> remainingCards= new ArrayList<HelperCard>();
         for(int i=0;i<deck.size();i++){
