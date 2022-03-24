@@ -1,14 +1,61 @@
 package it.polimi.ingsw.model;
 
-public class Player{
-    private String nickname;
-    public Deck deck;
-    public Dashboard myDashboard;
+import it.polimi.ingsw.model.cards.Wizard;
 
-    public Player(String nickname) {
+public class Player{
+    private int ID;
+    private String nickname;
+    private Tower towerColor;
+    private Wizard wizardID;
+    private Deck deck;
+    private Dashboard myDashboard;
+    private int coinsAmount;
+
+    public Player(int ID,String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
+        this.ID= ID;
         this.nickname = nickname;
+        this.towerColor = towerColor;
+        this.wizardID = wizardID
         this.deck = new Deck();
-        this.myDashboard= new Dashboard();
+        this.myDashboard= new Dashboard(int numberPlayers);
+
     }
+
+
+    public Tower getTowerColor() {
+
+        return towerColor;
+    }
+
+    public void addCoins(int addition)
+    {
+        coinsAmount += addition;
+    }
+
+    public void spendCoins(int removal) throws  IllegalArgumentException
+    {
+        if(removal > coinsAmount)
+        {
+            throw  new IllegalArgumentException();
+        }
+
+        else
+        {
+            coinsAmount -= removal;
+        }
+
+    }
+
+    public String getNickname()
+    {
+        return nickname;
+        // Strings are immutable in java, so this should be safe
+    }
+
+    public int getCoinsAmount()
+    {
+        return coinsAmount;
+    }
+
 
 }
