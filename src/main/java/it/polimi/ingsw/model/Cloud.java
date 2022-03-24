@@ -23,7 +23,7 @@ public class Cloud {
 
     }
 
-    public ArrayList<Student> removeStudent()
+    public ArrayList<Student> removeALlStudent()
     {
         ArrayList<Student> ret = new ArrayList<>();
         for(int i = 0 ; i < this.cloudCapacity ; i++)
