@@ -1,41 +1,49 @@
 package it.polimi.ingsw.model;
 
+import javax.swing.*;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 public class Cloud {
-
-
     private ArrayList<ColoredDisc> studentSpots;
     private int cloudCapacity;
 
     public Cloud(int cloudCapacity){
-
         this.cloudCapacity = cloudCapacity;
         this.studentSpots = new ArrayList<ColoredDisc>();
-
     }
-    public void refillCloud(ArrayList<ColoredDisc> newStudentArray)
+
+    public void AddStudents(ArrayList<ColoredDisc> newStudentArray) throws IndexOutOfBoundsException
     {
-        for(int i = 0; i < newStudentArray.size(); i++){
-            //copying the new students in the arraylist from the parameter
-            this.studentSpots.set(i,newStudentArray.get(i));
+        if (studentSpots.size() + newStudentArray.size() > cloudCapacity) {throw new IndexOutOfBoundsException();}
+        for (ColoredDisc student:newStudentArray){
+            this.studentSpots.add(student); //copying the new students in the arraylist from the parameter
         }
-
     }
 
-    public ArrayList<ColoredDisc> removeStudent()
+    public ArrayList<ColoredDisc> getStudents()
     {
-        ArrayList<ColoredDisc> ret = new ArrayList<ColoredDisc>();
-        for(int i = 0 ; i < this.cloudCapacity ; i++)
+        return (ArrayList<ColoredDisc>) studentSpots.clone();
+    }
+
+    public ArrayList<ColoredDisc> removeAll()
+    {
+        ArrayList<ColoredDisc> clone = (ArrayList<ColoredDisc>) studentSpots.clone();
+        studentSpots.removeAll(studentSpots);
+        return clone;
+    }
+
+    public ColoredDisc removeStudent(ColoredDisc myStudent) throws InvalidParameterException
+    {
+        if (studentSpots.contains(myStudent))
         {
-            ret.add(this.studentSpots.get(i));
-            this.studentSpots.remove(i);
-
+            studentSpots.remove(myStudent);
+            return myStudent;
         }
-        return ret;
-
+        else
+        {
+            throw new InvalidParameterException();
+        }
     }
-
-
 
 }
