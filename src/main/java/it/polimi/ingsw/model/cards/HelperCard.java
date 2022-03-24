@@ -11,6 +11,7 @@ public class HelperCard {
         this.maxMoves=maxMoves;
         this.used=false;
     }
+
     public void setUsed(boolean used)
     {
         this.used = used;
@@ -24,4 +25,7 @@ public class HelperCard {
         return cardNumber;
     }
 
+    public int getMaxMoves() {
+        return maxMoves;
+    }
 }
