@@ -101,4 +101,8 @@ public class Island {
         }
 
     }
+
+    public int getID() {
+        return ID;
+    }
 }
