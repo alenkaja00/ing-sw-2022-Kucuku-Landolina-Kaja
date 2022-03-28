@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class GameClass {
 
+    private StudentBag bag;
     private String GameID ;
     private int PlayerNumber;
     private ArrayList<Island> islands ;
@@ -38,20 +39,18 @@ public class GameClass {
             islands.add(new Island(i));
         }
 
-        StudentBag bag = new StudentBag();
-
         //Random random = new Random();
-        this.CurrentIsland = islands.get((new Random()).nextInt(12));
+        this.CurrentIsland = islands.get((new Random()).nextInt(NumOfIslands));
 
-        StudentBag = new ArrayList<>();
-        for(ColoredDisc color: ColoredDisc.values())
+        //initialize islands with 2 students for each color, no students on mother nature island and opposite island
+        bag = new StudentBag();
+        for (Island myIsland: islands)
         {
-            for(int i=0; i<26;i++)
+            if (myIsland!= CurrentIsland && (CurrentIsland.getID() + NumOfIslands/2) % NumOfIslands != myIsland.getID())
             {
-                StudentBag.add(color);
+                myIsland.addStudent(bag.popRandom());
             }
         }
-        Collections.shuffle(StudentBag);
 
         clouds = new ArrayList<>();
         players = new ArrayList<>();
