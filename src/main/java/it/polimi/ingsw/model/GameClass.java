@@ -70,7 +70,14 @@ public class GameClass {
         }
     }
 
-
+    public void BagToCloud(int CloudIndex)
+    {
+        Cloud myCloud = clouds.get(CloudIndex);
+        for(int i=0;i<myCloud.getCloudCapacity();i++)
+        {
+            myCloud.AddStudent(bag.popRandom());
+        }
+    }
 
     public void EntranceToTables(int PlayerID, ColoredDisc student)
     {

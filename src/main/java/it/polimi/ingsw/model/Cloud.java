@@ -21,6 +21,12 @@ public class Cloud {
         }
     }
 
+    public void AddStudent(ColoredDisc student) throws IndexOutOfBoundsException
+    {
+        if (studentSpots.size() + 1 > cloudCapacity) {throw new IndexOutOfBoundsException();}
+        this.studentSpots.add(student); //copying the new students in the arraylist from the parameter
+    }
+
     public ArrayList<ColoredDisc> getStudents()
     {
         return (ArrayList<ColoredDisc>) studentSpots.clone();
@@ -46,4 +52,7 @@ public class Cloud {
         }
     }
 
+    public int getCloudCapacity() {
+        return cloudCapacity;
+    }
 }
