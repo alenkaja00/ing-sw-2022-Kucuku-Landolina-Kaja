@@ -20,6 +20,8 @@ public class GameClass {
     private ArrayList<AbstractCard> ChosenCards;
     private ArrayList<String> nicknames;
     private int NumOfIslands = 12;
+
+
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
     {
         this.GameID = ID;
@@ -31,15 +33,8 @@ public class GameClass {
             islands.add(new Island(i));
         }
 
-        StudentBag = new ArrayList<>();
-        for(ColoredDisc color: ColoredDisc.values())
-        {
-            for(int i=0; i<26;i++)
-            {
-                StudentBag.add(color);
-            }
-        }
-        Collections.shuffle(StudentBag);
+        StudentBag bag = new StudentBag();
+
 
         clouds = new ArrayList<>();
         players = new ArrayList<>();
