@@ -27,6 +27,14 @@ public class Player{
         return towerColor;
     }
 
+    public void setWizardID(Wizard wizardID) {
+        this.wizardID = wizardID;
+    }
+
+    public void setTowerColor(Tower towerColor) {
+        this.towerColor = towerColor;
+    }
+
     public void addCoins(int addition)
     {
         coinsAmount += addition;

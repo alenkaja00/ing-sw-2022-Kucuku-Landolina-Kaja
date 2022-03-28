@@ -5,6 +5,8 @@ public class Effect1 extends AbstractCard {
     @Override
     public void run() {
 
+
+
     }
 
 }

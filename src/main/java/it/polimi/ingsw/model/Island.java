@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Island {
     private int ID;
-    private int playerNumber;
+    //private int playerNumber;
     private ArrayList<Integer> graphicalIsland = new ArrayList<>();
     private HashMap<ColoredDisc, Integer> students = new HashMap<ColoredDisc, Integer>();
     private ArrayList<Tower> towerList = new ArrayList<Tower>();
