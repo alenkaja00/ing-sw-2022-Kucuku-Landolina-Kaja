@@ -46,7 +46,7 @@ public class GameClass {
         for(int i=0;i<PlayerNumber;i++)
         {
             clouds.add(new Cloud(PlayerNumber+1)); // Cloud Capacity
-            players.add(new Player(i,nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
+            players.add(new Player(nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
 
 

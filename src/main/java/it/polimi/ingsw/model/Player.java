@@ -11,8 +11,8 @@ public class Player{
     private Dashboard myDashboard;
     private int coinsAmount;
 
-    public Player(int ID,String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
-        this.ID= ID;
+    public Player(String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
+        //this.ID= ID;
         this.nickname = nickname;
         this.towerColor = towerColor;
         this.wizardID = wizardID;
