@@ -8,11 +8,12 @@ public class Player{
     private Tower towerColor;
     private Wizard wizardID;
     private Deck deck;
-    private Dashboard myDashboard;
     private int coinsAmount;
+    public Dashboard myDashboard;
 
-    public Player(String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
-        //this.ID= ID;
+
+    public Player(int ID,String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
+        this.ID= ID;
         this.nickname = nickname;
         this.towerColor = towerColor;
         this.wizardID = wizardID;

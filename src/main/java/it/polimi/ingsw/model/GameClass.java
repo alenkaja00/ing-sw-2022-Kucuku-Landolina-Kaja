@@ -1,11 +1,14 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.cards.AbstractCard;
+import it.polimi.ingsw.model.cards.HelperCard;
 import it.polimi.ingsw.model.cards.Wizard;
 
+import javax.swing.plaf.ColorUIResource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 
 public class GameClass {
 
@@ -22,11 +25,13 @@ public class GameClass {
     private int NumOfIslands = 12;
 
 
+    private Island CurrentIsland;
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
     {
         this.GameID = ID;
         this.PlayerNumber = PlayerNumber;
         this.nicknames = nicknames;
+
         islands = new ArrayList<>();
         for(int i=0;i<NumOfIslands;i++)
         {
@@ -35,17 +40,60 @@ public class GameClass {
 
         StudentBag bag = new StudentBag();
 
+        //Random random = new Random();
+        this.CurrentIsland = islands.get((new Random()).nextInt(12));
+
+        StudentBag = new ArrayList<>();
+        for(ColoredDisc color: ColoredDisc.values())
+        {
+            for(int i=0; i<26;i++)
+            {
+                StudentBag.add(color);
+            }
+        }
+        Collections.shuffle(StudentBag);
 
         clouds = new ArrayList<>();
         players = new ArrayList<>();
         for(int i=0;i<PlayerNumber;i++)
         {
             clouds.add(new Cloud(PlayerNumber+1)); // Cloud Capacity
-            players.add(new Player(nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
+            players.add(new Player(i,nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
-
-
     }
+
+    public void CloudToEntrance(int CloudIndex, int PlayerID)
+    {
+        ArrayList<ColoredDisc> students = clouds.get(CloudIndex).removeAll();
+        for(ColoredDisc student : students)
+        {
+            players.get(PlayerID).myDashboard.AddToEntrance(student); // access to public attribute
+        }
+    }
+
+
+
+    public void EntranceToTables(int PlayerID, ColoredDisc student)
+    {
+        players.get(PlayerID).myDashboard.MoveToTables(student);
+    }
+
+
+    public void EntranceToIsland(int PlayerID, int IslandID, ColoredDisc student)
+    {
+        islands.get(IslandID).addStudent(student);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(student);
+    }
+
+
+    public void MoveMotherNature(int moves)
+    {
+        CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
+
+        //evaluate influence
+        //check united islands
+    }
+
 
 
     public ArrayList<Cloud> getClouds() {
