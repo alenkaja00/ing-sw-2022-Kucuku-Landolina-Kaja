@@ -1,11 +1,14 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.cards.AbstractCard;
+import it.polimi.ingsw.model.cards.HelperCard;
 import it.polimi.ingsw.model.cards.Wizard;
 
+import javax.swing.plaf.ColorUIResource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 
 public class GameClass {
 
@@ -20,16 +23,21 @@ public class GameClass {
     private ArrayList<AbstractCard> ChosenCards;
     private ArrayList<String> nicknames;
     private int NumOfIslands = 12;
+    private Island CurrentIsland;
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
     {
         this.GameID = ID;
         this.PlayerNumber = PlayerNumber;
         this.nicknames = nicknames;
+
         islands = new ArrayList<>();
         for(int i=0;i<NumOfIslands;i++)
         {
             islands.add(new Island(i));
         }
+
+        //Random random = new Random();
+        this.CurrentIsland = islands.get((new Random()).nextInt(12));
 
         StudentBag = new ArrayList<>();
         for(ColoredDisc color: ColoredDisc.values())
@@ -57,6 +65,29 @@ public class GameClass {
         {
             players.get(PlayerID).myDashboard.AddToEntrance(student); // access to public attribute
         }
+    }
+
+
+
+    public void EntranceToTables(int PlayerID, ColoredDisc student)
+    {
+        players.get(PlayerID).myDashboard.MoveToTables(student);
+    }
+
+
+    public void EntranceToIsland(int PlayerID, int IslandID, ColoredDisc student)
+    {
+        islands.get(IslandID).addStudent(student);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(student);
+    }
+
+
+    public void MoveMotherNature(int moves)
+    {
+        CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
+
+        //evaluate influence
+        //check united islands
     }
 
 
