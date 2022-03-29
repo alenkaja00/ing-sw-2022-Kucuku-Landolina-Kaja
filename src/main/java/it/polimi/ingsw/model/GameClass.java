@@ -5,10 +5,7 @@ import it.polimi.ingsw.model.cards.HelperCard;
 import it.polimi.ingsw.model.cards.Wizard;
 
 import javax.swing.plaf.ColorUIResource;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 public class GameClass {
 
@@ -116,6 +113,35 @@ public class GameClass {
         //check united islands
     }
 
+    public int EvaluateInfluence(Island island)
+    {
+
+        Tower [] towers = island.getTowers();
+        HashMap<ColoredDisc,Integer> students = island.getStudents();
+        int PlayersInfluence[] = new int[PlayerNumber];
+        Arrays.fill(PlayersInfluence,0);
+        for (Player player : players)
+        {
+            int ID = player.getID();
+            Tower color = player.getTowerColor();
+
+            if (towers[0].equals(color))
+            {
+                PlayersInfluence[ID]+= towers.length;
+            }
+        }
+        for(ColoredDisc color:  students.keySet())
+        {
+            for(int i=0; i<PlayerNumber;i++)
+            {
+                if(players.get(i).myDashboard.professorSpots.contains(color))
+                {
+                    PlayersInfluence[i]+= students.get(color);
+                }
+            }
+        }
+        return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
+    }
 
 
     public ArrayList<Cloud> getClouds() {

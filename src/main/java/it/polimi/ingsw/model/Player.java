@@ -28,6 +28,10 @@ public class Player{
         return towerColor;
     }
 
+    public int getID() {
+        return ID;
+    }
+
     public void setWizardID(Wizard wizardID) {
         this.wizardID = wizardID;
     }
