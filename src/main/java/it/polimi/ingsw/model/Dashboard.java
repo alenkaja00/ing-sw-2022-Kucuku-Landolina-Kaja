@@ -3,14 +3,17 @@ package it.polimi.ingsw.model;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Dashboard {
     private int maxTowers;
     private int maxEntrance;
     private ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
     private HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
-    private ArrayList<ColoredDisc> professorSpots = new ArrayList<ColoredDisc>();
     private int towerNumber;
+
+    public HashSet<ColoredDisc> professorSpots = new HashSet<ColoredDisc>();
 
     public Dashboard(int playerNumber) throws IndexOutOfBoundsException
     {
