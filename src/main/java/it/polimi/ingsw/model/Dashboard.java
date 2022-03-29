@@ -98,4 +98,8 @@ public class Dashboard {
         return towerNumber;
     }
 
+    public int SittedStudents(ColoredDisc color){
+        return tables.get(color);
+    }
+
 }
