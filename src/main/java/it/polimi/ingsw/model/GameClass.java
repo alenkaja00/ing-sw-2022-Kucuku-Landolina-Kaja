@@ -56,6 +56,7 @@ public class GameClass {
             clouds.add(new Cloud(PlayerNumber+1)); // Cloud Capacity
             players.add(new Player(i,nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
+        players = (ArrayList<Player>) Collections.unmodifiableCollection(players); //this way PlayerID and players Indexes will always be the same
     }
 
     public void CloudToEntrance(int CloudIndex, int PlayerID)
@@ -105,14 +106,63 @@ public class GameClass {
     }
 
 
-    public void MoveMotherNature(int moves)
+    /** returns true if game ends for lack of towers or maximum number of islands*/
+    public void MoveMotherNature(int moves) throws RuntimeException
     {
         CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
 
-        //evaluate influence
-        //check united islands
+        Player influencePlayer = players.get(EvaluateInfluence(CurrentIsland));
+        if (CurrentIsland.getTowers().length == 0)
+        {
+            CurrentIsland.AddTower(influencePlayer.getTowerColor());
+            influencePlayer.myDashboard.RemoveTower();
+        }
+        else
+        {
+            if (influencePlayer.getTowerColor() != CurrentIsland.getTowers()[0])
+            {
+                if (influencePlayer.myDashboard.TowerNumber()< CurrentIsland.getTowers().length)
+                    throw new RuntimeException();
+
+                for (Player player: players)
+                {
+                    if (player.getTowerColor() == CurrentIsland.getTowers()[0])
+                    {
+                        for (int i=0; i<CurrentIsland.getTowers().length; i++)
+                            player.myDashboard.AddTower();
+                    }
+                }
+
+                CurrentIsland.changeTowerColor(influencePlayer.getTowerColor());
+
+                for (int i=0; i<CurrentIsland.getTowers().length; i++)
+                    influencePlayer.myDashboard.RemoveTower();
+            }
+        }
+
+        //EXECUTION ORDER IS IMPORTANT
+        Island rightIsland = islands.get((islands.indexOf(CurrentIsland)+1)%islands.size());
+
+        if (rightIsland.getTowers().length>0 && rightIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(rightIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
+            CurrentIsland.addStudents(rightIsland.getStudents());
+            CurrentIsland.addGraphicalIslands(rightIsland.getID());
+            islands.remove(rightIsland);
+        }
+
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
+
+        if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(leftIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
+            CurrentIsland.addStudents(leftIsland.getStudents());
+            CurrentIsland.addGraphicalIslands(leftIsland.getID());
+            islands.remove(leftIsland);
+        }
     }
 
+    /** Returns the playerID of the player who has influence on that island*/
     public int EvaluateInfluence(Island island)
     {
 
