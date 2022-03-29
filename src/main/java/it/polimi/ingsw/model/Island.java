@@ -57,6 +57,15 @@ public class Island {
 
     }
 
+    public void addStudents(HashMap<ColoredDisc, Integer> newStudents)
+    {
+        for(ColoredDisc color : ColoredDisc.values())
+        {
+            students.put(color,students.get(color)+newStudents.get(color));
+        }
+    }
+
+
     public ColoredDisc removeStudent(ColoredDisc newStudent) throws IllegalArgumentException
     {
         if (students.get(newStudent) > 0)
@@ -114,4 +123,5 @@ public class Island {
     public int getID() {
         return ID;
     }
+
 }
