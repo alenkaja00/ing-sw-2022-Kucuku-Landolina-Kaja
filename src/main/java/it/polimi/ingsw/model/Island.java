@@ -78,8 +78,12 @@ public class Island {
 //        }
     }
 
-    public Tower[] getTowers()
+    public Tower[] getTowers() throws IllegalStateException
     {
+        if(towerList.stream().filter(x->x==towerList.get(0)).count()!= towerList.size())
+        {
+            throw new IllegalStateException();
+        }
         return (Tower[])towerList.stream().toArray();
     }
 
@@ -100,6 +104,11 @@ public class Island {
             throw new IllegalArgumentException();
         }
 
+    }
+
+    public void changeTowerColor(Tower color)
+    {
+        towerList.replaceAll(t-> color);
     }
 
     public int getID() {
