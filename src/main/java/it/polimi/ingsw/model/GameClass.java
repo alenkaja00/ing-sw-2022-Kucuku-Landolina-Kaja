@@ -82,6 +82,22 @@ public class GameClass {
     public void EntranceToTables(int PlayerID, ColoredDisc student)
     {
         players.get(PlayerID).myDashboard.MoveToTables(student);
+        evaluateProfessors(PlayerID, student);
+    }
+
+    private void evaluateProfessors(int PlayerID, ColoredDisc student)
+    {
+        Player lastPlayer = players.get(PlayerID);
+        for (Player player: players)
+        {
+            if (lastPlayer.myDashboard.SittedStudents(student) <= player.myDashboard.SittedStudents(student) && lastPlayer != player)
+                return;
+        }
+        for (Player player: players)
+        {
+            player.myDashboard.professorSpots.remove(student);
+        }
+        lastPlayer.myDashboard.professorSpots.add(student);
     }
 
 
