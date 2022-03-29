@@ -19,6 +19,11 @@ public class Island {
         this.graphicalIsland.add(ID); // at the beginning, the island number x corresponds to the graphical island number x
     }
 
+    public void addGraphicalIslands(int ID)
+    {
+        this.graphicalIsland.add(ID);
+    }
+
     /*
     public  int returnInfluenceData()
     {
