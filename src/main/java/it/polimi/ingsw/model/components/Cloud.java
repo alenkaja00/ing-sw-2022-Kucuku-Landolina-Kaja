@@ -1,6 +1,5 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.components;
 
-import javax.swing.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 

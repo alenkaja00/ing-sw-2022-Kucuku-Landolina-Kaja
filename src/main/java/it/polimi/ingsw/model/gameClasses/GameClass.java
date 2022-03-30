@@ -1,28 +1,27 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.gameClasses;
 
-import it.polimi.ingsw.model.cards.AbstractCard;
-import it.polimi.ingsw.model.cards.HelperCard;
+import it.polimi.ingsw.model.cards.AbstractEffect;
 import it.polimi.ingsw.model.cards.Wizard;
+import it.polimi.ingsw.model.components.*;
 
-import javax.swing.plaf.ColorUIResource;
 import java.security.InvalidKeyException;
 import java.util.*;
 
 public class GameClass {
 
-    private StudentBag bag;
-    private String GameID ;
-    private int PlayerNumber;
-    private ArrayList<Island> islands ;
-    private ArrayList<ColoredDisc> StudentBag ;
-    private ArrayList<Cloud> clouds;
-    private ArrayList<Player> players;
-    private int[] playerMaxMoves;
-    private Player PlayerRound;
-    private ArrayList<AbstractCard> SpecialCards;
-    private ArrayList<AbstractCard> ChosenCards;
-    private ArrayList<String> nicknames;
-    private int NumOfIslands = 12;
+    protected it.polimi.ingsw.model.components.StudentBag bag;
+    protected String GameID ;
+    protected int PlayerNumber;
+    protected ArrayList<Island> islands ;
+    protected ArrayList<ColoredDisc> StudentBag ;
+    protected ArrayList<Cloud> clouds;
+    protected ArrayList<Player> players;
+    protected int[] playerMaxMoves;
+    protected Player PlayerRound;
+    protected ArrayList<AbstractEffect> SpecialCards;
+    protected ArrayList<AbstractEffect> ChosenCards;
+    protected ArrayList<String> nicknames;
+    protected int NumOfIslands = 12;
 
 
     private Island CurrentIsland;
@@ -56,7 +55,7 @@ public class GameClass {
         for(int i=0;i<PlayerNumber;i++)
         {
             clouds.add(new Cloud(PlayerNumber+1)); // Cloud Capacity
-            players.add(new Player(i,nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
+            players.add(new Player(i,nicknames.get(i), Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
         players = (ArrayList<Player>) Collections.unmodifiableCollection(players); //this way PlayerID and players Indexes will always be the same
         playerMaxMoves = new int[PlayerNumber];
@@ -86,7 +85,7 @@ public class GameClass {
         evaluateProfessors(PlayerID, student);
     }
 
-    private void evaluateProfessors(int PlayerID, ColoredDisc student)
+    protected void evaluateProfessors(int PlayerID, ColoredDisc student)
     {
         Player lastPlayer = players.get(PlayerID);
         for (Player player: players)
@@ -109,7 +108,7 @@ public class GameClass {
     }
 
 
-    public void useCard(int playerID, int cardNumber) throws InvalidKeyException
+    public void useHelperCard(int playerID, int cardNumber) throws InvalidKeyException
     {
         playerMaxMoves[playerID] = players.get(playerID).deck.returnCard(cardNumber).getMaxMoves();
         players.get(playerID).deck.useCard(cardNumber);

@@ -1,9 +1,6 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.components;
 
-import it.polimi.ingsw.model.cards.HelperCard;
 import it.polimi.ingsw.model.cards.Wizard;
-
-import java.util.ArrayList;
 
 public class Player{
     private int ID;
@@ -25,7 +22,7 @@ public class Player{
         this.wizardID = wizardID;
         this.deck = new Deck();
         this.myDashboard= new Dashboard(numberPlayers);
-
+        this.coinsAmount = 0;
     }
 
     public Tower getTowerColor() {

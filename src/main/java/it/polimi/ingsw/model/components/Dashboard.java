@@ -1,10 +1,9 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.components;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class Dashboard {
     private int maxTowers;
@@ -56,12 +55,13 @@ public class Dashboard {
         }
     }
 
-    public void MoveToTables(ColoredDisc myStudent) throws InvalidParameterException, IndexOutOfBoundsException
+    public int MoveToTables(ColoredDisc myStudent) throws InvalidParameterException, IndexOutOfBoundsException
     {
         if (tables.get(myStudent)<10)
         {
             RemoveFromEntrance(myStudent);
             tables.put(myStudent, tables.get(myStudent)+1);
+            return tables.get(myStudent);
         }
         else
         {
