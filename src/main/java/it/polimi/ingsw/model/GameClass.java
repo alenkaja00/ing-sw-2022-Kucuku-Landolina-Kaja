@@ -5,6 +5,7 @@ import it.polimi.ingsw.model.cards.HelperCard;
 import it.polimi.ingsw.model.cards.Wizard;
 
 import javax.swing.plaf.ColorUIResource;
+import java.security.InvalidKeyException;
 import java.util.*;
 
 public class GameClass {
@@ -16,6 +17,7 @@ public class GameClass {
     private ArrayList<ColoredDisc> StudentBag ;
     private ArrayList<Cloud> clouds;
     private ArrayList<Player> players;
+    private int[] playerMaxMoves;
     private Player PlayerRound;
     private ArrayList<AbstractCard> SpecialCards;
     private ArrayList<AbstractCard> ChosenCards;
@@ -57,6 +59,7 @@ public class GameClass {
             players.add(new Player(i,nicknames.get(i),Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
         players = (ArrayList<Player>) Collections.unmodifiableCollection(players); //this way PlayerID and players Indexes will always be the same
+        playerMaxMoves = new int[PlayerNumber];
     }
 
     public void CloudToEntrance(int CloudIndex, int PlayerID)
@@ -105,6 +108,17 @@ public class GameClass {
         players.get(PlayerID).myDashboard.RemoveFromEntrance(student);
     }
 
+
+    public void useCard(int playerID, int cardNumber) throws InvalidKeyException
+    {
+        playerMaxMoves[playerID] = players.get(playerID).deck.returnCard(cardNumber).getMaxMoves();
+        players.get(playerID).deck.useCard(cardNumber);
+    }
+
+    public int playerMaxMoves(int playerID)
+    {
+        return playerMaxMoves[playerID];
+    }
 
     /** returns true if game ends for lack of towers or maximum number of islands*/
     public void MoveMotherNature(int moves) throws RuntimeException
