@@ -1,16 +1,18 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.cards.HelperCard;
 import it.polimi.ingsw.model.cards.Wizard;
+
+import java.util.ArrayList;
 
 public class Player{
     private int ID;
     private String nickname;
     private Tower towerColor;
     private Wizard wizardID;
-    private Deck deck;
     private int coinsAmount;
     public Dashboard myDashboard;
-
+    public Deck deck;
 
     public Player(int ID,String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
         this.ID= ID;

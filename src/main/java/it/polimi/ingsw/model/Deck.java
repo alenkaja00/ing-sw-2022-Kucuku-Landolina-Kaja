@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.model.cards.HelperCard;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Deck {
     /**
@@ -26,5 +27,10 @@ public class Deck {
     public ArrayList<HelperCard> returnCards()
     {
         return (ArrayList<HelperCard>) deck.clone();
+    }
+
+    public ArrayList<HelperCard> returnUnused()
+    {
+        return (ArrayList<HelperCard>) deck.stream().filter(x->x.isUsed()==false).collect(Collectors.toList());
     }
 }

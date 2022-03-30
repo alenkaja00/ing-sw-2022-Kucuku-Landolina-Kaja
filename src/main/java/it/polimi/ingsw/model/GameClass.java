@@ -193,6 +193,51 @@ public class GameClass {
         return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
     }
 
+    public Boolean gameEnded()
+    {
+        /*
+        game ends when
+            1) player uses his last tower
+            2) <=3 groups of islands
+            3) empty students bag or 0 assistant cards (end of round)
+        */
+
+        // 1)
+        for(Player player : players)
+        {
+            if(player.myDashboard.TowerNumber()==0)
+            {
+                return true;
+            }
+        }
+
+        // 2)
+
+        if(NumOfIslands <= 3)
+        {
+            return true;
+        }
+
+        // 3)
+
+        if(bag.getSize()==0)
+        {
+            return true;
+        }
+        for(Player player: players)
+        {
+            if(player.deck.returnUnused().size()==0)
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+
+
 
     public ArrayList<Cloud> getClouds() {
         return (ArrayList<Cloud>) clouds.clone();

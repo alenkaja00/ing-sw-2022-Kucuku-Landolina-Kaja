@@ -34,7 +34,7 @@ public class StudentBag {
 
     public ColoredDisc popRandom() throws IndexOutOfBoundsException
     {
-        if (bag.values().stream().reduce(0,(x,y)->x+y) == 0)
+        if (getSize()==0)
         {
             throw new IndexOutOfBoundsException();
         }
@@ -52,5 +52,11 @@ public class StudentBag {
 
             } while(true);
         }
+    }
+
+    public int getSize()
+    {
+
+        return bag.values().stream().reduce(0,(x,y)->x+y);
     }
 }
