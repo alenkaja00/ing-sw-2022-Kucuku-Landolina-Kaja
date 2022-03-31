@@ -21,6 +21,7 @@ public class GameClassExpert extends GameClass
 
     public void EntranceToTables(int PlayerID, ColoredDisc student)
     {
+
         switch (players.get(PlayerID).myDashboard.MoveToTables(student))
         {
             case 3:

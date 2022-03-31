@@ -17,6 +17,11 @@ public class GameClass {
     protected ArrayList<Cloud> clouds;
     protected ArrayList<Player> players;
     protected int[] playerMaxMoves;
+
+    //aggiunta
+    protected int[] playerCardValue;
+
+
     protected Player PlayerRound;
     protected ArrayList<AbstractEffect> SpecialCards;
     protected ArrayList<AbstractEffect> ChosenCards;
@@ -41,7 +46,9 @@ public class GameClass {
         this.CurrentIsland = islands.get((new Random()).nextInt(NumOfIslands));
 
         //initialize islands with 2 students for each color, no students on mother nature island and opposite island
-        bag = new StudentBag();
+        bag = new StudentBag(true); //add 10 students, 2 for each color
+
+
         for (Island myIsland: islands)
         {
             if (myIsland!= CurrentIsland && (CurrentIsland.getID() + NumOfIslands/2) % NumOfIslands != myIsland.getID())
@@ -50,15 +57,19 @@ public class GameClass {
             }
         }
 
+        bag = new StudentBag(false); //bag with the remaining 120 students
+
         clouds = new ArrayList<>();
         players = new ArrayList<>();
         for(int i=0;i<PlayerNumber;i++)
         {
-            clouds.add(new Cloud(PlayerNumber+1)); // Cloud Capacity
+            clouds.add(new Cloud(PlayerNumber+1));  // Cloud Capacity
             players.add(new Player(i,nicknames.get(i), Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
         players = (ArrayList<Player>) Collections.unmodifiableCollection(players); //this way PlayerID and players Indexes will always be the same
         playerMaxMoves = new int[PlayerNumber];
+        playerCardValue = new int[PlayerNumber];
+
     }
 
     public void CloudToEntrance(int CloudIndex, int PlayerID)
@@ -110,9 +121,18 @@ public class GameClass {
 
     public void useHelperCard(int playerID, int cardNumber) throws InvalidKeyException
     {
+        //controllare che non giochi le stesse carte gia giocate nel turno
         playerMaxMoves[playerID] = players.get(playerID).deck.returnCard(cardNumber).getMaxMoves();
         players.get(playerID).deck.useCard(cardNumber);
+
+        //added
+        playerCardValue[playerID] = cardNumber;
+
     }
+
+
+
+
 
     public int playerMaxMoves(int playerID)
     {

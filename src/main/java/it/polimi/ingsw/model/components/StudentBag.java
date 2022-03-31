@@ -5,11 +5,22 @@ import java.util.*;
 public class StudentBag {
     private HashMap<ColoredDisc, Integer> bag = new HashMap<ColoredDisc, Integer>();
 
-    public StudentBag()
+    public StudentBag(boolean first)
     {
-        for (ColoredDisc color: ColoredDisc.values())
-            bag.put(color, 26);
+        int bagDimension;
+        if(first)
+        {
+            bagDimension = 2;
+        }
+        else{
+            bagDimension = 25;
+        }
+        {
+            for (ColoredDisc color : ColoredDisc.values())
+                bag.put(color, bagDimension);
+        }
     }
+
 
     public ArrayList<ColoredDisc> pop2forColor() throws IndexOutOfBoundsException
     {
