@@ -70,7 +70,29 @@ public class GameClass {
         playerMaxMoves = new int[PlayerNumber];
         playerCardValue = new int[PlayerNumber];
 
+
+        // filling the entrance of each player for the first time with 7 or 9 students
+        for(Player player: players)
+        {
+            bagToEntrance(player.myDashboard.maxEntrance,player);
+        }
     }
+
+    public void bagToEntrance(int number, Player player)
+    {
+        for(int i=0;i<number;i++){
+            player.myDashboard.AddToEntrance(bag.popRandom());
+        }
+    }
+
+    public int selectRandomPlayer(int flag)
+    {
+        switch(flag){
+            case 1: return (new Random()).nextInt(PlayerNumber-1);
+            default: return 0;
+        }
+    }
+
 
     public void CloudToEntrance(int CloudIndex, int PlayerID)
     {

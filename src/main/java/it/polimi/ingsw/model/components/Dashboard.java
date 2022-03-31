@@ -7,11 +7,11 @@ import java.util.HashSet;
 
 public class Dashboard {
     private int maxTowers;
-    private int maxEntrance;
     private ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
     private HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
     private int towerNumber;
 
+    public int maxEntrance;
     public HashSet<ColoredDisc> professorSpots = new HashSet<ColoredDisc>();
 
     public Dashboard(int playerNumber) throws IndexOutOfBoundsException
