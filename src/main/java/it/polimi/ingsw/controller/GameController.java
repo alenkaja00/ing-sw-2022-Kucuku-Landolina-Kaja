@@ -13,17 +13,13 @@ public class GameController
 
     public GameController(int playerNumber, Boolean expertMode, String ID, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
     {
-        if(expertMode)
-        {
-            GameClassExpert game = new GameClassExpert(ID,playerNumber,nicknames,wizards);
-        }
 
-        else
-        {
 
-            GameClass game = new GameClass(ID,playerNumber,nicknames,wizards);
-        }
 
+
+        GameClass game = new GameClass(ID,playerNumber,nicknames,wizards);
+
+        PianificationState planState = new PianificationState(game);
 
     }
 
