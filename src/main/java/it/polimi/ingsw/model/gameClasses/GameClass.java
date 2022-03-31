@@ -21,13 +21,13 @@ public class GameClass {
     //aggiunta
     protected int[] playerCardValue;
 
-
     protected Player PlayerRound;
     protected ArrayList<AbstractEffect> SpecialCards;
     protected ArrayList<AbstractEffect> ChosenCards;
     protected ArrayList<String> nicknames;
     protected int NumOfIslands = 12;
 
+    public int firstPlayer;
 
     private Island CurrentIsland;
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
@@ -35,6 +35,9 @@ public class GameClass {
         this.GameID = ID;
         this.PlayerNumber = PlayerNumber;
         this.nicknames = nicknames;
+
+
+        //---Start of setup---
 
         islands = new ArrayList<>();
         for(int i=0;i<NumOfIslands;i++)
@@ -76,6 +79,14 @@ public class GameClass {
         {
             bagToEntrance(player.myDashboard.maxEntrance,player);
         }
+
+
+        //select first player of the game
+        firstPlayer = selectRandomPlayer(1);
+
+
+        //----end of Setup ------
+
     }
 
     public void bagToEntrance(int number, Player player)
@@ -290,7 +301,6 @@ public class GameClass {
         return false;
 
     }
-
 
 
 
