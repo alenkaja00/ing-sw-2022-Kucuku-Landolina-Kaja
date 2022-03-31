@@ -114,13 +114,16 @@ public class GameClass {
         }
     }
 
-    public void BagToCloud(int CloudIndex)
+    public void BagToCloud()
     {
-        Cloud myCloud = clouds.get(CloudIndex);
-        for(int i=0;i<myCloud.getCloudCapacity();i++)
+        ArrayList<Cloud> clouds = getClouds();
+        for(Cloud cloud: clouds)
         {
-            myCloud.AddStudent(bag.popRandom());
+            for(int i=0;i<clouds.get(0).getCloudCapacity();i++) {
+                cloud.AddStudent(bag.popRandom());
+            }
         }
+        setClouds(clouds);
     }
 
     public void EntranceToTables(int PlayerID, ColoredDisc student)
