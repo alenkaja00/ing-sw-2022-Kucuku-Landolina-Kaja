@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.gameClasses;
 
+import it.polimi.ingsw.model.cards.EffectCard;
 import it.polimi.ingsw.model.components.ColoredDisc;
 import it.polimi.ingsw.model.components.Player;
 import it.polimi.ingsw.model.cards.Wizard;
@@ -35,9 +36,95 @@ public class GameClassExpert extends GameClass
         evaluateProfessors(PlayerID, student);
     }
 
-    public void useCard()
+    public void useCardEffect(int PlayerID, EffectCard card)
     {
+
+        card.run();
+        switch (card.getID()) {
+            case MONK:
+
+                break;
+            case QUEEN:
+
+                break;
+            case LADY:
+
+                break;
+            case JOLLY:
+
+                break;
+            case CAVALIER:
+
+                break;
+            case LORD:
+
+                break;
+            case CENTAUR:
+
+                break;
+            case COOK:
+
+                break;
+            case VILLAIN:
+
+                break;
+            case MAGICIAN:
+
+                break;
+            case MUSICIAN:
+
+                break;
+            case BANDIT:
+
+                break;
+            default:
+                break;
+        }
         //cosa fare con le carte personaggio
     }
 
+    public void endCardEffect(int PlayerID, EffectCard card)
+    {
+        card.end();
+        switch (card.getID()) {
+            case MONK:
+
+                break;
+            case QUEEN:
+
+                break;
+            case LADY:
+
+                break;
+            case JOLLY:
+
+                break;
+            case CAVALIER:
+
+                break;
+            case LORD:
+
+                break;
+            case CENTAUR:
+
+                break;
+            case COOK:
+
+                break;
+            case VILLAIN:
+
+                break;
+            case MAGICIAN:
+
+                break;
+            case MUSICIAN:
+
+                break;
+            case BANDIT:
+
+                break;
+            default:
+                break;
+        }
+    }
 }

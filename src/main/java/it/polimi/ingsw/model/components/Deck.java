@@ -14,6 +14,7 @@ public class Deck {
     private ArrayList<HelperCard> deck = new ArrayList<HelperCard>();
 
     public Deck() {
+
         for(int i=0;i<10;i++)
         {
             deck.add(new HelperCard(i+1,i/2+1));

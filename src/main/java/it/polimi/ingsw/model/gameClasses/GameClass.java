@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model.gameClasses;
 
-import it.polimi.ingsw.model.cards.AbstractEffect;
 import it.polimi.ingsw.model.cards.Wizard;
 import it.polimi.ingsw.model.components.*;
 

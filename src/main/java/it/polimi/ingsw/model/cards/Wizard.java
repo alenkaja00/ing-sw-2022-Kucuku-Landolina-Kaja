@@ -7,3 +7,4 @@ public enum Wizard {
     WIZARD4,
     SPECIAL
 }
+
