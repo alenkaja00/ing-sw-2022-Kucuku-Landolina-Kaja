@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class GameClassExpert extends GameClass
 {
+    protected ArrayList<EffectCard> ChosenCards;
+
     public GameClassExpert(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards) {
         super(ID, PlayerNumber, nicknames, wizards);
 

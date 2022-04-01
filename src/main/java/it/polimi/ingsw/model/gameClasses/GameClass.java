@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.gameClasses;
 
+import it.polimi.ingsw.model.cards.EffectCard;
 import it.polimi.ingsw.model.cards.Wizard;
 import it.polimi.ingsw.model.components.*;
 
@@ -21,8 +22,6 @@ public class GameClass {
     protected int[] playerCardValue;
 
     protected Player PlayerRound;
-    protected ArrayList<AbstractEffect> SpecialCards;
-    protected ArrayList<AbstractEffect> ChosenCards;
     protected ArrayList<String> nicknames;
     protected int NumOfIslands = 12;
 
