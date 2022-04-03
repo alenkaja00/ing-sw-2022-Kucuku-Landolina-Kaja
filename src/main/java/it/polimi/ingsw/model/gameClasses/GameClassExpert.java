@@ -1,11 +1,17 @@
 package it.polimi.ingsw.model.gameClasses;
 
 import it.polimi.ingsw.model.cards.EffectCard;
+import it.polimi.ingsw.model.cards.EffectName;
 import it.polimi.ingsw.model.components.ColoredDisc;
 import it.polimi.ingsw.model.components.Player;
 import it.polimi.ingsw.model.cards.Wizard;
 
+import javax.swing.*;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class GameClassExpert extends GameClass
 {
@@ -19,7 +25,33 @@ public class GameClassExpert extends GameClass
             player.addCoins(1);
         }
 
-        //piazzare 3 carte personaggio
+        //piazzare 3 carte personaggio e inizializzare
+        ArrayList<EffectName> randomCards = (ArrayList<EffectName>) Arrays.stream(EffectName.values()).collect(Collectors.toList());
+        Collections.shuffle(randomCards);
+        for (int i = 0; i<3; i++)
+        {
+            ChosenCards.add(new EffectCard(randomCards.get(i)));
+        }
+        for (EffectCard card:ChosenCards)
+        {
+            int maxS  = 0;
+            switch (card.getID())
+            {
+                case MONK:
+                case QUEEN:
+                    maxS = 4;
+                    break;
+                case JOLLY:
+                    maxS = 6;
+                    break;
+                default:
+                    break;
+            }
+            for (int i = 0; i<maxS; i++)
+            {
+                card.addStudent(bag.popRandom());
+            }
+        }
     }
 
     public void EntranceToTables(int PlayerID, ColoredDisc student)
@@ -36,6 +68,60 @@ public class GameClassExpert extends GameClass
                 break;
         }
         evaluateProfessors(PlayerID, student);
+    }
+
+    public void useCardEffect(int PlayerID, EffectCard card)
+    {
+
+        card.run();
+        switch (card.getID()) {
+            case MONK:
+
+                break;
+            case QUEEN:
+
+                break;
+            case LADY:
+
+                break;
+            case JOLLY:
+
+                break;
+            case CAVALIER:
+
+                break;
+            case LORD:
+
+                break;
+            case CENTAUR:
+
+                break;
+            case COOK:
+
+                break;
+            case VILLAIN:
+
+                break;
+            case MAGICIAN:
+
+                break;
+            case MUSICIAN:
+
+                break;
+            case BANDIT:
+
+                break;
+            default:
+                break;
+        }
+        //cosa fare con le carte personaggio
+    }
+
+    public void monkEffect(int PlayerID, EffectCard card, ColoredDisc color, int Island)
+    {
+        card.removeStudent(color);
+        card.addStudent(bag.popRandom());
+        getIslandById(Island).addStudent(color);
     }
 
     public void useCardEffect(int PlayerID, EffectCard card)

@@ -3,6 +3,7 @@ package it.polimi.ingsw.model.cards;
 import it.polimi.ingsw.model.components.ColoredDisc;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.function.Function;
 
@@ -29,6 +30,7 @@ public class EffectCard {
                 break;
             case LADY:
                 price = 2;
+                prohibitionCard = 4;
                 break;
             case JOLLY:
                 price = 1;
@@ -63,10 +65,6 @@ public class EffectCard {
         }
     }
 
-    public void setUp()
-    {
-
-    }
 
     public void useCard()
     {
@@ -96,18 +94,20 @@ public class EffectCard {
 
 
 
-    public void addStudent(ColoredDisc student) {
-        this.students.add(student);
-    }
-    public ColoredDisc removeStudent(ColoredDisc student)
-    {
-        this.students.remove(student);
-        return student;
-    }
     public ArrayList<ColoredDisc> getStudents()
     {
         return (ArrayList<ColoredDisc>) this.students.clone();
     }
 
+    public void addStudent(ColoredDisc myStudent)
+    {
+        students.add(myStudent);
+    }
+
+    public ColoredDisc removeStudent(ColoredDisc student)
+    {
+        this.students.remove(student);
+        return student;
+    }
 
 }

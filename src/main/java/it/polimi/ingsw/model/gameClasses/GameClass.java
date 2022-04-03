@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.components.*;
 
 import java.security.InvalidKeyException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameClass {
 
@@ -148,7 +149,7 @@ public class GameClass {
 
     public void EntranceToIsland(int PlayerID, int IslandID, ColoredDisc student)
     {
-        islands.get(IslandID).addStudent(student);
+        getIslandById(IslandID).addStudent(student);
         players.get(PlayerID).myDashboard.RemoveFromEntrance(student);
     }
 
@@ -303,7 +304,10 @@ public class GameClass {
 
     }
 
-
+    protected Island getIslandById(int Island)
+    {
+        return islands.stream().filter(x->x.getID() == Island).collect(Collectors.toList()).get(0);
+    }
 
     public ArrayList<Cloud> getClouds() {
         return (ArrayList<Cloud>) clouds.clone();

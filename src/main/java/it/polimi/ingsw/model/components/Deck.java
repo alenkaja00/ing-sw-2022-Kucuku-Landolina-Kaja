@@ -40,6 +40,7 @@ public class Deck {
 
     public ArrayList<HelperCard> returnUnused()
     {
-        return (ArrayList<HelperCard>) deck.stream().filter(x->x.isUsed()==false).collect(Collectors.toList());
+        return (ArrayList<HelperCard>) ((ArrayList<HelperCard>)deck.clone()).stream().filter(x->x.isUsed()==false).collect(Collectors.toList());
     }
+}
 }
