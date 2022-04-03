@@ -127,6 +127,16 @@ public class GameClassExpert extends GameClass
     }
 
 
+    public void jollyEffect(int PlayerID, EffectName name, ColoredDisc cardColor, ColoredDisc entranceColor)
+    {
+        EffectCard card = getCardByName(name);
+        card.removeStudent(cardColor);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(entranceColor);
+        players.get(PlayerID).myDashboard.AddToEntrance(cardColor);
+        card.addStudent(entranceColor);
+    }
+
+
     public void endCardEffect(int PlayerID, EffectCard card)
     {
         card.end();
