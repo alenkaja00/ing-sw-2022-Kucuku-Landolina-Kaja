@@ -6,18 +6,20 @@ import it.polimi.ingsw.model.components.ColoredDisc;
 import it.polimi.ingsw.model.components.Island;
 import it.polimi.ingsw.model.components.Player;
 import it.polimi.ingsw.model.cards.Wizard;
+import it.polimi.ingsw.model.components.Tower;
 
-import javax.swing.*;
-import java.io.FileOutputStream;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class GameClassExpert extends GameClass
 {
     protected ArrayList<EffectCard> ChosenCards;
+    private ArrayList<Integer> extraInfluencePlayers = new ArrayList<Integer>();
+    private ArrayList<ColoredDisc> cookColors = new ArrayList<ColoredDisc>();
 
     public GameClassExpert(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards) {
         super(ID, PlayerNumber, nicknames, wizards);
@@ -76,20 +78,20 @@ public class GameClassExpert extends GameClass
         }
     }
 
+
+
+
     public void useCardEffect(int PlayerID, EffectName name)
     {
         EffectCard card = getCardByName(name);
         switch (card.getID()) {
             case CAVALIER:
-
+                extraInfluencePlayers.add(PlayerID);
                 break;
             case LORD:
 
                 break;
             case CENTAUR:
-
-                break;
-            case COOK:
 
                 break;
             case VILLAIN:
@@ -110,12 +112,17 @@ public class GameClassExpert extends GameClass
         //cosa fare con le carte personaggio
     }
 
-    public void monkEffect(int PlayerID, EffectName name, ColoredDisc color, int Island)
+    public void monkEffect(EffectName name, ColoredDisc color, int Island)
     {
         EffectCard card = getCardByName(name);
         card.removeStudent(color);
         card.addStudent(bag.popRandom());
         getIslandById(Island).addStudent(color);
+    }
+
+    public void cookEffect(ColoredDisc color)
+    {
+        cookColors.add(color);
     }
 
     public void queenEffect(int PlayerID, EffectName name, ColoredDisc color)
@@ -127,7 +134,7 @@ public class GameClassExpert extends GameClass
         evaluateProfessors(PlayerID, color);
     }
 
-    public void ladyEffect(int IslandID, EffectName name) throws InvalidParameterException
+    public void ladyEffect(int IslandID) throws InvalidParameterException
     {
         if (getIslandById(IslandID).prohibited)
             throw new InvalidParameterException();
@@ -146,6 +153,8 @@ public class GameClassExpert extends GameClass
 
     public void endCardEffect(int PlayerID, EffectCard card)
     {
+        extraInfluencePlayers.removeAll(extraInfluencePlayers);
+        cookColors.removeAll(cookColors);
         switch (card.getID()) {
             case MONK:
 
@@ -192,6 +201,42 @@ public class GameClassExpert extends GameClass
     private EffectCard getCardByName(EffectName name)
     {
         return ChosenCards.stream().filter(x->x.getID()==name).collect(Collectors.toList()).get(0);
+    }
+
+    public int EvaluateInfluence(Island island)
+    {
+
+        Tower[] towers = island.getTowers();
+        HashMap<ColoredDisc,Integer> students = island.getStudents();
+        int PlayersInfluence[] = new int[PlayerNumber];
+        Arrays.fill(PlayersInfluence,0);
+        for (Player player : players)
+        {
+            int ID = player.getID();
+            Tower color = player.getTowerColor();
+
+            if (towers[0].equals(color))
+            {
+                PlayersInfluence[ID]+= towers.length;
+            }
+            //effect card cavalier
+            if(extraInfluencePlayers.contains(player.getID()))
+                PlayersInfluence[player.getID()]+=2;
+        }
+        for(ColoredDisc color:  students.keySet())
+        {
+            //effect card cook
+            if(cookColors.contains(color))
+                continue;
+            for(int i=0; i<PlayerNumber;i++)
+            {
+                if(players.get(i).myDashboard.professorSpots.contains(color))
+                {
+                    PlayersInfluence[i]+= students.get(color);
+                }
+            }
+        }
+        return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
     }
 
     /** returns true if game ends for lack of towers or maximum number of islands*/
