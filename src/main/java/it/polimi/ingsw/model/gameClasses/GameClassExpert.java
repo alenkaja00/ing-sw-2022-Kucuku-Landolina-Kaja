@@ -132,8 +132,9 @@ public class GameClassExpert extends GameClass
             case MAGICIAN:
 
                 break;
-            case MUSICIAN:
+            case MUSICIAN:{
 
+            }
                 break;
             case BANDIT:
 

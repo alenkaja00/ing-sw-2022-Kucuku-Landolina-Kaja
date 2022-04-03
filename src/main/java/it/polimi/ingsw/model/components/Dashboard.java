@@ -115,4 +115,27 @@ public class Dashboard {
         return tables.get(color);
     }
 
+
+    /**
+     *
+     * @param myStudent
+     * @throws IndexOutOfBoundsException
+     */
+    public void RemoveFromTables(ColoredDisc myStudent) throws IndexOutOfBoundsException
+    {
+        if(tables.get(myStudent) == 0)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+        else
+        {
+            tables.put(myStudent, tables.get(myStudent)-1);
+        }
+    }
+
+
+
+
+
+
 }
