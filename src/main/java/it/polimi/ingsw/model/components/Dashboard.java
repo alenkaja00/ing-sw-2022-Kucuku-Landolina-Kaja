@@ -69,6 +69,19 @@ public class Dashboard {
         }
     }
 
+    public int addToTables(ColoredDisc myStudent) throws InvalidParameterException, IndexOutOfBoundsException
+    {
+        if (tables.get(myStudent)<10)
+        {
+            tables.put(myStudent, tables.get(myStudent)+1);
+            return tables.get(myStudent);
+        }
+        else
+        {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
     public void RemoveTower() throws IndexOutOfBoundsException
     {
         if (towerNumber>0)

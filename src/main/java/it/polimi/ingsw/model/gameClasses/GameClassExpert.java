@@ -70,52 +70,7 @@ public class GameClassExpert extends GameClass
         evaluateProfessors(PlayerID, student);
     }
 
-    public void useCardEffect(int PlayerID, EffectCard card)
-    {
 
-        card.run();
-        switch (card.getID()) {
-            case MONK:
-
-                break;
-            case QUEEN:
-
-                break;
-            case LADY:
-
-                break;
-            case JOLLY:
-
-                break;
-            case CAVALIER:
-
-                break;
-            case LORD:
-
-                break;
-            case CENTAUR:
-
-                break;
-            case COOK:
-
-                break;
-            case VILLAIN:
-
-                break;
-            case MAGICIAN:
-
-                break;
-            case MUSICIAN:
-
-                break;
-            case BANDIT:
-
-                break;
-            default:
-                break;
-        }
-        //cosa fare con le carte personaggio
-    }
 
     public void monkEffect(int PlayerID, EffectCard card, ColoredDisc color, int Island)
     {
@@ -124,52 +79,14 @@ public class GameClassExpert extends GameClass
         getIslandById(Island).addStudent(color);
     }
 
-    public void useCardEffect(int PlayerID, EffectCard card)
+
+    public void queenEffect(int PlayerID, EffectCard card, ColoredDisc color )
     {
-
-        card.run();
-        switch (card.getID()) {
-            case MONK:
-
-                break;
-            case QUEEN:
-
-                break;
-            case LADY:
-
-                break;
-            case JOLLY:
-
-                break;
-            case CAVALIER:
-
-                break;
-            case LORD:
-
-                break;
-            case CENTAUR:
-
-                break;
-            case COOK:
-
-                break;
-            case VILLAIN:
-
-                break;
-            case MAGICIAN:
-
-                break;
-            case MUSICIAN:
-
-                break;
-            case BANDIT:
-
-                break;
-            default:
-                break;
-        }
-        //cosa fare con le carte personaggio
+        card.removeStudent(color);
+        players.get(PlayerID).myDashboard.addToTables(color);
+        card.addStudent(bag.popRandom());
     }
+
 
     public void endCardEffect(int PlayerID, EffectCard card)
     {
