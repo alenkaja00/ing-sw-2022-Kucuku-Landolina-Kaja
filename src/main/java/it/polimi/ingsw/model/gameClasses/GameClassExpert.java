@@ -70,23 +70,10 @@ public class GameClassExpert extends GameClass
         evaluateProfessors(PlayerID, student);
     }
 
-    public void useCardEffect(int PlayerID, EffectCard card)
+    public void useCardEffect(int PlayerID, EffectName name)
     {
-
-        card.run();
+        EffectCard card = getCardByName(name);
         switch (card.getID()) {
-            case MONK:
-
-                break;
-            case QUEEN:
-
-                break;
-            case LADY:
-
-                break;
-            case JOLLY:
-
-                break;
             case CAVALIER:
 
                 break;
@@ -117,58 +104,17 @@ public class GameClassExpert extends GameClass
         //cosa fare con le carte personaggio
     }
 
-    public void monkEffect(int PlayerID, EffectCard card, ColoredDisc color, int Island)
+    public void monkEffect(int PlayerID, EffectName name, ColoredDisc color, int Island)
     {
+        EffectCard card = getCardByName(name);
         card.removeStudent(color);
         card.addStudent(bag.popRandom());
         getIslandById(Island).addStudent(color);
     }
 
-    public void useCardEffect(int PlayerID, EffectCard card)
+    public void ladyEffect(int IslandID, EffectName name)
     {
-
-        card.run();
-        switch (card.getID()) {
-            case MONK:
-
-                break;
-            case QUEEN:
-
-                break;
-            case LADY:
-
-                break;
-            case JOLLY:
-
-                break;
-            case CAVALIER:
-
-                break;
-            case LORD:
-
-                break;
-            case CENTAUR:
-
-                break;
-            case COOK:
-
-                break;
-            case VILLAIN:
-
-                break;
-            case MAGICIAN:
-
-                break;
-            case MUSICIAN:
-
-                break;
-            case BANDIT:
-
-                break;
-            default:
-                break;
-        }
-        //cosa fare con le carte personaggio
+        card
     }
 
     public void endCardEffect(int PlayerID, EffectCard card)
@@ -214,5 +160,10 @@ public class GameClassExpert extends GameClass
             default:
                 break;
         }
+    }
+
+    private EffectCard getCardByName(EffectName name)
+    {
+        return ChosenCards.stream().filter(x->x.getID()==name).collect(Collectors.toList()).get(0);
     }
 }

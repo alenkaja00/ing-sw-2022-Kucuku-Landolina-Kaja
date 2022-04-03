@@ -64,16 +64,11 @@ public class EffectCard {
 
         }
     }
-
-
+    
     public void useCard()
     {
         used = true;
     }
-
-    public void run(){}
-
-    public void end(){}
 
     public int getPrice()
     {
