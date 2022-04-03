@@ -20,6 +20,10 @@ public class GameClassExpert extends GameClass
     protected ArrayList<EffectCard> ChosenCards;
     private ArrayList<Integer> extraInfluencePlayers = new ArrayList<Integer>();
     private ArrayList<ColoredDisc> cookColors = new ArrayList<ColoredDisc>();
+    private ArrayList<Integer> villainContribution = new ArrayList<>();
+    private ArrayList<Integer> extraMotherNatureMoves = new ArrayList<>();
+    private boolean centaurEffect = false;
+
 
     public GameClassExpert(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards) {
         super(ID, PlayerNumber, nicknames, wizards);
@@ -88,23 +92,14 @@ public class GameClassExpert extends GameClass
             case CAVALIER:
                 extraInfluencePlayers.add(PlayerID);
                 break;
-            case LORD:
-
-                break;
             case CENTAUR:
-
+                centaurEffect = true;
                 break;
             case VILLAIN:
-
+                villainContribution.add(PlayerID);
                 break;
             case MAGICIAN:
-
-                break;
-            case MUSICIAN:
-
-                break;
-            case BANDIT:
-
+                extraMotherNatureMoves.add(PlayerID);
                 break;
             default:
                 break;
@@ -150,7 +145,6 @@ public class GameClassExpert extends GameClass
      * @param entranceColor
      * the function allows the player to switch up to 3 students from the card to his entrance
      */
-
     public void jollyEffect(int PlayerID, EffectName name, ColoredDisc cardColor, ColoredDisc entranceColor)
     {
         EffectCard card = getCardByName(name);
@@ -199,51 +193,18 @@ public class GameClassExpert extends GameClass
         }
     }
 
+    public void lordEffect(int IslandID)
+    {
+        MoveMotherNature(getIslandById(IslandID));
+    }
+
     public void endCardEffect(int PlayerID, EffectCard card)
     {
         extraInfluencePlayers.removeAll(extraInfluencePlayers);
         cookColors.removeAll(cookColors);
-        switch (card.getID()) {
-            case MONK:
-
-                break;
-            case QUEEN:
-
-                break;
-            case LADY:
-
-                break;
-            case JOLLY:
-
-                break;
-            case CAVALIER:
-
-                break;
-            case LORD:
-
-                break;
-            case CENTAUR:
-
-                break;
-            case COOK:
-
-                break;
-            case VILLAIN:
-
-                break;
-            case MAGICIAN:
-
-                break;
-            case MUSICIAN:{
-
-            }
-                break;
-            case BANDIT:
-
-                break;
-            default:
-                break;
-        }
+        villainContribution.removeAll(villainContribution);
+        extraMotherNatureMoves.removeAll(extraMotherNatureMoves);
+        centaurEffect = false;
     }
 
     private EffectCard getCardByName(EffectName name)
@@ -251,6 +212,7 @@ public class GameClassExpert extends GameClass
         return ChosenCards.stream().filter(x->x.getID()==name).collect(Collectors.toList()).get(0);
     }
 
+    @Override
     public int EvaluateInfluence(Island island)
     {
 
@@ -263,7 +225,7 @@ public class GameClassExpert extends GameClass
             int ID = player.getID();
             Tower color = player.getTowerColor();
 
-            if (towers[0].equals(color))
+            if (towers[0].equals(color) && centaurEffect == false)
             {
                 PlayersInfluence[ID]+= towers.length;
             }
@@ -285,6 +247,22 @@ public class GameClassExpert extends GameClass
             }
         }
         return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
+    }
+
+    @Override
+    protected void evaluateProfessors(int PlayerID, ColoredDisc student)
+    {
+        Player lastPlayer = players.get(PlayerID);
+        for (Player player: players)
+        {
+            if (lastPlayer.myDashboard.SittedStudents(student) + (villainContribution.contains(PlayerID)?1:0) <= player.myDashboard.SittedStudents(student) && lastPlayer != player)
+                return;
+        }
+        for (Player player: players)
+        {
+            player.myDashboard.professorSpots.remove(student);
+        }
+        lastPlayer.myDashboard.professorSpots.add(student);
     }
 
     /** returns true if game ends for lack of towers or maximum number of islands*/
@@ -352,4 +330,74 @@ public class GameClassExpert extends GameClass
         }
     }
 
+    public void MoveMotherNature(Island chosenIsland) throws RuntimeException
+    {
+        Island temp = CurrentIsland;
+        CurrentIsland = chosenIsland;
+
+        if (CurrentIsland.prohibited)
+        {
+            CurrentIsland.prohibited = false;
+            getCardByName(EffectName.LADY).prohibitionCard++;
+            return;
+        }
+
+        Player influencePlayer = players.get(EvaluateInfluence(CurrentIsland));
+        if (CurrentIsland.getTowers().length == 0)
+        {
+            CurrentIsland.AddTower(influencePlayer.getTowerColor());
+            influencePlayer.myDashboard.RemoveTower();
+        }
+        else
+        {
+            if (influencePlayer.getTowerColor() != CurrentIsland.getTowers()[0])
+            {
+                if (influencePlayer.myDashboard.TowerNumber()< CurrentIsland.getTowers().length)
+                    throw new RuntimeException();
+
+                for (Player player: players)
+                {
+                    if (player.getTowerColor() == CurrentIsland.getTowers()[0])
+                    {
+                        for (int i=0; i<CurrentIsland.getTowers().length; i++)
+                            player.myDashboard.AddTower();
+                    }
+                }
+
+                CurrentIsland.changeTowerColor(influencePlayer.getTowerColor());
+
+                for (int i=0; i<CurrentIsland.getTowers().length; i++)
+                    influencePlayer.myDashboard.RemoveTower();
+            }
+        }
+
+        //islands
+        //EXECUTION ORDER IS IMPORTANT
+        Island rightIsland = islands.get((islands.indexOf(CurrentIsland)+1)%islands.size());
+
+        if (rightIsland.getTowers().length>0 && rightIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(rightIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
+            CurrentIsland.addStudents(rightIsland.getStudents());
+            CurrentIsland.addGraphicalIslands(rightIsland.getID());
+            islands.remove(rightIsland);
+        }
+
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
+
+        if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(leftIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
+            CurrentIsland.addStudents(leftIsland.getStudents());
+            CurrentIsland.addGraphicalIslands(leftIsland.getID());
+            islands.remove(leftIsland);
+        }
+
+        CurrentIsland = temp;
+    }
+
+    public int playerMaxMoves(int playerID)
+    {
+        return playerMaxMoves[playerID] + (extraMotherNatureMoves.contains(playerID)?2:0);
+    }
 }
