@@ -142,6 +142,15 @@ public class GameClassExpert extends GameClass
             getIslandById(IslandID).prohibited = true;
     }
 
+    /**
+     *
+     * @param PlayerID
+     * @param name
+     * @param cardColor
+     * @param entranceColor
+     * the function allows the player to switch up to 3 students from the card to his entrance
+     */
+
     public void jollyEffect(int PlayerID, EffectName name, ColoredDisc cardColor, ColoredDisc entranceColor)
     {
         EffectCard card = getCardByName(name);
@@ -149,6 +158,45 @@ public class GameClassExpert extends GameClass
         players.get(PlayerID).myDashboard.RemoveFromEntrance(entranceColor);
         players.get(PlayerID).myDashboard.AddToEntrance(cardColor);
         card.addStudent(entranceColor);
+    }
+
+    /**
+     *
+     * @param PlayerID
+     * @param entranceColor
+     * @param tableColor
+     * the function allows the player to switch up to 2 students between his entrance and his dining room
+     */
+    public void musicianEffect(int PlayerID, ColoredDisc entranceColor, ColoredDisc tableColor)
+    {
+        players.get(PlayerID).myDashboard.MoveToTables(entranceColor);
+        players.get(PlayerID).myDashboard.RemoveFromTables(tableColor);
+        players.get(PlayerID).myDashboard.AddToEntrance(tableColor);
+        evaluateProfessors(PlayerID, entranceColor);
+        evaluateProfessors(PlayerID, tableColor);
+    }
+
+    /**
+     *
+     * @param PlayerID
+     * @param color
+     * this effect removes from all the players dining rooms 3 or less students, putting back to the bag those students
+     */
+    public void banditEffect(int PlayerID, ColoredDisc color)
+    {
+        for(Player player:players)
+        {
+            int dimColor = player.myDashboard.SittedStudents(color);
+            if(dimColor >= 3)
+            {
+                player.myDashboard.RemoveFromTables(color, 3);
+                bag.addToBag(color, 3);
+            }
+            else{
+                player.myDashboard.RemoveFromTables(color, dimColor);
+                bag.addToBag(color, dimColor);
+            }
+        }
     }
 
     public void endCardEffect(int PlayerID, EffectCard card)
