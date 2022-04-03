@@ -25,10 +25,11 @@ public class GameClass {
     protected Player PlayerRound;
     protected ArrayList<String> nicknames;
     protected int NumOfIslands = 12;
+    protected Island CurrentIsland;
 
     public int firstPlayer;
 
-    private Island CurrentIsland;
+
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
     {
         this.GameID = ID;
