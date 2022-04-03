@@ -112,10 +112,17 @@ public class GameClassExpert extends GameClass
         getIslandById(Island).addStudent(color);
     }
 
+
+    public void queenEffect(int PlayerID, EffectCard card, ColoredDisc color )
+    {
+        card.removeStudent(color);
+        players.get(PlayerID).myDashboard.addToTables(color);
+        card.addStudent(bag.popRandom());
     public void ladyEffect(int IslandID, EffectName name)
     {
         card
     }
+
 
     public void endCardEffect(int PlayerID, EffectCard card)
     {

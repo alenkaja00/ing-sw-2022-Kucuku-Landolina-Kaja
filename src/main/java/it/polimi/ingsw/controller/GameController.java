@@ -1,10 +1,12 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.model.cards.EffectName;
 import it.polimi.ingsw.model.cards.Wizard;
 import it.polimi.ingsw.model.gameClasses.GameClass;
 import it.polimi.ingsw.model.gameClasses.GameClassExpert;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameController
 {
@@ -20,6 +22,7 @@ public class GameController
         GameClass game = new GameClass(ID,playerNumber,nicknames,wizards);
 
         PianificationState planState = new PianificationState(game);
+
 
     }
 
