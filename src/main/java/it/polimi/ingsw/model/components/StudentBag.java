@@ -70,4 +70,19 @@ public class StudentBag {
 
         return bag.values().stream().reduce(0,(x,y)->x+y);
     }
+
+
+    /**
+     * the function adds a new color in the bag
+     * @param color
+     */
+    public void addToBag(ColoredDisc color)
+    {
+        bag.put(color, bag.get(color)+1);
+    }
+
+    public void addToBag(ColoredDisc color, int n)
+    {
+        bag.put(color, bag.get(color)+n);
+    }
 }

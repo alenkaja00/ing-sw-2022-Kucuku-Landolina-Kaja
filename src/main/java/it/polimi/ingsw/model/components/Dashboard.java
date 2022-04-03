@@ -133,6 +133,17 @@ public class Dashboard {
         }
     }
 
+    public void RemoveFromTables(ColoredDisc myStudent, int num) throws IndexOutOfBoundsException
+    {
+        if(tables.get(myStudent) - num <= 0)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+        else
+        {
+            tables.put(myStudent, tables.get(myStudent)-num);
+        }
+    }
 
 
 
