@@ -14,6 +14,10 @@ public class Island {
     public Island(int ID){
         this.ID = ID;
         this.graphicalIsland.add(ID); // at the beginning, the island number x corresponds to the graphical island number x
+        for (ColoredDisc color: ColoredDisc.values())
+        {
+            students.put(color, 0);
+        }
     }
 
     public void addGraphicalIslands(int ID)

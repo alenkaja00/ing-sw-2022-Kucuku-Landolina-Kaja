@@ -1,12 +1,15 @@
 package it.polimi.ingsw.model.gameClasses;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.model.cards.EffectCard;
 import it.polimi.ingsw.model.cards.Wizard;
 import it.polimi.ingsw.model.components.*;
 
+import java.lang.reflect.Array;
 import java.security.InvalidKeyException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Map.Entry;
 
 public class GameClass {
 
@@ -27,6 +30,7 @@ public class GameClass {
     protected int NumOfIslands = 12;
     protected Island CurrentIsland;
 
+    protected HashMap<Integer, Integer> RoundOrder = new HashMap<Integer, Integer>();
     public int firstPlayer;
 
 
@@ -49,18 +53,17 @@ public class GameClass {
         this.CurrentIsland = islands.get((new Random()).nextInt(NumOfIslands));
 
         //initialize islands with 2 students for each color, no students on mother nature island and opposite island
-        bag = new StudentBag(true); //add 10 students, 2 for each color
+        bag = new StudentBag(); //add 10 students, 2 for each color
 
+        ArrayList<ColoredDisc> initialStudents = bag.pop2forColor();
 
         for (Island myIsland: islands)
         {
             if (myIsland!= CurrentIsland && (CurrentIsland.getID() + NumOfIslands/2) % NumOfIslands != myIsland.getID())
             {
-                myIsland.addStudent(bag.popRandom());
+                myIsland.addStudent(initialStudents.remove(0));
             }
         }
-
-        bag = new StudentBag(false); //bag with the remaining 120 students
 
         clouds = new ArrayList<>();
         players = new ArrayList<>();
@@ -84,9 +87,14 @@ public class GameClass {
         //select first player of the game
         firstPlayer = selectRandomPlayer(1);
 
+        for (int i=0; i<PlayerNumber; i++)
+            RoundOrder.put(i, (new Random()).nextInt(PlayerNumber-1));
+
 
         //----end of Setup ------
 
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(players));
     }
 
     public void bagToEntrance(int number, Player player)
@@ -374,5 +382,7 @@ public class GameClass {
     public void setStudentBag(ArrayList<ColoredDisc> studentBag) {
         StudentBag = studentBag;
     }
+
+
 
 }

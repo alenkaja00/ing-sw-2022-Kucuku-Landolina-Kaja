@@ -4,21 +4,12 @@ import java.util.*;
 
 public class StudentBag {
     private HashMap<ColoredDisc, Integer> bag = new HashMap<ColoredDisc, Integer>();
+    int bagDimension = 26;
 
-    public StudentBag(boolean first)
+    public StudentBag()
     {
-        int bagDimension;
-        if(first)
-        {
-            bagDimension = 2;
-        }
-        else{
-            bagDimension = 25;
-        }
-        {
-            for (ColoredDisc color : ColoredDisc.values())
-                bag.put(color, bagDimension);
-        }
+        for (ColoredDisc color : ColoredDisc.values())
+            bag.put(color, bagDimension);
     }
 
 
