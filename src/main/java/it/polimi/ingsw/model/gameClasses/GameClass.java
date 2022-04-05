@@ -72,7 +72,7 @@ public class GameClass {
             clouds.add(new Cloud(PlayerNumber+1));  // Cloud Capacity
             players.add(new Player(i,nicknames.get(i), Tower.values()[i],Wizard.values()[i],PlayerNumber));
         }
-        players = (ArrayList<Player>) Collections.unmodifiableCollection(players); //this way PlayerID and players Indexes will always be the same
+        //players = (ArrayList<Player>) Collections.unmodifiableCollection(players); //this way PlayerID and players Indexes will always be the same
         playerMaxMoves = new int[PlayerNumber];
         playerCardValue = new int[PlayerNumber];
 
@@ -91,10 +91,7 @@ public class GameClass {
             RoundOrder.put(i, (new Random()).nextInt(PlayerNumber-1));
 
 
-        //----end of Setup ------
 
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(players));
     }
 
     public void bagToEntrance(int number, Player player)

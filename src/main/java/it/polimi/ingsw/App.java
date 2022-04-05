@@ -1,5 +1,6 @@
 package it.polimi.ingsw;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.model.cards.Wizard;
 import it.polimi.ingsw.model.gameClasses.GameClass;
 
@@ -22,6 +23,10 @@ public class App
         wiz.add(Wizard.WIZARD1);
         wiz.add(Wizard.WIZARD2);
         GameClass game = new GameClass("asd", 2, nickNames, wiz );
+        //----end of Setup ------
 
+        Gson gson = new Gson();
+        String result = gson.toJson(game);
+        System.out.println(result);
     }
 }

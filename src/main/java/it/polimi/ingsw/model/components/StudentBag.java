@@ -46,7 +46,7 @@ public class StudentBag {
             {
                 int rand = (new Random()).nextInt(ColoredDisc.values().length);
                 ColoredDisc randColor = ColoredDisc.values()[rand];
-                if (bag.get(rand) > 0)
+                if (bag.get(randColor) > 0)
                 {
                     bag.put(randColor, bag.get(randColor)-1 );
                     return (randColor);
