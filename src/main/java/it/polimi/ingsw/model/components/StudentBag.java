@@ -63,6 +63,10 @@ public class StudentBag {
     }
 
 
+    public int get(ColoredDisc color){
+        return bag.get(color);
+    }
+
     /**
      * the function adds a new color in the bag
      * @param color
