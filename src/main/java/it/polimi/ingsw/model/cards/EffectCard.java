@@ -20,6 +20,9 @@ public class EffectCard {
         used = false;
         ID = myEffect;
 
+        //we need to initialize the array somewhere, we will discuss this
+        students = new ArrayList<ColoredDisc>();
+
         switch (myEffect)
         {
             case MONK:
@@ -87,7 +90,9 @@ public class EffectCard {
         return ID;
     }
 
-
+    public boolean isUsed(){
+        return  this.used;
+    }
 
     public ArrayList<ColoredDisc> getStudents()
     {
