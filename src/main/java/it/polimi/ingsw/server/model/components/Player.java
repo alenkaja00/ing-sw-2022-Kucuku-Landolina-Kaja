@@ -1,6 +1,6 @@
-package it.polimi.ingsw.model.components;
+package it.polimi.ingsw.server.model.components;
 
-import it.polimi.ingsw.model.cards.Wizard;
+import it.polimi.ingsw.server.model.cards.Wizard;
 
 public class Player{
     private int ID;

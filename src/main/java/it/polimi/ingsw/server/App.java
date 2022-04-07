@@ -1,10 +1,9 @@
-package it.polimi.ingsw;
+package it.polimi.ingsw.server;
 
-import com.google.gson.Gson;
-import it.polimi.ingsw.model.cards.Wizard;
-import it.polimi.ingsw.model.gameClasses.GameClass;
+import it.polimi.ingsw.server.controller.ServerNetwork;
+import it.polimi.ingsw.server.controller.ServerController;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  * Hello world!
@@ -12,10 +11,8 @@ import java.util.ArrayList;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-
+    public static void main( String[] args ) throws IOException {
+        /*
         ArrayList<String> nickNames = new ArrayList<String>();
         ArrayList<Wizard> wiz = new ArrayList<Wizard>();
         nickNames.add("endi");
@@ -28,5 +25,9 @@ public class App
         Gson gson = new Gson();
         String result = gson.toJson(game);
         System.out.println(result);
+        */
+
+        ServerController theController = new ServerController();
+        ServerNetwork myconn = new ServerNetwork(3030, theController);
     }
 }

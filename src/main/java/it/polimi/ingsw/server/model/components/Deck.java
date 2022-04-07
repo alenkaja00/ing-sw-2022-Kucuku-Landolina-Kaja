@@ -1,6 +1,6 @@
-package it.polimi.ingsw.model.components;
+package it.polimi.ingsw.server.model.components;
 
-import it.polimi.ingsw.model.cards.HelperCard;
+import it.polimi.ingsw.server.model.cards.HelperCard;
 
 import java.security.InvalidKeyException;
 import java.util.ArrayList;

@@ -1,11 +1,8 @@
-package it.polimi.ingsw.model.cards;
+package it.polimi.ingsw.server.model.cards;
 
-import it.polimi.ingsw.model.components.ColoredDisc;
+import it.polimi.ingsw.server.model.components.ColoredDisc;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.function.Function;
 
 public class EffectCard {
 

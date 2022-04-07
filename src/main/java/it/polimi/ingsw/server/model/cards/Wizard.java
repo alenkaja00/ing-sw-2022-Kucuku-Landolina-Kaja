@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.cards;
+package it.polimi.ingsw.server.model.cards;
 
 public enum Wizard {
     WIZARD1,

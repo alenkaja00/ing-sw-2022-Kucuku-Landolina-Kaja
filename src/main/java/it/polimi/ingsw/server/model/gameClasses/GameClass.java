@@ -1,19 +1,18 @@
-package it.polimi.ingsw.model.gameClasses;
+package it.polimi.ingsw.server.model.gameClasses;
 
-import com.google.gson.Gson;
-import it.polimi.ingsw.model.cards.EffectCard;
-import it.polimi.ingsw.model.cards.Wizard;
-import it.polimi.ingsw.model.components.*;
+import it.polimi.ingsw.server.model.cards.Wizard;
+import it.polimi.ingsw.server.model.components.*;
 
-import java.lang.reflect.Array;
 import java.security.InvalidKeyException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.Map.Entry;
 
 public class GameClass {
 
-    protected it.polimi.ingsw.model.components.StudentBag bag;
+    protected it.polimi.ingsw.server.model.components.StudentBag bag;
     protected String GameID ;
     protected int PlayerNumber;
     protected ArrayList<Island> islands ;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.components;
+package it.polimi.ingsw.server.model.components;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;

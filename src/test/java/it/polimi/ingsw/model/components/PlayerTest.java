@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model.components;
 
-import it.polimi.ingsw.model.cards.Wizard;
+import it.polimi.ingsw.server.model.cards.Wizard;
+import it.polimi.ingsw.server.model.components.Player;
+import it.polimi.ingsw.server.model.components.Tower;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,7 @@ class PlayerTest {
     Player player;
     @BeforeEach
     void setUp() {
-        player = new Player(1,"alen",Tower.BLACK, Wizard.WIZARD2,3);
+        player = new Player(1,"alen", Tower.BLACK, Wizard.WIZARD2,3);
     }
 
     @Test

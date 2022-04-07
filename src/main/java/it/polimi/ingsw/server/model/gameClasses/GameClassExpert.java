@@ -1,12 +1,12 @@
-package it.polimi.ingsw.model.gameClasses;
+package it.polimi.ingsw.server.model.gameClasses;
 
-import it.polimi.ingsw.model.cards.EffectCard;
-import it.polimi.ingsw.model.cards.EffectName;
-import it.polimi.ingsw.model.components.ColoredDisc;
-import it.polimi.ingsw.model.components.Island;
-import it.polimi.ingsw.model.components.Player;
-import it.polimi.ingsw.model.cards.Wizard;
-import it.polimi.ingsw.model.components.Tower;
+import it.polimi.ingsw.server.model.cards.EffectCard;
+import it.polimi.ingsw.server.model.cards.EffectName;
+import it.polimi.ingsw.server.model.components.ColoredDisc;
+import it.polimi.ingsw.server.model.components.Island;
+import it.polimi.ingsw.server.model.components.Player;
+import it.polimi.ingsw.server.model.cards.Wizard;
+import it.polimi.ingsw.server.model.components.Tower;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
