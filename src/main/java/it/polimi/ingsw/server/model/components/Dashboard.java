@@ -4,6 +4,7 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public class Dashboard {
     private int maxTowers;
@@ -28,6 +29,9 @@ public class Dashboard {
                 break;
             default:
                 throw new IndexOutOfBoundsException();
+        }
+        for(ColoredDisc color:ColoredDisc.values()){
+            tables.put(color,0);
         }
     }
 
@@ -135,7 +139,7 @@ public class Dashboard {
 
     public void RemoveFromTables(ColoredDisc myStudent, int num) throws IndexOutOfBoundsException
     {
-        if(tables.get(myStudent) - num <= 0)
+        if(tables.get(myStudent) - num < 0)
         {
             throw new IndexOutOfBoundsException();
         }
@@ -145,8 +149,8 @@ public class Dashboard {
         }
     }
 
-
-
-
-
+    //added by Alen
+    public int getEntranceStudents(ColoredDisc color){
+        return entranceSpots.stream().filter(x->x==color).collect(Collectors.toList()).size();
+    }
 }

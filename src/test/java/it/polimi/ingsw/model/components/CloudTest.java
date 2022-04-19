@@ -28,11 +28,12 @@ class CloudTest {
         int n = myCloud.getStudents().size();
         assertEquals(n,3);
         students.add(ColoredDisc.GREEN);
-        try{
+        /*try{
             myCloud.AddStudents(students);
         }catch(IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+            e.printStackTrace();
+        }*/
+        assertThrows(IndexOutOfBoundsException.class, ()->{myCloud.AddStudents(students);});
     }
 
     @Test
@@ -42,11 +43,12 @@ class CloudTest {
         assertEquals(1,n);
         myCloud.AddStudent(ColoredDisc.RED);
         myCloud.AddStudent(ColoredDisc.BLUE);
-        try{
+        /*try{
             myCloud.AddStudent(ColoredDisc.GREEN);
         }catch (IndexOutOfBoundsException e){
-            assertTrue(true);
-        }
+            e.printStackTrace();
+        }*/
+        assertThrows(IndexOutOfBoundsException.class, ()->{myCloud.AddStudent(ColoredDisc.GREEN);});
     }
 
     @Test
@@ -66,11 +68,12 @@ class CloudTest {
         int n = myCloud.getStudents().size();
         myCloud.removeStudent(ColoredDisc.RED);
         assertEquals(n-1,myCloud.getStudents().size());
-        try{
+        /*try{
             myCloud.removeStudent(ColoredDisc.GREEN);
         }catch(InvalidParameterException e ){
-            assertTrue(true);
-        }
+            e.printStackTrace();
+        }*/
+        assertThrows(InvalidParameterException.class,()->{myCloud.removeStudent(ColoredDisc.GREEN);});
     }
 
     @Test

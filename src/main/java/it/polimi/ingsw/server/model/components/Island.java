@@ -67,7 +67,7 @@ public class Island {
     {
         for(ColoredDisc color : ColoredDisc.values())
         {
-            students.put(color,students.get(color)+newStudents.get(color));
+            students.put(color,students.get(color)+(newStudents.get(color)!=null ? newStudents.get(color):0));
         }
     }
 
