@@ -10,9 +10,10 @@ public class ServerController {
     public void parseMessage(String line){
         System.out.println("Sono il server, ho ricevuto: "+ line);
 
-        ArrayList<String> parameters = new ArrayList<String>();
-        parameters.addAll(List.of(line.split("|")));
+        //ArrayList<String> parameters = new ArrayList<String>();
+        //parameters.addAll(List.of(line.split("|")));
 
+        /*
         switch (parameters.get(0))
         {
             case "GAME":
@@ -24,7 +25,8 @@ public class ServerController {
             case "STOP":
                 System.out.println("message PLAY");
                 break;
-        }
+        }*/
+        System.out.println("sto uscendo");
     }
 
 

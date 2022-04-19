@@ -10,10 +10,12 @@ public class ClientManager implements Runnable{
 
     private Socket socket;
     ServerController controller;
+    PrintWriter socketOut;
 
-    public ClientManager(Socket socket, ServerController controller) {
+    public ClientManager(Socket socket, ServerController controller) throws IOException {
         this.socket = socket;
         this.controller = controller;
+        socketOut = new PrintWriter(socket.getOutputStream());
     }
 
     public void run()
@@ -27,6 +29,7 @@ public class ClientManager implements Runnable{
         }
         try {
             while (true) {
+                System.out.println("prima di nextline");
                 String socketLine = socketIn.nextLine();
                 controller.parseMessage(socketLine);
             }
@@ -43,9 +46,7 @@ public class ClientManager implements Runnable{
     }
 
     public void sendMessage(String message) throws IOException {
-        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
         socketOut.println(message);
         socketOut.flush();
-        socket.close();
     }
 }

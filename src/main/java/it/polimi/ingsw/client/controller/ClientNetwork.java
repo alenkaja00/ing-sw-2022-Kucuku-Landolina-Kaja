@@ -14,10 +14,12 @@ public class ClientNetwork{
 
     Socket socket;
     ClientController controller;
+    PrintWriter socketOut;
 
     public ClientNetwork(String ip, int port, ClientController controller) throws IOException {
         this.socket = new Socket(ip, port);
         this.controller = controller;
+        socketOut = new PrintWriter(socket.getOutputStream());
         Scanner socketIn = new Scanner(socket.getInputStream());
 
         new Thread(()->{
@@ -48,10 +50,8 @@ public class ClientNetwork{
     }
 
     public void sendMessage(String message) throws IOException {
-        PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
         socketOut.println(message);
         socketOut.flush();
-        socketOut.close();
     }
 
 }
