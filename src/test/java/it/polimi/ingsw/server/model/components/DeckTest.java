@@ -1,11 +1,12 @@
-package it.polimi.ingsw.model.components;
+package it.polimi.ingsw.server.model.components;
 
-import it.polimi.ingsw.model.cards.HelperCard;
+import it.polimi.ingsw.server.model.components.Deck;
+
+import it.polimi.ingsw.server.model.cards.HelperCard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.security.InvalidKeyException;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
