@@ -1,6 +1,9 @@
 package it.polimi.ingsw.server.controller;
 
+import it.polimi.ingsw.client.controller.ClientController;
+
 import javax.swing.text.html.parser.Entity;
+import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +12,7 @@ import java.util.Map;
 
 public class ServerController {
 
-    private HashMap<String, Socket> playerSockets = new HashMap<String, Socket>();
+    private HashMap<String, ClientManager> playerSockets = new HashMap<String, ClientManager>();
     private HashMap<String, Map.Entry<Integer,Boolean>> playerLobby = new HashMap<String, Map.Entry<Integer,Boolean>>();
     public ServerController() {}
 
@@ -20,9 +23,9 @@ public class ServerController {
         else
             return true;
     }
-    public void addPlayersocket(String nickname, Socket hisSocket)
+    public void addPlayersocket(String nickname, ClientManager hisManager)
     {
-        playerSockets.put(nickname, hisSocket);
+        playerSockets.put(nickname, hisManager);
     }
 
 
@@ -30,25 +33,32 @@ public class ServerController {
         System.out.println("Sono il server, ho ricevuto: "+ line);
 
         ArrayList<String> parameters = new ArrayList<String>();
-        parameters.addAll(List.of(line.split("|")));
+        parameters.addAll(List.of(line.split("\\|")));
 
         switch (parameters.get(0))
         {
             case "GAME":
-                System.out.println("message GAME");
+                manageGameMessage(parameters);
                 break;
             case "PLAY":
-                System.out.println("message PLAY");
+                managePlayMessage(parameters);
                 break;
             case "STOP":
-                System.out.println("message PLAY");
+                manageStopMessage(parameters);
                 break;
         }
     }
 
-    public void manageGameMessage(ArrayList<String> message)
-    {
+    public void manageGameMessage(ArrayList<String> message) {
+        String nickname = message.get(1);
+        Integer playerNumber = Integer.valueOf(message.get(2));
+        Boolean expertOn = Boolean.valueOf(message.get(3));
 
+        try {
+            playerSockets.get(nickname).sendMessage("Looking for other players");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void managePlayMessage(ArrayList<String> message)

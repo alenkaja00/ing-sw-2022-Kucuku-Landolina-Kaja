@@ -14,8 +14,8 @@ public class App
         ClientController controller = new ClientController();
         ClientNetwork connectivity = new ClientNetwork("127.0.0.1",3030, controller);
 
-        connectivity.sendMessage("NICKNAME|MARIO");
-        connectivity.sendMessage("GAME|MARIO|2|EXPERT");
+        connectivity.sendMessage("NICKNAME|Jack");
+        connectivity.sendMessage("GAME|Jack|2|true");
         //connectivity.sendMessage("PLAY|ENDI");
         //connectivity.sendMessage("QUIT|ENDI");
         //connectivity.sendMessage("GAME|ENDI");
