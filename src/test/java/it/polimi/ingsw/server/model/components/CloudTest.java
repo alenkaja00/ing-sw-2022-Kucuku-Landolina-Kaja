@@ -1,9 +1,8 @@
-package it.polimi.ingsw.model.components;
+package it.polimi.ingsw.server.model.components;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 

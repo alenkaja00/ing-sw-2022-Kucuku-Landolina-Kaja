@@ -1,12 +1,9 @@
-package it.polimi.ingsw.model.components;
+package it.polimi.ingsw.server.model.components;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
