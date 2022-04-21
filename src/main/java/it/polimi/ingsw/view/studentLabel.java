@@ -15,7 +15,7 @@ public class studentLabel extends JLabel implements MouseListener
     int dashboardX = 235;
     int deltaX = 60;
     int deltaY = 90;
-    int circleRadius = 60;
+    int circleRadius = 30;
     graphicalSpot[] entrance;
     graphicalSpot[] redline;
 
@@ -68,32 +68,58 @@ public class studentLabel extends JLabel implements MouseListener
 
     public void mouseClicked(MouseEvent e)
     {
-        System.out.println("mouse clicked");
         int i = 0;
         int chosenInd  = 0;
-        boolean flag = false;
+        boolean isInsideEntrance = false;
+        boolean isInsideDashboard = false;
         for(graphicalSpot spot : entrance)
         {
-            if(spot.isThereDisk && distance(spot.x+circleRadius/2,e.getX(), spot.y+circleRadius/2, e.getY())<60)
+            if(spot.isThereDisk && distance(spot.x+circleRadius,e.getX(), spot.y+circleRadius, e.getY())<circleRadius)
             {
                 chosenInd = i;
-                flag = true;
+                isInsideEntrance = true;
             }
             i++;
         }
-        entrance[chosenInd].isThereDisk = false;
-        if(flag)
+
+        if(isInsideEntrance)
         {
+            entrance[chosenInd].isThereDisk = false;
             for(graphicalSpot spot : redline)
             {
-                if(spot.isThereDisk == false)
+                if(!spot.isThereDisk)
                 {
                     spot.isThereDisk = true ;
-                    break;
+                    return;
                 }
             }
 
         }
+        i = 0;
+        for(graphicalSpot spot : redline)
+        {
+            if(spot.isThereDisk && distance(spot.x+circleRadius,e.getX(), spot.y+circleRadius, e.getY())<circleRadius && !redline[i+1].isThereDisk)
+            {
+              chosenInd = i;
+              isInsideDashboard = true;
+            }
+            i++;
+        }
+
+        if(isInsideDashboard)
+        {
+            redline[chosenInd].isThereDisk = false;
+            for(graphicalSpot spot : entrance)
+            {
+                if(!spot.isThereDisk)
+                {
+                    spot.isThereDisk = true;
+                    return;
+                }
+            }
+
+        }
+
 
     }
 
