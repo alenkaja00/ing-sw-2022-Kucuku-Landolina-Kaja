@@ -38,6 +38,7 @@ public class ClientNetwork{
             finally
             {
                 socketIn.close();
+                socketOut.close();
                 try {
                     socket.close();
                 } catch (IOException e) {
