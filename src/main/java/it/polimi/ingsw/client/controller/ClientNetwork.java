@@ -50,7 +50,7 @@ public class ClientNetwork{
         //Executors.newCachedThreadPool().execute(new ServerManager(socket, controller));
     }
 
-    public void sendMessage(String message) throws IOException {
+    public void sendMessage(String message) {
         socketOut.println(message);
         socketOut.flush();
     }

@@ -1,20 +1,36 @@
 package it.polimi.ingsw.server.controller;
 
-import it.polimi.ingsw.client.controller.ClientController;
-
-import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class ServerController {
 
     private HashMap<String, ClientManager> playerSockets = new HashMap<String, ClientManager>();
-    private HashMap<String, Map.Entry<Integer,Boolean>> playerLobby = new HashMap<String, Map.Entry<Integer,Boolean>>();
-    public ServerController() {}
+    private ArrayList<Map.Entry<String, Map.Entry<Integer, Boolean>>> playerLobby = new ArrayList<Map.Entry<String, Map.Entry<Integer, Boolean>>>();
+    private ArrayList<GameController> openGames = new ArrayList<GameController>();
+
+    public ServerController()
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true)
+                {
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.print(playerLobby.toString());
+                }
+            }
+        }).start();
+    }
 
     public boolean availableNickname(String nickname)
     {
@@ -26,8 +42,23 @@ public class ServerController {
     public void addPlayersocket(String nickname, ClientManager hisManager)
     {
         playerSockets.put(nickname, hisManager);
+        openGames.stream().filter(x->x.getPlayers().contains(nickname)).forEach(x->x.playerReconnected(nickname));
     }
 
+    /**
+     * removes disconnected players from the playerLobby
+     * removes disconnected players from the playerScokets list
+     * informs the needed active games that a player disconnected
+     */
+    public void managePlayerDisconnection(String nickname)
+    {
+        if (playerSockets.keySet().contains(nickname))
+            playerSockets.remove(nickname);
+
+        synchronized (playerLobby) {playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(nickname)).collect(Collectors.toList()));}
+
+        openGames.stream().filter(x->x.getPlayers().contains(nickname)).forEach(x->x.playerDisconnected(nickname));
+    }
 
     public void parseMessage(String line){
         System.out.println("Sono il server, ho ricevuto: "+ line);
@@ -38,43 +69,59 @@ public class ServerController {
         switch (parameters.get(0))
         {
             case "GAME":
-                manageGameMessage(parameters);
+                synchronized (playerLobby) { manageGameMessage(parameters); }
+                break;
+            case "QUITLOBBY":
+                synchronized (playerLobby) { manageQuitLobbyMessage(parameters); }
                 break;
             case "PLAY":
                 managePlayMessage(parameters);
                 break;
-            case "STOP":
-                manageStopMessage(parameters);
-                break;
         }
     }
 
-    public void manageGameMessage(ArrayList<String> message) {
+
+    /**
+     * checks the lobby if there are enough, players, creates the game and informs all players
+     * GAME|playerNickname|playerNumber|expertModeEnabled
+     */
+    private void manageGameMessage(ArrayList<String> message) {
         String nickname = message.get(1);
         Integer playerNumber = Integer.valueOf(message.get(2));
         Boolean expertOn = Boolean.valueOf(message.get(3));
 
-        try {
-            playerSockets.get(nickname).sendMessage("Looking for other players");
-        } catch (IOException e) {
-            e.printStackTrace();
+        List<Map.Entry<String, Map.Entry<Integer, Boolean>>> compatiblePlayers =
+        playerLobby.stream().filter(x->!x.getKey().equals(nickname) && x.getValue().getKey() == playerNumber && x.getValue().getValue()==expertOn).collect(Collectors.toList());
+
+        if (compatiblePlayers.size()>=playerNumber-1)
+        {
+            ArrayList<String> players = new ArrayList<>();
+            players.add(nickname);
+            players.add(compatiblePlayers.get(0).getKey());
+            players.add(compatiblePlayers.get(1).getKey());
+            String newGameID = String.join("", players.stream().collect(Collectors.toList()));
+            openGames.add(new GameController(playerNumber, expertOn, newGameID, (ArrayList<String>) players.clone(), playerSockets));
+            playerLobby.removeAll(compatiblePlayers);
+            players.stream().forEach(x-> playerSockets.get(x).sendMessage("Creating your game"));
+        }
+        else
+        {
+            playerLobby.add(Map.entry(nickname, Map.entry(playerNumber, expertOn)));
+            playerSockets.get(nickname).sendMessage("Waiting for more players to connect");
         }
     }
 
-    public void managePlayMessage(ArrayList<String> message)
+    /**
+     * removes a player from the lobby in order to make him make another request if he wants
+     * QUITLOBBY|playerNickname
+     */
+    private void manageQuitLobbyMessage(ArrayList<String> message)
     {
-
+        playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
     }
 
-    public void manageStopMessage(ArrayList<String> message)
+    private void managePlayMessage(ArrayList<String> parameters)
     {
 
-    }
-
-    public void createGame(int playerNumber, String nickname, Boolean experMode)
-    {
-        System.out.println("playernumber: " + playerNumber);
-        System.out.println("nickname: " + nickname);
-        System.out.println("expertMode: " + experMode);
     }
 }

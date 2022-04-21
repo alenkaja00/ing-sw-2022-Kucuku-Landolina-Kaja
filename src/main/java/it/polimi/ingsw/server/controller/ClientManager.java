@@ -36,22 +36,17 @@ public class ClientManager implements Runnable{
                     List<String> parameters = Arrays.asList(firstMessage.split("\\|"));
                     if (parameters.get(0).equals("NICKNAME"))
                     {
-                        try
+                        if (controller.availableNickname(parameters.get(1)))
                         {
-                            if (controller.availableNickname(parameters.get(1)))
-                            {
-                                nickname = parameters.get(1);
-                                controller.addPlayersocket(nickname, this);
-                                System.out.println("Client " + nickname + " connected");
-                                sendMessage("Correctly logged in");
-                            }
-                            else
-                            {
-                                System.out.println("unavailable");
-                                sendMessage("Unavailable nickname");
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            nickname = parameters.get(1);
+                            controller.addPlayersocket(nickname, this);
+                            System.out.println("Client " + nickname + " connected");
+                            sendMessage("Correctly logged in");
+                        }
+                        else
+                        {
+                            System.out.println("unavailable");
+                            sendMessage("Unavailable nickname");
                         }
                     }
                 }
@@ -61,6 +56,8 @@ public class ClientManager implements Runnable{
             }
         } catch(NoSuchElementException e) {
             System.out.println("Connection closed");
+            if (nickname!= null)
+                controller.managePlayerDisconnection(nickname);
         } finally {
             socketIn.close();
             socketOut.close();
@@ -72,7 +69,7 @@ public class ClientManager implements Runnable{
         }
     }
 
-    public void sendMessage(String message) throws IOException {
+    public void sendMessage(String message) {
         socketOut.println(message);
         socketOut.flush();
     }
