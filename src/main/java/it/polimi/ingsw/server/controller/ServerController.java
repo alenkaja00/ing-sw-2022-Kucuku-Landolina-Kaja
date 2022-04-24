@@ -16,6 +16,7 @@ public class ServerController {
 
     public ServerController()
     {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -26,7 +27,11 @@ public class ServerController {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.print(playerLobby.toString());
+                    synchronized (playerLobby)
+                    {
+                        System.out.print(playerLobby.toString());
+                        playerLobby.notifyAll();
+                    }
                 }
             }
         }).start();
@@ -55,7 +60,7 @@ public class ServerController {
         if (playerSockets.keySet().contains(nickname))
             playerSockets.remove(nickname);
 
-        synchronized (playerLobby) {playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(nickname)).collect(Collectors.toList()));}
+        synchronized (playerLobby) {playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(nickname)).collect(Collectors.toList())); playerLobby.notifyAll();}
 
         openGames.stream().filter(x->x.getPlayers().contains(nickname)).forEach(x->x.playerDisconnected(nickname));
     }
@@ -69,10 +74,10 @@ public class ServerController {
         switch (parameters.get(0))
         {
             case "GAME":
-                synchronized (playerLobby) { manageGameMessage(parameters); }
+                synchronized (playerLobby) { manageGameMessage(parameters); playerLobby.notifyAll();}
                 break;
             case "QUITLOBBY":
-                synchronized (playerLobby) { manageQuitLobbyMessage(parameters); }
+                synchronized (playerLobby) { manageQuitLobbyMessage(parameters); playerLobby.notifyAll(); }
                 break;
             case "PLAY":
                 managePlayMessage(parameters);
@@ -97,8 +102,8 @@ public class ServerController {
         {
             ArrayList<String> players = new ArrayList<>();
             players.add(nickname);
-            players.add(compatiblePlayers.get(0).getKey());
-            players.add(compatiblePlayers.get(1).getKey());
+            for (int i=0; i<playerNumber-1; i++)
+                players.add(compatiblePlayers.get(i).getKey());
             String newGameID = String.join("", players.stream().collect(Collectors.toList()));
             openGames.add(new GameController(playerNumber, expertOn, newGameID, (ArrayList<String>) players.clone(), playerSockets));
             playerLobby.removeAll(compatiblePlayers);
@@ -120,8 +125,12 @@ public class ServerController {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
     }
 
+    /**
+     * sends the PLAY message to the relevant controller
+     * PLAY|playerNickname|otherstuff
+     */
     private void managePlayMessage(ArrayList<String> parameters)
     {
-
+        openGames.stream().filter(x->x.getPlayers().contains(parameters.get(1))).forEach(x->x.parseMessage((ArrayList<String>) parameters.clone()));
     }
 }

@@ -1,6 +1,5 @@
-package it.polimi.ingsw.view;
+package it.polimi.ingsw.client.view.gui;
 import javax.swing.*;
-import java.awt.*;
 
 
 public class dashboardView extends JFrame {

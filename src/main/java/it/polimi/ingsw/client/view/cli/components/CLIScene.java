@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cli.components;
+package it.polimi.ingsw.client.view.cli.components;
 
 public interface CLIScene {
     void update();

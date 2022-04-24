@@ -1,9 +1,12 @@
 package it.polimi.ingsw.server;
 
+import it.polimi.ingsw.server.controller.ClientManager;
 import it.polimi.ingsw.server.controller.ServerNetwork;
 import it.polimi.ingsw.server.controller.ServerController;
 
 import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -11,6 +14,7 @@ import java.io.IOException;
  */
 public class App 
 {
+
     public static void main( String[] args ) throws IOException {
         /*
         ArrayList<String> nickNames = new ArrayList<String>();
@@ -26,6 +30,7 @@ public class App
         String result = gson.toJson(game);
         System.out.println(result);
         */
+
 
         ServerController theController = new ServerController();
         ServerNetwork myconn = new ServerNetwork(3030, theController);

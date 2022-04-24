@@ -1,4 +1,4 @@
-package it.polimi.ingsw.cli.utils;
+package it.polimi.ingsw.client.view.cli.utils;
 
 
 public class ANSIColor {

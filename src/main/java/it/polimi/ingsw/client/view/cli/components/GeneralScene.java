@@ -1,6 +1,5 @@
-package it.polimi.ingsw.cli.components;
-import it.polimi.ingsw.cli.utils.ANSIColor;
-import java.util.Scanner;
+package it.polimi.ingsw.client.view.cli.components;
+import it.polimi.ingsw.client.view.cli.utils.ANSIColor;
 
 public class GeneralScene implements CLIScene{
 
