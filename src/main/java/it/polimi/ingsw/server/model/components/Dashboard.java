@@ -153,4 +153,8 @@ public class Dashboard {
     public int getEntranceStudents(ColoredDisc color){
         return entranceSpots.stream().filter(x->x==color).collect(Collectors.toList()).size();
     }
+
+    public ArrayList<ColoredDisc> getEntranceStudents(){
+        return (ArrayList<ColoredDisc>) entranceSpots.clone();
+    }
 }
