@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class jDashboard {
-    private int maxTowers;
-    private ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
-    private HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
-    private int towerNumber;
+    public int maxTowers;
+    public ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
+    public HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
+    public int towerNumber;
     public int maxEntrance;
     public HashSet<ColoredDisc> professorSpots = new HashSet<ColoredDisc>();
 }

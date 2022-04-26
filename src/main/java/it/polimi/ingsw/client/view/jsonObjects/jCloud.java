@@ -5,6 +5,6 @@ import it.polimi.ingsw.server.model.components.ColoredDisc;
 import java.util.ArrayList;
 
 public class jCloud {
-    private ArrayList<ColoredDisc> studentSpots;
-    private int cloudCapacity;
+    public ArrayList<ColoredDisc> studentSpots;
+    public int cloudCapacity;
 }

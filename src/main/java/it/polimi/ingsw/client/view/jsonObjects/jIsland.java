@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class jIsland {
-    private int ID;
-    private ArrayList<Integer> graphicalIsland = new ArrayList<>();
-    private HashMap<ColoredDisc, Integer> students = new HashMap<ColoredDisc, Integer>();
-    private ArrayList<Tower> towerList = new ArrayList<Tower>();
+    public int ID;
+    public ArrayList<Integer> graphicalIsland = new ArrayList<>();
+    public HashMap<ColoredDisc, Integer> students = new HashMap<ColoredDisc, Integer>();
+    public ArrayList<Tower> towerList = new ArrayList<Tower>();
     public boolean prohibited;
 }

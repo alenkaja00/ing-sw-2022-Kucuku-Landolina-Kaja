@@ -3,8 +3,8 @@ import it.polimi.ingsw.server.model.components.ColoredDisc;
 import java.util.HashMap;
 
 public class jStudentBag {
-    private HashMap<ColoredDisc, Integer> bag = new HashMap<ColoredDisc, Integer>();
-    int bagDimension = 26;
+    public HashMap<ColoredDisc, Integer> bag = new HashMap<ColoredDisc, Integer>();
+    public int bagDimension = 26;
 }
 
 

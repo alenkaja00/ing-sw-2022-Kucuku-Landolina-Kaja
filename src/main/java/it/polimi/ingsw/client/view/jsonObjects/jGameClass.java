@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class jGameClass {
-    public it.polimi.ingsw.server.model.components.StudentBag bag;
+    public jStudentBag bag;
     public String GameID;
     public int PlayerNumber;
     public ArrayList<jIsland> islands;
