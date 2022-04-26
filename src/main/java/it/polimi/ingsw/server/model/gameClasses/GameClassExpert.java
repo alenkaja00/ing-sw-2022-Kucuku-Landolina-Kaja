@@ -330,7 +330,7 @@ public class GameClassExpert extends GameClass
         }
     }
 
-    public void MoveMotherNature(Island chosenIsland) throws RuntimeException
+    private void MoveMotherNature(Island chosenIsland) throws RuntimeException
     {
         Island temp = CurrentIsland;
         CurrentIsland = chosenIsland;
