@@ -167,7 +167,6 @@ public class GameClass {
 
         //added
         playerCardValue[playerID] = cardNumber;
-
     }
 
 
