@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui;
 
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.client.view.jsonObjects.jDashboard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Dashboard;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 // An update method will update the view using the json string
 public class ExternalDashboardLabel extends JLabel
 {
-    Dashboard dashboard;
+    jDashboard dashboard;
     Gson gson;
     ImageIcon greenDisk;
     ImageIcon redDisk;
@@ -33,7 +34,7 @@ public class ExternalDashboardLabel extends JLabel
     public ExternalDashboardLabel(String startingJson)
     {
            gson = new Gson();
-           dashboard = gson.fromJson(startingJson, Dashboard.class);
+           dashboard = gson.fromJson(startingJson, jDashboard.class);
 
 
            redDisk = new ImageIcon(this.getClass().getResource("/redDisk.png"));
@@ -83,22 +84,25 @@ public class ExternalDashboardLabel extends JLabel
 
     public void update(String json)
     {
-        dashboard = gson.fromJson(json, Dashboard.class);
-        ArrayList<ColoredDisc>entranceData = dashboard.getEntranceSpots();
-        for(int i = 0; i < entranceData.size();i++)
+        dashboard = gson.fromJson(json, jDashboard.class);
+        ColoredDisc[] entranceData = dashboard.entranceSpots;
+        for(int i = 0; i< 9; i++)
         {
-            entrance[i].isThereDisk = true;
-            entrance[i].disc = entranceData.get(i);
-        }
-        for(int i = entranceData.size(); i< 9; i++)
-        {
-            entrance[i].isThereDisk = false;
+            if(entranceData[i]== null)
+            {
+                entrance[i].isThereDisk = false;
+            }
+            else
+            {
+                entrance[i].isThereDisk = true;
+                entrance[i].disc = entranceData[i];
+            }
         }
 
         int i = 0;
         for(ColoredDisc color : ColoredDisc.values())
         {
-            int n = dashboard.SittedStudents(graphicalDashboard[(i*10)].disc);
+            int n = dashboard.tables.get(graphicalDashboard[(i*10)].disc);
             for(int j = 0; j< n ; j++)
             {
                 graphicalDashboard[(i*10)+j].isThereDisk = true;
