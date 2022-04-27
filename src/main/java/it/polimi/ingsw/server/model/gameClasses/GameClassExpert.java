@@ -65,7 +65,7 @@ public class GameClassExpert extends GameClass
         }
     }
 
-    public void EntranceToTables(int PlayerID, ColoredDisc student,int index)
+    public void EntranceToTables(int PlayerID, int index, ColoredDisc student)
     {
         handleCoins(PlayerID,players.get(PlayerID).myDashboard.MoveToTables(student,index));
         evaluateProfessors(PlayerID, student);

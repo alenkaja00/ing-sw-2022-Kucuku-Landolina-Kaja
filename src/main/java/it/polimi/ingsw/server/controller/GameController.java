@@ -3,6 +3,7 @@ package it.polimi.ingsw.server.controller;
 import com.google.gson.Gson;
 import com.sun.jdi.PrimitiveValue;
 import it.polimi.ingsw.server.model.cards.Wizard;
+import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 
@@ -134,15 +135,15 @@ public class GameController
                     do
                     {
                         ArrayList<String> message = nextMessage();
-                        if (condizione STT)
+                        if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
                         {
-                            newGame.stt
+                            newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), ColoredDisc.valueOf(message.get(4)), Integer.parseInt(message.get(5)));
                             playerSockets.get(currentPlayer).sendMessage("OK");
                             break;
                         }
-                        else if (condizione STI)
+                        else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETT"))
                         {
-                            newGame.sti
+                            newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), ColoredDisc.valueOf(message.get(4)));
                             playerSockets.get(currentPlayer).sendMessage("OK");
                             break;
                         }
@@ -152,6 +153,7 @@ public class GameController
                         }
                     } while (true);
                 }
+                updateView();
 
                 //MOVE MOTHER NATURE
 

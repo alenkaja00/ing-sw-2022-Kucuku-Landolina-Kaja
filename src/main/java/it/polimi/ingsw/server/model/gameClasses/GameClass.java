@@ -151,7 +151,7 @@ public class GameClass {
         setClouds(clouds);
     }
 
-    public void EntranceToTables(int PlayerID, ColoredDisc student, int index)
+    public void EntranceToTables(int PlayerID, int index, ColoredDisc student)
     {
         players.get(PlayerID).myDashboard.MoveToTables(student, index);
         evaluateProfessors(PlayerID, student);
