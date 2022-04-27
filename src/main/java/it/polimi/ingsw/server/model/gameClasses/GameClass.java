@@ -328,10 +328,6 @@ public class GameClass {
         return GameID;
     }
 
-    public Player getPlayerRound() {
-        return PlayerRound;
-    }
-
     public ArrayList<String> getNicknames() {
         return (ArrayList<String>) nicknames.clone();
     }
@@ -363,10 +359,6 @@ public class GameClass {
 
     public void setPlayerNumber(int playerNumber) {
         PlayerNumber = playerNumber;
-    }
-
-    public void setPlayerRound(Player playerRound) {
-        PlayerRound = playerRound;
     }
 
     public void setPlayers(ArrayList<Player> players) {

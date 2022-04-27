@@ -92,24 +92,25 @@ public class GameController
             //pianification phase
             for (int i = 0; i<playerNumber; i++)
             {
-                playerSockets.get(players.get(i)).sendMessage("UNLOCK");
+                String currentPlayer = players.get(i);
+                playerSockets.get(currentPlayer).sendMessage("UNLOCK");
 
                 do {
                     ArrayList<String> message = nextMessage();
-                    if (message.get(0).equals("PLAY") && message.get(1).equals(players.get(i)) && message.get(2).equals("HELPER"))
+                    if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("HELPER"))
                     {
                         try {
                             newGame.useHelperCard(i, Integer.parseInt(message.get(3)));
                         } catch (InvalidKeyException e) {
                             e.printStackTrace();
                         }
-                        playerOrder.stream().filter(x->x.getValue().equals(message.get(1))).forEach(x->x.setValue(Integer.valueOf(message.get(3))));
+                        playerOrder.stream().filter(x->x.getValue().equals(currentPlayer)).forEach(x->x.setValue(Integer.valueOf(message.get(3))));
                         playerSockets.get(message.get(1)).sendMessage("OK");
                         break;
                     }
                     else
                     {
-                        playerSockets.get(message.get(1)).sendMessage("NOK");
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
                     }
                 } while (true);
 
@@ -123,13 +124,46 @@ public class GameController
             //action phase
             for (int i=0; i<playerNumber; i++)
             {
+                String currentPlayer = playerOrder.get(i).getKey();
+                playerSockets.get(currentPlayer).sendMessage("UNLOCK");
 
+
+                //STT OR STI
+                for (int n=0; n<newGame.getClouds().get(0).getCloudCapacity(); n++)
+                {
+                    do
+                    {
+                        ArrayList<String> message = nextMessage();
+                        if (condizione STT)
+                        {
+                            newGame.stt
+                            playerSockets.get(currentPlayer).sendMessage("OK");
+                            break;
+                        }
+                        else if (condizione STI)
+                        {
+                            newGame.sti
+                            playerSockets.get(currentPlayer).sendMessage("OK");
+                            break;
+                        }
+                        else
+                        {
+                             playerSockets.get(currentPlayer).sendMessage("NOK");
+                        }
+                    } while (true);
+                }
+
+                //MOVE MOTHER NATURE
+
+                //CLOUD TO ENTRANCE
+
+
+
+                playerSockets.get(currentPlayer).sendMessage("UNLOCK");
             }
         }while (true);
-
-
-
     }
+
 
     private void updateView()
     {
@@ -145,12 +179,26 @@ public class GameController
     private ArrayList<String> nextMessage()
     {
         ArrayList<String> message = new ArrayList<>();
-        synchronized (inputBuffer)
+
+        do
         {
-            message=inputBuffer.remove(0);
-            notifyAll();
-        }
-        return (ArrayList<String>) message.clone();
+            synchronized (inputBuffer)
+            {
+                if (inputBuffer.size()>0)
+                {
+                    message=inputBuffer.remove(0);
+                    notifyAll();
+                }
+            }
+            if (message.size()>0)
+                return (ArrayList<String>) message.clone();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (true);
+
     }
     public void parseMessage(ArrayList<String> receivedMessage)
     {
