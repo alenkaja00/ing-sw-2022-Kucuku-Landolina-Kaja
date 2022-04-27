@@ -123,7 +123,7 @@ public class GameController
             //action phase
             for (int i=0; i<playerNumber; i++)
             {
-                
+
             }
         }while (true);
 
