@@ -21,7 +21,7 @@ public class studentLabel extends JLabel implements MouseListener
 
     public studentLabel()
     {
-        redDisk = new ImageIcon(this.getClass().getResource("/redDisk22.png"));
+        redDisk = new ImageIcon(this.getClass().getResource("/redDisk.png"));
         entrance = new graphicalSpot[9];
         entrance[0] = new graphicalSpot(entranceX2, entranceY, false);
         for (int i = 0; i < 4; i++) {
