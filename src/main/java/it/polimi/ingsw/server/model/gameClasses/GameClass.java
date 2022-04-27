@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class GameClass {
 
-    protected it.polimi.ingsw.server.model.components.StudentBag bag;
+    protected StudentBag bag;
     protected String GameID ;
     protected int PlayerNumber;
     protected ArrayList<Island> islands ;
@@ -93,12 +93,24 @@ public class GameClass {
 
     }
 
-    public void bagToEntrance(int number, Player player)
+    public void bagToEntrance(int number, Player player) throws IndexOutOfBoundsException
     {
+        int entranceindex = 0;
         for(int i=0;i<number;i++){
-            player.myDashboard.AddToEntrance(bag.popRandom());
+            while(player.myDashboard.getEntranceSpots()[entranceindex]!= null)
+            {
+                entranceindex++;
+            }
+            if(entranceindex > player.myDashboard.maxEntrance)
+            {
+                throw new IndexOutOfBoundsException();
+            }
+            player.myDashboard.AddToEntrance(bag.popRandom(),entranceindex);
+            entranceindex ++;
         }
     }
+
+
 
     public int selectRandomPlayer(int flag)
     {
@@ -112,9 +124,19 @@ public class GameClass {
     public void CloudToEntrance(int CloudIndex, int PlayerID)
     {
         ArrayList<ColoredDisc> students = clouds.get(CloudIndex).removeAll();
+        int entranceindex = 0;
         for(ColoredDisc student : students)
         {
-            players.get(PlayerID).myDashboard.AddToEntrance(student); // access to public attribute
+            while(players.get(PlayerID).myDashboard.getEntranceSpots()[entranceindex]!= null)
+            {
+                entranceindex++;
+            }
+            if(entranceindex > players.get(PlayerID).myDashboard.maxEntrance)
+            {
+                throw new IndexOutOfBoundsException();
+            }
+            players.get(PlayerID).myDashboard.AddToEntrance(student,entranceindex);
+            entranceindex ++;
         }
     }
 
@@ -129,9 +151,9 @@ public class GameClass {
         setClouds(clouds);
     }
 
-    public void EntranceToTables(int PlayerID, ColoredDisc student)
+    public void EntranceToTables(int PlayerID, ColoredDisc student, int index)
     {
-        players.get(PlayerID).myDashboard.MoveToTables(student);
+        players.get(PlayerID).myDashboard.MoveToTables(student, index);
         evaluateProfessors(PlayerID, student);
     }
 
@@ -151,10 +173,10 @@ public class GameClass {
     }
 
 
-    public void EntranceToIsland(int PlayerID, int IslandID, ColoredDisc student)
+    public void EntranceToIsland(int PlayerID, int IslandID, ColoredDisc student,int index)
     {
         getIslandById(IslandID).addStudent(student);
-        players.get(PlayerID).myDashboard.RemoveFromEntrance(student);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(student,index);
     }
 
 

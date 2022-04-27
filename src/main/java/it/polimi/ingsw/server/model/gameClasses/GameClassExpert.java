@@ -33,6 +33,9 @@ public class GameClassExpert extends GameClass
             player.addCoins(1);
         }
 
+        //inizialization
+        ChosenCards = new ArrayList<>();
+
         //piazzare 3 carte personaggio e inizializzare
         ArrayList<EffectName> randomCards = (ArrayList<EffectName>) Arrays.stream(EffectName.values()).collect(Collectors.toList());
         Collections.shuffle(randomCards);
@@ -62,9 +65,9 @@ public class GameClassExpert extends GameClass
         }
     }
 
-    public void EntranceToTables(int PlayerID, ColoredDisc student)
+    public void EntranceToTables(int PlayerID, ColoredDisc student,int index)
     {
-        handleCoins(PlayerID,players.get(PlayerID).myDashboard.MoveToTables(student));
+        handleCoins(PlayerID,players.get(PlayerID).myDashboard.MoveToTables(student,index));
         evaluateProfessors(PlayerID, student);
     }
 
@@ -145,12 +148,12 @@ public class GameClassExpert extends GameClass
      * @param entranceColor
      * the function allows the player to switch up to 3 students from the card to his entrance
      */
-    public void jollyEffect(int PlayerID, EffectName name, ColoredDisc cardColor, ColoredDisc entranceColor)
+    public void jollyEffect(int PlayerID, EffectName name, ColoredDisc cardColor, ColoredDisc entranceColor,int removeIndex, int addIndex)
     {
         EffectCard card = getCardByName(name);
         card.removeStudent(cardColor);
-        players.get(PlayerID).myDashboard.RemoveFromEntrance(entranceColor);
-        players.get(PlayerID).myDashboard.AddToEntrance(cardColor);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(entranceColor,removeIndex);
+        players.get(PlayerID).myDashboard.AddToEntrance(cardColor, addIndex);
         card.addStudent(entranceColor);
     }
 
@@ -161,11 +164,11 @@ public class GameClassExpert extends GameClass
      * @param tableColor
      * the function allows the player to switch up to 2 students between his entrance and his dining room
      */
-    public void musicianEffect(int PlayerID, ColoredDisc entranceColor, ColoredDisc tableColor)
+    public void musicianEffect(int PlayerID, ColoredDisc entranceColor, ColoredDisc tableColor,int removeIndex, int addIndex)
     {
-        players.get(PlayerID).myDashboard.MoveToTables(entranceColor);
+        players.get(PlayerID).myDashboard.MoveToTables(entranceColor,removeIndex);
         players.get(PlayerID).myDashboard.RemoveFromTables(tableColor);
-        players.get(PlayerID).myDashboard.AddToEntrance(tableColor);
+        players.get(PlayerID).myDashboard.AddToEntrance(tableColor,addIndex);
         evaluateProfessors(PlayerID, entranceColor);
         evaluateProfessors(PlayerID, tableColor);
     }
