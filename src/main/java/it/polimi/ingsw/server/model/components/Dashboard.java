@@ -2,13 +2,14 @@ package it.polimi.ingsw.server.model.components;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
 public class Dashboard {
     private int maxTowers;
-    private ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
+    private ColoredDisc[] entranceSpots;
     private HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
     private int towerNumber;
 
@@ -30,28 +31,29 @@ public class Dashboard {
             default:
                 throw new IndexOutOfBoundsException();
         }
+        entranceSpots = new ColoredDisc[maxEntrance];
         for(ColoredDisc color:ColoredDisc.values()){
             tables.put(color,0);
         }
     }
 
-    public void AddToEntrance(ColoredDisc myStudent) throws IndexOutOfBoundsException
+    public void AddToEntrance(ColoredDisc myStudent, int index) throws IndexOutOfBoundsException
     {
-        if (entranceSpots.size() + 1 > maxEntrance)
+        if (entranceSpots[index]!=null)
         {
             throw new IndexOutOfBoundsException();
         }
         else
         {
-            entranceSpots.add(myStudent);
+            entranceSpots[index] = myStudent;
         }
     }
 
-    public void RemoveFromEntrance(ColoredDisc myStudent) throws InvalidParameterException
+    public void RemoveFromEntrance(ColoredDisc myStudent, int index) throws InvalidParameterException
     {
-        if (entranceSpots.contains(myStudent))
+        if (entranceSpots[index].equals(myStudent))
         {
-            entranceSpots.remove(myStudent);
+            entranceSpots[index]=null;
         }
         else
         {
@@ -59,11 +61,11 @@ public class Dashboard {
         }
     }
 
-    public int MoveToTables(ColoredDisc myStudent) throws InvalidParameterException, IndexOutOfBoundsException
+    public int MoveToTables(ColoredDisc myStudent, int index) throws InvalidParameterException, IndexOutOfBoundsException
     {
         if (tables.get(myStudent)<10)
         {
-            RemoveFromEntrance(myStudent);
+            RemoveFromEntrance(myStudent, index);
             tables.put(myStudent, tables.get(myStudent)+1);
             return tables.get(myStudent);
         }
@@ -149,14 +151,14 @@ public class Dashboard {
         }
     }
 
-    //added by Alen
     public int getEntranceStudents(ColoredDisc color){
-        return entranceSpots.stream().filter(x->x==color).collect(Collectors.toList()).size();
+        return Arrays.asList(entranceSpots).stream().filter(x->x==color).collect(Collectors.toList()).size();
     }
 
-    public ArrayList<ColoredDisc> getEntranceSpots()
+    public ColoredDisc[] getEntranceSpots()
     {
-        return (ArrayList<ColoredDisc>) entranceSpots.clone();
+        return entranceSpots.clone();
 
     }
+
 }
