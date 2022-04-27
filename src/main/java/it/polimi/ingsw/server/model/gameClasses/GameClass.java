@@ -120,7 +120,6 @@ public class GameClass {
 
     public void BagToCloud()
     {
-        ArrayList<Cloud> clouds = getClouds();
         for(Cloud cloud: clouds)
         {
             for(int i=0;i<clouds.get(0).getCloudCapacity();i++) {
@@ -167,7 +166,6 @@ public class GameClass {
 
         //added
         playerCardValue[playerID] = cardNumber;
-
     }
 
 

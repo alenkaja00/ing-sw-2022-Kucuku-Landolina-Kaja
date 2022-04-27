@@ -107,12 +107,12 @@ public class ServerController {
             String newGameID = String.join("", players.stream().collect(Collectors.toList()));
             openGames.add(new GameController(playerNumber, expertOn, newGameID, (ArrayList<String>) players.clone(), playerSockets));
             playerLobby.removeAll(compatiblePlayers);
-            players.stream().forEach(x-> playerSockets.get(x).sendMessage("Creating your game"));
+            players.stream().forEach(x-> playerSockets.get(x).sendMessage("OK"));
         }
         else
         {
             playerLobby.add(Map.entry(nickname, Map.entry(playerNumber, expertOn)));
-            playerSockets.get(nickname).sendMessage("Waiting for more players to connect");
+            playerSockets.get(nickname).sendMessage("WAIT");
         }
     }
 
@@ -123,6 +123,7 @@ public class ServerController {
     private void manageQuitLobbyMessage(ArrayList<String> message)
     {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
+        playerSockets.get(message.get(1)).sendMessage("NOK");
     }
 
     /**

@@ -41,12 +41,12 @@ public class ClientManager implements Runnable{
                             nickname = parameters.get(1);
                             controller.addPlayersocket(nickname, this);
                             System.out.println("Client " + nickname + " connected");
-                            sendMessage("Correctly logged in");
+                            sendMessage("OK");
                         }
                         else
                         {
                             System.out.println("unavailable");
-                            sendMessage("Unavailable nickname");
+                            sendMessage("NOK");
                         }
                     }
                 }
