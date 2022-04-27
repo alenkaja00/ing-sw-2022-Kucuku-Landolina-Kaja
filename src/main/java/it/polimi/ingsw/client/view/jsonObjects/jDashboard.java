@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class jDashboard {
     public int maxTowers;
-    public ArrayList<ColoredDisc> entranceSpots = new ArrayList<ColoredDisc>();
+    public ColoredDisc[] entranceSpots = new ColoredDisc[9];
     public HashMap<ColoredDisc, Integer> tables = new HashMap<ColoredDisc, Integer>();
     public int towerNumber;
     public int maxEntrance;
