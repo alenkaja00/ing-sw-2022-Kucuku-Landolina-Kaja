@@ -2,6 +2,8 @@ package it.polimi.ingsw.server.controller;
 
 import com.google.gson.Gson;
 import com.sun.jdi.PrimitiveValue;
+import com.sun.source.tree.SwitchTree;
+import it.polimi.ingsw.server.model.cards.EffectName;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
@@ -95,6 +97,7 @@ public class GameController
             {
                 String currentPlayer = players.get(i);
                 playerSockets.get(currentPlayer).sendMessage("UNLOCK");
+                playerOrder.stream().forEach(x->x.setValue(-1));
 
                 do {
                     if (!playersOnline.get(currentPlayer))
@@ -128,6 +131,10 @@ public class GameController
             for (int i=0; i<playerNumber; i++)
             {
                 String currentPlayer = playerOrder.get(i).getKey();
+
+                if (!playersOnline.get(currentPlayer) || playerOrder.get(i).getValue()<0)
+                    continue;
+
                 playerSockets.get(currentPlayer).sendMessage("UNLOCK");
 
 
@@ -141,20 +148,19 @@ public class GameController
                         ArrayList<String> message = nextMessage();
                         if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
                         {
-                            newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), ColoredDisc.valueOf(message.get(4)), Integer.parseInt(message.get(5)));
+                            newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), Integer.parseInt(message.get(4)));
                             playerSockets.get(currentPlayer).sendMessage("OK");
                             break;
                         }
                         else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETT"))
                         {
-                            newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), ColoredDisc.valueOf(message.get(4)));
+                            newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)));
                             playerSockets.get(currentPlayer).sendMessage("OK");
                             break;
                         }
                         else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
                         {
-                            manageEffect(message);
-                            break;
+                            manageEffect(players.indexOf(currentPlayer), message);
                         }
                         else
                         {
@@ -163,31 +169,126 @@ public class GameController
                     } while (true);
                 }
                 updateView();
+                if (!playersOnline.get(currentPlayer))
+                    continue;
+
+
+                //MOVE MOTHER NATURE
                 do
                 {
                     if (!playersOnline.get(currentPlayer))
                         break;
-
-
+                    ArrayList<String> message = nextMessage();
+                    if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
+                    {
+                        newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
+                        playerSockets.get(currentPlayer).sendMessage("OK");
+                        break;
+                    }
+                    else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    }
+                    else
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 } while (true);
-                if (!playersOnline.get(currentPlayer))
-                    break;
-
                 updateView();
-                //MOVE MOTHER NATURE
-
-                if (!playersOnline.get(currentPlayer))
+                if (newGame.towerGameEnded())
+                {
+                    gameEnded(players.indexOf(currentPlayer));
                     break;
+                }
+                if (newGame.inslandsGameEnded())
+                {
+                    gameEnded(newGame.lessTowersMoreProfessors());
+                    break;
+                }
+                if (!playersOnline.get(currentPlayer))
+                    continue;
 
                 //CLOUD TO ENTRANCE
-
-
-
+                do
+                {
+                    if (!playersOnline.get(currentPlayer))
+                        break;
+                    ArrayList<String> message = nextMessage();
+                    if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("CTE"))
+                    {
+                        newGame.CloudToEntrance(Integer.parseInt(message.get(3)), players.indexOf(currentPlayer));
+                        playerSockets.get(currentPlayer).sendMessage("OK");
+                        break;
+                    }
+                    else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    }
+                    else
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
+                } while (true);
+                updateView();
+                if (newGame.roundGameEnded())
+                {
+                    gameEnded(newGame.lessTowersMoreProfessors());
+                    break;
+                }
                 playerSockets.get(currentPlayer).sendMessage("UNLOCK");
             }
         }while (true);
     }
 
+
+
+
+    private void manageEffect(int playerID, ArrayList<String> message)
+    {
+        if (!expertMode)
+            System.out.println("ERROR. Trying to play effect card in non expert game.");
+
+        switch (message.get(3))
+        {
+            case "CAVALIER":
+            case "CENTAUR":
+            case "VILLAIN":
+            case "MAGICIAN":
+                ((GameClassExpert)newGame).useCardEffect(playerID, EffectName.valueOf(message.get(3)));
+                break;
+            case "MONK":
+
+                break;
+            case "QUEEN":
+
+                break;
+            case "LADY":
+
+                break;
+            case "JOLLY":
+
+                break;
+            case "LORD":
+
+                break;
+            case "COOK":
+
+                break;
+            case "BANDIT":
+
+                break;
+            case "MUSICIAN":
+
+                break;
+        }
+
+        playerSockets.get(players.get(playerID)).sendMessage("OK");
+    }
+
+    private void gameEnded(int playerID)
+    {
+        players.stream().forEach(x->playerSockets.get(x).sendMessage("GAMEENDED|Game Ended. Player " + players.get(playerID) + "is the winner"));
+    }
 
     private void updateView()
     {
@@ -198,11 +299,6 @@ public class GameController
         else
             result = gson.toJson(newGame);
         players.stream().filter(x->playersOnline.get(x)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
-    }
-
-    private void manageEffect(ArrayList<String> message)
-    {
-
     }
 
     private ArrayList<String> nextMessage()

@@ -288,7 +288,8 @@ public class GameClass {
         return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
     }
 
-    public Boolean gameEnded()
+
+    public Boolean towerGameEnded()
     {
         /*
         game ends when
@@ -306,12 +307,28 @@ public class GameClass {
             }
         }
 
+        return false;
+    }
+
+    public Boolean inslandsGameEnded()
+    {
         // 2)
 
         if(NumOfIslands <= 3)
         {
             return true;
         }
+
+        return false;
+    }
+    public Boolean roundGameEnded()
+    {
+        /*
+        game ends when
+            1) player uses his last tower
+            2) <=3 groups of islands
+            3) empty students bag or 0 assistant cards (end of round)
+        */
 
         // 3)
 
@@ -329,6 +346,20 @@ public class GameClass {
 
         return false;
 
+    }
+
+    public int lessTowersMoreProfessors()
+    {
+        int winnerIndex = 0;
+
+        for (int i = 1; i<PlayerNumber; i++)
+        {
+            if (players.get(i).myDashboard.TowerNumber() < players.get(winnerIndex).myDashboard.TowerNumber()
+                || (players.get(i).myDashboard.TowerNumber() == players.get(winnerIndex).myDashboard.TowerNumber() && players.get(i).myDashboard.professorSpots.size() > players.get(winnerIndex).myDashboard.professorSpots.size()))
+                winnerIndex = i;
+        }
+
+        return winnerIndex;
     }
 
     protected Island getIslandById(int Island)
