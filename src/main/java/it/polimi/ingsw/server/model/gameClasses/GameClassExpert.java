@@ -60,15 +60,16 @@ public class GameClassExpert extends GameClass
             }
             for (int i = 0; i<maxS; i++)
             {
-                card.addStudent(bag.popRandom());
+                card.addStudent(bag.popRandom(),i);
             }
         }
     }
 
-    public void EntranceToTables(int PlayerID, int index, ColoredDisc student)
+    public void EntranceToTables(int PlayerID, int index)
     {
-        handleCoins(PlayerID,players.get(PlayerID).myDashboard.MoveToTables(student,index));
-        evaluateProfessors(PlayerID, student);
+        ColoredDisc color = players.get(PlayerID).myDashboard.getEntranceSpots()[index];
+        handleCoins(PlayerID,players.get(PlayerID).myDashboard.MoveToTables(index));
+        evaluateProfessors(PlayerID, color);
     }
 
     private void handleCoins(int PlayerID, int position)
@@ -110,11 +111,12 @@ public class GameClassExpert extends GameClass
         //cosa fare con le carte personaggio
     }
 
-    public void monkEffect(EffectName name, ColoredDisc color, int Island)
+    public void monkEffect(EffectName name, int Island, int index)
     {
+        ColoredDisc color = getCardByName(name).getStudents()[index];
         EffectCard card = getCardByName(name);
-        card.removeStudent(color);
-        card.addStudent(bag.popRandom());
+        card.removeStudent(index);
+        card.addStudent(bag.popRandom(), index);
         getIslandById(Island).addStudent(color);
     }
 
@@ -123,12 +125,13 @@ public class GameClassExpert extends GameClass
         cookColors.add(color);
     }
 
-    public void queenEffect(int PlayerID, EffectName name, ColoredDisc color)
+    public void queenEffect(int PlayerID, EffectName name, int index)
     {
+        ColoredDisc color = getCardByName(name).getStudents()[index];
         EffectCard card = getCardByName(name);
-        card.removeStudent(color);
+        card.removeStudent(index);
         handleCoins(PlayerID, players.get(PlayerID).myDashboard.addToTables(color));
-        card.addStudent(bag.popRandom());
+        card.addStudent(bag.popRandom(), index);
         evaluateProfessors(PlayerID, color);
     }
 
@@ -142,19 +145,17 @@ public class GameClassExpert extends GameClass
 
     /**
      *
-     * @param PlayerID
-     * @param name
-     * @param cardColor
-     * @param entranceColor
      * the function allows the player to switch up to 3 students from the card to his entrance
      */
-    public void jollyEffect(int PlayerID, EffectName name, ColoredDisc cardColor, ColoredDisc entranceColor,int removeIndex, int addIndex)
+    public void jollyEffectCall(int PlayerID, EffectName name, int removeIndex, int addIndex)
     {
+        ColoredDisc cardColor = getCardByName(name).getStudents()[removeIndex];
+        ColoredDisc entranceColor = players.get(PlayerID).myDashboard.getEntranceSpots()[addIndex]; ;
         EffectCard card = getCardByName(name);
-        card.removeStudent(cardColor);
-        players.get(PlayerID).myDashboard.RemoveFromEntrance(entranceColor,removeIndex);
+        card.removeStudent(removeIndex);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(removeIndex);
         players.get(PlayerID).myDashboard.AddToEntrance(cardColor, addIndex);
-        card.addStudent(entranceColor);
+        card.addStudent(entranceColor, addIndex);
     }
 
     /**
@@ -166,7 +167,7 @@ public class GameClassExpert extends GameClass
      */
     public void musicianEffect(int PlayerID, ColoredDisc entranceColor, ColoredDisc tableColor,int removeIndex, int addIndex)
     {
-        players.get(PlayerID).myDashboard.MoveToTables(entranceColor,removeIndex);
+        players.get(PlayerID).myDashboard.MoveToTables(removeIndex);
         players.get(PlayerID).myDashboard.RemoveFromTables(tableColor);
         players.get(PlayerID).myDashboard.AddToEntrance(tableColor,addIndex);
         evaluateProfessors(PlayerID, entranceColor);

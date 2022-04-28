@@ -49,9 +49,9 @@ public class Dashboard {
         }
     }
 
-    public void RemoveFromEntrance(ColoredDisc myStudent, int index) throws InvalidParameterException
+    public void RemoveFromEntrance(int index) throws InvalidParameterException
     {
-        if (entranceSpots[index].equals(myStudent))
+        if (entranceSpots[index]!=null)
         {
             entranceSpots[index]=null;
         }
@@ -61,11 +61,12 @@ public class Dashboard {
         }
     }
 
-    public int MoveToTables(ColoredDisc myStudent, int index) throws InvalidParameterException, IndexOutOfBoundsException
+    public int MoveToTables(int index) throws InvalidParameterException, IndexOutOfBoundsException
     {
+        ColoredDisc myStudent = entranceSpots[index];
         if (tables.get(myStudent)<10)
         {
-            RemoveFromEntrance(myStudent, index);
+            RemoveFromEntrance(index);
             tables.put(myStudent, tables.get(myStudent)+1);
             return tables.get(myStudent);
         }
