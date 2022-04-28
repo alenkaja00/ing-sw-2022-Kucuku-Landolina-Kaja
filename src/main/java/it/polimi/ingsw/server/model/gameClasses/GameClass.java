@@ -151,10 +151,11 @@ public class GameClass {
         setClouds(clouds);
     }
 
-    public void EntranceToTables(int PlayerID, int index, ColoredDisc student)
+    public void EntranceToTables(int PlayerID, int index)
     {
-        players.get(PlayerID).myDashboard.MoveToTables(student, index);
-        evaluateProfessors(PlayerID, student);
+        ColoredDisc color = players.get(PlayerID).myDashboard.getEntranceSpots()[index];
+        players.get(PlayerID).myDashboard.MoveToTables(index);
+        evaluateProfessors(PlayerID, color);
     }
 
     protected void evaluateProfessors(int PlayerID, ColoredDisc student)
@@ -173,10 +174,11 @@ public class GameClass {
     }
 
 
-    public void EntranceToIsland(int PlayerID, int IslandID, ColoredDisc student,int index)
+    public void EntranceToIsland(int PlayerID, int IslandID,int index)
     {
-        getIslandById(IslandID).addStudent(student);
-        players.get(PlayerID).myDashboard.RemoveFromEntrance(student,index);
+        ColoredDisc color = players.get(PlayerID).myDashboard.getEntranceSpots()[index];
+        getIslandById(IslandID).addStudent(color);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(index);
     }
 
 
