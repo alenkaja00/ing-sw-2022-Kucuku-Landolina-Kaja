@@ -11,6 +11,7 @@ public class ClientManager implements Runnable{
     private Socket socket;
     ServerController controller;
     PrintWriter socketOut;
+    private boolean online;
 
     public ClientManager(Socket socket, ServerController controller) throws IOException {
         this.socket = socket;
@@ -20,6 +21,7 @@ public class ClientManager implements Runnable{
 
     public void run()
     {
+        online = true;
         System.out.println("Connection established");
         Scanner socketIn = null;
         try {
@@ -58,6 +60,7 @@ public class ClientManager implements Runnable{
             System.out.println("Connection closed");
             if (nickname!= null)
                 controller.managePlayerDisconnection(nickname);
+            online = false;
         } finally {
             socketIn.close();
             socketOut.close();
@@ -70,7 +73,15 @@ public class ClientManager implements Runnable{
     }
 
     public void sendMessage(String message) {
-        socketOut.println(message);
-        socketOut.flush();
+        if (online)
+        {
+            socketOut.println(message);
+            socketOut.flush();
+        }
+        else
+        {
+            System.out.println("Message for "+ nickname+" ignored. Player offline.");
+        }
+
     }
 }

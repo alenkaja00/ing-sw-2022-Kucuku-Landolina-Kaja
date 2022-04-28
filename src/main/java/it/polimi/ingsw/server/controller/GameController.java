@@ -97,6 +97,9 @@ public class GameController
                 playerSockets.get(currentPlayer).sendMessage("UNLOCK");
 
                 do {
+                    if (!playersOnline.get(currentPlayer))
+                        break;
+
                     ArrayList<String> message = nextMessage();
                     if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("HELPER"))
                     {
@@ -107,6 +110,9 @@ public class GameController
                         }
                         playerOrder.stream().filter(x->x.getValue().equals(currentPlayer)).forEach(x->x.setValue(Integer.valueOf(message.get(3))));
                         playerSockets.get(message.get(1)).sendMessage("OK");
+
+                        playerSockets.get(currentPlayer).sendMessage("LOCK");
+                        updateView();
                         break;
                     }
                     else
@@ -114,10 +120,6 @@ public class GameController
                         playerSockets.get(currentPlayer).sendMessage("NOK");
                     }
                 } while (true);
-
-                playerSockets.get(players.get(i)).sendMessage("LOCK");
-
-                updateView();
             }
 
             orderByValue(playerOrder);
@@ -134,6 +136,8 @@ public class GameController
                 {
                     do
                     {
+                        if (!playersOnline.get(currentPlayer))
+                            break;
                         ArrayList<String> message = nextMessage();
                         if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
                         {
@@ -147,6 +151,11 @@ public class GameController
                             playerSockets.get(currentPlayer).sendMessage("OK");
                             break;
                         }
+                        else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                        {
+                            manageEffect(message);
+                            break;
+                        }
                         else
                         {
                              playerSockets.get(currentPlayer).sendMessage("NOK");
@@ -154,8 +163,21 @@ public class GameController
                     } while (true);
                 }
                 updateView();
+                do
+                {
+                    if (!playersOnline.get(currentPlayer))
+                        break;
 
+
+                } while (true);
+                if (!playersOnline.get(currentPlayer))
+                    break;
+
+                updateView();
                 //MOVE MOTHER NATURE
+
+                if (!playersOnline.get(currentPlayer))
+                    break;
 
                 //CLOUD TO ENTRANCE
 
@@ -175,7 +197,12 @@ public class GameController
             result = gson.toJson((GameClassExpert) newGame);
         else
             result = gson.toJson(newGame);
-        players.stream().forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
+        players.stream().filter(x->playersOnline.get(x)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
+    }
+
+    private void manageEffect(ArrayList<String> message)
+    {
+
     }
 
     private ArrayList<String> nextMessage()
