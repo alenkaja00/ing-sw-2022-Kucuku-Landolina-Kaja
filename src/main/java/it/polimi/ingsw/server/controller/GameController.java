@@ -1,5 +1,5 @@
 package it.polimi.ingsw.server.controller;
-
+/*
 import com.google.gson.Gson;
 import com.sun.jdi.PrimitiveValue;
 import it.polimi.ingsw.server.model.cards.Wizard;
@@ -246,3 +246,4 @@ public class GameController
         playerList.addAll(copy.stream().sorted((x,y)->x.getValue()-y.getValue()).collect(Collectors.toList()));
     }
 }
+*/

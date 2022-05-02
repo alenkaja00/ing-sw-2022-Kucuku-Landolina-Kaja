@@ -34,7 +34,7 @@ public class modeView extends JFrame implements ActionListener {
         JLabel label = new JLabel();
         label.setOpaque(true);
 
-        label.setBounds(0, 0, 1280, 850);
+        //label.setBounds(0, 0, 1280, 850);
 
         //label.setIcon(image);
 
@@ -78,7 +78,9 @@ public class modeView extends JFrame implements ActionListener {
             chosen = "esperta";
         } else chosen = "";
         System.out.println("Scelta Variante : " + chosen);
+
     }
+
 
 
     public static void main(String[] args) {
@@ -93,6 +95,8 @@ public class modeView extends JFrame implements ActionListener {
         {
             insets = getInsets();
         }
+
         g.drawImage(resized, insets.left, insets.top, this);
+
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
+/*
 public class ServerController {
 
     private HashMap<String, ClientManager> playerSockets = new HashMap<String, ClientManager>();
@@ -55,6 +55,9 @@ public class ServerController {
      * removes disconnected players from the playerScokets list
      * informs the needed active games that a player disconnected
      */
+
+
+/*
     public void managePlayerDisconnection(String nickname)
     {
         if (playerSockets.keySet().contains(nickname))
@@ -90,6 +93,9 @@ public class ServerController {
      * checks the lobby if there are enough, players, creates the game and informs all players
      * GAME|playerNickname|playerNumber|expertModeEnabled
      */
+
+
+/*
     private void manageGameMessage(ArrayList<String> message) {
         String nickname = message.get(1);
         Integer playerNumber = Integer.valueOf(message.get(2));
@@ -120,6 +126,8 @@ public class ServerController {
      * removes a player from the lobby in order to make him make another request if he wants
      * QUITLOBBY|playerNickname
      */
+
+/*
     private void manageQuitLobbyMessage(ArrayList<String> message)
     {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
@@ -130,8 +138,13 @@ public class ServerController {
      * sends the PLAY message to the relevant controller
      * PLAY|playerNickname|otherstuff
      */
+
+/*
     private void managePlayMessage(ArrayList<String> parameters)
     {
         openGames.stream().filter(x->x.getPlayers().contains(parameters.get(1))).forEach(x->x.parseMessage((ArrayList<String>) parameters.clone()));
     }
 }
+
+
+*/

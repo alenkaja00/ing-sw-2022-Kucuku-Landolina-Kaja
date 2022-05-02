@@ -1,5 +1,5 @@
 package it.polimi.ingsw.client;
-
+/*
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.controller.ClientNetwork;
 import it.polimi.ingsw.server.controller.ServerNetwork;
@@ -21,3 +21,4 @@ public class App
         //connectivity.sendMessage("GAME|ENDI");
     }
 }
+*/
