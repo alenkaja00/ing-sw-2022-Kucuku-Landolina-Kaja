@@ -26,7 +26,7 @@ public class dashboardView extends JFrame {
 
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         new dashboardView();
 
     }

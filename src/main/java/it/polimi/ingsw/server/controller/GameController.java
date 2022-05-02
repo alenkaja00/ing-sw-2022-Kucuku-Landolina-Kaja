@@ -1,5 +1,5 @@
 package it.polimi.ingsw.server.controller;
-
+/*
 import com.google.gson.Gson;
 import com.sun.jdi.PrimitiveValue;
 import com.sun.source.tree.SwitchTree;
@@ -385,3 +385,4 @@ public class GameController
         playerList.addAll(copy.stream().sorted((x,y)->x.getValue()-y.getValue()).collect(Collectors.toList()));
     }
 }
+*/

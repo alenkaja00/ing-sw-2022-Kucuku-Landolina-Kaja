@@ -1,5 +1,5 @@
 package it.polimi.ingsw.server;
-
+/*
 import it.polimi.ingsw.client.view.cli.utils.ANSIColor;
 import it.polimi.ingsw.server.controller.ClientManager;
 import it.polimi.ingsw.server.controller.ServerNetwork;
@@ -27,9 +27,11 @@ public class App
         String result = gson.toJson(game);
         System.out.println(result);
         */
-
+/*
         ServerController theController = new ServerController();
         ServerNetwork myconn = new ServerNetwork(3030, theController);
 
     }
 }
+
+ */
