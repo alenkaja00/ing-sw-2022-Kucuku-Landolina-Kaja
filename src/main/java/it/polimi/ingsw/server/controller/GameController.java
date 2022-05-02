@@ -59,7 +59,7 @@ public class GameController
         players.stream().forEach(x->playerOrder.add(Map.entry(x, new Random().nextInt(playerNumber))));
         orderByValue(playerOrder);
 
-        playerOrder.stream().forEach(x->playerSockets.get(x).sendMessage("Choose your wizard"));
+        playerOrder.stream().forEach(x->playerSockets.get(x).sendMessage("WIZARDS"));
 
         //get wizards from players && communicate with them
         playerWizards = new HashMap<>();
@@ -235,7 +235,7 @@ public class GameController
                     gameEnded(newGame.lessTowersMoreProfessors());
                     break;
                 }
-                playerSockets.get(currentPlayer).sendMessage("UNLOCK");
+                playerSockets.get(currentPlayer).sendMessage("LOCK");
             }
         }while (true);
     }
@@ -257,28 +257,34 @@ public class GameController
                 ((GameClassExpert)newGame).useCardEffect(playerID, EffectName.valueOf(message.get(3)));
                 break;
             case "MONK":
-
+                ((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
                 break;
             case "QUEEN":
-
+                ((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
                 break;
             case "LADY":
-
+                ((GameClassExpert)newGame).ladyEffect(Integer.parseInt(message.get(4)));
                 break;
             case "JOLLY":
-
+                ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                if (message.size()>6)
+                    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(6)), Integer.parseInt(message.get(7)));
+                if (message.size()>8)
+                    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(8)), Integer.parseInt(message.get(9)));
                 break;
             case "LORD":
-
+                ((GameClassExpert)newGame).lordEffect(Integer.parseInt(message.get(4)));
                 break;
             case "COOK":
-
+                ((GameClassExpert)newGame).cookEffect(ColoredDisc.valueOf(message.get(4)));
                 break;
             case "BANDIT":
-
+                ((GameClassExpert)newGame).banditEffect(ColoredDisc.valueOf(message.get(4)));
                 break;
             case "MUSICIAN":
-
+                ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(4)), ColoredDisc.valueOf(message.get(5)));
+                if (message.size()>6)
+                    ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(6)), ColoredDisc.valueOf(message.get(7)));
                 break;
         }
 
@@ -287,7 +293,7 @@ public class GameController
 
     private void gameEnded(int playerID)
     {
-        players.stream().forEach(x->playerSockets.get(x).sendMessage("GAMEENDED|Game Ended. Player " + players.get(playerID) + "is the winner"));
+        players.stream().forEach(x->playerSockets.get(x).sendMessage("WINNER|"+players.get(playerID)));
     }
 
     private void updateView()
@@ -299,6 +305,16 @@ public class GameController
         else
             result = gson.toJson(newGame);
         players.stream().filter(x->playersOnline.get(x)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
+    }
+    private void updateView(String nickname)
+    {
+        Gson gson = new Gson();
+        String result;
+        if (expertMode)
+            result = gson.toJson((GameClassExpert) newGame);
+        else
+            result = gson.toJson(newGame);
+        players.stream().filter(x->x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
     }
 
     private ArrayList<String> nextMessage()
@@ -339,7 +355,7 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, false);
-        players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("Player "+nickname+" disconnected"));
+        players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
         System.out.println("Player "+nickname+" disconnected");
     }
     public void playerReconnected(String nickname)
@@ -347,9 +363,9 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, true);
-        players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("Player "+nickname+" reconnected"));
+        players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("RECONNECTED|"+nickname));
         System.out.println("Player "+nickname+" reconnected");
-        playerSockets.get(nickname).sendMessage("STATUS");
+        updateView(nickname);
     }
 
     public String getID()

@@ -8,6 +8,7 @@ import it.polimi.ingsw.server.model.components.Player;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.Tower;
 
+import java.awt.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,8 +112,9 @@ public class GameClassExpert extends GameClass
         //cosa fare con le carte personaggio
     }
 
-    public void monkEffect(EffectName name, int Island, int index)
+    public void monkEffect(int Island, int index)
     {
+        EffectName name = EffectName.MONK;
         ColoredDisc color = getCardByName(name).getStudents()[index];
         EffectCard card = getCardByName(name);
         card.removeStudent(index);
@@ -125,8 +127,9 @@ public class GameClassExpert extends GameClass
         cookColors.add(color);
     }
 
-    public void queenEffect(int PlayerID, EffectName name, int index)
+    public void queenEffect(int PlayerID, int index)
     {
+        EffectName name = EffectName.QUEEN;
         ColoredDisc color = getCardByName(name).getStudents()[index];
         EffectCard card = getCardByName(name);
         card.removeStudent(index);
@@ -147,8 +150,9 @@ public class GameClassExpert extends GameClass
      *
      * the function allows the player to switch up to 3 students from the card to his entrance
      */
-    public void jollyEffectCall(int PlayerID, EffectName name, int removeIndex, int addIndex)
+    public void jollyEffectCall(int PlayerID, int removeIndex, int addIndex)
     {
+        EffectName name = EffectName.JOLLY;
         ColoredDisc cardColor = getCardByName(name).getStudents()[removeIndex];
         ColoredDisc entranceColor = players.get(PlayerID).myDashboard.getEntranceSpots()[addIndex]; ;
         EffectCard card = getCardByName(name);
@@ -165,11 +169,12 @@ public class GameClassExpert extends GameClass
      * @param tableColor
      * the function allows the player to switch up to 2 students between his entrance and his dining room
      */
-    public void musicianEffect(int PlayerID, ColoredDisc entranceColor, ColoredDisc tableColor,int removeIndex, int addIndex)
+    public void musicianEffect(int PlayerID, int switchIndex, ColoredDisc tableColor)
     {
-        players.get(PlayerID).myDashboard.MoveToTables(removeIndex);
+        ColoredDisc entranceColor = players.get(PlayerID).myDashboard.getEntranceSpots()[switchIndex];
+        players.get(PlayerID).myDashboard.MoveToTables(switchIndex);
         players.get(PlayerID).myDashboard.RemoveFromTables(tableColor);
-        players.get(PlayerID).myDashboard.AddToEntrance(tableColor,addIndex);
+        players.get(PlayerID).myDashboard.AddToEntrance(tableColor,switchIndex);
         evaluateProfessors(PlayerID, entranceColor);
         evaluateProfessors(PlayerID, tableColor);
     }
@@ -180,7 +185,7 @@ public class GameClassExpert extends GameClass
      * @param color
      * this effect removes from all the players dining rooms 3 or less students, putting back to the bag those students
      */
-    public void banditEffect(int PlayerID, ColoredDisc color)
+    public void banditEffect(ColoredDisc color)
     {
         for(Player player:players)
         {
