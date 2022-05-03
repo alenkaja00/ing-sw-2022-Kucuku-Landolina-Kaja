@@ -1,5 +1,5 @@
 package it.polimi.ingsw.client;
-/*
+
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.controller.ClientNetwork;
 import it.polimi.ingsw.server.controller.ServerNetwork;
@@ -11,14 +11,12 @@ import java.util.concurrent.Executors;
 public class App
 {
     public static void main( String[] args ) throws IOException {
-        ClientController controller = new ClientController();
-        ClientNetwork connectivity = new ClientNetwork("127.0.0.1",3030, controller);
+        ClientController controller = new ClientController("CLI");
 
-        connectivity.sendMessage("NICKNAME|Alen");
-        connectivity.sendMessage("GAME|Alen|2|true");
+        //connectivity.sendMessage("NICKNAME|Alen");
+        //connectivity.sendMessage("GAME|Alen|2|true");
         //connectivity.sendMessage("PLAY|ENDI");
         //connectivity.sendMessage("QUIT|ENDI");
         //connectivity.sendMessage("GAME|ENDI");
     }
 }
-*/

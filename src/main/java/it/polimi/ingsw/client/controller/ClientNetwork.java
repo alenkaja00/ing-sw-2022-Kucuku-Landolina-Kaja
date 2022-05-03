@@ -1,14 +1,10 @@
 package it.polimi.ingsw.client.controller;
 
-import it.polimi.ingsw.client.controller.ClientController;
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ContentHandler;
 import java.net.Socket;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.concurrent.Executors;
 
 public class ClientNetwork{
 
@@ -28,7 +24,7 @@ public class ClientNetwork{
             {
                 while (true) {
                     String receivedLine = socketIn.nextLine();
-                    this.controller.parseMessage(receivedLine);
+                    this.controller.parseServerMessage(receivedLine);
                 }
             }
             catch(NoSuchElementException e)

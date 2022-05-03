@@ -2,6 +2,9 @@ package it.polimi.ingsw.client.view;
 
 public interface ViewInterface
 {
+    //will return an IP and port
+    public void connectionScreen(boolean error);
+
     //shows message when connected to server
     public void startScreen();
 

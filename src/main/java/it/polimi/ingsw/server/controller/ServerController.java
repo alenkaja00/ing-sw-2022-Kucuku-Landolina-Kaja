@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-/*
+
 public class ServerController {
 
     private HashMap<String, ClientManager> playerSockets = new HashMap<String, ClientManager>();
@@ -57,7 +57,7 @@ public class ServerController {
      */
 
 
-/*
+
     public void managePlayerDisconnection(String nickname)
     {
         if (playerSockets.keySet().contains(nickname))
@@ -95,7 +95,7 @@ public class ServerController {
      */
 
 
-/*
+
     private void manageGameMessage(ArrayList<String> message) {
         String nickname = message.get(1);
         Integer playerNumber = Integer.valueOf(message.get(2));
@@ -127,7 +127,7 @@ public class ServerController {
      * QUITLOBBY|playerNickname
      */
 
-/*
+
     private void manageQuitLobbyMessage(ArrayList<String> message)
     {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
@@ -139,7 +139,7 @@ public class ServerController {
      * PLAY|playerNickname|otherstuff
      */
 
-/*
+
     private void managePlayMessage(ArrayList<String> parameters)
     {
         openGames.stream().filter(x->x.getPlayers().contains(parameters.get(1))).forEach(x->x.parseMessage((ArrayList<String>) parameters.clone()));
@@ -147,4 +147,3 @@ public class ServerController {
 }
 
 
-*/

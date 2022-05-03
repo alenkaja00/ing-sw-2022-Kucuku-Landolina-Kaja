@@ -1,5 +1,5 @@
 package it.polimi.ingsw.server.controller;
-/*
+
 import com.google.gson.Gson;
 import com.sun.jdi.PrimitiveValue;
 import com.sun.source.tree.SwitchTree;
@@ -27,7 +27,7 @@ public class GameController
     private HashMap<String, ClientManager> playerSockets;
     private ArrayList<Map.Entry<String, Integer>> playerOrder;
     private HashMap<String, Wizard> playerWizards;
-    private ArrayList<ArrayList<String>> inputBuffer;
+    private ArrayList<ArrayList<String>> inputBuffer = new ArrayList<ArrayList<String>>();
 
     public GameController(int playerNumber, Boolean expertMode, String ID, ArrayList<String> nicknames, HashMap<String, ClientManager> playerSockets)
     {
@@ -385,4 +385,3 @@ public class GameController
         playerList.addAll(copy.stream().sorted((x,y)->x.getValue()-y.getValue()).collect(Collectors.toList()));
     }
 }
-*/
