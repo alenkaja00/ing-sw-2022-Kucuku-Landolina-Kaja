@@ -11,6 +11,7 @@ public class ClientNetwork{
     Socket socket;
     ClientController controller;
     PrintWriter socketOut;
+    Boolean connected = false;
 
     public ClientNetwork(String ip, int port, ClientController controller) throws IOException {
         this.socket = new Socket(ip, port);
@@ -20,6 +21,7 @@ public class ClientNetwork{
 
         new Thread(()->{
             System.out.println("Connection established");
+            connected = true;
             try
             {
                 while (true) {
@@ -30,6 +32,7 @@ public class ClientNetwork{
             catch(NoSuchElementException e)
             {
                 System.out.println("Connection closed");
+                connected = false;
             }
             finally
             {

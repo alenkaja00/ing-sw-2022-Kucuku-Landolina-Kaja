@@ -1,26 +1,73 @@
 package it.polimi.ingsw.client.view;
 
+import it.polimi.ingsw.client.controller.ClientController;
+
 public interface ViewInterface
 {
-    //will return an IP and port
-    public void connectionScreen(boolean error);
+    //all the system.out.println("FATAL ERROR") are only for debugging purpose
 
+    /* ***** ALL THE FOLLOWING METHODS RUN IN A NEW THREAD ***** */
+    //salvatevi il clientcontroller da qualche parte, dal costruttore:
+    //public ViewInterface(ClientController controller);
+
+    //riceve una stringa con l'ip se c'è un server connesso, altrimenti la stringa nulla
+    /*
+    - Gestisce schermata iniziale e funzionalità di connessione e creazione partita,
+    l'utente è libero di muoversi liberamente tra queste schermate
+
+    - La view chiamerà il metodo tryConnection() e gestirà il valore di ritorno
+    true=connesso, false=disconnesso
+
+    - Se ci si riesce a connettere, si chiede al giocatore di inserire un nickname
+    si chiama il metodo sendNickname e si gestisce il valore di ritorno
+    true = ok, false = nok
+
+    - Se l'utente naviga nella schermata nuova partita gli permette di inviare una richiesta,
+    viene chiamato il metodo gameRequest() che ritorna:
+    - false se non c'è un server connesso o ci sono errori
+      => mostrare un messaggio di errore
+    - true in tutti gli altri casi, da qui è il controller a gestire tutto
+    */
     //shows message when connected to server
-    public void startScreen();
+    public void startScreen(String serverIP);
 
-    //shows error message if nickname is taken
-    public void nicknameScreen();
 
-    //game creation screen, player number parameter, expert mode parameter,
-    //possibitily to go back to the startScreen
-    public void createGameScreen();
-
+    /*
+    La schermata wait viene mostrata quando il server è in attesa di altri giocatori per creare la partita
+    se si è nella schermata WAIT mostrare un pulsante QUIT,
+    che chiama il metodo quitLobby() e riporta l'user nella schermata iniziale*/
     //wait screen which can show many different messages
     public void waitScreen(String message); //trasparente
+
+    //show a message
+    public void messageScreen(String message);
+
+    //first screen of a new game, lets the user choose between wizards, calls the requestWizard() method
+    //if the return value is true gives the ok and shows some wait effect
+    //otherwise lets the user choose again
+    public void newGame();
+
+
+    /* ****** ALL THE FOLLOWING MESSAGES DO NOT RUN IN A NEW THREAD BUT IN THE MAIN THREAD ************ */
 
     //update view from json
     public void updateView(String json);
 
-    //show a message
-    public void messageScreen(String message);
+    /* ALONG WITH THEIR NORMAL FUNCTION THESE METHODS LET THE USER PLAY AN EFFECT CARD
+        WITH THE requesEffect() method if expertMode is ON
+     */
+
+    //enables the view to let the user choose a helper,
+    // calls the requestHelper() method which return true or false based on the result
+    // only allow the user to play the helper according to the rules
+    void playHelper();
+
+    //calls the requestETI() or requestETT()
+    void playETX();
+
+    //calls the requestNature()
+    void playNature();
+
+    //calls the requestCTE()
+    void playCTE();
 }

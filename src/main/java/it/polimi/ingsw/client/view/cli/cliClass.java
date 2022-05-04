@@ -1,24 +1,21 @@
 package it.polimi.ingsw.client.view.cli;
 
+import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 
 public class cliClass implements ViewInterface
 {
 
-    @Override
-    public void startScreen() {
+    public cliClass(ClientController controller)
+    {
 
     }
 
     @Override
-    public void nicknameScreen() {
+    public void startScreen(String serverIP) {
 
     }
 
-    @Override
-    public void createGameScreen() {
-
-    }
 
     @Override
     public void waitScreen(String message) {
@@ -32,6 +29,11 @@ public class cliClass implements ViewInterface
 
     @Override
     public void messageScreen(String message) {
+
+    }
+
+    @Override
+    public void newGame() {
 
     }
 }
