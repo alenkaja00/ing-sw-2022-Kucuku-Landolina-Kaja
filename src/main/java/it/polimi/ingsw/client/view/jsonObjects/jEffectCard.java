@@ -9,6 +9,6 @@ public class jEffectCard {
     public EffectName ID;
     public int price;
     public boolean used;
-    public ArrayList<ColoredDisc> students;
+    public ColoredDisc[] students;
     public int prohibitionCard = 0;
 }
