@@ -77,7 +77,7 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-        public static ArrayList<String> errorMessage() {
+        public ArrayList<String> errorMessage() {
         ArrayList<String> result = new ArrayList<>();
         result.add(ANSIColor.RED_BOLD);
         result.add(" ");
@@ -117,7 +117,7 @@ public class EriantysCLI {
 
     }
 
-    public static ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ArrayList<ColoredDisc> students, int prohibition) {
+    public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ArrayList<ColoredDisc> students, int prohibition) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cardStudents = new ArrayList<>();
         //if the cards has discs on it this will contain the text "STUDENTS:"
@@ -169,7 +169,7 @@ public class EriantysCLI {
         return result;
     }
 
-    public static ArrayList<String> cloudElement(int index, int capacity, ArrayList<String> students) {
+    public ArrayList<String> cloudElement(int index, int capacity, ArrayList<String> students) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cliStudents = new ArrayList<>();
         int ind = index + 1;
@@ -211,7 +211,7 @@ public class EriantysCLI {
         return result;
     }
 
-    public static ArrayList<String> dashboardElement(ArrayList<String> entrance, ArrayList<String> professors, HashMap<String, Integer> tables, int towers, String towersColor, String nickname, boolean online) {
+    public ArrayList<String> dashboardElement(ArrayList<String> entrance, ArrayList<String> professors, HashMap<String, Integer> tables, int towers, String towersColor, String nickname, boolean online) {
         ArrayList<String> result = new ArrayList<String>();
         ArrayList<String> cliEntrance = new ArrayList<String>();
         HashMap<String, String> cliTables = new HashMap<>();
@@ -311,7 +311,7 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-    private static ArrayList<String> islandElement(int ID, HashMap<ColoredDisc, Integer> students, ArrayList<Tower> towers, ArrayList<Integer> graphicalIslands, boolean prohibited) {
+    private ArrayList<String> islandElement(int ID, HashMap<ColoredDisc, Integer> students, ArrayList<Tower> towers, ArrayList<Integer> graphicalIslands, boolean prohibited) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> islandStud = new ArrayList<>();
         int tower = 0;
@@ -478,7 +478,9 @@ public class EriantysCLI {
             }
             else
             {
+                //empty island given the index
                 myIsland [i] = emptyIsland(i);
+                //System.out.println("EMPTY"+i);
             }
         }
 
@@ -501,11 +503,11 @@ public class EriantysCLI {
     }
 
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public void main(String[] args) throws FileNotFoundException {
         EriantysCLI n = new EriantysCLI();
 
         //read the json
-
+/*
         Gson gson = new Gson();
         jGameClass myGame = new jGameClass();
 
@@ -519,6 +521,6 @@ public class EriantysCLI {
         ArrayList<String> exa = n.islandsMap(myGame.islands);
         for(String s : exa ){
             System.out.println(s);
-        }
+        }*/
     }
 }

@@ -8,7 +8,7 @@ import static java.awt.event.KeyEvent.VK_ENTER;
 
 public class viewManager {
     //Input input;
-
+    /*
     public viewManager() throws IOException {
         //input = new Input();
     }
@@ -37,5 +37,5 @@ public class viewManager {
                 }
             }
         } while (s != null);
-    }
+    }*/
 }

@@ -27,6 +27,31 @@ public class guiClass implements ViewInterface
     }
 
     @Override
+    public void playHelper() {
+
+    }
+
+    @Override
+    public void playETX() {
+
+    }
+
+    @Override
+    public void playNature() {
+
+    }
+
+    @Override
+    public void playCTE() {
+
+    }
+
+    @Override
+    public void gameEnded(String endMessage) {
+
+    }
+
+    @Override
     public void messageScreen(String message) {
 
     }
