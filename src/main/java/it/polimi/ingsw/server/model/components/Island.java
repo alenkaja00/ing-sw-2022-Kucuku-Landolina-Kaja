@@ -130,4 +130,7 @@ public class Island {
         return ID;
     }
 
+    public ArrayList<Integer> getGraphicalIslands() {
+        return (ArrayList<Integer>) graphicalIsland.clone();
+    }
 }
