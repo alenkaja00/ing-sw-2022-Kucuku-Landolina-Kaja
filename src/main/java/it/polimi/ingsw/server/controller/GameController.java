@@ -76,6 +76,13 @@ public class GameController
             {
                 playerSockets.get(message.get(1)).sendMessage("NOK");
             }
+
+            //add a random wizard if a player disconnects during wizard choice
+            for (int i=0; i<playerNumber; i++)
+            {
+                if (!playersOnline.get(players.get(i)) && !playerWizards.keySet().contains(players.get(i)))
+                    playerWizards.put(players.get(i), Arrays.stream(Wizard.values()).filter(x->!playerWizards.values().contains(x)).collect(Collectors.toList()).get(0) );
+            }
         }
 
         //order wizards according to the player who chose them
@@ -355,7 +362,7 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, false);
-        players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
+        //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
         System.out.println("Player "+nickname+" disconnected");
     }
     public void playerReconnected(String nickname)
@@ -363,7 +370,7 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, true);
-        players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("RECONNECTED|"+nickname));
+        //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("RECONNECTED|"+nickname));
         System.out.println("Player "+nickname+" reconnected");
         updateView(nickname);
     }

@@ -131,7 +131,7 @@ public class ServerController {
     private void manageQuitLobbyMessage(ArrayList<String> message)
     {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
-        playerSockets.get(message.get(1)).sendMessage("NOK");
+        //playerSockets.get(message.get(1)).sendMessage("NOK");
     }
 
     /**

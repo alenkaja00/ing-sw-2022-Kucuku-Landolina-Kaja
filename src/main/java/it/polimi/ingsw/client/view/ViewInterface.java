@@ -70,4 +70,7 @@ public interface ViewInterface
 
     //calls the requestCTE()
     void playCTE();
+
+    //game ends with the following message
+    void gameEnded(String endMessage);
 }

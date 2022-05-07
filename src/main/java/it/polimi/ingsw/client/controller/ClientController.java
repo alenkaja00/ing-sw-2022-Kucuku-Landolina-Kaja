@@ -22,12 +22,7 @@ public class ClientController
     private ViewInterface view;
     private String playerNickname;
 
-    public ClientController(String viewMode) throws IOException {
-
-         viewController(viewMode);
-    }
-
-    private void viewController(String viewMode)
+    public ClientController(String viewMode) throws IOException
     {
         if (viewMode.equals("GUI"))
             view = new guiClass(this);
@@ -79,9 +74,8 @@ public class ClientController
             if (message.get(0).equals("WAIT"))
             {
                 view.waitScreen("Waiting for more Players...");
-
+                message = nextServerMessage();
             }
-            message = nextServerMessage();
             if (message.get(0).equals("OK")) {
                 new Thread() {public void runnable() {view.newGame();}};
                 return true;
@@ -121,54 +115,61 @@ public class ClientController
     private void manageGameProsecution()
     {
         ArrayList<String> message;
-        //receive unlock of JSON
-        do {
-            message = nextServerMessage();
-            if (message.get(0).equals("JSON"))
-            {
-                view.updateView(message.get(1));
-                break;
-            }
-            else if (message.get(0).equals("UNLOCK"))
-                break;
-            else
-                System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
+
+        do
+        {
+            //receive unlock or JSON
+            do {
+                message = nextServerMessage();
+                if (message.get(0).equals("JSON"))
+                {
+                    view.updateView(message.get(1));
+                }
+                else if (message.get(0).equals("UNLOCK"))
+                    break;
+                else
+                    System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
+            } while (true);
+
+            view.playHelper();
+
+            //receive LOCK
+            if (!nextServerMessage().get(0).equals("LOCK"))
+                System.out.println("FATAL ERROR: expected to receive a lock but received "+message);
+
+            //receive unlock of JSON
+            do {
+                message = nextServerMessage();
+                if (message.get(0).equals("JSON"))
+                {
+                    view.updateView(message.get(1));
+                }
+                else if (message.get(0).equals("UNLOCK"))
+                    break;
+                else
+                    System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
+            } while (true);
+
+            view.playETX();
+
+            view.playNature();
+
+            view.playCTE();
+
+            //receive lock
+            if (!nextServerMessage().get(0).equals("LOCK"))
+                System.out.println("FATAL ERROR: expected to receive a lock but received "+message);
+
         } while (true);
-
-        view.playHelper();
-
-        //receive LOCK
-        if (!nextServerMessage().get(0).equals("LOCK"))
-            System.out.println("FATAL ERROR: expected to receive a lock but received "+message);
-
-        //receive unlock of JSON
-        do {
-            message = nextServerMessage();
-            if (message.get(0).equals("JSON"))
-            {
-                view.updateView(message.get(1));
-                break;
-            }
-            else if (message.get(0).equals("UNLOCK"))
-                break;
-            else
-                System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
-        } while (true);
-
-        view.playETX();
-
-        view.playNature();
-
-        view.playCTE();
-
-        //receive lock
-        if (!nextServerMessage().get(0).equals("LOCK"))
-            System.out.println("FATAL ERROR: expected to receive a lock but received "+message);
     }
 
-    public void requestHelper(int helperID)
+    public boolean requestHelper(int helperID)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|HELPER|"+helperID);
+        if (nextServerMessage().get(0).equals("OK"))
+            return true;
+        else
+            return false;
     }
 
     public boolean requestEffect(String effectMessage)
@@ -180,40 +181,40 @@ public class ClientController
             return false;
     }
 
-    public boolean requestETI()
+    public boolean requestETI(int IslandIndex, int entranceIndex)
     {
-        /*connectivity.sendMessage(effectMessage);
+        connectivity.sendMessage("PLAY|"+playerNickname+"|ETI|"+IslandIndex+"|"+entranceIndex);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
-            return false;*/
+            return false;
     }
 
-    public boolean requestETT()
+    public boolean requestETT(int entranceIndex)
     {
-        /*connectivity.sendMessage(effectMessage);
+        connectivity.sendMessage("PLAY|"+playerNickname+"|ETI|"+entranceIndex);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
-            return false;*/
+            return false;
     }
 
-    public boolean requestNature()
+    public boolean requestNature(int mNatureMoves)
     {
-        /*connectivity.sendMessage(effectMessage);
+        connectivity.sendMessage("PLAY|"+playerNickname+"|NATURE|"+mNatureMoves);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
-            return false;*/
+            return false;
     }
 
-    public boolean requestCTE()
+    public boolean requestCTE(int cloudIndex)
     {
-        /*connectivity.sendMessage(effectMessage);
+        connectivity.sendMessage("PLAY|"+playerNickname+"|CTE|"+cloudIndex);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
-            return false;*/
+            return false;
     }
 
     /*DEPRECATED
@@ -291,10 +292,26 @@ public class ClientController
 
         ArrayList<String> parsedMessage = (ArrayList<String>) Arrays.asList(message.split("\\|"));
 
+        if (parsedMessage.get(0).equals("WINNER"))
+            view.gameEnded(parsedMessage.get(1));
+
         synchronized (serverBuffer)
         {
             serverBuffer.add(parsedMessage);
             serverBuffer.notifyAll();
         }
+    }
+
+    public void playerDisconnected()
+    {
+        clearServerBuffer();
+        view.messageScreen("You disconnected from the server...");
+        view.startScreen("");
+    }
+
+    public void reconnected(String jsonString)
+    {
+        view.updateView(jsonString);
+        manageGameProsecution();
     }
 }

@@ -246,6 +246,7 @@ public class GameClass {
             islands.remove(rightIsland);
         }
 
+        /*
         Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
 
         if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
@@ -254,6 +255,17 @@ public class GameClass {
             CurrentIsland.addStudents(leftIsland.getStudents());
             CurrentIsland.addGraphicalIslands(leftIsland.getID());
             islands.remove(leftIsland);
+        }*/
+
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
+
+        if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(CurrentIsland.getTowers()).forEach(x->leftIsland.AddTower(leftIsland.getTowers()[0]));
+            leftIsland.addStudents(CurrentIsland.getStudents());
+            CurrentIsland.getGraphicalIslands().stream().foreach(x->leftIsland.addGraphicalIslands(x));
+            islands.remove(CurrentIsland);
+            CurrentIsland = leftIsland;
         }
     }
 
