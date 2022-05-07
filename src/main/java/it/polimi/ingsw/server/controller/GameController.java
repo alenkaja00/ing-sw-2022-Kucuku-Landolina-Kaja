@@ -59,6 +59,7 @@ public class GameController
         players.stream().forEach(x->playerOrder.add(Map.entry(x, new Random().nextInt(playerNumber))));
         orderByValue(playerOrder);
 
+        //error here
         playerOrder.stream().forEach(x->playerSockets.get(x).sendMessage("WIZARDS"));
 
         //get wizards from players && communicate with them

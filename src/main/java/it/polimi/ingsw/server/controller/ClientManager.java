@@ -56,7 +56,8 @@ public class ClientManager implements Runnable{
                 String receivedMessage = socketIn.nextLine();
                 controller.parseMessage(receivedMessage);
             }
-        } catch(NoSuchElementException e) {
+        } catch(Exception e) {
+            e.printStackTrace();
             System.out.println("Connection closed");
             if (nickname!= null)
                 controller.managePlayerDisconnection(nickname);

@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.file.FileStore;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class ClientNetwork{
 
@@ -23,13 +20,13 @@ public class ClientNetwork{
         Scanner socketIn = new Scanner(socket.getInputStream());
 
         new Thread(()->{
-            System.out.println("Connection established");
+            //System.out.println("Connection established");
             connected = true;
             try
             {
                 //manage reconnection
                 String firstMessage = socketIn.nextLine();
-                ArrayList<String> parsedMessage = (ArrayList<String>) Arrays.asList(firstMessage.split("\\|"));
+                List<String> parsedMessage = Arrays.asList(firstMessage.split("\\|"));
                 if (parsedMessage.get(0).equals("JSON"))
                     controller.reconnected(parsedMessage.get(1));
                 else
@@ -41,8 +38,9 @@ public class ClientNetwork{
                     this.controller.parseServerMessage(receivedLine);
                 }
             }
-            catch(NoSuchElementException e)
+            catch(Exception e)
             {
+                e.printStackTrace();
                 System.out.println("Connection closed");
                 controller.playerDisconnected();
                 connected = false;
@@ -54,7 +52,7 @@ public class ClientNetwork{
                 try {
                     socket.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
         }).start();

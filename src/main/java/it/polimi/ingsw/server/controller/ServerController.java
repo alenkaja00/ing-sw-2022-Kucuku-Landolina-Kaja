@@ -29,7 +29,10 @@ public class ServerController {
                     }
                     synchronized (playerLobby)
                     {
-                        System.out.print(playerLobby.toString());
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println("***PLAYER LOBBY***");
+                        playerLobby.stream().forEach(x->System.out.println("- "+ x.getKey()+" "+x.getValue().getKey()+" "+x.getValue().getValue()));
                         playerLobby.notifyAll();
                     }
                 }

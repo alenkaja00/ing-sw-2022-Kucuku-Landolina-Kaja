@@ -263,7 +263,7 @@ public class GameClass {
         {
             Arrays.stream(CurrentIsland.getTowers()).forEach(x->leftIsland.AddTower(leftIsland.getTowers()[0]));
             leftIsland.addStudents(CurrentIsland.getStudents());
-            CurrentIsland.getGraphicalIslands().stream().foreach(x->leftIsland.addGraphicalIslands(x));
+            CurrentIsland.getGraphicalIslands().stream().forEach(x->leftIsland.addGraphicalIslands(x));
             islands.remove(CurrentIsland);
             CurrentIsland = leftIsland;
         }

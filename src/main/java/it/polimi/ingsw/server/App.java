@@ -18,6 +18,7 @@ public class App
 
     public static void main( String[] args ) throws IOException {
 
+        /*
         ArrayList<String> nickNames = new ArrayList<>();
         ArrayList<Wizard> wiz = new ArrayList<>();
         nickNames.add("endi");
@@ -29,11 +30,11 @@ public class App
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String result = gson.toJson(game);
-        System.out.println(result);
+        System.out.println(result);*/
 
 
-        //ServerController theController = new ServerController();
-        //ServerNetwork myconn = new ServerNetwork(3030, theController);
+        ServerController theController = new ServerController();
+        ServerNetwork myconn = new ServerNetwork(3030, theController);
 
     }
 }

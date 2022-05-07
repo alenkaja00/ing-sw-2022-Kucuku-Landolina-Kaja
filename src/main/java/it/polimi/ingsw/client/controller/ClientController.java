@@ -15,10 +15,10 @@ import java.util.List;
 
 public class ClientController
 {
-    private ArrayList<ArrayList<String>> serverBuffer = new ArrayList<ArrayList<String>>();
+    private ArrayList<List<String>> serverBuffer = new ArrayList<List<String>>();
     private ArrayList<String> viewBuffer = new ArrayList<String>();
     private ClientNetwork connectivity;
-    private String serverIP;
+    private String serverIP = "";
     private ViewInterface view;
     private String playerNickname;
 
@@ -39,8 +39,8 @@ public class ClientController
             this.connectivity = new ClientNetwork(ip, port, this);
             serverIP = ip;
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
             serverIP = "";
             this.connectivity = null;
             return false;
@@ -51,7 +51,7 @@ public class ClientController
     {
         clearServerBuffer();
         connectivity.sendMessage("NICKNAME|"+nickname);
-        ArrayList<String> response = nextServerMessage();
+        List<String> response = nextServerMessage();
         if (response.get(0).equals("OK"))
         {
             playerNickname = nickname;
@@ -70,7 +70,7 @@ public class ClientController
         {
             clearServerBuffer();
             connectivity.sendMessage("GAME|"+playerNickname+"|"+playerNumber+"|"+expertMode);
-            ArrayList<String> message = nextServerMessage();
+            List<String> message = nextServerMessage();
             if (message.get(0).equals("WAIT"))
             {
                 view.waitScreen("Waiting for more Players...");
@@ -98,7 +98,7 @@ public class ClientController
         if (nextServerMessage().get(0).equals("OK")) {
             new Thread() {
                 public void runnable() {
-                    ArrayList<String> message = nextServerMessage();
+                    List<String> message = nextServerMessage();
                     if (message.get(0).equals("JSON"))
                     {
                         view.updateView(message.get(1));
@@ -114,7 +114,7 @@ public class ClientController
     }
     private void manageGameProsecution()
     {
-        ArrayList<String> message;
+        List<String> message;
 
         do
         {
@@ -256,9 +256,9 @@ public class ClientController
     */
 
 
-    private ArrayList<String> nextServerMessage()
+    private List<String> nextServerMessage()
     {
-        ArrayList<String> message = new ArrayList<>();
+        List<String> message = new ArrayList<>();
 
         do
         {
@@ -266,12 +266,13 @@ public class ClientController
             {
                 if (serverBuffer.size()>0)
                 {
-                    message= serverBuffer.remove(0);
-                    notifyAll();
+                    message = serverBuffer.remove(0);
+                    serverBuffer.notifyAll();
                 }
+                serverBuffer.notifyAll();
             }
             if (message.size()>0)
-                return (ArrayList<String>) message.clone();
+                return new ArrayList<>(message);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -283,14 +284,18 @@ public class ClientController
 
     private void clearServerBuffer()
     {
-        serverBuffer.removeAll(serverBuffer);
+        synchronized (serverBuffer)
+        {
+            serverBuffer.removeAll(serverBuffer);
+            serverBuffer.notifyAll();
+        }
     }
 
     public void parseServerMessage(String message)
     {
         System.out.println("I am the client and I received: " + message);
 
-        ArrayList<String> parsedMessage = (ArrayList<String>) Arrays.asList(message.split("\\|"));
+        List<String> parsedMessage = Arrays.asList(message.split("\\|"));
 
         if (parsedMessage.get(0).equals("WINNER"))
             view.gameEnded(parsedMessage.get(1));
