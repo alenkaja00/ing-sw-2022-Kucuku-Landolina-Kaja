@@ -43,6 +43,7 @@ public class EriantysCLI {
             result.add("Connected to Server "+serverIp);
         }
         result.add(ANSIColor.RESET);
+        result.add("Write help for commands");
         return (ArrayList<String>) result.clone();
     }
 
@@ -435,6 +436,9 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
+    //private ArrayList<String> merge
+
+
     //this method merges 4 arraylists adding them to a given arraylist
     private ArrayList<String> merge4(ArrayList<String> array1, ArrayList<String> array2,ArrayList<String> array3, ArrayList<String> array4, ArrayList<String> addition){
         if(array1.size()!=array3.size()){
@@ -494,7 +498,18 @@ public class EriantysCLI {
         return result;
     }
 
-    //public void ArrayList<String> dashboard
+
+    public ArrayList<String> dashboardMap(ArrayList<jPlayer> players, HashMap<Integer,Integer> roundOrder){
+        ArrayList<String> result = new ArrayList<>();
+
+
+
+
+
+
+
+        return result;
+    }
 
 
     public void clearConsole() {
@@ -507,7 +522,7 @@ public class EriantysCLI {
         EriantysCLI n = new EriantysCLI();
 
         //read the json
-/*
+
         Gson gson = new Gson();
         jGameClass myGame = new jGameClass();
 
@@ -521,6 +536,6 @@ public class EriantysCLI {
         ArrayList<String> exa = n.islandsMap(myGame.islands);
         for(String s : exa ){
             System.out.println(s);
-        }*/
+        }
     }
 }
