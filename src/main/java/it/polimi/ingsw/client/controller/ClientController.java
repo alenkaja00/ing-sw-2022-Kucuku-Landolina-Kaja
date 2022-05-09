@@ -5,13 +5,11 @@ import it.polimi.ingsw.client.view.cli.cliClass;
 import it.polimi.ingsw.client.view.gui.guiClass;
 import it.polimi.ingsw.server.model.cards.Wizard;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.NetworkInterface;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 
 public class ClientController
 {
@@ -21,6 +19,7 @@ public class ClientController
     private String serverIP = "";
     private ViewInterface view;
     private String playerNickname;
+    private Thread currentView;
 
     public ClientController(String viewMode) throws IOException
     {
@@ -29,7 +28,12 @@ public class ClientController
         else if (viewMode.equals("CLI"))
             view = new cliClass(this);
 
-
+        /*setView(new Runnable() {
+            @Override
+            public void run() {
+                view.startScreen(serverIP);
+            }
+        });*/
         view.startScreen(serverIP);
     }
 
@@ -62,7 +66,7 @@ public class ClientController
 
     public boolean gameRequest(int playerNumber, Boolean expertMode)
     {
-        if (!connectivity.connected)
+        if (connectivity== null || !connectivity.connected)
         {
             return false;
         }
@@ -73,11 +77,37 @@ public class ClientController
             List<String> message = nextServerMessage();
             if (message.get(0).equals("WAIT"))
             {
-                view.waitScreen("Waiting for more Players...");
+                currentView = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.waitLobby();
+                    }
+                });
+                currentView.start();
+                /*setView(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.waitLobby();
+                    }
+                });*/
                 message = nextServerMessage();
+                currentView.stop();
             }
             if (message.get(0).equals("OK")) {
-                new Thread() {public void runnable() {view.newGame();}};
+                //currentView.stop();
+                currentView = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.newGame();
+                    }
+                });
+                currentView.start();
+                /*setView(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.newGame();
+                    }
+                });*/
                 return true;
             }
             else
@@ -85,16 +115,37 @@ public class ClientController
         }
     }
 
+
+    private void setView(Runnable runnableParameter)
+    {
+        if (currentView != null)
+            currentView.stop();
+        currentView = new Thread(
+                runnableParameter
+        );
+        currentView.start();
+    }
+
     public void quitLobby()
     {
-        connectivity.sendMessage("QUITLOBBY");
+        connectivity.sendMessage("QUITLOBBY|"+playerNickname);
         clearServerBuffer();
+
+        /*new Thread(
+            new Runnable() {
+                @Override
+                public void run() {
+                    view.startScreen(serverIP);
+                }
+            }
+        ).start();*/
     }
 
     public Boolean requestWizard(Wizard wizard)
     {
         clearServerBuffer();
         connectivity.sendMessage("PLAY|"+playerNickname+"|WIZARD|"+wizard);
+        //ERRORE DOVUTO AL FATTO CHE RICEVE UN JSON INVECE CHE OK
         if (nextServerMessage().get(0).equals("OK")) {
             new Thread() {
                 public void runnable() {
@@ -293,7 +344,7 @@ public class ClientController
 
     public void parseServerMessage(String message)
     {
-        System.out.println("I am the client and I received: " + message);
+        System.out.println("LOG [parseServerMessage]: I am the client and I received: " + message);
 
         List<String> parsedMessage = Arrays.asList(message.split("\\|"));
 

@@ -33,8 +33,12 @@ public class ServerController {
                         System.out.flush();
                         System.out.println("***PLAYER LOBBY***");
                         playerLobby.stream().forEach(x->System.out.println("- "+ x.getKey()+" "+x.getValue().getKey()+" "+x.getValue().getValue()));
+                        if (playerLobby.size() == 0) { System.out.println("   - empty -");};
                         playerLobby.notifyAll();
                     }
+                    System.out.println("***OPEN GAME STATUS***");
+                    if (openGames.size() == 0){System.out.println("   - empty -");};
+                    openGames.stream().forEach(x->System.out.println(x.getPlayersOnline()));
                 }
             }
         }).start();
@@ -66,9 +70,10 @@ public class ServerController {
         if (playerSockets.keySet().contains(nickname))
             playerSockets.remove(nickname);
 
+        openGames.stream().filter(x->x.getPlayers().contains(nickname)).forEach(x->x.playerDisconnected(nickname));
+
         synchronized (playerLobby) {playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(nickname)).collect(Collectors.toList())); playerLobby.notifyAll();}
 
-        openGames.stream().filter(x->x.getPlayers().contains(nickname)).forEach(x->x.playerDisconnected(nickname));
     }
 
     public void parseMessage(String line){
@@ -114,9 +119,10 @@ public class ServerController {
             for (int i=0; i<playerNumber-1; i++)
                 players.add(compatiblePlayers.get(i).getKey());
             String newGameID = String.join("", players.stream().collect(Collectors.toList()));
-            openGames.add(new GameController(playerNumber, expertOn, newGameID, (ArrayList<String>) players.clone(), playerSockets));
             playerLobby.removeAll(compatiblePlayers);
             players.stream().forEach(x-> playerSockets.get(x).sendMessage("OK"));
+            openGames.add(new GameController(playerNumber, expertOn, newGameID, (ArrayList<String>) players.clone(), playerSockets));
+            System.out.println("[LOG] game successfully created");
         }
         else
         {
@@ -134,7 +140,7 @@ public class ServerController {
     private void manageQuitLobbyMessage(ArrayList<String> message)
     {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
-        //playerSockets.get(message.get(1)).sendMessage("NOK");
+        playerSockets.get(message.get(1)).sendMessage("NOK");
     }
 
     /**

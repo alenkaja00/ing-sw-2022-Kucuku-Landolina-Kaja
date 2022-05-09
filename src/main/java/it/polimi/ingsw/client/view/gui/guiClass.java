@@ -17,7 +17,7 @@ public class guiClass implements ViewInterface
 
 
     @Override
-    public void waitScreen(String message) {
+    public void waitLobby() {
 
     }
 
@@ -50,6 +50,7 @@ public class guiClass implements ViewInterface
     public void gameEnded(String endMessage) {
 
     }
+
 
     @Override
     public void messageScreen(String message) {

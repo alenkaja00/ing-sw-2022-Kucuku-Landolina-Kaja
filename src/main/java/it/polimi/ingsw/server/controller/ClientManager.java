@@ -58,7 +58,7 @@ public class ClientManager implements Runnable{
             }
         } catch(Exception e) {
             e.printStackTrace();
-            System.out.println("Connection closed");
+            System.out.println("Client "+nickname+" disconnected");
             if (nickname!= null)
                 controller.managePlayerDisconnection(nickname);
             online = false;

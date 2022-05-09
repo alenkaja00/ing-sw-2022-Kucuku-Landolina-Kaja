@@ -1,7 +1,5 @@
 package it.polimi.ingsw.client.view;
 
-import it.polimi.ingsw.client.controller.ClientController;
-
 public interface ViewInterface
 {
     //all the system.out.println("FATAL ERROR") are only for debugging purpose
@@ -36,8 +34,7 @@ public interface ViewInterface
     La schermata wait viene mostrata quando il server è in attesa di altri giocatori per creare la partita
     se si è nella schermata WAIT mostrare un pulsante QUIT,
     che chiama il metodo quitLobby() e riporta l'user nella schermata iniziale*/
-    //wait screen which can show many different messages
-    public void waitScreen(String message); //trasparente
+    public void waitLobby(); //trasparente
 
     //show a message
     public void messageScreen(String message);
@@ -73,4 +70,5 @@ public interface ViewInterface
 
     //game ends with the following message
     void gameEnded(String endMessage);
+
 }
