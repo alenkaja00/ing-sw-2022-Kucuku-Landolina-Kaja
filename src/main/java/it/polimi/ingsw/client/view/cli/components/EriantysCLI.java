@@ -11,8 +11,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.security.InvalidParameterException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class EriantysCLI {
 
@@ -23,7 +25,6 @@ public class EriantysCLI {
         jGameClass = new jGameClass();
         jGameClassExpert = new jGameClassExpert();
     }
-
 
     public ArrayList<String> welcomeScene(String serverIp) {
         ArrayList<String> result = new ArrayList<>();
@@ -46,7 +47,6 @@ public class EriantysCLI {
         result.add("Write help for commands");
         return (ArrayList<String>) result.clone();
     }
-
 
     public ArrayList<String> nicknameScene(boolean valid) {
         ArrayList<String> result = new ArrayList<>();
@@ -78,7 +78,7 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-        public ArrayList<String> errorMessage() {
+    public ArrayList<String> errorMessage() {
         ArrayList<String> result = new ArrayList<>();
         result.add(ANSIColor.RED_BOLD);
         result.add(" ");
@@ -118,11 +118,11 @@ public class EriantysCLI {
 
     }
 
-    public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ArrayList<ColoredDisc> students, int prohibition) {
+    public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ColoredDisc[] students, int prohibition) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cardStudents = new ArrayList<>();
         //if the cards has discs on it this will contain the text "STUDENTS:"
-        String labelStudents = "|-------------------|";
+        String labelStudents = "  |-------------------|";
         //fit the name with the shape of the card
         String id = ID.toString();
 
@@ -135,10 +135,10 @@ public class EriantysCLI {
         }
 
         if (students != null) {
-            labelStudents = "| STUDENTS          |";
+            labelStudents = "  | STUDENTS          |";
             for (int i = 0; i < 4; i++) {
-                if (i < students.size()) {
-                    switch (students.get(i).toString()) {
+                if (i < students.length) {
+                    switch (students[i].toString()) {
                         case "BLUE":
                             cardStudents.add(ANSIColor.CYAN + "X" + ANSIColor.RESET);
                             break;
@@ -160,59 +160,65 @@ public class EriantysCLI {
         } else {
             for (int i = 0; i < 4; i++) cardStudents.add(" ");
         }
-        result.add("+-------------------+");
-        result.add("| PRICE        NAME |");
-        result.add("|   " + price + spaces + id + " |");
-        result.add("| USATA           "+coin+" |");
+        result.add("  +-------------------+");
+        result.add("  | PRICE        NAME |");
+        result.add("  |   " + price + spaces + id + " |");
+        result.add("  | USATA           "+coin+" |");
         result.add(labelStudents);
-        result.add("| " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + "           |");
-        result.add("+-------------------+");
+        result.add("  | " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + "           |");
+        result.add("  +-------------------+");
         return result;
     }
 
-    public ArrayList<String> cloudElement(int index, int capacity, ArrayList<String> students) {
+    public ArrayList<String> cloudElement(int index, int capacity, ArrayList<ColoredDisc> students) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cliStudents = new ArrayList<>();
         int ind = index + 1;
 
         for (int i = 0; i < capacity; i++) {
+            if(students.size() > 0){
             switch (students.get(i)) {
-                case "PINK":
+                case PINK:
                     cliStudents.add(ANSIColor.PURPLE_BRIGHT + 'X' + ANSIColor.RESET);
                     break;
-                case "RED":
+                case RED:
                     cliStudents.add(ANSIColor.RED + 'X' + ANSIColor.RESET);
                     break;
-                case "BLUE":
+                case BLUE:
                     cliStudents.add(ANSIColor.CYAN + 'X' + ANSIColor.RESET);
                     break;
-                case "GREEN":
+                case GREEN:
                     cliStudents.add(ANSIColor.GREEN + 'X' + ANSIColor.RESET);
                     break;
-                case "YELLOW":
+                case YELLOW:
                     cliStudents.add(ANSIColor.YELLOW + 'X' + ANSIColor.RESET);
                     break;
             }
+        }else{
+                for(int j=0;j<4;j++) {
+                    cliStudents.add(" ");
+                }
+            }
         }
 
-        result.add("        CLOUD #" + ind);
+        result.add("        CLOUD #" + ind+"     ");
         if (capacity == 3) {
             result.add("         | |         ");
             result.add("     | |     | |     ");
-            result.add(" | |      " + cliStudents.get(2) + "     | |");
-            result.add(" | |   " + cliStudents.get(0) + "     " + cliStudents.get(1) + "  | |");
-            result.add(" ------------------");
+            result.add(" | |      " + cliStudents.get(2) + "     | |  ");
+            result.add(" | |   " + cliStudents.get(0) + "     " + cliStudents.get(1) + "  | |  ");
+            result.add(" ------------------  ");
         } else if (capacity == 4) {
             result.add("         | |         ");
             result.add("     | |     | |     ");
-            result.add(" | |   " + cliStudents.get(2) + "    " + cliStudents.get(3) + "   | |");
-            result.add(" | |   " + cliStudents.get(0) + "    " + cliStudents.get(1) + "   | |");
-            result.add(" ------------------");
+            result.add(" | |   " + cliStudents.get(2) + "    " + cliStudents.get(3) + "   | |  ");
+            result.add(" | |   " + cliStudents.get(0) + "    " + cliStudents.get(1) + "   | |  ");
+            result.add(" ------------------  ");
         }
         return result;
     }
 
-    public ArrayList<String> dashboardElement(ArrayList<String> entrance, ArrayList<String> professors, HashMap<String, Integer> tables, int towers, String towersColor, String nickname, boolean online) {
+    public ArrayList<String> dashboardElement(ColoredDisc[] entrance, HashSet<ColoredDisc> professors, HashMap<ColoredDisc, Integer> tables, int towers, String towersColor, String nickname, boolean online) {
         ArrayList<String> result = new ArrayList<String>();
         ArrayList<String> cliEntrance = new ArrayList<String>();
         HashMap<String, String> cliTables = new HashMap<>();
@@ -223,21 +229,21 @@ public class EriantysCLI {
         ArrayList<String> status = new ArrayList<>();
 
         for (int i = 0; i < 9; i++) {
-            if (i < entrance.size()) {
-                switch (entrance.get(i)) {
-                    case "PINK":
+            if (i < entrance.length) {
+                switch (entrance[i]) {
+                    case PINK:
                         cliEntrance.add(ANSIColor.PURPLE_BRIGHT + "X");
                         break;
-                    case "BLUE":
+                    case BLUE:
                         cliEntrance.add(ANSIColor.CYAN + "X");
                         break;
-                    case "RED":
+                    case RED:
                         cliEntrance.add(ANSIColor.RED + "X");
                         break;
-                    case "GREEN":
+                    case GREEN:
                         cliEntrance.add(ANSIColor.GREEN + "X");
                         break;
-                    case "YELLOW":
+                    case YELLOW:
                         cliEntrance.add(ANSIColor.YELLOW + "X");
                         break;
                 }
@@ -245,15 +251,15 @@ public class EriantysCLI {
                 cliEntrance.add(" ");
             }
         }
-        for (String myString : tables.keySet()) {
+        for (ColoredDisc disc : tables.keySet()) {
             String table = "";
             for (int i = 0; i < 10; i++) {
-                if (tables.get(myString) - 1 >= i)
+                if (tables.get(disc) - 1 >= i)
                     table += "X ";
                 else
                     table += "  ";
             }
-            cliTables.put(myString, table);
+            cliTables.put(disc.toString(), table);
         }
         for (String professor : Arrays.asList("RED", "PINK", "BLUE", "YELLOW", "GREEN")) {
             if (professors.contains(professor))
@@ -278,37 +284,46 @@ public class EriantysCLI {
         }
 
         if (online) {
-            status.add(ANSIColor.GREEN_BACKGROUND + ANSIColor.BLACK_BOLD + "ONLINE" + ANSIColor.RESET);
-        } else status.add(ANSIColor.RED_BACKGROUND + ANSIColor.BLACK_BOLD + "OFFLINE" + ANSIColor.RESET);
+            status.add(/*ANSIColor.GREEN_BACKGROUND + ANSIColor.BLACK_BOLD +*/ "ONLINE" /*+ ANSIColor.RESET*/);
+        } else status.add(/*ANSIColor.RED_BACKGROUND + ANSIColor.BLACK_BOLD +*/ "OFFLINE"/* + ANSIColor.RESET*/);
 
-        result.add(" _______________________________________");
-        result.add(" |Dashboard of player: " + nickname + "    " + status + "|");
-        result.add("   ENTR  TABLES              PROF TOW  ");
-        result.add(" |-----|---------------------|---|-----|");
-        result.add(" |   " + cliEntrance.get(0) + ANSIColor.RESET + " | " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "| " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + " | " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + " |");
-        result.add(" |-----|---------------------|---|-----|");
-        result.add(" | " + cliEntrance.get(1) + " " + cliEntrance.get(2) + ANSIColor.RESET + " | " + ANSIColor.RED + cliTables.get("RED") + ANSIColor.RESET + "| " +ANSIColor.RED + cliProfessors.get("RED") + ANSIColor.RESET + " | " + cliTowers.get(2) + " " + cliTowers.get(3) + ANSIColor.RESET + " |");
-        result.add(" |-----|---------------------|---|-----|");
-        result.add(" | " + cliEntrance.get(3) + " " + cliEntrance.get(4) + ANSIColor.RESET + " | " + ANSIColor.YELLOW + cliTables.get("YELLOW") + ANSIColor.RESET + "| " + ANSIColor.YELLOW + cliProfessors.get("YELLOW") + ANSIColor.RESET + " | " + cliTowers.get(4) + " " + cliTowers.get(5) + ANSIColor.RESET + " |");
-        result.add(" |-----|---------------------|---|-----|");
-        result.add(" | " + cliEntrance.get(5) + " " + cliEntrance.get(6) + ANSIColor.RESET + " | " + ANSIColor.PURPLE_BRIGHT + cliTables.get("PINK") + ANSIColor.RESET + "| " + ANSIColor.PURPLE_BRIGHT + cliProfessors.get("PINK") + ANSIColor.RESET + " | " + cliTowers.get(6) + " " + cliTowers.get(7) + ANSIColor.RESET + " |");
-        result.add(" |-----|---------------------|---|-----|");
-        result.add(" | " + cliEntrance.get(7) + " " + cliEntrance.get(8) + ANSIColor.RESET + " | " + ANSIColor.CYAN + cliTables.get("BLUE") + ANSIColor.RESET + "| " + ANSIColor.CYAN + cliProfessors.get("BLUE") + ANSIColor.RESET + " | " + "    |");
-        result.add(" |-----|---------------------|---|-----|");
+        result.add(" _________________________________________ ");
+        result.add("     Player: " + nickname + "  is   " + status +"             ");
+        result.add("   ENTR  TABLES                 PROF TOW   ");
+        result.add(" |------|---------------------|----|-----| ");
+        result.add(" |    " + cliEntrance.get(0) + ANSIColor.RESET + " | " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "| " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + "  | " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + " | ");
+        result.add(" |------|---------------------|----|-----| ");
+        result.add(" |  " + cliEntrance.get(1) + " " + cliEntrance.get(2) + ANSIColor.RESET + " | " + ANSIColor.RED + cliTables.get("RED") + ANSIColor.RESET + "| " +ANSIColor.RED + cliProfessors.get("RED") + ANSIColor.RESET + "  | " + cliTowers.get(2) + " " + cliTowers.get(3) + ANSIColor.RESET + " | ");
+        result.add(" |------|---------------------|----|-----| ");
+        result.add(" |  " + cliEntrance.get(3) + " " + cliEntrance.get(4) + ANSIColor.RESET + " | " + ANSIColor.YELLOW + cliTables.get("YELLOW") + ANSIColor.RESET + "| " + ANSIColor.YELLOW + cliProfessors.get("YELLOW") + ANSIColor.RESET + "  | " + cliTowers.get(4) + " " + cliTowers.get(5) + ANSIColor.RESET + " | ");
+        result.add(" |------|---------------------|----|-----| ");
+        result.add(" |  " + cliEntrance.get(5) + " " + cliEntrance.get(6) + ANSIColor.RESET + " | " + ANSIColor.PURPLE_BRIGHT + cliTables.get("PINK") + ANSIColor.RESET + "| " + ANSIColor.PURPLE_BRIGHT + cliProfessors.get("PINK") + ANSIColor.RESET + "  | " + cliTowers.get(6) + " " + cliTowers.get(7) + ANSIColor.RESET + " | ");
+        result.add(" |------|---------------------|----|-----| ");
+        result.add(" |  " + cliEntrance.get(7) + " " + cliEntrance.get(8) + ANSIColor.RESET + " | " + ANSIColor.CYAN + cliTables.get("BLUE") + ANSIColor.RESET + "| " + ANSIColor.CYAN + cliProfessors.get("BLUE") + ANSIColor.RESET + "  | " + "    | ");
+        result.add(" |------|---------------------|----|-----| ");
 
         return (ArrayList<String>) result.clone();
     }
 
     public ArrayList<String> lastUsedCardElement(String nickname, int cardNumber, int maxMoves, boolean used) {
         ArrayList<String> result = new ArrayList<>();
-        result.add("PLAYER: " + nickname+"        ");
-        result.add("LAST USED CARD     ");
-        result.add("+-----------------+");
-        result.add("| NUMBER    MOVES |");
-        result.add("|   " + cardNumber + "           " + maxMoves + "" + " |");
-        result.add("|                 |");
-        result.add("|                 |");
-        result.add("+-----------------+");
+        result.add("   PLAYER: " + nickname+"        ");
+        result.add("   LAST USED CARD     ");
+        if(cardNumber==0){
+            result.add("   ---not yet played--- ");
+            result.add("                        ");
+            result.add("                        ");
+            result.add("                        ");
+            result.add("                        ");
+        }else {
+            result.add("   +-----------------+");
+            result.add("   | NUMBER    MOVES |");
+            result.add("   |   " + cardNumber + "           " + maxMoves + "" + " |");
+            result.add("   |                 |");
+            //result.add("   |                 |");
+            result.add("   +-----------------+");
+            result.add("                      ");
+        }
         return (ArrayList<String>) result.clone();
     }
 
@@ -436,9 +451,6 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-    //private ArrayList<String> merge
-
-
     //this method merges 4 arraylists adding them to a given arraylist
     private ArrayList<String> merge4(ArrayList<String> array1, ArrayList<String> array2,ArrayList<String> array3, ArrayList<String> array4, ArrayList<String> addition){
         if(array1.size()!=array3.size()){
@@ -488,7 +500,7 @@ public class EriantysCLI {
             }
         }
 
-        result.add(horizontalDelimiter+horizontalDelimiter+horizontalDelimiter+horizontalDelimiter);
+        result.add(horizontalDelimiter+horizontalDelimiter+horizontalDelimiter+horizontalDelimiter+"  ");
         result = merge4(myIsland[0], myIsland[1], myIsland[2], myIsland[3],result);
         result = merge4(myIsland[11], emptyIsland(-1), emptyIsland(-1), myIsland[4], result);
         result = merge4(myIsland[10], emptyIsland(-1), emptyIsland(-1), myIsland[5], result);
@@ -498,19 +510,101 @@ public class EriantysCLI {
         return result;
     }
 
+    private ArrayList<String> merge(ArrayList<String> arr1, ArrayList<String> arr2){
+        ArrayList<String> merged = new ArrayList<>();
+        int maxLen = 0;
+        int minSize = Math.min(arr1.size(), arr2.size());
 
-    public ArrayList<String> dashboardMap(ArrayList<jPlayer> players, HashMap<Integer,Integer> roundOrder){
+        String space = "";
+
+        for(int i=0; i<minSize;i++) {
+            merged.add(arr1.get(i) + arr2.get(i));
+            maxLen = i;
+        }
+
+        if(arr1.size() > arr2.size()){
+            for(int j = 0 ; j<arr2.get(arr2.size()-1).length() ; j++){
+                space = space +" ";
+            }
+            for(int j=maxLen+1 ; j<arr1.size() ; j++){
+                merged.add(arr1.get(j) + space);
+            }
+        }
+        else if(arr1.size() < arr2.size()){
+            for(int j = 0; j<arr1.get(arr1.size()-1).length(); j++){
+                space = space +" ";
+            }
+            for(int j=maxLen+1; j<arr2.size();j++){
+                merged.add(space + arr2.get(j));
+            }
+        }
+        return merged;
+    }
+
+
+    public ArrayList<String> effectCardsMap(ArrayList<jEffectCard> effects){
         ArrayList<String> result = new ArrayList<>();
 
-
-
-
-
-
+        for(int i=0 ; i<effects.size() ; i++){
+            ArrayList<String> effectCard = effectCardElement(effects.get(i).ID, effects.get(i).price, effects.get(i).used, effects.get(i).students, effects.get(i).prohibitionCard);
+            result.addAll(effectCard);
+        }
 
         return result;
     }
 
+
+
+
+
+    public ArrayList<String> dashboardMap(ArrayList<jPlayer> players){
+        ArrayList<String> result = new ArrayList<>();
+
+        ArrayList<String> arr1 = dashboardElement(players.get(0).myDashboard.entranceSpots, players.get(0).myDashboard.professorSpots, players.get(0).myDashboard.tables, players.get(0).myDashboard.towerNumber, players.get(0).towerColor.toString(), players.get(0).nickname, players.get(0).online);
+        ArrayList<String> arr2 = dashboardElement(players.get(1).myDashboard.entranceSpots, players.get(1).myDashboard.professorSpots, players.get(1).myDashboard.tables, players.get(1).myDashboard.towerNumber, players.get(1).towerColor.toString(), players.get(1).nickname, players.get(1).online);
+        result = merge(arr1, arr2);
+        switch(players.size()){
+            case 2: break;
+            case 3:{
+                ArrayList<String> arr3 = dashboardElement(players.get(2).myDashboard.entranceSpots, players.get(2).myDashboard.professorSpots, players.get(2).myDashboard.tables, players.get(2).myDashboard.towerNumber, players.get(2).towerColor.toString(), players.get(2).nickname, players.get(2).online);
+                result = merge(result, arr3);
+                break;
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<String> cloudMap(ArrayList<jCloud> clouds){
+        ArrayList<String> result = new ArrayList<>();
+
+        for(int i=0; i<clouds.size(); i++) {
+            ArrayList<String> cloud1 = cloudElement(i, clouds.get(i).cloudCapacity, clouds.get(i).studentSpots);
+            result.addAll(cloud1);
+        }
+        return result;
+    }
+    /*
+    public ArrayList<String> playedCardsMap(jGameClass myGame){
+        ArrayList<String> result = new ArrayList<>();
+        int numPlayers = myGame.players.size();
+
+        for(int i=0 ; i< myGame.playerCardValue.length ; i++){
+            ArrayList<String> card = lastUsedCardElement(myGame.players.get(i).nickname, myGame.playerCardValue[i],myGame.players.get(i).deck.deck.get(myGame.playerCardValue[i]).maxMoves, myGame.players.get(i).deck.deck.get(myGame.playerCardValue[i]).used);
+            result.addAll(card);
+        }
+
+        return result;
+    }*/
+
+    public ArrayList<String> gameMap(jGameClass myGame){
+        ArrayList<String> result = new ArrayList<>();
+        result.addAll(cloudMap(myGame.clouds));
+        result = merge(result, islandsMap(myGame.islands));
+        //if expert game add the effect cards
+        //result = merge(result, effectCardsMap(myGame.ChosenCards));
+        result.addAll(dashboardMap(myGame.players));
+        return result;
+    }
 
     public void clearConsole() {
         System.out.print("\033[H\033[2J");
@@ -518,7 +612,7 @@ public class EriantysCLI {
     }
 
 
-    public void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
         EriantysCLI n = new EriantysCLI();
 
         //read the json
@@ -532,10 +626,18 @@ public class EriantysCLI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        /*
         ArrayList<String> exa = n.islandsMap(myGame.islands);
+
         for(String s : exa ){
             System.out.println(s);
+        }*/
+
+        ArrayList<String> gg = n.gameMap(myGame);
+        for(String s : gg ){
+            System.out.println(s);
         }
+
+
     }
 }
