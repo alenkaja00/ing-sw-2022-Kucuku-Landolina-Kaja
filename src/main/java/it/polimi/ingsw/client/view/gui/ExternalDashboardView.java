@@ -9,7 +9,7 @@ public class ExternalDashboardView extends JFrame
 
     ImageIcon image ;
     public ExternalDashboardView() {
-        testJson = "{\"maxTowers\":8,\"entranceSpots\":[\"BLUE\",\"PINK\",\"YELLOW\",\"PINK\",\"PINK\",\"RED\",\"BLUE\"],\"tables\":{\"BLUE\":2,\"PINK\":7,\"YELLOW\":4,\"GREEN\":3,\"RED\":3},\"towerNumber\":0,\"maxEntrance\":7,\"professorSpots\":[]}";
+        testJson = "{\"maxTowers\":8,\"entranceSpots\":[\"BLUE\",\"PINK\",\"YELLOW\",\"PINK\",\"PINK\",\"RED\",\"BLUE\"],\"tables\":{\"BLUE\":2,\"PINK\":0,\"YELLOW\":4,\"GREEN\":3,\"RED\":3},\"towerNumber\":0,\"maxEntrance\":7,\"professorSpots\":[]}";
         image = new ImageIcon(this.getClass().getResource("/dashboard_resized.png"));
         label = new ExternalDashboardLabel(testJson);
         label.setOpaque(true);

@@ -86,7 +86,7 @@ public class ExternalDashboardLabel extends JLabel
     {
         dashboard = gson.fromJson(json, jDashboard.class);
         ColoredDisc[] entranceData = dashboard.entranceSpots;
-        for(int i = 0; i< 9; i++)
+        for(int i = 0; i< dashboard.maxEntrance; i++)
         {
             if(entranceData[i]== null)
             {
