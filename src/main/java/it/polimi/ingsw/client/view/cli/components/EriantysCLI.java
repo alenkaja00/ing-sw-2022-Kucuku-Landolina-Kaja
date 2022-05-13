@@ -48,6 +48,7 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
+    /*
     public ArrayList<String> nicknameScene(boolean valid) {
         ArrayList<String> result = new ArrayList<>();
         if (valid) {
@@ -68,8 +69,8 @@ public class EriantysCLI {
         result.add(ANSIColor.RESET);
 
         return (ArrayList<String>) result.clone();
-    }
-
+    }*/
+    /*
     public ArrayList<String> messageScene(String message) {
         ArrayList<String> result = new ArrayList<>();
         result.add(" ");
@@ -117,17 +118,17 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
 
     }
-
+    */
     public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ColoredDisc[] students, int prohibition) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cardStudents = new ArrayList<>();
         //if the cards has discs on it this will contain the text "STUDENTS:"
-        String labelStudents = "  |-------------------|";
+        String labelStudents = "  ║                   ║";
         //fit the name with the shape of the card
         String id = ID.toString();
 
         //coin over the card after first usage
-        int coin = used ? 1:0;
+        String coin = used ? " USED, PRICE +1  ": "                 ";
         String spaces = "";
 
         for (int i = 0; i < 14 - id.length(); i++) {
@@ -135,7 +136,7 @@ public class EriantysCLI {
         }
 
         if (students != null) {
-            labelStudents = "  | STUDENTS          |";
+            labelStudents = "  ║ STUDENTS          ║";
             for (int i = 0; i < 4; i++) {
                 if (i < students.length) {
                     switch (students[i].toString()) {
@@ -160,13 +161,13 @@ public class EriantysCLI {
         } else {
             for (int i = 0; i < 4; i++) cardStudents.add(" ");
         }
-        result.add("  +-------------------+");
-        result.add("  | PRICE        NAME |");
-        result.add("  |   " + price + spaces + id + " |");
-        result.add("  | USATA           "+coin+" |");
+        result.add("  ╔═══════════════════╗");
+        result.add("  ║ PRICE        NAME ║");
+        result.add("  ║   " + price + spaces + id + " ║");
+        result.add("  ║ " +    coin   + " ║");
         result.add(labelStudents);
-        result.add("  | " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + "           |");
-        result.add("  +-------------------+");
+        result.add("  ║ " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + "           ║");
+        result.add("  ╚═══════════════════╝");
         result.add(" ");
         return result;
     }
@@ -202,7 +203,7 @@ public class EriantysCLI {
             }
         }
 
-        result.add("        CLOUD #" + ind+"     ");
+        result.add("      CLOUD # " + ind+"      ");
         if (capacity == 3) {
             result.add("         | |         ");
             result.add("     | |     | |     ");
@@ -314,16 +315,19 @@ public class EriantysCLI {
 
     public ArrayList<String> lastUsedCardElement(String nickname, int cardNumber, int maxMoves, boolean used) {
         ArrayList<String> result = new ArrayList<>();
-        result.add(" ->LAST USED CARD   ");
-        if(cardNumber==0) {
-            result.add(" --not played yet-- ");
-        } else {
-            result.add(" +-----------------+");
-            result.add(" | NUMBER    MOVES |");
-            result.add(" |   " + cardNumber + "           " + maxMoves + " |");
-            result.add(" |                 |");
-            result.add(" +-----------------+");
+
+        String space = " ";
+
+        if(cardNumber == 10 || maxMoves == 10){
+            space = "";
         }
+
+        if(cardNumber == 0) {
+            result.add(" ->LAST USED CARD  --not played yet--  ");
+        } else {
+            result.add(" ->LAST USED CARD  NUMBER: " + cardNumber + space + " MOVES: " + maxMoves + space );
+        }
+
         return (ArrayList<String>) result.clone();
     }
 
@@ -337,19 +341,20 @@ public class EriantysCLI {
         String color = "";
         String forbidden = "";
         String space =" ";
+        String leftUpperMargin = " ";
+        String rightUpperMargin = " ";
         String leftMargin = " ";
+        String leftFinalMargin = " ";
+        String rightFinalMargin = " ";
         String rightMargin = " ";
         String topMargin ="                 ";
         String bottomMargin = "                 ";
 
-        if(curr){
+        if(curr)
             motherNature = ANSIColor.YELLOW_BOLD+"M"+ANSIColor.RESET;
-        }
 
-
-        if(id>=10){
+        if(id>=10)
             space = "";
-        }
 
         if(prohibited) {
             forbidden = ANSIColor.RED;
@@ -390,23 +395,63 @@ public class EriantysCLI {
         }
 
         if((ID == 1 || ID == 2 || ID == 3 ||ID == 4 || ID == 5)){
-            leftMargin ="|";
+            leftMargin ="║";
         }
         if((ID == 7 || ID == 8 || ID == 9|| ID ==11 || ID ==10)){
-            rightMargin = "|";
+            rightMargin = "║";
         }
         if((ID == 4 || ID == 5 || ID == 6|| ID == 7 || ID == 8)){
-            topMargin = "-----------------";
+            topMargin = "═════════════════";
         }
         if((ID == 0 || ID == 11 || ID == 10 || ID ==1 || ID==2)){
-            bottomMargin = "-----------------";
+            bottomMargin = "═════════════════";
         }
-        result.add(leftMargin+topMargin+rightMargin);
-        result.add(leftMargin+ forbidden +" ID: " + id +space+"         "+motherNature+ANSIColor.RESET+rightMargin);
-        result.add(leftMargin+" STUDENTS:       "+rightMargin);
-        result.add(leftMargin+" " + islandStud.get(0) + " " + islandStud.get(1) + " " + islandStud.get(2) + " " + islandStud.get(3) + " " + islandStud.get(4) + "       "+rightMargin);
-        result.add(leftMargin +color+" TOWER:    " +tower+ANSIColor.RESET+ "     "+rightMargin);
-        result.add(leftMargin+bottomMargin+rightMargin);
+        if(ID == 0 || ID == 11 || ID == 10){
+            leftFinalMargin = "═";
+        }
+        if(ID == 1 || ID ==2 || ID == 3){
+            if( ID== 1 || ID ==2 ){
+                leftFinalMargin = "╩";
+                rightFinalMargin = "═";
+            }else{
+                leftFinalMargin = "╣";
+            }
+            leftUpperMargin = "║";
+        }
+        if(ID == 8 || ID ==7){
+            rightUpperMargin = "╦";
+            leftUpperMargin = "═";
+        }
+        if(ID == 11 || ID == 10 ){
+            rightUpperMargin = "║";
+            rightFinalMargin = "╣";
+        }
+        if(ID == 9 || ID == 8 || ID == 7){
+            rightFinalMargin = "║";
+        }
+        if(ID == 4 || ID ==5 ){
+            leftUpperMargin = "╠";
+            leftFinalMargin = "║";
+        }
+        if(ID == 6){
+            leftUpperMargin = "╩";
+        }
+        if(ID == 4 || ID == 5 || ID ==6){
+            rightUpperMargin = "═";
+        }
+        if(ID == 9 ){
+            rightUpperMargin = "╠";
+        }
+        if(ID == 0){
+            rightFinalMargin = "╦";
+        }
+
+        result.add(leftUpperMargin + topMargin + rightUpperMargin);
+        result.add(leftMargin + forbidden +" ID: " + id +space+"         "+motherNature+ANSIColor.RESET+rightMargin);
+        result.add(leftMargin +" STUDENTS:       "+rightMargin);
+        result.add(leftMargin +" " + islandStud.get(0) + " " + islandStud.get(1) + " " + islandStud.get(2) + " " + islandStud.get(3) + " " + islandStud.get(4) + "       "+rightMargin);
+        result.add(leftMargin + color +" TOWER:    " + tower + ANSIColor.RESET + "     "+ rightMargin);
+        result.add(leftFinalMargin + bottomMargin + rightFinalMargin);
 
         return (ArrayList<String>) result.clone();
     }
@@ -415,44 +460,63 @@ public class EriantysCLI {
     private ArrayList<String> emptyIsland(int type){
         ArrayList<String> result = new ArrayList<>();
         String blankSpace = "                   ";
-        String edgeSpace = "-------------------";
+        String edgeSpace = "═══════════════════";
         String topMargin = blankSpace;
         String bottomMargin = blankSpace;
         String rightMargin = "";
         String leftMargin = "";
+        String leftUpperMargin ="";
+        String rightUpperMargin ="";
+        String leftLowerMargin = "";
+        String rightLowerMargin = "";
 
         //this will be improved or removed if i change the idea of the united islands
         switch (type){
-            case 1: case 2: {
+            case 1: case 2:
                 bottomMargin = edgeSpace;
                 break;
-            }
-            case 7: case 8: {
+            case 7: case 8:
                 topMargin = edgeSpace;
                 break;
-            }
-            case 4: case 5: {
-                leftMargin = "|";
+            case 4: case 5:
+                leftMargin = "║";
+                leftUpperMargin = leftMargin;
+                leftLowerMargin = leftMargin;
                 blankSpace = "                  ";
                 topMargin = blankSpace;
                 bottomMargin = blankSpace;
                 break;
-            }
-            case 10: case 11: {
-                rightMargin = "|";
+            case 10: case 11:
+                rightMargin = "║";
+                rightUpperMargin = rightMargin;
+                rightLowerMargin = rightMargin;
                 blankSpace = "                  ";
                 topMargin = blankSpace;
                 bottomMargin = blankSpace;
             break;
-            }
+            case 0:
+                bottomMargin = "                  ╔";
+                break;
+            case 3:
+                bottomMargin = "╗                  ";
+                break;
+            case 6:
+                topMargin = "╝                  ";
+                break;
+            case 9:
+                topMargin= "                  ╚";
+                break;
+
         }
-        result.add(leftMargin+topMargin+rightMargin);
+        //result.add(leftMargin + topMargin + rightMargin);
+        result.add(leftUpperMargin + topMargin + rightUpperMargin);
 
         for(int i=0;i<4;i++) {
             result.add(leftMargin+blankSpace+rightMargin);
         }
 
-        result.add(leftMargin+bottomMargin+rightMargin);
+        //result.add(leftMargin+bottomMargin+rightMargin);
+        result.add(leftLowerMargin + bottomMargin + rightLowerMargin);
 
         return (ArrayList<String>) result.clone();
     }
@@ -471,7 +535,8 @@ public class EriantysCLI {
         }
         for(int i = 0; i < 6 ; i++)
         {
-            addition.add("|" + merged4.get(i) +'|');
+            addition.add("║" + merged4.get(i) +'║');
+
         }
 
         return (ArrayList<String>) addition.clone();
@@ -480,16 +545,16 @@ public class EriantysCLI {
 
     //this is the method which will draw the islands map
     private ArrayList<String> islandsMap(ArrayList<jIsland> islands, jIsland current){
-        String horizontalDelimiter= "-------------------";
+        String horizontalTopDelimiter= "╔════════════════════════════════════════════════════════════════════════════╗";
+        String horizontalLowDelimiter ="╚════════════════════════════════════════════════════════════════════════════╝";
         ArrayList<String> result = new ArrayList<>();
         ArrayList<Integer> islandsID = new ArrayList<>();
         ArrayList<String> [] myIsland = new ArrayList[12];
         int currIslandID = current.ID;
         boolean curr = false;
 
-        for(int i=0; i<islands.size();i++)
-        {
-            islandsID.add(islands.get(i).ID);
+        for (jIsland island : islands) {
+            islandsID.add(island.ID);
         }
 
         int j = 0;
@@ -510,13 +575,14 @@ public class EriantysCLI {
                 myIsland [i] = emptyIsland(i);
             }
         }
-
-        result.add(horizontalDelimiter+horizontalDelimiter+horizontalDelimiter+horizontalDelimiter+"  ");
+        result.add(padLR("MAP OF THE ISLANDS", 96, 1));
+        //result.add("MAP OF THE ISLANDS");
+        result.add(horizontalTopDelimiter);
         result = merge4(myIsland[0], myIsland[1], myIsland[2], myIsland[3],result);
         result = merge4(myIsland[11], emptyIsland(-1), emptyIsland(-1), myIsland[4], result);
         result = merge4(myIsland[10], emptyIsland(-1), emptyIsland(-1), myIsland[5], result);
         result = merge4(myIsland[9], myIsland[8], myIsland[7], myIsland[6], result);
-        result.add(horizontalDelimiter+horizontalDelimiter+horizontalDelimiter+horizontalDelimiter);
+        result.add(horizontalLowDelimiter);
 
         return result;
     }
@@ -535,7 +601,7 @@ public class EriantysCLI {
         }
 
         if(arr1.size() > arr2.size()){
-            for(int j = 0 ; j<arr2.get(arr2.size()-1).length() ; j++){
+            for(int j = 0 ; j < arr2.get(arr2.size()-1).length() ; j++){
                 space = space +" ";
             }
             for(int j=maxLen+1 ; j<arr1.size() ; j++){
@@ -543,7 +609,7 @@ public class EriantysCLI {
             }
         }
         else if(arr1.size() < arr2.size()){
-            for(int j = 0; j<arr1.get(arr1.size()-1).length(); j++){
+            for(int j = 0; j < arr1.get(arr1.size()-1).length(); j++){
                 space = space +" ";
             }
             for(int j=maxLen+1; j<arr2.size();j++){
@@ -576,27 +642,22 @@ public class EriantysCLI {
     private ArrayList<String> effectCardsMap(ArrayList<jEffectCard> effects){
         ArrayList<String> result = new ArrayList<>();
 
-        for(int i=0 ; i<effects.size() ; i++){
-            ArrayList<String> effectCard = effectCardElement(effects.get(i).ID, effects.get(i).price, effects.get(i).used, effects.get(i).students, effects.get(i).prohibitionCard);
+        result.add("  THE 3 EFFECT CARDS  ");
+        result.add(" ");
+        for (jEffectCard effect : effects) {
+            ArrayList<String> effectCard = effectCardElement(effect.ID, effect.price, effect.used, effect.students, effect.prohibitionCard);
             result.addAll(effectCard);
         }
-
         return result;
     }
 
-    private ArrayList<String> dashboardMap(ArrayList<jPlayer> players){
+    private ArrayList<String> dashboardMap(ArrayList<jPlayer> players)
+    {
         ArrayList<String> result = new ArrayList<>();
-
-        ArrayList<String> arr1 = dashboardElement(players.get(0).myDashboard.entranceSpots, players.get(0).myDashboard.professorSpots, players.get(0).myDashboard.tables, players.get(0).myDashboard.towerNumber, players.get(0).towerColor.toString(), players.get(0).nickname, players.get(0).online, players.get(0).coinsAmount);
-        ArrayList<String> arr2 = dashboardElement(players.get(1).myDashboard.entranceSpots, players.get(1).myDashboard.professorSpots, players.get(1).myDashboard.tables, players.get(1).myDashboard.towerNumber, players.get(1).towerColor.toString(), players.get(1).nickname, players.get(1).online,players.get(1).coinsAmount);
-        result = merge(arr1, arr2);
-        switch(players.size()){
-            case 2: break;
-            case 3:{
-                ArrayList<String> arr3 = dashboardElement(players.get(2).myDashboard.entranceSpots, players.get(2).myDashboard.professorSpots, players.get(2).myDashboard.tables, players.get(2).myDashboard.towerNumber, players.get(2).towerColor.toString(), players.get(2).nickname, players.get(2).online,players.get(2).coinsAmount);
-                result = merge(result, arr3);
-                break;
-            }
+        result.add("");
+        for(jPlayer player : players){
+            ArrayList<String> arr1 = dashboardElement(player.myDashboard.entranceSpots, player.myDashboard.professorSpots, player.myDashboard.tables, player.myDashboard.towerNumber, player.towerColor.toString(), player.nickname, player.online, player.coinsAmount);
+            result = merge(result, arr1);
         }
         return result;
     }
@@ -621,7 +682,7 @@ public class EriantysCLI {
         for(int i = 0; i< myGame.players.size(); i++){
             ArrayList<String> card = lastUsedCardElement(myGame.players.get(i).nickname, myGame.playerCardValue[i],myGame.playerMaxMoves[i],myGame.players.get(0).deck.deck.get(myGame.playerCardValue[i]).used);
             result = merge(result,card);
-            padding.add(padLR("",35,1));
+            padding.add(padLR("",16,1));
             result = merge(result,padding);
         }
 
@@ -631,10 +692,6 @@ public class EriantysCLI {
     public ArrayList<String> gameMap(jGameClassExpert myGame){
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> padding = new ArrayList<>();
-        //result.addAll(cloudMap(myGame.clouds));
-        //result = merge(result, islandsMap(myGame.islands, myGame.CurrentIsland));
-        //if expert game add the effect cards
-        //result = merge(result, effectCardsMap(myGame.ChosenCards));
 
         //this adds some space to the left
         result.add(padLR("", 1, 1));
@@ -674,7 +731,7 @@ public class EriantysCLI {
 
         jGameClassExpert myExGame = new jGameClassExpert();
 
-        try (Reader reader = new FileReader("C:\\Users\\alenk\\Desktop\\json.json")) {
+        try (Reader reader = new FileReader("C:\\Users\\alenk\\Desktop\\expert3.json")) {
             myExGame = gson.fromJson(reader, jGameClassExpert.class);
             //System.out.println(myGame);
         } catch (IOException e) {
