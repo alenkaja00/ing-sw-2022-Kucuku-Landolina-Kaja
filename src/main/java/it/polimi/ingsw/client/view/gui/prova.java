@@ -16,12 +16,20 @@ public class prova extends JFrame implements ActionListener
     JLabel bglabel;
 
     JButton submitButton;
+    JButton submitNicknameButton;
     JTextField IPTextField;
     JTextField PortTextField;
+    JTextField NicknameTextField;
+
+    JPanel connectionPanel;
+    JPanel registrationPanel;
+
+    String state ;
 
     public prova()
     {
         // Part related to background and the three initial buttons
+        state = "Initial";
         bglabel = new JLabel();
         buttonlabel = new JLabel();
         layeredPane = new JLayeredPane();
@@ -61,8 +69,18 @@ public class prova extends JFrame implements ActionListener
         submitButton.setText("Submit");
         submitButton.setFont(new Font("Arial",Font.PLAIN,20));
 
+
+        submitNicknameButton = new JButton();
+        submitNicknameButton.addActionListener(this);
+        submitNicknameButton.setBounds(600,250,100,50);
+        submitNicknameButton.setOpaque(true);
+        submitNicknameButton.setText("Submit");
+        submitNicknameButton.setFont(new Font("Arial",Font.PLAIN,20));
+
+
+
+
         IPTextField = new JTextField();
-        IPTextField.setBounds(450,190,200,50);
         IPTextField.setOpaque(true);
         IPTextField.setVisible(true);
         IPTextField.setFont(new Font("Arial",Font.PLAIN,20));
@@ -110,40 +128,128 @@ public class prova extends JFrame implements ActionListener
         PortTextField.setForeground(Color.GRAY);
         // code to implement a placeholder :
 
-        PortTextField.addFocusListener(new FocusListener() {
+        FocusListener portListener = new FocusListener() {
+
+            @Override
+            public void focusGained(FocusEvent e) {
+
+                if(e.getSource()!=PortTextField)
+                {
+                    return;
+                }
+
+                if(PortTextField.getText().equals("Port"))
+                {
+                    PortTextField.setForeground(Color.BLACK);
+                    PortTextField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+
+                if(e.getSource()!=PortTextField)
+                {
+                    return;
+                }
+
+                if(PortTextField.getText().isEmpty() || PortTextField.getText().equals(""))
+                {
+                    PortTextField.setForeground(Color.GRAY);
+                    PortTextField.setText("Port");
+
+                }
+            }
+        };
+        PortTextField.addFocusListener(portListener);
+        PortTextField.addActionListener(this);
+
+
+
+        NicknameTextField = new JTextField();
+
+        NicknameTextField.setFont(new Font("Arial",Font.PLAIN,20));
+        NicknameTextField.setText("Nickname");
+        NicknameTextField.setForeground(Color.GRAY);
+        // code to implement a placeholder :
+
+        NicknameTextField.addFocusListener(new FocusListener() {
 
                                            @Override
                                            public void focusGained(FocusEvent e) {
 
-                                               if(e.getSource()!=PortTextField)
+                                               if(e.getSource()!=NicknameTextField)
                                                {
                                                    return;
                                                }
 
-                                               if(PortTextField.getText().equals("Port"))
+                                               if(NicknameTextField.getText().equals("Nickname"))
                                                {
-                                                   PortTextField.setForeground(Color.BLACK);
-                                                   PortTextField.setText("");
+                                                   NicknameTextField.setForeground(Color.BLACK);
+                                                   NicknameTextField.setText("");
                                                }
                                            }
 
                                            @Override
                                            public void focusLost(FocusEvent e) {
 
-                                               if(e.getSource()!=PortTextField)
+                                               if(e.getSource()!=NicknameTextField)
                                                {
                                                    return;
                                                }
 
-                                               if(PortTextField.getText().isEmpty() || PortTextField.getText().equals(""))
+                                               if(NicknameTextField.getText().isEmpty() || NicknameTextField.getText().equals(""))
                                                {
-                                                   PortTextField.setForeground(Color.GRAY);
-                                                   PortTextField.setText("Port");
+                                                   NicknameTextField.setForeground(Color.GRAY);
+                                                   NicknameTextField.setText("Nickname");
 
                                                }
                                            }
                                        }
         );
+
+
+        GridBagLayout gbl = new GridBagLayout();
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+
+        connectionPanel = new JPanel();
+        connectionPanel.setOpaque(false);
+        connectionPanel.setBounds(300,100,700,300);
+        connectionPanel.setVisible(true);
+        connectionPanel.setLayout(gbl);
+
+        registrationPanel = new JPanel();
+        registrationPanel.setOpaque(false);
+        registrationPanel.setBounds(300,100,700,300);
+        registrationPanel.setVisible(true);
+        registrationPanel.setLayout(gbl);
+
+
+
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        connectionPanel.add(IPTextField,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(7,7,7,7);
+        connectionPanel.add(PortTextField,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy  = 1;
+        connectionPanel.add(submitButton,gbc);
+
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        registrationPanel.add(NicknameTextField,gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        registrationPanel.add(submitNicknameButton,gbc);
 
 
 
@@ -163,9 +269,12 @@ public class prova extends JFrame implements ActionListener
         layeredPane.add(Quitbutton,Integer.valueOf(1));
         layeredPane.add(Connectionbutton,Integer.valueOf(1));
 
-        layeredPane.add(submitButton,Integer.valueOf(1));
-        layeredPane.add(IPTextField,Integer.valueOf(2));
-        layeredPane.add(PortTextField,Integer.valueOf(2));
+        connectionPanel.setVisible(false);
+        registrationPanel.setVisible(false);
+
+        layeredPane.add(connectionPanel,Integer.valueOf(2));
+
+        layeredPane.add(registrationPanel,Integer.valueOf(1));
 
         this.add(layeredPane);
         this.addComponentListener(new ComponentAdapter() {
@@ -179,8 +288,19 @@ public class prova extends JFrame implements ActionListener
                 ImageIcon newIcon = new ImageIcon(resized);
                 bglabel.setIcon(newIcon);
 
+                IPTextField.setForeground(Color.GRAY);
+                IPTextField.setText("IP Address");
+                PortTextField.setForeground(Color.GRAY);
+                PortTextField.setText("Port");
+                NicknameTextField.setForeground(Color.GRAY);
+                NicknameTextField.setText("Nickname");
+
+
+
             }
         });
+
+
         this.setVisible(true);
 
     }
@@ -201,12 +321,46 @@ public class prova extends JFrame implements ActionListener
         else if (e.getSource()== Quitbutton)
         {
 
+
         }
 
         else if(e.getSource()==Connectionbutton)
         {
+            if(state== "Initial")
+            {
+                Playbutton.setVisible(false);
+                Quitbutton.setVisible(false);
+                Connectionbutton.setVisible(false);
+                connectionPanel.setVisible(true);
+                registrationPanel.setVisible(false);
+                state = "Connection";
+            }
 
         }
+
+        else if(e.getSource()==submitButton) {
+            if(state == "Connection")
+            {
+                connectionPanel.setVisible(false);
+                registrationPanel.setVisible(true);
+                state = "Registration";
+            }
+
+
+        }
+
+        else if(e.getSource() == submitNicknameButton)
+        {
+            registrationPanel.setVisible(false);
+            Playbutton.setVisible(true);
+            Quitbutton.setVisible(true);
+            Connectionbutton.setVisible(true);
+
+
+        }
+
+
+
     }
 
 
