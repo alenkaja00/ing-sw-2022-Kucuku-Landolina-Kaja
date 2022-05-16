@@ -18,12 +18,8 @@ import java.util.stream.Collectors;
 
 public class EriantysCLI {
 
-    public jGameClass jGameClass;
-    public jGameClassExpert jGameClassExpert;
-
     public EriantysCLI() {
-        jGameClass = new jGameClass();
-        jGameClassExpert = new jGameClassExpert();
+
     }
 
     public ArrayList<String> welcomeScene(String serverIp) {
@@ -48,77 +44,6 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-    /*
-    public ArrayList<String> nicknameScene(boolean valid) {
-        ArrayList<String> result = new ArrayList<>();
-        if (valid) {
-            result.add("PLEASE INSERT YOUR NICKNAME");
-        } else {
-            result.add("This nickname is not available!   ");
-            result.add("Please provide a new nickname    ");
-        }
-        return (ArrayList<String>) result.clone();
-    }
-
-    public ArrayList<String> loadingScene() {
-        ArrayList<String> result = new ArrayList<>();
-        result.add(ANSIColor.GREEN_BOLD);
-        result.add(" ");
-        result.add("LOADING, PLEASE WAIT ...");
-        result.add(" ");
-        result.add(ANSIColor.RESET);
-
-        return (ArrayList<String>) result.clone();
-    }*/
-    /*
-    public ArrayList<String> messageScene(String message) {
-        ArrayList<String> result = new ArrayList<>();
-        result.add(" ");
-        result.add(message);
-        result.add(" ");
-        return (ArrayList<String>) result.clone();
-    }
-
-    public ArrayList<String> errorMessage() {
-        ArrayList<String> result = new ArrayList<>();
-        result.add(ANSIColor.RED_BOLD);
-        result.add(" ");
-        result.add("WARNING , INSERT A VALID COMMAND ...");
-        result.add(" ");
-        result.add(ANSIColor.RESET);
-
-        return (ArrayList<String>) result.clone();
-    }
-
-    public ArrayList<String> createGameScene(boolean playerVariant) {
-        ArrayList<String> result = new ArrayList<>();
-        if (playerVariant) {
-            result.add("GAME CREATION");
-            result.add("Select the number of players (you can choose 2 or 3 by typing the number )");
-        } else {
-            result.add("Type -> norm  to play the normal version of the game ");
-            result.add("Type -> exp  to play the expert version of the game ");
-        }
-        return (ArrayList<String>) result.clone();
-    }
-
-    public ArrayList<String> chooseWizard(ArrayList<Wizard> wizards) {
-        ArrayList<String> result = new ArrayList<>();
-        ArrayList<String> cliWizards = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            if (i < wizards.size()) {
-                cliWizards.add(wizards.get(i).toString());
-            } else {
-                cliWizards.add(" ");
-            }
-        }
-        result.add("CHOOSE YOUR WIZARD");
-        result.add("You can choose between:");
-        result.add(cliWizards.get(0) + " " + cliWizards.get(1) + " " + cliWizards.get(2) + " " + cliWizards.get(3));
-        return (ArrayList<String>) result.clone();
-
-    }
-    */
     public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ColoredDisc[] students, int prohibition) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cardStudents = new ArrayList<>();
@@ -203,19 +128,24 @@ public class EriantysCLI {
             }
         }
 
-        result.add("      CLOUD # " + ind+"      ");
-        if (capacity == 3) {
-            result.add("         | |         ");
-            result.add("     | |     | |     ");
-            result.add(" | |      " + cliStudents.get(2) + "     | |  ");
-            result.add(" | |   " + cliStudents.get(0) + "     " + cliStudents.get(1) + "  | |  ");
-            result.add(" ------------------  ");
-        } else if (capacity == 4) {
-            result.add("         | |         ");
-            result.add("     | |     | |     ");
-            result.add(" | |   " + cliStudents.get(2) + "    " + cliStudents.get(3) + "   | |  ");
-            result.add(" | |   " + cliStudents.get(0) + "    " + cliStudents.get(1) + "   | |  ");
-            result.add(" ------------------  ");
+        result.add("            CLOUD # " + ind+"        ");
+        if (capacity == 3)
+        {
+            result.add("              ╔═══╗          ");
+            result.add("          ╔═══╝   ║          ");
+            result.add("      ╔═══╝       ╚═════╗    ");
+            result.add("  ╔═══╝        "+ cliStudents.get(2) +"        ╚══╗ ");
+            result.add("  ║      " + cliStudents.get(0) + "          " + cliStudents.get(1) + "      ║ ");
+            result.add("  ╚════════════════════════╝ ");
+
+        } else if (capacity == 4)
+        {
+            result.add("              ╔═══╗          ");
+            result.add("          ╔═══╝   ║          ");
+            result.add("      ╔═══╝       ╚═════╗    ");
+            result.add("  ╔═══╝     " +  cliStudents.get(2) + "     " + cliStudents.get(3) + "     ╚══╗ ");
+            result.add("  ║         " + cliStudents.get(0) + "     " + cliStudents.get(1) + "        ║ ");
+            result.add("  ╚════════════════════════╝ ");
         }
         return result;
     }
@@ -234,7 +164,7 @@ public class EriantysCLI {
         int statusLen = 8;
 
         for (int i = 0; i < 9; i++) {
-            if (i < entrance.length) {
+            if (i < entrance.length && entrance[i] != null) {
                 switch (entrance[i]) {
                     case PINK:
                         cliEntrance.add(ANSIColor.PURPLE_BRIGHT + "X");
@@ -722,13 +652,12 @@ public class EriantysCLI {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        EriantysCLI n = new EriantysCLI();
+        /*EriantysCLI n = new EriantysCLI();
 
         //read the json
 
         Gson gson = new Gson();
         jGameClass myGame = new jGameClass();
-
         jGameClassExpert myExGame = new jGameClassExpert();
 
         try (Reader reader = new FileReader("C:\\Users\\alenk\\Desktop\\expert3.json")) {
@@ -737,10 +666,11 @@ public class EriantysCLI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         ArrayList<String> gg = n.gameMap(myExGame);
         for(String s : gg ){
             System.out.println(s);
-        }
+        }*/
 
     }
 }
