@@ -12,7 +12,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="547.0" layoutY="331.0" prefHeight="350.0" prefWidth="246.0" AnchorPane.bottomAnchor="118.60000000000002" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="486.6" AnchorPane.topAnchor="331.0">
          <children>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="92.0" prefWidth="228.0" text="PLAY">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modeScene" prefHeight="92.0" prefWidth="228.0" text="PLAY">
                <font>
                   <Font name="Book Antiqua Italic" size="28.0" />
                </font>

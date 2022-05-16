@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class prova extends JFrame implements ActionListener
+public class initialView extends JFrame implements ActionListener
 {
     JButton Playbutton;
     JButton Quitbutton;
@@ -26,7 +26,7 @@ public class prova extends JFrame implements ActionListener
 
     String state ;
 
-    public prova()
+    public initialView()
     {
         // Part related to background and the three initial buttons
         state = "Initial";
@@ -307,7 +307,7 @@ public class prova extends JFrame implements ActionListener
 
     public static void main(String[] args)
     {
-        new prova();
+        new initialView();
     }
 
     @Override
@@ -355,7 +355,7 @@ public class prova extends JFrame implements ActionListener
             Playbutton.setVisible(true);
             Quitbutton.setVisible(true);
             Connectionbutton.setVisible(true);
-
+            state = "Initial";
 
         }
 

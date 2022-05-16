@@ -60,6 +60,21 @@ public class SceneController {
         stage.show();
     }
 
+
+    public void modeScene(javafx.event.ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/modeScene.fxml").toURI().toURL());
+        root.setId("mode");
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/cssfiles/main.css").toURI().toURL().toExternalForm());
+
+        stage.setTitle("Mode Scene");
+        stage.setScene(scene);
+
+        stage.show();
+
+    }
+
     public void mainScene(javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/main.fxml").toURI().toURL());
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
