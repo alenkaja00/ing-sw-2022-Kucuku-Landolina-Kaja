@@ -342,6 +342,10 @@ public class cliClass implements ViewInterface
         int number = 0;
         try {
             number = Integer.parseInt(input);
+            if(number <= 0 || number > 10 ){
+                System.out.println("Unavailable selection, try again [1-10]: ");
+                return;
+            }
         }
         catch (Exception e)
         {

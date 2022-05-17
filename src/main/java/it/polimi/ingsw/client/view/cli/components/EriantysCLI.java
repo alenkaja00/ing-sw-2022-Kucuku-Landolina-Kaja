@@ -248,7 +248,7 @@ public class EriantysCLI {
 
         String space = " ";
 
-        if(cardNumber == 10 || maxMoves == 10){
+        if(cardNumber == 10){
             space = "";
         }
 
@@ -608,9 +608,18 @@ public class EriantysCLI {
         ArrayList<String> result = new ArrayList<>();
         result.add("");
         ArrayList<String> padding = new ArrayList<>();
+        int cardNumber = -1;
+        boolean usedFlag = false;
 
-        for(int i = 0; i< myGame.players.size(); i++){
-            ArrayList<String> card = lastUsedCardElement(myGame.players.get(i).nickname, myGame.playerCardValue[i],myGame.playerMaxMoves[i],myGame.players.get(0).deck.deck.get(myGame.playerCardValue[i]).used);
+        for(int i = 0; i < myGame.players.size(); i++){
+
+            //added to fix the problem with the last card with id = 10
+            if(myGame.playerCardValue[i] > 0){
+                cardNumber = myGame.playerCardValue[i]-1;
+                usedFlag = myGame.players.get(i).deck.deck.get(cardNumber).used;
+            }
+
+            ArrayList<String> card = lastUsedCardElement(myGame.players.get(i).nickname, myGame.playerCardValue[i], myGame.playerMaxMoves[i], usedFlag);
             result = merge(result,card);
             padding.add(padLR("",16,1));
             result = merge(result,padding);
