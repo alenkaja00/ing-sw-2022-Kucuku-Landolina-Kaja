@@ -1,20 +1,15 @@
 package it.polimi.ingsw.server.controller;
 
 import com.google.gson.Gson;
-import com.sun.jdi.PrimitiveValue;
-import com.sun.source.tree.SwitchTree;
 import it.polimi.ingsw.server.model.cards.EffectName;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 
-import java.lang.reflect.Array;
-import java.nio.file.FileAlreadyExistsException;
 import java.security.InvalidKeyException;
 import java.security.InvalidParameterException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class GameController
@@ -42,29 +37,14 @@ public class GameController
             this.playerOrder = new ArrayList<>();
             this.expertMode = expertMode;
             this.playerNumber = playerNumber;
-            /*
-            // printa pralyer online
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true)
-                    {
-                        try {
-                            TimeUnit.SECONDS.sleep(1);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(playersOnline);
-                    }
-                }
-            }).start();*/
+
 
             //create a random round order the first time
             players.stream().forEach(x->playerOrder.add(Map.entry(x, new Random().nextInt(playerNumber))));
             orderByValue(playerOrder);
 
             //get wizards from players && communicate with them
-            wizardsController();
+            acceptWizards();
 
             //order wizards according to the player who chose them
             ArrayList<Wizard> orderedWizards = new ArrayList<>();
@@ -90,7 +70,7 @@ public class GameController
 
     }
 
-    private void wizardsController()
+    private void acceptWizards()
     {
         while (playerWizards.size()<playerNumber)
         {
@@ -180,7 +160,7 @@ public class GameController
             playerSockets.get(currentPlayer).sendMessage("UNLOCK");
 
 
-            //STT OR STI
+            //ETT OR ETI
             for (int n=0; n<newGame.getClouds().get(0).getCloudCapacity(); n++)
             {
                 do
@@ -280,9 +260,16 @@ public class GameController
                 ArrayList<String> message = nextMessage();
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("CTE"))
                 {
-                    newGame.CloudToEntrance(Integer.parseInt(message.get(3)), players.indexOf(currentPlayer));
-                    playerSockets.get(currentPlayer).sendMessage("OK");
-                    break;
+                    try {
+                        newGame.CloudToEntrance(Integer.parseInt(message.get(3)), players.indexOf(currentPlayer));
+                        playerSockets.get(currentPlayer).sendMessage("OK");
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
                 {

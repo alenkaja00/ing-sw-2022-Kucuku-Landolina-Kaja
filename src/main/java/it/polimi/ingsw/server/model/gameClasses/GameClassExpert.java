@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameClassExpert extends GameClass
 {
@@ -255,7 +256,11 @@ public class GameClassExpert extends GameClass
                 }
             }
         }
-        return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
+        //MIGHT RETURN -1
+        return IntStream.range(0, PlayersInfluence.length)
+                .filter(i -> Arrays.stream(PlayersInfluence).max().getAsInt() == PlayersInfluence[i])
+                .findFirst() // first occurrence
+                .orElse(-1);
     }
 
     @Override
@@ -316,6 +321,40 @@ public class GameClassExpert extends GameClass
             }
         }
 
+        //EXECUTION ORDER IS IMPORTANT
+        Island rightIsland = islands.get((islands.indexOf(CurrentIsland)+1)%islands.size());
+
+        if (rightIsland.getTowers().length>0 && rightIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(rightIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
+            CurrentIsland.addStudents(rightIsland.getStudents());
+            CurrentIsland.addGraphicalIslands(rightIsland.getID());
+            islands.remove(rightIsland);
+        }
+
+        /*
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
+
+        if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(leftIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
+            CurrentIsland.addStudents(leftIsland.getStudents());
+            CurrentIsland.addGraphicalIslands(leftIsland.getID());
+            islands.remove(leftIsland);
+        }*/
+
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)+islands.size()-1)%islands.size());
+
+        if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(CurrentIsland.getTowers()).forEach(x->leftIsland.AddTower(leftIsland.getTowers()[0]));
+            leftIsland.addStudents(CurrentIsland.getStudents());
+            CurrentIsland.getGraphicalIslands().stream().forEach(x->leftIsland.addGraphicalIslands(x));
+            islands.remove(CurrentIsland);
+            CurrentIsland = leftIsland;
+        }
+
+        /*
         //islands
         //EXECUTION ORDER IS IMPORTANT
         Island rightIsland = islands.get((islands.indexOf(CurrentIsland)+1)%islands.size());
@@ -328,7 +367,7 @@ public class GameClassExpert extends GameClass
             islands.remove(rightIsland);
         }
 
-        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)+islands.size()-1)%islands.size());
 
         if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
         {
@@ -336,7 +375,7 @@ public class GameClassExpert extends GameClass
             CurrentIsland.addStudents(leftIsland.getStudents());
             CurrentIsland.addGraphicalIslands(leftIsland.getID());
             islands.remove(leftIsland);
-        }
+        }*/
     }
 
     private void MoveMotherNature(Island chosenIsland) throws RuntimeException
@@ -382,6 +421,7 @@ public class GameClassExpert extends GameClass
 
         //islands
         //EXECUTION ORDER IS IMPORTANT
+        //EXECUTION ORDER IS IMPORTANT
         Island rightIsland = islands.get((islands.indexOf(CurrentIsland)+1)%islands.size());
 
         if (rightIsland.getTowers().length>0 && rightIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
@@ -392,6 +432,7 @@ public class GameClassExpert extends GameClass
             islands.remove(rightIsland);
         }
 
+        /*
         Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
 
         if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
@@ -400,6 +441,17 @@ public class GameClassExpert extends GameClass
             CurrentIsland.addStudents(leftIsland.getStudents());
             CurrentIsland.addGraphicalIslands(leftIsland.getID());
             islands.remove(leftIsland);
+        }*/
+
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)+islands.size()-1)%islands.size());
+
+        if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
+        {
+            Arrays.stream(CurrentIsland.getTowers()).forEach(x->leftIsland.AddTower(leftIsland.getTowers()[0]));
+            leftIsland.addStudents(CurrentIsland.getStudents());
+            CurrentIsland.getGraphicalIslands().stream().forEach(x->leftIsland.addGraphicalIslands(x));
+            islands.remove(CurrentIsland);
+            CurrentIsland = leftIsland;
         }
 
         CurrentIsland = temp;
