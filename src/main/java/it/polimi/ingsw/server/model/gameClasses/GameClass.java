@@ -24,13 +24,13 @@ public class GameClass {
     //aggiunta
     protected int[] playerCardValue;
 
-    protected Player PlayerRound;
     protected ArrayList<String> nicknames;
     protected int NumOfIslands = 12;
     protected Island CurrentIsland;
 
-    protected HashMap<Integer, Integer> RoundOrder = new HashMap<Integer, Integer>();
-    public int firstPlayer;
+    //protected Player PlayerRound;
+    //protected HashMap<Integer, Integer> RoundOrder = new HashMap<Integer, Integer>();
+    //public int firstPlayer;
 
 
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
@@ -82,14 +82,14 @@ public class GameClass {
             bagToEntrance(player.myDashboard.maxEntrance,player);
         }
 
-
+        /*
         //select first player of the game
         firstPlayer = selectRandomPlayer(1);
 
         for (int i=0; i<PlayerNumber; i++)
             RoundOrder.put(i, (new Random()).nextInt(PlayerNumber-1));
 
-
+        deprecated*/
 
     }
 
@@ -206,7 +206,10 @@ public class GameClass {
     {
         CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
 
-        Player influencePlayer = players.get(EvaluateInfluence(CurrentIsland));
+        int InfluencePlayerIndex = EvaluateInfluence(CurrentIsland);
+        if (InfluencePlayerIndex == -1)
+            return;
+        Player influencePlayer = players.get(InfluencePlayerIndex);
         if (CurrentIsland.getTowers().length == 0)
         {
             CurrentIsland.AddTower(influencePlayer.getTowerColor());
@@ -282,7 +285,7 @@ public class GameClass {
             int ID = player.getID();
             Tower color = player.getTowerColor();
 
-            if (towers[0].equals(color))
+            if (towers.length>0 && towers[0].equals(color))
             {
                 PlayersInfluence[ID]+= towers.length;
             }
@@ -297,6 +300,7 @@ public class GameClass {
                 }
             }
         }
+        //MIGHT RETURN -1
         return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
     }
 
@@ -315,6 +319,7 @@ public class GameClass {
         {
             if(player.myDashboard.TowerNumber()==0)
             {
+                System.out.println("player "+player.getNickname() +" has no towers");
                 return true;
             }
         }
@@ -328,6 +333,7 @@ public class GameClass {
 
         if(NumOfIslands <= 3)
         {
+            System.out.println("There are less than 3 islands");
             return true;
         }
 
@@ -346,12 +352,14 @@ public class GameClass {
 
         if(bag.getSize()==0)
         {
+            System.out.println("The bag size is 0");
             return true;
         }
         for(Player player: players)
         {
             if(player.deck.returnUnused().size()==0)
             {
+                System.out.println("player "+player.getNickname()+"has no cards");
                 return true;
             }
         }

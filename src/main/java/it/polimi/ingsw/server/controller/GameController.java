@@ -22,11 +22,12 @@ public class GameController
     private GameClass newGame;
     private boolean expertMode;
     private String ID;
+    private int playerNumber;
     private ArrayList<String> players;
     private HashMap<String, Boolean> playersOnline;
     private HashMap<String, ClientManager> playerSockets;
     private ArrayList<Map.Entry<String, Integer>> playerOrder;
-    private HashMap<String, Wizard> playerWizards;
+    private HashMap<String, Wizard> playerWizards = new HashMap<>();;
     private ArrayList<ArrayList<String>> inputBuffer = new ArrayList<ArrayList<String>>();
 
     public GameController(int playerNumber, Boolean expertMode, String ID, ArrayList<String> nicknames, HashMap<String, ClientManager> playerSockets)
@@ -40,7 +41,7 @@ public class GameController
             this.playerSockets = playerSockets;
             this.playerOrder = new ArrayList<>();
             this.expertMode = expertMode;
-
+            this.playerNumber = playerNumber;
             /*
             // printa pralyer online
             new Thread(new Runnable() {
@@ -62,208 +63,223 @@ public class GameController
             players.stream().forEach(x->playerOrder.add(Map.entry(x, new Random().nextInt(playerNumber))));
             orderByValue(playerOrder);
 
-            //error here
-            //playerOrder.stream().forEach(x->playerSockets.get(x.getKey()).sendMessage("WIZARDS"));
-
             //get wizards from players && communicate with them
-            playerWizards = new HashMap<>();
-            while (playerWizards.size()<playerNumber)
-            {
-                ArrayList<String> message = nextMessage();
-                if (message.get(0).equals("PLAY") &&  !playerWizards.keySet().contains(message.get(1)) &&
-                        message.get(2).equals("WIZARD") && !playerWizards.values().contains(message.get(3)))
-                {
-                    playerSockets.get(message.get(1)).sendMessage("OK");
-                    playerWizards.put(message.get(1), Wizard.valueOf(message.get(3)));
-                }
-                else
-                {
-                    playerSockets.get(message.get(1)).sendMessage("NOK");
-                }
-
-                //add a random wizard if a player disconnects during wizard choice
-                for (int i=0; i<playerNumber; i++)
-                {
-                    if (!playersOnline.get(players.get(i)) && !playerWizards.keySet().contains(players.get(i)))
-                        playerWizards.put(players.get(i), Arrays.stream(Wizard.values()).filter(x->!playerWizards.values().contains(x)).collect(Collectors.toList()).get(0) );
-                }
-            }
+            wizardsController();
 
             //order wizards according to the player who chose them
             ArrayList<Wizard> orderedWizards = new ArrayList<>();
             players.stream().forEach(x->orderedWizards.add(playerWizards.get(x)));
+
             //create gameClass or GameClassExpert
             if (expertMode)
                 newGame = new GameClassExpert(ID, playerNumber, players, orderedWizards);
             else
                 newGame = new GameClass(ID, playerNumber, players, orderedWizards);
 
-            System.out.println("game ok");
-
             do {
-                updateView();
+                //updateView();
                 newGame.BagToCloud();
                 updateView();
 
-                //pianification phase
-                for (int i = 0; i<players.size(); i++)
+                pianificationPhase();
+
+                actionPhase();
+            }while (true);
+        }
+        ).start();
+
+    }
+
+    private void wizardsController()
+    {
+        while (playerWizards.size()<playerNumber)
+        {
+            ArrayList<String> message = nextMessage();
+            if (message.get(0).equals("PLAY") &&  !playerWizards.keySet().contains(message.get(1)) &&
+                    message.get(2).equals("WIZARD") && !playerWizards.values().contains(Wizard.valueOf(message.get(3))))
+            {
+                    /*
+                    System.out.println(playerWizards.values().contains(message.get(3)));
+                    System.out.println(playerWizards);
+                    System.out.println(message);*/
+                playerSockets.get(message.get(1)).sendMessage("OK");
+                playerWizards.put(message.get(1), Wizard.valueOf(message.get(3)));
+            }
+            else
+            {
+                playerSockets.get(message.get(1)).sendMessage("NOK");
+            }
+
+            //add a random wizard if a player disconnects during wizard choice
+            for (int i=0; i<playerNumber; i++)
+            {
+                if (!playersOnline.get(players.get(i)) && !playerWizards.keySet().contains(players.get(i)))
+                    playerWizards.put(players.get(i), Arrays.stream(Wizard.values()).filter(x->!playerWizards.values().contains(x)).collect(Collectors.toList()).get(0) );
+            }
+        }
+    }
+
+    private void pianificationPhase()
+    {
+        playerOrder.removeAll(playerOrder);
+        //pianification phase
+        for (int i = 0; i<players.size(); i++)
+        {
+            String currentPlayer = players.get(i);
+            playerSockets.get(currentPlayer).sendMessage("UNLOCK");
+            System.out.println(playerOrder);
+
+            do {
+                if (!playersOnline.get(currentPlayer))
+                    break;
+
+                ArrayList<String> message = nextMessage();
+                if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("HELPER"))
                 {
-                    String currentPlayer = players.get(i);
-                    playerSockets.get(currentPlayer).sendMessage("UNLOCK");
-                    playerOrder.stream().forEach(x->x.setValue(-1));
-
-                    do {
-                        if (!playersOnline.get(currentPlayer))
-                            break;
-
-                        ArrayList<String> message = nextMessage();
-                        if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("HELPER"))
+                    try {
+                        if (!playerOrder.stream().map(x->x.getValue()).collect(Collectors.toList()).contains(Integer.parseInt(message.get(3)))
+                                || newGame.getPlayers().stream().filter(x->x.getNickname().equals(message.get(1))).collect(Collectors.toList())
+                                .get(0).deck.returnUnused().size() == 1)
                         {
-                            try {
-                                newGame.useHelperCard(i, Integer.parseInt(message.get(3)));
-                            } catch (InvalidKeyException e) {
-                                e.printStackTrace();
-                            }
-                            playerOrder.stream().filter(x->x.getValue().equals(currentPlayer)).forEach(x->x.setValue(Integer.valueOf(message.get(3))));
+                            newGame.useHelperCard(i, Integer.parseInt(message.get(3)));
                             playerSockets.get(message.get(1)).sendMessage("OK");
-
+                            playerOrder.add(Map.entry(message.get(1) , Integer.valueOf(message.get(3))));
+                            //playerOrder.stream().filter(x -> x.getValue().equals(currentPlayer)).forEach(x -> x.setValue(Integer.valueOf(message.get(3))));
                             playerSockets.get(currentPlayer).sendMessage("LOCK");
                             updateView();
                             break;
                         }
                         else
                         {
-                            playerSockets.get(currentPlayer).sendMessage("NOK");
+                            playerSockets.get(message.get(1)).sendMessage("NOK");
                         }
-                    } while (true);
+                    } catch (InvalidKeyException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-                orderByValue(playerOrder);
-
-                //action phase
-                for (int i=0; i<players.size(); i++)
+                else
                 {
-                    String currentPlayer = playerOrder.get(i).getKey();
-
-                    if (!playersOnline.get(currentPlayer) || playerOrder.get(i).getValue()<0)
-                        continue;
-
-                    playerSockets.get(currentPlayer).sendMessage("UNLOCK");
-
-
-                    //STT OR STI
-                    for (int n=0; n<newGame.getClouds().get(0).getCloudCapacity(); n++)
-                    {
-                        do
-                        {
-                            if (!playersOnline.get(currentPlayer))
-                                break;
-                            ArrayList<String> message = nextMessage();
-                            if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
-                            {
-                                newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), Integer.parseInt(message.get(4)));
-                                playerSockets.get(currentPlayer).sendMessage("OK");
-                                break;
-                            }
-                            else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETT"))
-                            {
-                                newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)));
-                                playerSockets.get(currentPlayer).sendMessage("OK");
-                                break;
-                            }
-                            else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
-                            {
-                                manageEffect(players.indexOf(currentPlayer), message);
-                            }
-                            else
-                            {
-                                playerSockets.get(currentPlayer).sendMessage("NOK");
-                            }
-                        } while (true);
-                    }
-                    updateView();
-                    if (!playersOnline.get(currentPlayer))
-                        continue;
-
-
-                    //MOVE MOTHER NATURE
-                    do
-                    {
-                        if (!playersOnline.get(currentPlayer))
-                            break;
-                        ArrayList<String> message = nextMessage();
-                        if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
-                        {
-                            newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
-                            playerSockets.get(currentPlayer).sendMessage("OK");
-                            break;
-                        }
-                        else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
-                        {
-                            manageEffect(players.indexOf(currentPlayer), message);
-                        }
-                        else
-                        {
-                            playerSockets.get(currentPlayer).sendMessage("NOK");
-                        }
-                    } while (true);
-                    updateView();
-                    if (newGame.towerGameEnded())
-                    {
-                        gameEnded(players.indexOf(currentPlayer));
-                        break;
-                    }
-                    if (newGame.inslandsGameEnded())
-                    {
-                        gameEnded(newGame.lessTowersMoreProfessors());
-                        break;
-                    }
-                    if (!playersOnline.get(currentPlayer))
-                        continue;
-
-                    //CLOUD TO ENTRANCE
-                    do
-                    {
-                        if (!playersOnline.get(currentPlayer))
-                            break;
-                        ArrayList<String> message = nextMessage();
-                        if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("CTE"))
-                        {
-                            newGame.CloudToEntrance(Integer.parseInt(message.get(3)), players.indexOf(currentPlayer));
-                            playerSockets.get(currentPlayer).sendMessage("OK");
-                            break;
-                        }
-                        else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
-                        {
-                            manageEffect(players.indexOf(currentPlayer), message);
-                        }
-                        else
-                        {
-                            playerSockets.get(currentPlayer).sendMessage("NOK");
-                        }
-                    } while (true);
-                    updateView();
-                    if (newGame.roundGameEnded())
-                    {
-                        gameEnded(newGame.lessTowersMoreProfessors());
-                        break;
-                    }
-                    playerSockets.get(currentPlayer).sendMessage("LOCK");
+                    playerSockets.get(currentPlayer).sendMessage("NOK");
                 }
-            }while (true);
-
-            //new Thread(()->{gameProsecution();}).start();
+            } while (true);
         }
-        ).start();
 
+        orderByValue(playerOrder);
     }
 
-    private void gameProsecution()
+    private void actionPhase()
     {
+        //action phase
+        for (int i=0; i<players.size(); i++)
+        {
+            String currentPlayer = playerOrder.get(i).getKey();
 
+            if (!playersOnline.get(currentPlayer) || playerOrder.get(i).getValue()<0)
+                continue;
+
+            playerSockets.get(currentPlayer).sendMessage("UNLOCK");
+
+
+            //STT OR STI
+            for (int n=0; n<newGame.getClouds().get(0).getCloudCapacity(); n++)
+            {
+                do
+                {
+                    if (!playersOnline.get(currentPlayer))
+                        break;
+                    ArrayList<String> message = nextMessage();
+                    if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
+                    {
+                        newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), Integer.parseInt(message.get(4)));
+                        playerSockets.get(currentPlayer).sendMessage("OK");
+                        break;
+                    }
+                    else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETT"))
+                    {
+                        newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)));
+                        playerSockets.get(currentPlayer).sendMessage("OK");
+                        break;
+                    }
+                    else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    }
+                    else
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
+                } while (true);
+            }
+            updateView();
+            if (!playersOnline.get(currentPlayer))
+                continue;
+
+
+            //MOVE MOTHER NATURE
+            do
+            {
+                if (!playersOnline.get(currentPlayer))
+                    break;
+                ArrayList<String> message = nextMessage();
+                if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
+                {
+                    newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
+                    playerSockets.get(currentPlayer).sendMessage("OK");
+                    break;
+                }
+                else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                {
+                    manageEffect(players.indexOf(currentPlayer), message);
+                }
+                else
+                {
+                    playerSockets.get(currentPlayer).sendMessage("NOK");
+                }
+            } while (true);
+            updateView();
+            if (newGame.towerGameEnded())
+            {
+                gameEnded(players.indexOf(currentPlayer));
+                break;
+            }
+            if (newGame.inslandsGameEnded())
+            {
+                gameEnded(newGame.lessTowersMoreProfessors());
+                break;
+            }
+            if (!playersOnline.get(currentPlayer))
+                continue;
+
+            //CLOUD TO ENTRANCE
+            do
+            {
+                if (!playersOnline.get(currentPlayer))
+                    break;
+                ArrayList<String> message = nextMessage();
+                if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("CTE"))
+                {
+                    newGame.CloudToEntrance(Integer.parseInt(message.get(3)), players.indexOf(currentPlayer));
+                    playerSockets.get(currentPlayer).sendMessage("OK");
+                    break;
+                }
+                else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                {
+                    manageEffect(players.indexOf(currentPlayer), message);
+                }
+                else
+                {
+                    playerSockets.get(currentPlayer).sendMessage("NOK");
+                }
+            } while (true);
+            updateView();
+            if (newGame.roundGameEnded())
+            {
+                gameEnded(newGame.lessTowersMoreProfessors());
+                break;
+            }
+            playerSockets.get(currentPlayer).sendMessage("LOCK");
+        }
     }
-
-
 
     private void manageEffect(int playerID, ArrayList<String> message)
     {

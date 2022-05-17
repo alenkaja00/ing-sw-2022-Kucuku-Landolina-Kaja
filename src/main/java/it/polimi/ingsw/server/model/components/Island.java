@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 
 public class Island {
@@ -99,7 +100,9 @@ public class Island {
         {
             throw new IllegalStateException();
         }
-        return (Tower[])towerList.stream().toArray();
+        Tower[] towerArray = new Tower[towerList.size()];
+        towerList.toArray(towerArray);
+        return towerArray;
     }
 
     public void AddTower(Tower myTower)

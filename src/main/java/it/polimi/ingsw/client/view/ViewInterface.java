@@ -71,4 +71,5 @@ public interface ViewInterface
     //game ends with the following message
     void gameEnded(String endMessage);
 
+    void changeState(String start);
 }

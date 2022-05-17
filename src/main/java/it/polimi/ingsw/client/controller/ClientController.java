@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 public class ClientController
 {
@@ -20,6 +19,7 @@ public class ClientController
     private ViewInterface view;
     private String playerNickname;
     private Thread currentView;
+    private Boolean viewLocked = false;
 
     public ClientController(String viewMode) throws IOException
     {
@@ -27,17 +27,9 @@ public class ClientController
             view = new guiClass(this);
         else if (viewMode.equals("CLI"))
             view = new cliClass(this);
-
-        /*setView(new Runnable() {
-            @Override
-            public void run() {
-                view.startScreen(serverIP);
-            }
-        });*/
-        view.startScreen(serverIP);
     }
 
-    public boolean tryConnection(String ip, int port)
+    public boolean requestConnection(String ip, int port)
     {
         try {
             this.connectivity = new ClientNetwork(ip, port, this);
@@ -51,7 +43,7 @@ public class ClientController
         }
     }
 
-    public boolean sendNickname(String nickname)
+    public boolean requestNickname(String nickname)
     {
         clearServerBuffer();
         connectivity.sendMessage("NICKNAME|"+nickname);
@@ -64,7 +56,7 @@ public class ClientController
         return false;
     }
 
-    public boolean gameRequest(int playerNumber, Boolean expertMode)
+    public boolean requestNewGame(int playerNumber, Boolean expertMode)
     {
         if (connectivity== null || !connectivity.connected)
         {
@@ -77,37 +69,21 @@ public class ClientController
             List<String> message = nextServerMessage();
             if (message.get(0).equals("WAIT"))
             {
-                currentView = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        view.waitLobby();
+                view.changeState("WAITLOBBY");
+                new Thread(() ->
+                {
+                    List<String> ok = nextServerMessage();
+                    if (ok.get(0).equals("OK")) {
+                        view.changeState("GAME");
                     }
-                });
-                currentView.start();
-                /*setView(new Runnable() {
-                    @Override
-                    public void run() {
-                        view.waitLobby();
-                    }
-                });*/
-                message = nextServerMessage();
-                currentView.stop();
+                    else
+                        view.changeState("START");
+                }
+                ).start();
+                return true;
             }
             if (message.get(0).equals("OK")) {
-                //currentView.stop();
-                currentView = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        view.newGame();
-                    }
-                });
-                currentView.start();
-                /*setView(new Runnable() {
-                    @Override
-                    public void run() {
-                        view.newGame();
-                    }
-                });*/
+                view.changeState("GAME");
                 return true;
             }
             else
@@ -115,40 +91,24 @@ public class ClientController
         }
     }
 
-
-    private void setView(Runnable runnableParameter)
-    {
-        if (currentView != null)
-            currentView.stop();
-        currentView = new Thread(
-                runnableParameter
-        );
-        currentView.start();
-    }
-
     public void quitLobby()
     {
         connectivity.sendMessage("QUITLOBBY|"+playerNickname);
         clearServerBuffer();
-
-        /*new Thread(
-            new Runnable() {
-                @Override
-                public void run() {
-                    view.startScreen(serverIP);
-                }
-            }
-        ).start();*/
     }
 
     public Boolean requestWizard(Wizard wizard)
     {
         clearServerBuffer();
         connectivity.sendMessage("PLAY|"+playerNickname+"|WIZARD|"+wizard);
-        //ERRORE DOVUTO AL FATTO CHE RICEVE UN JSON INVECE CHE OK
-        if (nextServerMessage().get(0).equals("OK")) {
-            new Thread() {
-                public void runnable() {
+
+        List<String> message = nextServerMessage();
+        if (message.get(0).equals("OK")) {
+
+            /*
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
                     List<String> message = nextServerMessage();
                     if (message.get(0).equals("JSON"))
                     {
@@ -158,32 +118,39 @@ public class ClientController
                     else
                         System.out.println("Fatal error, did not receive a JSON but "+message);
                 }
-            };
+            }).start();*/
+            viewLocked = true;
             return true;
         }
         return false;
     }
+
     private void manageGameProsecution()
     {
+        System.out.println("Game prosecution");
         List<String> message;
 
-        do
-        {
-            //receive unlock or JSON
-            do {
-                message = nextServerMessage();
-                if (message.get(0).equals("JSON"))
-                {
-                    view.updateView(message.get(1));
-                }
-                else if (message.get(0).equals("UNLOCK"))
-                    break;
-                else
-                    System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
-            } while (true);
+        //receive unlock or JSON
+        do {
+            message = nextServerMessage();
+            if (message.get(0).equals("JSON"))
+            {
+                view.updateView(message.get(1));
+            }
+            else if (message.get(0).equals("UNLOCK"))
+                break;
+            else
+                System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
+        } while (true);
 
-            view.playHelper();
+        view.changeState("HELPER");
 
+        /*
+        do{
+
+
+
+            /*
             //receive LOCK
             if (!nextServerMessage().get(0).equals("LOCK"))
                 System.out.println("FATAL ERROR: expected to receive a lock but received "+message);
@@ -211,7 +178,7 @@ public class ClientController
             if (!nextServerMessage().get(0).equals("LOCK"))
                 System.out.println("FATAL ERROR: expected to receive a lock but received "+message);
 
-        } while (true);
+        } while (true);*/
     }
 
     public boolean requestHelper(int helperID)
@@ -235,6 +202,15 @@ public class ClientController
     public boolean requestETI(int IslandIndex, int entranceIndex)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|ETI|"+IslandIndex+"|"+entranceIndex);
+        if (nextServerMessage().get(0).equals("OK"))
+            return true;
+        else
+            return false;
+    }
+
+    public boolean requestString(String message)
+    {
+        connectivity.sendMessage("PLAY|"+playerNickname+"|"+message);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
@@ -268,44 +244,14 @@ public class ClientController
             return false;
     }
 
-    /*DEPRECATED
-    private String nextViewMessage()
-    {
-        String message = null;
-
-        do
-        {
-            synchronized (viewBuffer)
-            {
-                if (viewBuffer.size()>0)
-                {
-                    message= viewBuffer.remove(0);
-                    notifyAll();
-                }
-            }
-            if (message != null)
-                return message;
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (true);
-
+    public String getServerIP() {
+        return serverIP;
     }
 
-    public void parseViewMessage(String message)
+    public Boolean getViewLocked()
     {
-        System.out.println("The view told me: " + message);
-
-        synchronized (viewBuffer)
-        {
-            viewBuffer.add(message);
-            viewBuffer.notifyAll();
-        }
+        return viewLocked;
     }
-    */
-
 
     private List<String> nextServerMessage()
     {
@@ -349,7 +295,25 @@ public class ClientController
         List<String> parsedMessage = Arrays.asList(message.split("\\|"));
 
         if (parsedMessage.get(0).equals("WINNER"))
+        {
             view.gameEnded(parsedMessage.get(1));
+            return;
+        }
+        else if (parsedMessage.get(0).equals("JSON"))
+        {
+            view.updateView(parsedMessage.get(1));
+            return;
+        }
+        else if (parsedMessage.get(0).equals("LOCK"))
+        {
+            viewLocked = true;
+            return;
+        }
+        else if (parsedMessage.get(0).equals("UNLOCK"))
+        {
+            viewLocked = false;
+            return;
+        }
 
         synchronized (serverBuffer)
         {

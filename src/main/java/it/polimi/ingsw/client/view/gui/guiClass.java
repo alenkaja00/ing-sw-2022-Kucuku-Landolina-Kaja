@@ -51,6 +51,11 @@ public class guiClass implements ViewInterface
 
     }
 
+    @Override
+    public void changeState(String start) {
+
+    }
+
 
     @Override
     public void messageScreen(String message) {

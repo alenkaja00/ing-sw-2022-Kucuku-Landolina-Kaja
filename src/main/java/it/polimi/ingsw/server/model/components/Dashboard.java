@@ -31,6 +31,7 @@ public class Dashboard {
             default:
                 throw new IndexOutOfBoundsException();
         }
+        towerNumber = maxTowers;
         entranceSpots = new ColoredDisc[maxEntrance];
         for(ColoredDisc color:ColoredDisc.values()){
             tables.put(color,0);
@@ -64,7 +65,7 @@ public class Dashboard {
     public int MoveToTables(int index) throws InvalidParameterException, IndexOutOfBoundsException
     {
         ColoredDisc myStudent = entranceSpots[index];
-        if (tables.get(myStudent)<10)
+        if (tables.get(myStudent)!= null && tables.get(myStudent)<10)
         {
             RemoveFromEntrance(index);
             tables.put(myStudent, tables.get(myStudent)+1);
