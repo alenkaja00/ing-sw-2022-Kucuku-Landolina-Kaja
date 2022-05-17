@@ -190,15 +190,29 @@ public class GameController
                     ArrayList<String> message = nextMessage();
                     if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
                     {
-                        newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), Integer.parseInt(message.get(4)));
-                        playerSockets.get(currentPlayer).sendMessage("OK");
-                        break;
+                        try {
+                            newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), Integer.parseInt(message.get(4)));
+                            playerSockets.get(currentPlayer).sendMessage("OK");
+                            break;
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                            playerSockets.get(currentPlayer).sendMessage("NOK");
+                        }
                     }
                     else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETT"))
                     {
-                        newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)));
-                        playerSockets.get(currentPlayer).sendMessage("OK");
-                        break;
+                        try {
+                            newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)));
+                            playerSockets.get(currentPlayer).sendMessage("OK");
+                            break;
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                            playerSockets.get(currentPlayer).sendMessage("NOK");
+                        }
                     }
                     else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
                     {
@@ -223,9 +237,17 @@ public class GameController
                 ArrayList<String> message = nextMessage();
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
                 {
-                    newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
-                    playerSockets.get(currentPlayer).sendMessage("OK");
-                    break;
+                    try
+                    {
+                        newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
+                        playerSockets.get(currentPlayer).sendMessage("OK");
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
                 {
@@ -283,8 +305,11 @@ public class GameController
 
     private void manageEffect(int playerID, ArrayList<String> message)
     {
-        if (!expertMode)
+        if (!expertMode) {
             System.out.println("ERROR. Trying to play effect card in non expert game.");
+            return;
+        }
+
 
         switch (message.get(3))
         {
