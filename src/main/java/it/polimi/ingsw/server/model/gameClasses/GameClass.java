@@ -212,6 +212,7 @@ public class GameClass {
         Player influencePlayer = players.get(InfluencePlayerIndex);
         if (CurrentIsland.getTowers().length == 0)
         {
+
             CurrentIsland.AddTower(influencePlayer.getTowerColor());
             influencePlayer.myDashboard.RemoveTower();
         }

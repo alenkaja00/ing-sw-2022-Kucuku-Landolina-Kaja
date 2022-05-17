@@ -196,11 +196,11 @@ public class EriantysCLI {
             }
             cliTables.put(disc.toString(), table);
         }
-        for (String professor : Arrays.asList("RED", "PINK", "BLUE", "YELLOW", "GREEN")) {
+        for (ColoredDisc professor : ColoredDisc.values()) {
             if (professors.contains(professor))
-                cliProfessors.put(professor, "P");
+                cliProfessors.put(professor.toString(), "P");
             else
-                cliProfessors.put(professor, " ");
+                cliProfessors.put(professor.toString(), " ");
         }
 
         switch (towersColor) {
