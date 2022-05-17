@@ -79,6 +79,10 @@ public class cliClass implements ViewInterface
             case "START":
                 flushCLI();
                 printBlock(eriantysCLI.welcomeScene(controller.getServerIP()));
+
+                //------------
+
+                //---------
                 break;
 
             case "IP":
@@ -220,6 +224,12 @@ public class cliClass implements ViewInterface
                             "EFFECT|BANDIT|studentColor\n" +
                             "EFFECT|LORD|islandID");
                 break;
+            case "NATURE":
+                System.out.println("NATURE|motherNatureMoves");
+                break;
+            case "CTE":
+                System.out.println("CTE|cloudIndex");
+                break;
         }
     }
 
@@ -342,6 +352,10 @@ public class cliClass implements ViewInterface
         int number = 0;
         try {
             number = Integer.parseInt(input);
+            if(number <= 0 || number > 10 ){
+                System.out.println("Unavailable selection, try again [1-10]: ");
+                return;
+            }
         }
         catch (Exception e)
         {
