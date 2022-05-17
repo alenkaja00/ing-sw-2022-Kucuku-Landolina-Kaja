@@ -79,6 +79,10 @@ public class cliClass implements ViewInterface
             case "START":
                 flushCLI();
                 printBlock(eriantysCLI.welcomeScene(controller.getServerIP()));
+
+                //------------
+
+                //---------
                 break;
 
             case "IP":
@@ -219,6 +223,12 @@ public class cliClass implements ViewInterface
                             "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
                             "EFFECT|BANDIT|studentColor\n" +
                             "EFFECT|LORD|islandID");
+                break;
+            case "NATURE":
+                System.out.println("NATURE|motherNatureMoves");
+                break;
+            case "CTE":
+                System.out.println("CTE|cloudIndex");
                 break;
         }
     }
