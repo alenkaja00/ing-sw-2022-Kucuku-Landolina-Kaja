@@ -3,12 +3,15 @@ package it.polimi.ingsw.server.model.gameClasses;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.*;
 
+import javax.sound.midi.Soundbank;
 import java.security.InvalidKeyException;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GameClass {
 
@@ -123,6 +126,9 @@ public class GameClass {
 
     public void CloudToEntrance(int CloudIndex, int PlayerID)
     {
+        if (clouds.get(CloudIndex).getStudents().size()==0)
+            throw new InvalidParameterException();
+
         ArrayList<ColoredDisc> students = clouds.get(CloudIndex).removeAll();
         int entranceindex = 0;
         for(ColoredDisc student : students)
@@ -212,6 +218,7 @@ public class GameClass {
         Player influencePlayer = players.get(InfluencePlayerIndex);
         if (CurrentIsland.getTowers().length == 0)
         {
+
             CurrentIsland.AddTower(influencePlayer.getTowerColor());
             influencePlayer.myDashboard.RemoveTower();
         }
@@ -260,7 +267,7 @@ public class GameClass {
             islands.remove(leftIsland);
         }*/
 
-        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)-1)%islands.size());
+        Island leftIsland = islands.get((islands.indexOf(CurrentIsland)+islands.size()-1)%islands.size());
 
         if (leftIsland.getTowers().length>0 && leftIsland.getTowers()[0] == CurrentIsland.getTowers()[0])
         {
@@ -275,7 +282,6 @@ public class GameClass {
     /** Returns the playerID of the player who has influence on that island*/
     public int EvaluateInfluence(Island island)
     {
-
         Tower [] towers = island.getTowers();
         HashMap<ColoredDisc,Integer> students = island.getStudents();
         int PlayersInfluence[] = new int[PlayerNumber];
@@ -300,8 +306,33 @@ public class GameClass {
                 }
             }
         }
+
+        //temporary can be substituted by functional
+        int index = -1;
+        int max = 0;
+        //for(int i=0 ; i < players.size(); i++)
+        for(int i=0 ; i < PlayersInfluence.length; i++)
+        {
+            if(PlayersInfluence[i] > max)
+            {
+                index = i;
+                max = PlayersInfluence[i];
+            }
+            else if(PlayersInfluence[i] == max)
+            {
+                index = -1;
+            }
+        }
+        return index;
+
+        /*
         //MIGHT RETURN -1
-        return Arrays.asList(PlayersInfluence).indexOf(Arrays.stream(PlayersInfluence).max());
+        return IntStream.range(0, PlayersInfluence.length)
+            .filter(i -> Arrays.stream(PlayersInfluence).max().getAsInt() == PlayersInfluence[i])
+            .findFirst() // first occurrence
+            .orElse(-1);
+
+         */
     }
 
 
