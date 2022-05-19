@@ -157,7 +157,8 @@ public class EriantysCLI {
         HashMap<String, String> cliProfessors = new HashMap<>();
         ArrayList<String> cliTowers = new ArrayList<>();
         //default towers
-        String color = ANSIColor.WHITE_BOLD;
+        String towerID = "W";
+
         ArrayList<String> status = new ArrayList<>();
 
         //padding 8 == [ONLINE], 9 ==[OFFLINE]is the length
@@ -167,19 +168,19 @@ public class EriantysCLI {
             if (i < entrance.length && entrance[i] != null) {
                 switch (entrance[i]) {
                     case PINK:
-                        cliEntrance.add(ANSIColor.PURPLE_BRIGHT + "X");
+                        cliEntrance.add(ANSIColor.PURPLE_BRIGHT + "X" + ANSIColor.RESET);
                         break;
                     case BLUE:
-                        cliEntrance.add(ANSIColor.CYAN + "X");
+                        cliEntrance.add(ANSIColor.CYAN + "X" + ANSIColor.RESET);
                         break;
                     case RED:
-                        cliEntrance.add(ANSIColor.RED + "X");
+                        cliEntrance.add(ANSIColor.RED + "X" + ANSIColor.RESET);
                         break;
                     case GREEN:
-                        cliEntrance.add(ANSIColor.GREEN + "X");
+                        cliEntrance.add(ANSIColor.GREEN + "X" + ANSIColor.RESET);
                         break;
                     case YELLOW:
-                        cliEntrance.add(ANSIColor.YELLOW + "X");
+                        cliEntrance.add(ANSIColor.YELLOW + "X" + ANSIColor.RESET);
                         break;
                 }
             } else {
@@ -205,16 +206,16 @@ public class EriantysCLI {
 
         switch (towersColor) {
             case "BLACK":
-                color = ANSIColor.BLACK_BOLD;
+                towerID = "B";
                 break;
             case "GREY":
-                color = ANSIColor.BLACK_UNDERLINED;
+                towerID = "G";
                 break;
         }
 
         for (int i = 0; i < 8; i++) {
             if (i < towers) {
-                cliTowers.add(color + "X");
+                cliTowers.add(towerID);
             } else cliTowers.add(" ");
         }
 
@@ -229,15 +230,15 @@ public class EriantysCLI {
         if(coins!=0) result.add(" ║   COINS AMOUNT: " + coins + "                                   ");
         result.add(" ╔═════════╦═════════════════════╦═══════════╦═══════╗ ");
         result.add(" ║Entrance ║Tables               ║Professors ║Towers ║ ");
-        result.add(" ║     " + cliEntrance.get(0) + ANSIColor.RESET + "   ║ " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "║     " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + "     ║  " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║   0:" + cliEntrance.get(0) +  "   ║ " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "║     " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + "     ║  " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║  " + cliEntrance.get(1) + "  " + cliEntrance.get(2) + ANSIColor.RESET + "   ║ " + ANSIColor.RED + cliTables.get("RED") + ANSIColor.RESET + "║     " +ANSIColor.RED + cliProfessors.get("RED") + ANSIColor.RESET + "     ║  " + cliTowers.get(2) + " " + cliTowers.get(3) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║ 1:" + cliEntrance.get(1) + " 2:" + cliEntrance.get(2) + " ║ " + ANSIColor.RED + cliTables.get("RED") + ANSIColor.RESET + "║     " +ANSIColor.RED + cliProfessors.get("RED") + ANSIColor.RESET + "     ║  " + cliTowers.get(2) + " " + cliTowers.get(3) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║  " + cliEntrance.get(3) + "  " + cliEntrance.get(4) + ANSIColor.RESET + "   ║ " + ANSIColor.YELLOW + cliTables.get("YELLOW") + ANSIColor.RESET +  "║     " + ANSIColor.YELLOW + cliProfessors.get("YELLOW") + ANSIColor.RESET + "     ║  " + cliTowers.get(4) + " " + cliTowers.get(5) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║ 3:" + cliEntrance.get(3) + " 4:" + cliEntrance.get(4) + " ║ " + ANSIColor.YELLOW + cliTables.get("YELLOW") + ANSIColor.RESET +  "║     " + ANSIColor.YELLOW + cliProfessors.get("YELLOW") + ANSIColor.RESET + "     ║  " + cliTowers.get(4) + " " + cliTowers.get(5) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║  " + cliEntrance.get(5) + "  " + cliEntrance.get(6) + ANSIColor.RESET + "   ║ " + ANSIColor.PURPLE_BRIGHT + cliTables.get("PINK") + ANSIColor.RESET +  "║     " + ANSIColor.PURPLE_BRIGHT + cliProfessors.get("PINK") + ANSIColor.RESET + "     ║  " + cliTowers.get(6) + " " + cliTowers.get(7) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║ 5:" + cliEntrance.get(5) + " 6:" + cliEntrance.get(6) + " ║ " + ANSIColor.PURPLE_BRIGHT + cliTables.get("PINK") + ANSIColor.RESET +  "║     " + ANSIColor.PURPLE_BRIGHT + cliProfessors.get("PINK") + ANSIColor.RESET + "     ║  " + cliTowers.get(6) + " " + cliTowers.get(7) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║  " + cliEntrance.get(7) + "  " + cliEntrance.get(8) + ANSIColor.RESET + "   ║ " + ANSIColor.CYAN + cliTables.get("BLUE") + ANSIColor.RESET +  "║     " + ANSIColor.CYAN + cliProfessors.get("BLUE") + ANSIColor.RESET + "     ║  " + "     ║ ");
+        result.add(" ║ 7:" + cliEntrance.get(7) + " 8:" + cliEntrance.get(8) + " ║ " + ANSIColor.CYAN + cliTables.get("BLUE") + ANSIColor.RESET +  "║     " + ANSIColor.CYAN + cliProfessors.get("BLUE") + ANSIColor.RESET + "     ║  " + "     ║ ");
         result.add(" ╚═════════╩═════════════════════╩═══════════╩═══════╝ ");
 
         return (ArrayList<String>) result.clone();
@@ -266,9 +267,11 @@ public class EriantysCLI {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> islandStud = new ArrayList<>();
         int tower = 0;
-        int id = ID+1;
+        //int id = ID+1;
+        int id = ID;
         String motherNature= " ";
         String color = "";
+        String towerID = " ";
         String forbidden = "";
         String space =" ";
         String leftUpperMargin = " ";
@@ -317,10 +320,17 @@ public class EriantysCLI {
         }
 
         for (Tower value : towers) {
-            if (value.toString().equals("BLACK")) {
-                color = ANSIColor.BLACK;
-            } else if (value.toString().equals("GREY"))
+            if (value.toString().equals("WHITE")) {
+                towerID = "W";
+            }
+            else if (value.toString().equals("BLACK")) {
+                //color = ANSIColor.BLACK;
+                towerID = "B";
+            } else if (value.toString().equals("GREY")) {
                 color = ANSIColor.WHITE_BACKGROUND;
+                towerID = "G";
+            }
+
             tower++;
         }
 
@@ -380,7 +390,7 @@ public class EriantysCLI {
         result.add(leftMargin + forbidden +" ID: " + id +space+"         "+motherNature+ANSIColor.RESET+rightMargin);
         result.add(leftMargin +" STUDENTS:       "+rightMargin);
         result.add(leftMargin +" " + islandStud.get(0) + " " + islandStud.get(1) + " " + islandStud.get(2) + " " + islandStud.get(3) + " " + islandStud.get(4) + "       "+rightMargin);
-        result.add(leftMargin + color +" TOWER:    " + tower + ANSIColor.RESET + "     "+ rightMargin);
+        result.add(leftMargin + color +" TOWER:    " + towerID +" "+ tower + ANSIColor.RESET + "   "+ rightMargin);
         result.add(leftFinalMargin + bottomMargin + rightFinalMargin);
 
         return (ArrayList<String>) result.clone();
@@ -659,27 +669,4 @@ public class EriantysCLI {
         System.out.flush();
     }
 
-
-    public static void main(String[] args) throws FileNotFoundException {
-        /*EriantysCLI n = new EriantysCLI();
-
-        //read the json
-
-        Gson gson = new Gson();
-        jGameClass myGame = new jGameClass();
-        jGameClassExpert myExGame = new jGameClassExpert();
-
-        try (Reader reader = new FileReader("C:\\Users\\alenk\\Desktop\\expert3.json")) {
-            myExGame = gson.fromJson(reader, jGameClassExpert.class);
-            //System.out.println(myGame);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<String> gg = n.gameMap(myExGame);
-        for(String s : gg ){
-            System.out.println(s);
-        }*/
-
-    }
 }

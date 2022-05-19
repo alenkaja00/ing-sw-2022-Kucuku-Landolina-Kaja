@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.MenuItem?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.SceneController">
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController">
    <children>
       <VBox alignment="CENTER" layoutX="547.0" layoutY="331.0" prefHeight="350.0" prefWidth="246.0" AnchorPane.bottomAnchor="118.60000000000002" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="486.6" AnchorPane.topAnchor="331.0">
          <children>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="228.0">
+            <TextField id="ipTextField" fx:id="ipTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nicknameScene" prefHeight="30.0" prefWidth="228.0">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
             </TextField>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="228.0" />
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nicknameScene" prefHeight="92.0" prefWidth="228.0" text="SUBMIT">
+            <TextField id="portTextField" fx:id="portTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nicknameScene" prefHeight="30.0" prefWidth="228.0" />
+            <Button id="submitButton" fx:id="submitButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nicknameScene" prefHeight="92.0" prefWidth="228.0" text="SUBMIT">
                <font>
                   <Font name="Book Antiqua Italic" size="28.0" />
                </font>
