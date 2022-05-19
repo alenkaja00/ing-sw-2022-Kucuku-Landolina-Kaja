@@ -38,7 +38,7 @@ public class ModeController {
 
 
     public void enterLobby(ActionEvent actionEvent) throws IOException, InterruptedException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/waitingScene.fxml").toURI().toURL());
+        /*FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/waitingScene.fxml").toURI().toURL());
         root = loader.load();
 
         //connection reques with parameters  playernumber, mode
@@ -64,8 +64,17 @@ public class ModeController {
         stage.setTitle("Lobby");
         stage.setScene(scene);
 
-        stage.show();
+        stage.show();*/
 
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/wizardScene.fxml").toURI().toURL());
+        root = loader.load();
+
+        stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
+        stage.setTitle("Wizards");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void callWizard(Stage stage1, boolean flag) throws InterruptedException, IOException {

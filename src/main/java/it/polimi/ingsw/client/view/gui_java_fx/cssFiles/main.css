@@ -30,6 +30,14 @@
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#dashboard{
+    -fx-background-image: url("../../../../../../../../resources/floatingIslands1.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100% 100%;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 
 
 }

@@ -1,8 +1,17 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class WizardController {
     @FXML
@@ -14,7 +23,12 @@ public class WizardController {
     @FXML
     ImageView wizard4;
 
-    public void chooseWizard(MouseEvent mouseEvent) {
+    @FXML
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    public void chooseWizard(MouseEvent mouseEvent) throws IOException {
         if(mouseEvent.getSource().equals(wizard1)){
             System.out.println("MAGO1");
         }
@@ -27,5 +41,16 @@ public class WizardController {
         if(mouseEvent.getSource().equals(wizard4)){
             System.out.println("MAGO4");
         }
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/externalDashboard.fxml").toURI().toURL());
+        root = loader.load();
+        root.setId("dashboard");
+        stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
+        stage.setTitle("Ip and Port");
+        stage.setScene(scene);
+
+        stage.show();
+
     }
 }
