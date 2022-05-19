@@ -30,6 +30,7 @@ public class PlayerNumberController {
     public void setPlayers(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/modeScene.fxml").toURI().toURL());
         root = loader.load();
+        root.setId("mode");
 
         ModeController controller = loader.getController();
 

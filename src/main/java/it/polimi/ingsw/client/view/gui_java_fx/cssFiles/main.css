@@ -1,5 +1,5 @@
 .root{
-    -fx-background-image: url("../../cssfiles/eriantys.jpg");
+    -fx-background-image: url("../../../../../../../../resources/eriantys.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
@@ -8,7 +8,7 @@
 
 
 #pane{
-    -fx-background-image: url("../../cssfiles/eriantys.jpg");
+    -fx-background-image: url("../../../../../../../../resources/eriantys.jpg");
     -fx-background-repeat: stretch;
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
@@ -16,7 +16,7 @@
 }
 
 #mode{
-    -fx-background-image: url("../../cssfiles/eriantysMode.jpeg");
+    -fx-background-image: url("../../../../../../../../resources/eriantysMode.jpeg");
     -fx-background-repeat: stretch;
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
@@ -25,7 +25,7 @@
 
 
 #playerNum{
-    -fx-background-image: url("../../cssfiles/eriantysPlayerNumber.jpeg");
+    -fx-background-image: url("../../../../../../../../resources/eriantysPlayerNumber.jpeg");
     -fx-background-repeat: stretch;
     -fx-background-size: 100% 100%;
     -fx-background-position: center center;
