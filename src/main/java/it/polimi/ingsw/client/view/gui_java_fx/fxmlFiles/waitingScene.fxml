@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.WaitingController">
+   <children>
+      <Label fx:id="waitingText" layoutX="378.0" layoutY="283.0" prefHeight="122.0" prefWidth="576.0" text="WAITING FOR MORE PLAYERS TO JOIN" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Freestyle Script" size="45.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="progressBar" layoutX="386.0" layoutY="489.0" prefHeight="38.0" prefWidth="560.0">
+         <cursor>
+            <Cursor fx:constant="WAIT" />
+         </cursor>
+      </ProgressBar>
+   </children>
+</AnchorPane>

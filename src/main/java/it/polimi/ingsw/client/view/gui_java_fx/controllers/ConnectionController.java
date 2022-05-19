@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client.view.gui_java_fx;
+package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,13 +36,13 @@ public class ConnectionController {
 
         if(valid(ip,port))
         {
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/nicknameScene.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/nicknameScene.fxml").toURI().toURL());
             root = loader.load();
 
             stage = (Stage) ((Node) submitButton).getScene().getWindow();
             scene = new Scene(root);
 
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/cssfiles/main.css").toURI().toURL().toExternalForm());
+            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
             stage.setTitle("Nickname Scene");
             stage.setScene(scene);
 
