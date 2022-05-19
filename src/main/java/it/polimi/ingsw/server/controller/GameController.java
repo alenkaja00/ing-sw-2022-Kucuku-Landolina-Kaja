@@ -173,6 +173,7 @@ public class GameController
                         try {
                             newGame.EntranceToIsland(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)), Integer.parseInt(message.get(4)));
                             playerSockets.get(currentPlayer).sendMessage("OK");
+                            updateView();
                             break;
                         }
                         catch (Exception e)
@@ -186,6 +187,7 @@ public class GameController
                         try {
                             newGame.EntranceToTables(players.indexOf(currentPlayer), Integer.parseInt(message.get(3)));
                             playerSockets.get(currentPlayer).sendMessage("OK");
+                            updateView();
                             break;
                         }
                         catch (Exception e)
@@ -204,7 +206,7 @@ public class GameController
                     }
                 } while (true);
             }
-            updateView();
+            //updateView();
             if (!playersOnline.get(currentPlayer))
                 continue;
 
@@ -217,15 +219,22 @@ public class GameController
                 ArrayList<String> message = nextMessage();
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
                 {
-                    try
+                    if (Integer.parseInt(message.get(3))<=newGame.playerMaxMoves(players.indexOf(currentPlayer)))
                     {
-                        newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
-                        playerSockets.get(currentPlayer).sendMessage("OK");
-                        break;
+                        try
+                        {
+                            newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
+                            playerSockets.get(currentPlayer).sendMessage("OK");
+                            break;
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                            playerSockets.get(currentPlayer).sendMessage("NOK");
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        e.printStackTrace();
                         playerSockets.get(currentPlayer).sendMessage("NOK");
                     }
                 }
@@ -280,13 +289,13 @@ public class GameController
                     playerSockets.get(currentPlayer).sendMessage("NOK");
                 }
             } while (true);
-            updateView();
             if (newGame.roundGameEnded())
             {
                 gameEnded(newGame.lessTowersMoreProfessors());
                 break;
             }
             playerSockets.get(currentPlayer).sendMessage("LOCK");
+            updateView();
         }
     }
 
@@ -339,6 +348,7 @@ public class GameController
         }
 
         playerSockets.get(players.get(playerID)).sendMessage("OK");
+        updateView();
     }
 
     private void gameEnded(int playerID)

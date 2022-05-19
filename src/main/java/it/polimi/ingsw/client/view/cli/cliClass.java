@@ -109,19 +109,19 @@ public class cliClass implements ViewInterface
 
             case "GAME":
                 flushCLI();
-                System.out.println("The game started! Select your wizard [WIZARD1-4] :");
+                System.out.println("The game started! Select your wizard [WIZARD1-4]: ");
                 break;
             case "HELPER":
                 System.out.println("Select your helper card[1-10]: ");
                 break;
             case "ETX":
-                System.out.println("Move a student from your entrance to Islands/Tables" + (expertMode == true ? " or play an effect": ""));
+                System.out.println("Move a student from your entrance to Islands/Tables" + (expertMode == true ? " or play an effect": "")+": ");
                 break;
             case "NATURE":
-                System.out.println("Select Mother Nature's number of steps" + (expertMode == true ? " or play an effect": ""));
+                System.out.println("Select Mother Nature's number of steps" + (expertMode == true ? " or play an effect": "")+": ");
                 break;
             case "CTE":
-                System.out.println("Select a cloud to refill the entrance" + (expertMode == true ? " or play an effect": ""));
+                System.out.println("Select a cloud to refill the entrance" + (expertMode == true ? " or play an effect": "")+": ");
                 break;
 
             case "WAIT":
@@ -383,7 +383,7 @@ public class cliClass implements ViewInterface
         {
             if (controller.requestString(input))
             {
-                System.out.println("Correctly moved student "+parsedMessage.get(1));
+                System.out.println("Correctly moved student "+parsedMessage.get(1)+".");
                 countETX++;
                 if (countETX == 3)
                 {
@@ -401,7 +401,7 @@ public class cliClass implements ViewInterface
         {
             if (controller.requestString(input))
             {
-                System.out.println("Correctly played effect "+parsedMessage.get(1));
+                System.out.println("Correctly played effect "+parsedMessage.get(1)+".");
                 playedEffect = true;
             }
             else
@@ -413,7 +413,7 @@ public class cliClass implements ViewInterface
         {
             System.out.println("Malformed Input, try again: ");
         }
-        System.out.println("You can still move a student" + (expertMode == true ? " or play an effect": ""));
+        System.out.println("You can still move a student" + (expertMode == true ? " or play an effect card": "") +": ");
     }
 
     private void parseNature(String input)
@@ -423,8 +423,9 @@ public class cliClass implements ViewInterface
         {
             if (controller.requestString(input))
             {
-                System.out.println("Correctly moved Mother Nature");
+                System.out.println("Correctly moved Mother Nature.");
                 changeState("CTE");
+                return;
             }
             else
             {
@@ -435,7 +436,7 @@ public class cliClass implements ViewInterface
         {
             if (controller.requestString(input))
             {
-                System.out.println("Correctly played effect "+parsedMessage.get(1));
+                System.out.println("Correctly played effect "+parsedMessage.get(1)+".");
                 playedEffect = true;
             }
             else
@@ -447,7 +448,7 @@ public class cliClass implements ViewInterface
         {
             System.out.println("Malformed Input or illegal move, try again: ");
         }
-        System.out.println("You can still move a student" + (expertMode == true ? " or play an effect": ""));
+        System.out.println("You still need to move mother nature" + (expertMode == true ? " or play an effect card": "") +": ");
     }
 
     private void parseCTE(String input)
@@ -457,12 +458,13 @@ public class cliClass implements ViewInterface
         {
             if (controller.requestString(input))
             {
-                System.out.println("Correctly filled the entrance with students from island "+Integer.parseInt(parsedMessage.get(1)));
+                System.out.println("Correctly filled the entrance with students from island "+Integer.parseInt(parsedMessage.get(1))+".");
                 changeState("CTE");
                 changeState("LOCK");
                 waitUnlock();
                 System.out.println("fine wait");
                 changeState("HELPER");
+                return;
             }
             else
             {
@@ -473,7 +475,7 @@ public class cliClass implements ViewInterface
         {
             if (controller.requestString(input))
             {
-                System.out.println("Correctly played effect "+parsedMessage.get(1));
+                System.out.println("Correctly played effect "+parsedMessage.get(1)+".");
                 playedEffect = true;
             }
             else
@@ -485,7 +487,7 @@ public class cliClass implements ViewInterface
         {
             System.out.println("Malformed Input or illegal move, try again: ");
         }
-        System.out.println("You can still move a student" + (expertMode == true ? " or play an effect": ""));
+        System.out.println("You still need to select a cloud" + (expertMode == true ? " or play an effect card": "") +": ");
     }
 
     //QUIT
