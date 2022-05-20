@@ -49,6 +49,7 @@ public class WizardController {
         scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
         stage.setTitle("Ip and Port");
         stage.setScene(scene);
+        //ExternalDashboardController controller = new ExternalDashboardController();
 
         stage.show();
 
