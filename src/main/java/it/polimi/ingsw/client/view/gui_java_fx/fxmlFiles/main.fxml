@@ -27,7 +27,7 @@
                      <children>
                         <ImageView fx:id="dashboard"  fitHeight="${centralPane.height}" fitWidth="${centralPane.width}" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../../resources/dashboard.png" />
+                              <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
                            </image>
                         </ImageView>
                         <GridPane gridLinesVisible="true" prefHeight="${dashboard.fitHeight}" scaleShape="false">
@@ -68,6 +68,270 @@
                               <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                  <image>
                                     <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="3">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/redDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="5">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="7">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/pinkDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="9">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/blueDisk.png" />
                                  </image></ImageView>
                            </children>
                         </GridPane>
