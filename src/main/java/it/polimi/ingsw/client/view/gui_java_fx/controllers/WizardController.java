@@ -41,7 +41,7 @@ public class WizardController {
         if(mouseEvent.getSource().equals(wizard4)){
             System.out.println("MAGO4");
         }
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/provaaa.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/main.fxml").toURI().toURL());
         root = loader.load();
         root.setId("dashboard");
         stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
@@ -54,13 +54,14 @@ public class WizardController {
         stage.setScene(scene);
 
 
+        /*
         PaneShift controller = loader.getController();
         controller.setScene(scene);
         System.out.println("Scene: " + scene);
 
         //ExternalDashboardController controller = new ExternalDashboardController();
         controller.listen();
-
+*/
 
         stage.show();
 

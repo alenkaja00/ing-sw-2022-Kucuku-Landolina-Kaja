@@ -39,9 +39,8 @@ public class ExternalDashboardController {
 
     @FXML
     public void initialize() {
-        System.out.println("sld(jfn");
-        Image image = new Image(getClass().getResource("greenDisk.png").toString());
-        gridPane.add(new ImageView(image),1,2);
+
+
     }
 
 

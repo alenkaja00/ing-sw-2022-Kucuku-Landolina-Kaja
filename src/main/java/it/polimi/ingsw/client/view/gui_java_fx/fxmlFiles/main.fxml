@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.ExternalDashboardController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" percentWidth="70.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" percentHeight="85.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <ScrollPane fx:id="centralPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="-Infinity" prefWidth="300.0" vbarPolicy="NEVER" GridPane.columnIndex="1">
+         <content>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="dashboard"  fitHeight="${centralPane.height}" fitWidth="${centralPane.width}" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../resources/dashboard.png" />
+                           </image>
+                        </ImageView>
+                        <GridPane gridLinesVisible="true" prefHeight="${dashboard.fitHeight}" scaleShape="false">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="10.0" percentWidth="3.45" prefWidth="20.600003051757813" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.0" minWidth="0.0" percentWidth="1.8" prefWidth="9.666654205322274" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.93331909179686" minWidth="0.0" percentWidth="4.0" prefWidth="25.933337402343746" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.46665344238282" minWidth="10.0" percentWidth="5.0" prefWidth="29.600024414062503" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" percentWidth="4.77" prefWidth="21.4000244140625" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.8" minWidth="0.0" percentWidth="4.77" prefWidth="30.999975585937506" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.80003356933594" minWidth="7.86664733886721" percentWidth="4.77" prefWidth="32.33332519531248" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.40000915527344" minWidth="10.0" percentWidth="4.77" prefWidth="30.4666748046875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.99998474121094" minWidth="10.0" percentWidth="4.77" prefWidth="26.466680908203102" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.77" prefWidth="23.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.77" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.77" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.77" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.77" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.5" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="4.55" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="362.4666442871094" minWidth="10.0" percentWidth="24.9" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" percentHeight="12.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="6.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="9.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="7.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="9.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="9.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ImageView fitHeight="${dashboard.fitWidth*0.047}" fitWidth="${dashboard.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <image>
+                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                 </image></ImageView>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </StackPane>
+               </children>
+            </StackPane>
+         </content>
+      </ScrollPane>
+      <ScrollPane hbarPolicy="NEVER" opacity="0.0" vbarPolicy="NEVER" />
+   </children>
+</GridPane>
