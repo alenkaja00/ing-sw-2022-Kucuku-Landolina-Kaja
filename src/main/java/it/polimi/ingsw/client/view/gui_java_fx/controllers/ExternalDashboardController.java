@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
 public class ExternalDashboardController {
@@ -303,6 +304,9 @@ public class ExternalDashboardController {
         dashboard.addToTables(ColoredDisc.BLUE);
         dashboard.addToTables(ColoredDisc.BLUE);
         dashboard.AddToEntrance(ColoredDisc.GREEN,0);
+        HashSet<ColoredDisc> set = new HashSet<>();
+        set.add(ColoredDisc.BLUE);
+        dashboard.professorSpots = set;
 
         updateDashboard(dashboard);
 
