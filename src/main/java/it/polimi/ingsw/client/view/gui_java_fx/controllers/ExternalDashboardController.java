@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -211,6 +212,9 @@ public class ExternalDashboardController {
 
     ArrayList<ImageView> Towers;
 
+    ColoredDisc clicked;
+
+
     @FXML
     public void initialize() {
 
@@ -298,12 +302,14 @@ public class ExternalDashboardController {
         Towers.add(Towers6);
         Towers.add(Towers7);
 
+        clicked = null;
 
         Dashboard dashboard = new Dashboard(3);
         dashboard.addToTables(ColoredDisc.RED);
         dashboard.addToTables(ColoredDisc.BLUE);
         dashboard.addToTables(ColoredDisc.BLUE);
         dashboard.AddToEntrance(ColoredDisc.GREEN,0);
+        dashboard.AddToEntrance(ColoredDisc.YELLOW,1);
         HashSet<ColoredDisc> set = new HashSet<>();
         set.add(ColoredDisc.BLUE);
         dashboard.professorSpots = set;
@@ -348,7 +354,7 @@ public class ExternalDashboardController {
 
         if(disc==null)
         {
-            student.setVisible(false);
+            student.setOpacity(0.0);
             return;
         }
 
@@ -370,13 +376,15 @@ public class ExternalDashboardController {
                 image = blueImage;
         }
 
+        student.setOpacity(1.0);
         student.setImage(image);
 
     }
 
     public void updateGenericImage(Boolean bool, ImageView generic)
     {
-        generic.setVisible(bool);
+        if(bool) generic.setOpacity(1.0);
+        else generic.setOpacity(0.0);
     }
     public ColoredDisc fromIndexToColor(int ind)
     {
@@ -401,6 +409,46 @@ public class ExternalDashboardController {
         }
         return disc;
     }
+
+
+    public void clickAttempt(MouseEvent mouseEvent) {
+
+        Image image = null;
+        for(int i=0; i<Entrance.size();i++)
+        {
+            if(Entrance.get(i).equals(mouseEvent.getSource())) image = Entrance.get(i).getImage();
+        }
+        if(image!=null)
+        {
+            if(image.equals(greenImage))
+            {
+                System.out.println("green");
+                clicked = ColoredDisc.GREEN;
+            }
+            if(image.equals(redImage))
+            {
+                System.out.println("red");
+                clicked = ColoredDisc.RED;
+            }
+            if(image.equals(yellowImage))
+            {
+                System.out.println("yellow");
+                clicked = ColoredDisc.YELLOW;
+            }
+            if(image.equals(pinkImage))
+            {
+                System.out.println("pink");
+                clicked = ColoredDisc.PINK;
+            }
+            if(image.equals(blueImage))
+            {
+                System.out.println("blue");
+                clicked = ColoredDisc.BLUE;
+            }
+
+        }
+    }
+
 
 
 }
