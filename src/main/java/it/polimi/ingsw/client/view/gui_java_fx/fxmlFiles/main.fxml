@@ -30,7 +30,7 @@
                               <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
                            </image>
                         </ImageView>
-                        <GridPane gridLinesVisible="true" minHeight="0" minWidth="0" prefHeight="${dashboard.fitHeight}" prefWidth="${dashboard.fitWidth}" scaleShape="false">
+                        <GridPane fx:id="dashboardGrid" gridLinesVisible="true" minHeight="0" minWidth="0" prefHeight="${dashboard.fitHeight}" prefWidth="${dashboard.fitWidth}" scaleShape="false" onMouseClicked="#MoveToDashboard">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="10.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />

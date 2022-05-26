@@ -3,29 +3,18 @@ package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Dashboard;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.concurrent.TimeUnit;
 
 public class ExternalDashboardController {
 
@@ -40,6 +29,12 @@ public class ExternalDashboardController {
     @FXML
     private GridPane gridPane;
 
+    @FXML
+    private GridPane dashboardGrid;
+
+
+    @FXML
+    private ImageView dashboard;
 
 
     @FXML
@@ -212,7 +207,12 @@ public class ExternalDashboardController {
 
     ArrayList<ImageView> Towers;
 
-    ColoredDisc clicked;
+    int entranceClicked;
+
+    Boolean tablesClicked;
+
+    HashMap<ColoredDisc,Integer> TablesBool;
+
 
 
     @FXML
@@ -302,7 +302,15 @@ public class ExternalDashboardController {
         Towers.add(Towers6);
         Towers.add(Towers7);
 
-        clicked = null;
+        entranceClicked = -1;
+
+        tablesClicked = false;
+
+        TablesBool = new HashMap<>();
+        for(ColoredDisc disc : ColoredDisc.values())
+        {
+            TablesBool.put(disc,0);
+        }
 
         Dashboard dashboard = new Dashboard(3);
         dashboard.addToTables(ColoredDisc.RED);
@@ -340,6 +348,8 @@ public class ExternalDashboardController {
             }
 
             //Professors
+
+            TablesBool.put(fromIndexToColor(i),dashboard.SittedStudents(fromIndexToColor(i)));
 
             updateGenericImage(dashboard.professorSpots.contains(fromIndexToColor(i)),Professors.get(i));
         }
@@ -410,9 +420,36 @@ public class ExternalDashboardController {
         return disc;
     }
 
+    public int fromColorToIndex(ColoredDisc disc)
+    {
+        int index = -1;
+        switch (disc)
+        {
+            case GREEN:
+                index = 0;
+                break;
+
+            case RED:
+                index =1;
+                break;
+
+            case YELLOW:
+                index = 2;
+                break;
+
+            case PINK:
+                index = 3;
+                break;
+            case BLUE:
+                index = 4;
+                break;
+        }
+        return index;
+    }
+
 
     public void clickAttempt(MouseEvent mouseEvent) {
-
+        /*
         Image image = null;
         for(int i=0; i<Entrance.size();i++)
         {
@@ -420,35 +457,59 @@ public class ExternalDashboardController {
         }
         if(image!=null)
         {
+
             if(image.equals(greenImage))
             {
                 System.out.println("green");
-                clicked = ColoredDisc.GREEN;
+                entranceClicked = ColoredDisc.GREEN;
             }
             if(image.equals(redImage))
             {
                 System.out.println("red");
-                clicked = ColoredDisc.RED;
+                entranceClicked = ColoredDisc.RED;
             }
             if(image.equals(yellowImage))
             {
                 System.out.println("yellow");
-                clicked = ColoredDisc.YELLOW;
+                entranceClicked = ColoredDisc.YELLOW;
             }
             if(image.equals(pinkImage))
             {
                 System.out.println("pink");
-                clicked = ColoredDisc.PINK;
+                entranceClicked = ColoredDisc.PINK;
             }
             if(image.equals(blueImage))
             {
                 System.out.println("blue");
-                clicked = ColoredDisc.BLUE;
+                entranceClicked = ColoredDisc.BLUE;
             }
 
+        }
+
+        tablesClicked = null;
+        */
+
+        for(int i=0;i<Entrance.size();i++)
+        {
+            if(Entrance.get(i).equals(mouseEvent.getSource()))
+            {
+                entranceClicked = i;
+                tablesClicked = false;
+            }
         }
     }
 
 
+    public void MoveToDashboard(MouseEvent mouseEvent)
+    {
+        if(entranceClicked == -1)return;
 
+        if(mouseEvent.getX() < dashboard.getFitWidth()*0.16) return;
+
+
+        System.out.println("ETT "+entranceClicked);
+        entranceClicked = -1;
+        tablesClicked = true;
+
+    }
 }
