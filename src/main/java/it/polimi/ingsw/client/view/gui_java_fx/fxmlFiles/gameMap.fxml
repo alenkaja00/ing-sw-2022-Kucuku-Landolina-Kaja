@@ -96,12 +96,12 @@
                                  </image></ImageView>
                               <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
-                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="cloud33" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid34" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid33" onMouseClicked="#selectCloud" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -117,22 +117,22 @@
                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <ImageView fx:id="studentThree31" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/redDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ImageView fx:id="studentThree32" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/greenDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                          <ImageView fx:id="studentThree33" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                          <ImageView fx:id="studentThree34" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                              </image>
@@ -143,12 +143,12 @@
                               </StackPane>
                               <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <children>
-                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="cloud31" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid32" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid31" onMouseClicked="#selectCloud" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -164,22 +164,22 @@
                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <ImageView fx:id="studentThree11" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/redDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ImageView fx:id="studentThree12" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/greenDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                          <ImageView fx:id="studentThree13" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                          <ImageView fx:id="studentThree14" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                              </image>
@@ -190,12 +190,12 @@
                               </StackPane>
                               <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <children>
-                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="cloud32" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid33" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid32" onMouseClicked="#selectCloud" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -211,22 +211,22 @@
                                            <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <ImageView fx:id="studentThree21" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/redDisk.png" />
                                              </image>
                                           </ImageView>
-                                           <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                           <ImageView fx:id="studentThree22" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                <image>
                                                    <Image url="@../../../../../../../../resources/greenDisk.png" />
                                                </image>
                                            </ImageView>
-                                           <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                           <ImageView fx:id="studentThree23" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                <image>
                                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                                </image>
                                            </ImageView>
-                                           <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                           <ImageView fx:id="studentThree24" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                                <image>
                                                    <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                                </image>
@@ -235,14 +235,14 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <StackPane disable="true" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
-                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="cloud21" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/cloud1.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid23" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid21" onMouseClicked="#selectCloud" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="12.0" prefWidth="11.400012207031246" />
@@ -256,17 +256,17 @@
                                           <RowConstraints maxHeight="77.133349609375" minHeight="0.0" percentHeight="38.0" prefHeight="47.333321380615224" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid23.width*0.41}" fitWidth="${cloudGrid23.width*0.41}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <ImageView fx:id="student11" fitHeight="${cloudGrid21.width*0.41}" fitWidth="${cloudGrid21.width*0.41}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/redDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid23.width*0.48}" fitWidth="${cloudGrid23.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                          <ImageView fx:id="student12" fitHeight="${cloudGrid21.width*0.48}" fitWidth="${cloudGrid21.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/pinkDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid23.width*0.48}" fitWidth="${cloudGrid23.width*0.48}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ImageView fx:id="student13" fitHeight="${cloudGrid21.width*0.48}" fitWidth="${cloudGrid21.width*0.48}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/pinkDisk.png" />
                                              </image>
@@ -275,14 +275,14 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane GridPane.columnIndex="4" GridPane.rowIndex="3">
+                              <StackPane disable="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                  <children>
-                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="cloud22" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/cloud2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid43" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid22" onMouseClicked="#selectCloud" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="12.0" prefWidth="11.400012207031246" />
@@ -296,17 +296,17 @@
                                           <RowConstraints maxHeight="77.133349609375" minHeight="0.0" percentHeight="38.0" prefHeight="47.333321380615224" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid43.width*0.42}" fitWidth="${cloudGrid43.width*0.42}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <ImageView fx:id="student21" fitHeight="${cloudGrid22.width*0.42}" fitWidth="${cloudGrid22.width*0.42}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid43.width*0.48}" fitWidth="${cloudGrid43.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                          <ImageView fx:id="student22" fitHeight="${cloudGrid22.width*0.48}" fitWidth="${cloudGrid22.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/blueDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid43.width*0.42}" fitWidth="${cloudGrid43.width*0.42}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ImageView fx:id="student23" fitHeight="${cloudGrid22.width*0.42}" fitWidth="${cloudGrid22.width*0.42}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/greenDisk.png" />
                                              </image>
@@ -335,7 +335,7 @@
                                     <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
                                  </image>
                               </ImageView>
-                              <GridPane gridLinesVisible="false" minHeight="0" minWidth="0" prefHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false" onMouseClicked="#MoveToDashboard">
+                              <GridPane gridLinesVisible="false" minHeight="0" minWidth="0" onMouseClicked="#MoveToDashboard" prefHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="0.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -752,43 +752,43 @@
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance0" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                    <ImageView fx:id="dashboard1Entrance0" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance1" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <ImageView fx:id="dashboard1Entrance1" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance2" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                    <ImageView fx:id="dashboard1Entrance2" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance3" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <ImageView fx:id="dashboard1Entrance3" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance4" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                    <ImageView fx:id="dashboard1Entrance4" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance5" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <ImageView fx:id="dashboard1Entrance5" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard1Entrance6" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                    <ImageView fx:id="dashboard1Entrance6" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
@@ -1259,7 +1259,7 @@
                                  </image></ImageView>
                            </children>
                            <children>
-                              <ImageView fx:id="dashboard2Entrance4" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" onMouseClicked="#clickAttempt" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                              <ImageView fx:id="dashboard2Entrance4" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" onMouseClicked="#clickAttempt" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                  <image>
                                     <Image url="@../../../../../../../../resources/redDisk.png" />
                                  </image></ImageView>
@@ -1749,25 +1749,25 @@
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard3Entrance5" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}" pickOnBounds="true"  GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <ImageView fx:id="dashboard3Entrance5" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard3Entrance6" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}" pickOnBounds="true"  GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                    <ImageView fx:id="dashboard3Entrance6" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard3Entrance7" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}"  pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                    <ImageView fx:id="dashboard3Entrance7" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
                                  </children>
                                  <children>
-                                    <ImageView fx:id="dashboard3Entrance8" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}"  pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                    <ImageView fx:id="dashboard3Entrance8" fitHeight="${dashboard3.fitWidth*0.047}" fitWidth="${dashboard3.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
                                        <image>
                                           <Image url="@../../../../../../../../resources/redDisk.png" />
                                        </image></ImageView>
