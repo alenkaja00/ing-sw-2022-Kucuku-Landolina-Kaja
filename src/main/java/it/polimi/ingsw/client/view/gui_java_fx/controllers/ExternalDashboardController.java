@@ -349,8 +349,6 @@ public class ExternalDashboardController {
 
             //Professors
 
-            TablesBool.put(fromIndexToColor(i),dashboard.SittedStudents(fromIndexToColor(i)));
-
             updateGenericImage(dashboard.professorSpots.contains(fromIndexToColor(i)),Professors.get(i));
         }
 
