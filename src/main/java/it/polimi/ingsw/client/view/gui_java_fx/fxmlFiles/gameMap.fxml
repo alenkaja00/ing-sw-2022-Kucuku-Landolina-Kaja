@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.SceneController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.GameMapController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" prefWidth="100.0" />
@@ -94,28 +94,143 @@
                                  <image>
                                     <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                  </image></ImageView>
-                              <StackPane disable="true" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/cloud4.png" />
+                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="true" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid34" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                        <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="12.0" prefWidth="11.400012207031246" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="38.0" prefWidth="56.79998779296875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="66.66666355133057" minHeight="0.0" percentHeight="15.0" prefHeight="47.133331060409546" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="77.133349609375" minHeight="0.0" percentHeight="36.0" prefHeight="47.333321380615224" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="77.133349609375" minHeight="0.0" percentHeight="41.0" prefHeight="47.333321380615224" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/redDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="${cloudGrid34.width*0.28}" fitWidth="${cloudGrid34.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                       </image>
+                                    </ImageView>
+                                    <GridPane fx:id="cloudGrid32" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/redDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </StackPane>
+                              <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <children>
+                                    <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                       </image>
+                                    </ImageView>
+                                    <GridPane fx:id="cloudGrid33" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
+                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/redDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                           <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                               <image>
+                                                   <Image url="@../../../../../../../../resources/greenDisk.png" />
+                                               </image>
+                                           </ImageView>
+                                           <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                               <image>
+                                                   <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                               </image>
+                                           </ImageView>
+                                           <ImageView fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                               <image>
+                                                   <Image url="@../../../../../../../../resources/yellowDisk.png" />
+                                               </image>
+                                           </ImageView>
                                        </children>
                                     </GridPane>
                                  </children>
@@ -127,7 +242,7 @@
                                           <Image url="@../../../../../../../../resources/cloud1.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid23" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="12.0" prefWidth="11.400012207031246" />
@@ -141,17 +256,17 @@
                                           <RowConstraints maxHeight="77.133349609375" minHeight="0.0" percentHeight="38.0" prefHeight="47.333321380615224" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid.width*0.41}" fitWidth="${cloudGrid.width*0.41}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <ImageView fitHeight="${cloudGrid23.width*0.41}" fitWidth="${cloudGrid23.width*0.41}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/redDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid.width*0.48}" fitWidth="${cloudGrid.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                          <ImageView fitHeight="${cloudGrid23.width*0.48}" fitWidth="${cloudGrid23.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/pinkDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid.width*0.48}" fitWidth="${cloudGrid.width*0.48}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ImageView fitHeight="${cloudGrid23.width*0.48}" fitWidth="${cloudGrid23.width*0.48}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/pinkDisk.png" />
                                              </image>
@@ -167,7 +282,7 @@
                                           <Image url="@../../../../../../../../resources/cloud2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid2" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
+                                    <GridPane fx:id="cloudGrid43" gridLinesVisible="false" minHeight="0.0" minWidth="0.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="12.0" prefWidth="11.400012207031246" />
@@ -181,17 +296,17 @@
                                           <RowConstraints maxHeight="77.133349609375" minHeight="0.0" percentHeight="38.0" prefHeight="47.333321380615224" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fitHeight="${cloudGrid2.width*0.42}" fitWidth="${cloudGrid2.width*0.42}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <ImageView fitHeight="${cloudGrid43.width*0.42}" fitWidth="${cloudGrid43.width*0.42}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/yellowDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid.width*0.48}" fitWidth="${cloudGrid.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                          <ImageView fitHeight="${cloudGrid43.width*0.48}" fitWidth="${cloudGrid43.width*0.48}" pickOnBounds="true" GridPane.columnIndex="0" GridPane.rowIndex="2">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/blueDisk.png" />
                                              </image>
                                           </ImageView>
-                                          <ImageView fitHeight="${cloudGrid.width*0.42}" fitWidth="${cloudGrid.width*0.42}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <ImageView fitHeight="${cloudGrid43.width*0.42}" fitWidth="${cloudGrid43.width*0.42}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <image>
                                                 <Image url="@../../../../../../../../resources/greenDisk.png" />
                                              </image>
