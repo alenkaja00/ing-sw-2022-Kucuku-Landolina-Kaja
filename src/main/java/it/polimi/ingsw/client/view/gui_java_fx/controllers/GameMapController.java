@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.TilePane;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -560,6 +561,33 @@ public class GameMapController {
 
 
     @FXML
+    private TilePane tilePane1;
+    @FXML
+    private TilePane tilePane2;
+    @FXML
+    private TilePane tilePane3;
+    @FXML
+    private TilePane tilePane4;
+    @FXML
+    private TilePane tilePane5;
+    @FXML
+    private TilePane tilePane6;
+    @FXML
+    private TilePane tilePane7;
+    @FXML
+    private TilePane tilePane8;
+    @FXML
+    private TilePane tilePane9;
+    @FXML
+    private TilePane tilePane10;
+    @FXML
+    private TilePane tilePane11;
+    @FXML
+    private TilePane tilePane12;
+
+
+
+    @FXML
     public void initialize() {
 
         //Entrance4.setImage(yellowImage);
@@ -900,6 +928,12 @@ public class GameMapController {
         if( index != -1)
             System.out.println("CTE "+ index+ " "+ version);
 
+
+    }
+
+    public void island1clicked(MouseEvent mouseEvent) {
+        IslandHandler handler = new IslandHandler();
+        handler.addStudent(tilePane1,ColoredDisc.BLUE);
 
     }
 }

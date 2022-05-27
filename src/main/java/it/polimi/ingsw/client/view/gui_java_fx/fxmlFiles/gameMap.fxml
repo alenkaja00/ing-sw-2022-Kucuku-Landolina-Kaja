@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.TilePane?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.GameMapController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" prefWidth="100.0" />
@@ -53,54 +54,138 @@
                               <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="4">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.valignment="TOP">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="7" GridPane.valignment="TOP">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="TOP">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                 </image></ImageView>
-                              <ImageView fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <image>
-                                    <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                 </image></ImageView>
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                 <children>
+                                    <ImageView fx:id="island1" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true" >
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#island1clicked" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                 <children>
+                                    <ImageView fx:id="island2" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane2" maxHeight="${island2.fitHeight}" maxWidth="${island2.fitWidth}" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                                 <children>
+                                    <ImageView fx:id="island3" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                                 <children>
+                                    <ImageView fx:id="island4" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                                 <children>
+                                    <ImageView fx:id="island5" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                 <children>
+                                    <ImageView fx:id="island6" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                                 <children>
+                                    <ImageView fx:id="island7" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                 <children>
+                                    <ImageView fx:id="island8" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <children>
+                                    <ImageView fx:id="island9" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0"  GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <ImageView fx:id="island10" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <children>
+                                    <ImageView fx:id="island11" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <ImageView fx:id="island12" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                 </children>
+                              </StackPane>
+
                               <StackPane disable="true" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="cloud33" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#selectCloud" pickOnBounds="true">
@@ -1791,7 +1876,7 @@
                         </StackPane>
                      </children>
                      <StackPane.margin>
-                        <Insets />
+                        <Insets right="-20.0" />
                      </StackPane.margin>
                   </VBox>
                </children>
