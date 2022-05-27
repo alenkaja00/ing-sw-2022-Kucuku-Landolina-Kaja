@@ -41,9 +41,9 @@ public class WizardController {
         if(mouseEvent.getSource().equals(wizard4)){
             System.out.println("MAGO4");
         }
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/main.fxml").toURI().toURL());
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/gameMap.fxml").toURI().toURL());
         root = loader.load();
-        root.setId("dashboard");
+        root.setId("gameMap");
         stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
 

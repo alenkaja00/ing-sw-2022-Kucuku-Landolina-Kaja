@@ -2,39 +2,53 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ContextMenu?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController">
+<GridPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController" >
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="20.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="40.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="40.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <VBox alignment="CENTER" layoutX="547.0" layoutY="331.0" prefHeight="350.0" prefWidth="246.0" AnchorPane.bottomAnchor="118.60000000000002" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="486.6" AnchorPane.topAnchor="331.0">
+      <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField id="ipTextField" fx:id="ipTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nicknameScene" prefHeight="30.0" prefWidth="228.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="327.0" text="Server Address">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField id="ipTextField" fx:id="ipTextField" onAction="#nicknameScene" prefHeight="30.0" prefWidth="0.0">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
             </TextField>
-            <TextField id="portTextField" fx:id="portTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nicknameScene" prefHeight="30.0" prefWidth="228.0" />
-            <Button id="submitButton" fx:id="submitButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nicknameScene" prefHeight="92.0" prefWidth="228.0" text="SUBMIT">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="327.0" text="Port">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField id="portTextField" fx:id="portTextField" onAction="#nicknameScene" prefHeight="30.0" prefWidth="228.0" />
+            <Button id="submitButton" fx:id="submitButton" mnemonicParsing="false" onAction="#nicknameScene" prefHeight="92.0" prefWidth="291.0" text="SUBMIT">
                <font>
                   <Font name="Book Antiqua Italic" size="28.0" />
                </font>
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
-               <contextMenu>
-                  <ContextMenu>
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                     </items>
-                  </ContextMenu>
-               </contextMenu>
             </Button>
          </children>
       </VBox>
    </children>
-</AnchorPane>
+</GridPane>
