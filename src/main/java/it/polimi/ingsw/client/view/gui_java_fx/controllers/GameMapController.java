@@ -1,8 +1,8 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
-import it.polimi.ingsw.server.model.components.Cloud;
-import it.polimi.ingsw.server.model.components.ColoredDisc;
-import it.polimi.ingsw.server.model.components.Dashboard;
+import com.google.gson.Gson;
+import it.polimi.ingsw.server.model.components.*;
+import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
@@ -36,6 +36,8 @@ public class GameMapController {
 
     private ArrayList<GridPane> CloudTwoGrids;
     private ArrayList<GridPane> CloudThreeGrids;
+
+    private ArrayList<TilePane> Tilepanes;
 
 
     private int entranceClicked;
@@ -585,6 +587,13 @@ public class GameMapController {
     @FXML
     private TilePane tilePane12;
 
+    private Gson gson;
+    private GameClass gameData;
+
+
+    private ArrayList<ArrayList<ImageView>> Entrances;
+    private ArrayList<ArrayList<ImageView>> AllTables;
+    private ArrayList<ArrayList<ImageView>> AllProfessors;
 
 
     @FXML
@@ -859,6 +868,33 @@ public class GameMapController {
         CloudThreeGrids.add(cloudGrid31);
 
 
+        Tilepanes.add(tilePane1);
+        Tilepanes.add(tilePane2);
+        Tilepanes.add(tilePane3);
+        Tilepanes.add(tilePane4);
+        Tilepanes.add(tilePane5);
+        Tilepanes.add(tilePane6);
+        Tilepanes.add(tilePane7);
+        Tilepanes.add(tilePane8);
+        Tilepanes.add(tilePane9);
+        Tilepanes.add(tilePane10);
+        Tilepanes.add(tilePane11);
+        Tilepanes.add(tilePane12);
+
+        Entrances = new ArrayList<>();
+        Entrances.add(Entrance1);
+        Entrances.add(Entrance2);
+        Entrances.add(Entrance3);
+
+        AllTables = new ArrayList<>();
+        AllTables.add(Tables1);
+        AllTables.add(Tables2);
+        AllTables.add(Tables3);
+
+        AllProfessors = new ArrayList<>();
+        AllProfessors.add(Professors1);
+        AllProfessors.add(Professors2);
+        AllProfessors.add(Professors3);
 
         entranceClicked = -1;
         tablesClicked = false;
@@ -878,6 +914,8 @@ public class GameMapController {
         handler.updateDashboard(dashboard, Entrance1, Tables1, Professors1);
         handler.updateDashboard(dashboard, Entrance2, Tables2, Professors2);
         handler.updateDashboard(dashboard, Entrance3, Tables3, Professors3);
+
+
 
 
     }
@@ -931,9 +969,35 @@ public class GameMapController {
 
     }
 
-    public void island1clicked(MouseEvent mouseEvent) {
-        IslandHandler handler = new IslandHandler();
-        handler.addStudent(tilePane1,ColoredDisc.BLUE);
+    public void islandClicked(MouseEvent mouseEvent) {
+
+        if(entranceClicked==-1) return;
+
+        TilePane tilePane = (TilePane) mouseEvent.getSource();
+        String ID = tilePane.getId();
+        String[] IDchars = ID.split("");
+
+        System.out.println("ETI | "+  (ID.length()==10? IDchars[8] + IDchars[9]: IDchars[8]) +" " +entranceClicked);
+        entranceClicked = -1;
+    }
+
+    public void updateView(String json) {
+
+        gameData = gson.fromJson(json, GameClass.class);
+        DashboardHandler dashboardHandler = new DashboardHandler();
+        IslandHandler islandHandler = new IslandHandler();
+        int i=0;
+        for(Player player : gameData.getPlayers())
+        {
+            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i));
+        }
+        for(i =0; i<Tilepanes.size();i++)
+        {
+            islandHandler.updateIsland(Tilepanes.get(i),gameData.getIslands().get(i));
+        }
 
     }
-}
+
+
+
+    }

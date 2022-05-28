@@ -61,7 +61,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#island1clicked" />
+                                    <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -72,7 +72,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane2" maxHeight="${island2.fitHeight}" maxWidth="${island2.fitWidth}" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane2" maxHeight="${island2.fitHeight}" maxWidth="${island2.fitWidth}" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -83,7 +83,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -94,7 +94,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -105,7 +105,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -116,7 +116,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -127,7 +127,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -138,7 +138,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -149,7 +149,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -160,7 +160,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -171,7 +171,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
@@ -182,7 +182,7 @@
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" />
+                                    <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight}" maxWidth="${island1.fitWidth}" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;" onMouseClicked="#islandClicked" />
                                  </children>
                               </StackPane>
 
