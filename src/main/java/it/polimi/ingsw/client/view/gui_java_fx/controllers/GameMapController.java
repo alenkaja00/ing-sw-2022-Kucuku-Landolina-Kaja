@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
@@ -591,6 +592,15 @@ public class GameMapController {
     private GameClass gameData;
 
 
+    private ArrayList<ImageView> Students11;
+    private ArrayList<ImageView> Students12;
+    private ArrayList<ImageView> StudentsThree1;
+    private ArrayList<ImageView> StudentsThree2;
+    private ArrayList<ImageView> StudentsThree3;
+
+    private ArrayList<ArrayList<ImageView>> AllCloudStudentsTwo;
+    private ArrayList<ArrayList<ImageView>> AllCloudStudentsThree;
+
     private ArrayList<ArrayList<ImageView>> Entrances;
     private ArrayList<ArrayList<ImageView>> AllTables;
     private ArrayList<ArrayList<ImageView>> AllProfessors;
@@ -856,18 +866,48 @@ public class GameMapController {
 
 
         CloudTwoGrids = new ArrayList<>();
-
         CloudTwoGrids.add(cloudGrid21);
         CloudTwoGrids.add(cloudGrid22);
+        Students11 = new ArrayList<>();
+        Students11.add(student11);
+        Students11.add(student12);
+        Students11.add(student13);
+        Students12 = new ArrayList<>();
+        Students12.add(student21);
+        Students12.add(student22);
+        Students12.add(student23);
 
+        AllCloudStudentsTwo = new ArrayList<>();
+        AllCloudStudentsTwo.add(Students11);
+        AllCloudStudentsTwo.add(Students12);
 
 
         CloudThreeGrids = new ArrayList<>();
         CloudThreeGrids.add(cloudGrid33);
         CloudThreeGrids.add(cloudGrid32);
         CloudThreeGrids.add(cloudGrid31);
+        StudentsThree1 = new ArrayList<>();
+        StudentsThree2 = new ArrayList<>();
+        StudentsThree3 = new ArrayList<>();
+        StudentsThree1.add(studentThree11);
+        StudentsThree1.add(studentThree12);
+        StudentsThree1.add(studentThree13);
+        StudentsThree1.add(studentThree14);
+        StudentsThree2.add(studentThree21);
+        StudentsThree2.add(studentThree22);
+        StudentsThree2.add(studentThree23);
+        StudentsThree2.add(studentThree24);
+        StudentsThree3.add(studentThree31);
+        StudentsThree3.add(studentThree32);
+        StudentsThree3.add(studentThree33);
+        StudentsThree3.add(studentThree34);
 
+        AllCloudStudentsThree = new ArrayList<>();
+        AllCloudStudentsThree.add(StudentsThree1);
+        AllCloudStudentsThree.add(StudentsThree2);
+        AllCloudStudentsThree.add(StudentsThree3);
 
+        Tilepanes = new ArrayList<>();
         Tilepanes.add(tilePane1);
         Tilepanes.add(tilePane2);
         Tilepanes.add(tilePane3);
@@ -986,6 +1026,8 @@ public class GameMapController {
         gameData = gson.fromJson(json, GameClass.class);
         DashboardHandler dashboardHandler = new DashboardHandler();
         IslandHandler islandHandler = new IslandHandler();
+        CloudHandler cloudHandler = new CloudHandler();
+
         int i=0;
         for(Player player : gameData.getPlayers())
         {
@@ -994,6 +1036,19 @@ public class GameMapController {
         for(i =0; i<Tilepanes.size();i++)
         {
             islandHandler.updateIsland(Tilepanes.get(i),gameData.getIslands().get(i));
+        }
+
+        //cloud management
+        for(i=0; i<gameData.getClouds().size(); i++)
+        {
+            if(gameData.getClouds().size()==2)
+            {
+                cloudHandler.updateCloud(AllCloudStudentsTwo.get(i), gameData.getClouds().get(i));
+            }
+            else if(gameData.getClouds().size()==3)
+            {
+                cloudHandler.updateCloud(AllCloudStudentsThree.get(i), gameData.getClouds().get(i));
+            }
         }
 
     }
