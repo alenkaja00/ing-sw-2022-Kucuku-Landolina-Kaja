@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Dashboard;
+import it.polimi.ingsw.server.model.components.Tower;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,10 +24,16 @@ public class DashboardHandler {
     Image pinkImage = new Image(pinkPath);
     Image blueImage = new Image(bluePath);
 
+    String blackPath = "/Towers1/black_tower.png";
+    String greyPath = "/Towers1/grey_tower.png";
+    String whitePath = "/Towers1/white_tower.png";
+
+    Image blackImage = new Image(blackPath);
+    Image greyImage = new Image(greyPath);
+    Image whiteImage = new Image(whitePath);
 
 
-
-    public void updateDashboard(Dashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors)
+    public void updateDashboard(Dashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors, ArrayList<ImageView> Towers, Tower towerColor)
     {
         // Update entrance :
         for(int i=0;i<dashboard.getEntranceSpots().length;i++)
@@ -52,7 +59,16 @@ public class DashboardHandler {
             updateGenericImage(dashboard.professorSpots.contains(fromIndexToColor(i)),Professors.get(i));
         }
 
+        //Towers:
 
+        for(int i=0;i<dashboard.TowerNumber();i++)
+        {
+            updateTower(towerColor,Towers.get(i));
+        }
+        for(int i = dashboard.TowerNumber();i<Towers.size();i++)
+        {
+            Towers.get(i).setOpacity(0.0);
+        }
 
     }
 
@@ -145,7 +161,31 @@ public class DashboardHandler {
         return index;
     }
 
+    public void updateTower(Tower towerColor, ImageView towerView)
+    {
+        Image image = getImageFromTower(towerColor);
+        towerView.setOpacity(1.0);
+        towerView.setImage(image);
+    }
 
+    public Image getImageFromTower(Tower towerColor)
+    {
+        Image image = null;
+        switch (towerColor)
+        {
+            case BLACK:
+                image = blackImage;
+                break;
+            case GREY:
+                image = greyImage;
+                break;
+            case WHITE:
+                image = whiteImage;
+                break;
+
+        }
+        return  image;
+    }
 
 
 
