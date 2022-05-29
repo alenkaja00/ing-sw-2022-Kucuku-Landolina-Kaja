@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
 import java.sql.Array;
@@ -45,6 +46,9 @@ public class GameMapController {
     private Boolean tablesClicked;
 
     private DashboardHandler handler;
+
+    @FXML
+    private StackPane stack3;
 
     @FXML
     private ImageView dashboard1;
@@ -1024,7 +1028,16 @@ public class GameMapController {
         for(Player player : gameData.getPlayers())
         {
             dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.getTowerColor());
+            i++;
         }
+
+        if(gameData.getPlayers().size() == 2)
+        {
+            stack3.setDisable(true);
+            stack3.setVisible(false);
+            stack3.setManaged(false);
+        }
+
         for(i =0; i<Tilepanes.size();i++)
         {
             islandHandler.updateIsland(Tilepanes.get(i),gameData.getIslands().get(i));

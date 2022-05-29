@@ -1391,7 +1391,7 @@
                            </VBox.margin>
                         </StackPane>
 
-                        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: blue;">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: blue;" fx:id="stack3">
                            <children>
                               <ImageView fx:id="dashboard3" fitHeight="${centralPane1.height}" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                  <image>
