@@ -15,8 +15,7 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.GameMapController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" percentWidth="35.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,7 +24,7 @@
    <children>
       <ScrollPane fx:id="centralPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
          <content>
-            <StackPane fx:id="firstStackPane" prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: green; -fx-background-color: transparent;">
+            <StackPane fx:id="firstStackPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                      <children>
@@ -85,9 +84,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -99,9 +96,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -113,9 +108,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -127,9 +120,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -141,9 +132,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -155,9 +144,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -169,9 +156,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -183,9 +168,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -197,9 +180,7 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
@@ -211,13 +192,11 @@
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       <StackPane.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                       </StackPane.margin></TilePane>
+                                       </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane disable="true" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane33" disable="true" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="cloud33" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
@@ -264,7 +243,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane disable="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane31" disable="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="cloud31" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
@@ -311,7 +290,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane disable="true" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane32" disable="true" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="cloud32" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
@@ -358,7 +337,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane21" disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="cloud21" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
@@ -400,7 +379,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane disable="false" visible="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane22" disable="false" visible="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="cloud22" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#selectCloud" pickOnBounds="true">
                                        <image>
@@ -449,13 +428,13 @@
             </StackPane>
          </content>
       </ScrollPane>
-      <ScrollPane fx:id="centralPane1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="-Infinity" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <ScrollPane fx:id="centralPane1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="-Infinity" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <content>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                <children>
-                  <VBox fx:id="vbox" prefWidth="${centralPane1.width}" style="-fx-background-color: transparent;" StackPane.alignment="CENTER">
+                  <VBox fx:id="vbox" alignment="CENTER_LEFT" prefWidth="${centralPane1.width}" style="-fx-background-color: transparent;" StackPane.alignment="CENTER_LEFT">
                      <children>
-                        <StackPane fx:id="stack1" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                        <StackPane fx:id="stack1" prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <ImageView fx:id="dashboard1" fitHeight="${centralPane1.height}" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -938,7 +917,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </StackPane>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: blue;">
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <ImageView fx:id="dashboard2" fitHeight="${centralPane1.height}" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -1422,7 +1401,7 @@
                            </VBox.margin>
                         </StackPane>
 
-                        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: blue;" fx:id="stack3">
+                        <StackPane fx:id="stack3" prefHeight="150.0" prefWidth="200.0">
                            <children>
                               <ImageView fx:id="dashboard3" fitHeight="${centralPane1.height}" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -1915,6 +1894,5 @@
          </content>
       </ScrollPane>
       <HBox style="-fx-background-color: cyan; " GridPane.columnSpan="2147483647" />
-      <VBox style="-fx-background-color: pink;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
 </GridPane>

@@ -49,6 +49,16 @@ public class GameMapController {
 
     @FXML
     private StackPane stack3;
+    @FXML
+    private StackPane cloudPane21;
+    @FXML
+    private StackPane cloudPane22;
+    @FXML
+    private StackPane cloudPane31;
+    @FXML
+    private StackPane cloudPane32;
+    @FXML
+    private StackPane cloudPane33;
 
     @FXML
     private ImageView dashboard1;
@@ -1036,6 +1046,19 @@ public class GameMapController {
             stack3.setDisable(true);
             stack3.setVisible(false);
             stack3.setManaged(false);
+        }
+        if(gameData.getPlayers().size() == 3)
+        {
+            cloudPane21.setDisable(true);
+            cloudPane21.setVisible(false);
+            cloudPane22.setDisable(true);
+            cloudPane22.setVisible(false);
+            cloudPane31.setDisable(false);
+            cloudPane31.setVisible(true);
+            cloudPane32.setDisable(false);
+            cloudPane32.setVisible(true);
+            cloudPane33.setDisable(false);
+            cloudPane33.setVisible(true);
         }
 
         for(i =0; i<Tilepanes.size();i++)
