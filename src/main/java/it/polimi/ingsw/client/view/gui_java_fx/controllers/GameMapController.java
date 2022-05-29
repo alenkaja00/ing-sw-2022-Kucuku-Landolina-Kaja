@@ -604,6 +604,7 @@ public class GameMapController {
     private ArrayList<ArrayList<ImageView>> Entrances;
     private ArrayList<ArrayList<ImageView>> AllTables;
     private ArrayList<ArrayList<ImageView>> AllProfessors;
+    private ArrayList<ArrayList<ImageView>> AllTowers;
 
 
     @FXML
@@ -936,6 +937,11 @@ public class GameMapController {
         AllProfessors.add(Professors2);
         AllProfessors.add(Professors3);
 
+        AllTowers = new ArrayList<>();
+        AllTowers.add(Towers1);
+        AllTowers.add(Towers2);
+        AllTowers.add(Towers3);
+
         entranceClicked = -1;
         tablesClicked = false;
 
@@ -949,11 +955,15 @@ public class GameMapController {
         HashSet<ColoredDisc> set = new HashSet<>();
         set.add(ColoredDisc.BLUE);
         dashboard.professorSpots = set;
+        dashboard.RemoveTower();
+        dashboard.RemoveTower();
+        dashboard.RemoveTower();
+
 
         handler = new DashboardHandler();
-        handler.updateDashboard(dashboard, Entrance1, Tables1, Professors1);
-        handler.updateDashboard(dashboard, Entrance2, Tables2, Professors2);
-        handler.updateDashboard(dashboard, Entrance3, Tables3, Professors3);
+        handler.updateDashboard(dashboard, Entrance1, Tables1, Professors1,Towers1,Tower.WHITE);
+        handler.updateDashboard(dashboard, Entrance2, Tables2, Professors2,Towers2,Tower.GREY);
+        handler.updateDashboard(dashboard, Entrance3, Tables3, Professors3, Towers3,Tower.BLACK);
 
 
 
@@ -1031,7 +1041,7 @@ public class GameMapController {
         int i=0;
         for(Player player : gameData.getPlayers())
         {
-            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i));
+            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.getTowerColor());
         }
         for(i =0; i<Tilepanes.size();i++)
         {
