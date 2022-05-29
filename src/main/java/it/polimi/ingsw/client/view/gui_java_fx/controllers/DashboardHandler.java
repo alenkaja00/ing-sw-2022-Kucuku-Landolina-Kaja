@@ -40,6 +40,10 @@ public class DashboardHandler {
         {
             updateEntranceSpot(dashboard.getEntranceSpots()[i],Entrance.get(i));
         }
+        for(int i = dashboard.getEntranceSpots().length; i< Entrance.size(); i++ )
+        {
+            Entrance.get(i).setOpacity(0.0);
+        }
 
         // Update Tables && Professors:
         for(int i=0 ; i<5; i++)
