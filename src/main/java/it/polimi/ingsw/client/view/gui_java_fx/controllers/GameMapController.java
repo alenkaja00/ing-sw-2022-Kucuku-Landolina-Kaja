@@ -588,7 +588,7 @@ public class GameMapController {
     @FXML
     private TilePane tilePane12;
 
-    private Gson gson;
+    private Gson gson = new Gson();
     private GameClass gameData;
 
 
@@ -946,28 +946,10 @@ public class GameMapController {
         tablesClicked = false;
 
 
-        Dashboard dashboard = new Dashboard(3);
-        dashboard.addToTables(ColoredDisc.RED);
-        dashboard.addToTables(ColoredDisc.BLUE);
-        dashboard.addToTables(ColoredDisc.BLUE);
-        dashboard.AddToEntrance(ColoredDisc.GREEN,0);
-        dashboard.AddToEntrance(ColoredDisc.YELLOW,1);
-        HashSet<ColoredDisc> set = new HashSet<>();
-        set.add(ColoredDisc.BLUE);
-        dashboard.professorSpots = set;
-        dashboard.RemoveTower();
-        dashboard.RemoveTower();
-        dashboard.RemoveTower();
 
+        String json = "{\"bag\":{\"bag\":{\"GREEN\":22,\"YELLOW\":22,\"PINK\":20,\"BLUE\":21,\"RED\":21},\"bagDimension\":26},\"GameID\":\"asd\",\"PlayerNumber\":2,\"islands\":[{\"ID\":0,\"graphicalIsland\":[0],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":1},\"towerList\":[],\"prohibited\":false},{\"ID\":1,\"graphicalIsland\":[1],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":1},\"towerList\":[],\"prohibited\":false},{\"ID\":2,\"graphicalIsland\":[2],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":3,\"graphicalIsland\":[3],\"students\":{\"GREEN\":0,\"YELLOW\":1,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":4,\"graphicalIsland\":[4],\"students\":{\"GREEN\":1,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":5,\"graphicalIsland\":[5],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":1,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":6,\"graphicalIsland\":[6],\"students\":{\"GREEN\":0,\"YELLOW\":1,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":7,\"graphicalIsland\":[7],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":1,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":8,\"graphicalIsland\":[8],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":9,\"graphicalIsland\":[9],\"students\":{\"GREEN\":1,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":10,\"graphicalIsland\":[10],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":1,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":11,\"graphicalIsland\":[11],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":1,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false}],\"clouds\":[{\"studentSpots\":[\"BLUE\", \"RED\"],\"cloudCapacity\":3},{\"studentSpots\":[\"BLUE\"],\"cloudCapacity\":3}],\"players\":[{\"ID\":0,\"nickname\":\"endi\",\"towerColor\":\"WHITE\",\"wizardID\":\"WIZARD1\",\"coinsAmount\":0,\"myDashboard\":{\"maxTowers\":8,\"entranceSpots\":[\"BLUE\",\"BLUE\",\"GREEN\",\"YELLOW\",\"YELLOW\",\"PINK\",\"RED\"],\"tables\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerNumber\":8,\"maxEntrance\":7,\"professorSpots\":[]},\"deck\":{\"deck\":[{\"cardNumber\":1,\"maxMoves\":1,\"used\":false},{\"cardNumber\":2,\"maxMoves\":1,\"used\":false},{\"cardNumber\":3,\"maxMoves\":2,\"used\":false},{\"cardNumber\":4,\"maxMoves\":2,\"used\":false},{\"cardNumber\":5,\"maxMoves\":3,\"used\":false},{\"cardNumber\":6,\"maxMoves\":3,\"used\":false},{\"cardNumber\":7,\"maxMoves\":4,\"used\":false},{\"cardNumber\":8,\"maxMoves\":4,\"used\":false},{\"cardNumber\":9,\"maxMoves\":5,\"used\":false},{\"cardNumber\":10,\"maxMoves\":5,\"used\":false}]},\"online\":true},{\"ID\":1,\"nickname\":\"giovanni\",\"towerColor\":\"BLACK\",\"wizardID\":\"WIZARD2\",\"coinsAmount\":0,\"myDashboard\":{\"maxTowers\":8,\"entranceSpots\":[\"GREEN\",\"BLUE\",\"RED\",\"RED\",\"PINK\",\"PINK\",\"PINK\"],\"tables\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerNumber\":8,\"maxEntrance\":7,\"professorSpots\":[]},\"deck\":{\"deck\":[{\"cardNumber\":1,\"maxMoves\":1,\"used\":false},{\"cardNumber\":2,\"maxMoves\":1,\"used\":false},{\"cardNumber\":3,\"maxMoves\":2,\"used\":false},{\"cardNumber\":4,\"maxMoves\":2,\"used\":false},{\"cardNumber\":5,\"maxMoves\":3,\"used\":false},{\"cardNumber\":6,\"maxMoves\":3,\"used\":false},{\"cardNumber\":7,\"maxMoves\":4,\"used\":false},{\"cardNumber\":8,\"maxMoves\":4,\"used\":false},{\"cardNumber\":9,\"maxMoves\":5,\"used\":false},{\"cardNumber\":10,\"maxMoves\":5,\"used\":false}]},\"online\":true}],\"playerMaxMoves\":[0,0],\"playerCardValue\":[0,0],\"nicknames\":[\"endi\",\"giovanni\",\"alen\"],\"NumOfIslands\":12,\"CurrentIsland\":{\"ID\":8,\"graphicalIsland\":[8],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false}}\n";
 
-        handler = new DashboardHandler();
-        handler.updateDashboard(dashboard, Entrance1, Tables1, Professors1,Towers1,Tower.WHITE);
-        handler.updateDashboard(dashboard, Entrance2, Tables2, Professors2,Towers2,Tower.GREY);
-        handler.updateDashboard(dashboard, Entrance3, Tables3, Professors3, Towers3,Tower.BLACK);
-
-
-
-
+        updateView(json);
     }
 
 
