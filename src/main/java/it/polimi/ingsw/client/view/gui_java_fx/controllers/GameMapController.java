@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
@@ -520,16 +521,6 @@ public class GameMapController {
 
     //two players clouds
     @FXML
-    private ImageView cloud21;
-    @FXML
-    private ImageView cloud22;
-    @FXML
-    private ImageView cloud31;
-    @FXML
-    private ImageView cloud32;
-    @FXML
-    private ImageView cloud33;
-    @FXML
     private GridPane cloudGrid21;
     @FXML
     private GridPane cloudGrid22;
@@ -578,6 +569,22 @@ public class GameMapController {
 
 
     @FXML
+    private Label effectCardsLabel;
+    @FXML
+    private Label playerLabel1;
+    @FXML
+    private Label playerLabel2;
+    @FXML
+    private Label playerLabel3;
+    @FXML
+    private ImageView effectOne;
+    @FXML
+    private ImageView effectTwo;
+    @FXML
+    private ImageView effectThree;
+
+
+    @FXML
     private TilePane tilePane1;
     @FXML
     private TilePane tilePane2;
@@ -623,6 +630,12 @@ public class GameMapController {
 
     @FXML
     public void initialize() {
+
+
+        playerLabel1.setText("ENDI");
+        playerLabel2.setText("GIOVANNI");
+        playerLabel3.setText("ALEN");
+
 
         //Entrance4.setImage(yellowImage);
         Entrance1 = new ArrayList<>();
@@ -1043,9 +1056,9 @@ public class GameMapController {
 
         if(gameData.getPlayers().size() == 2)
         {
-            stack3.setDisable(true);
-            stack3.setVisible(false);
-            stack3.setManaged(false);
+            //stack3.setDisable(true);
+            //stack3.setVisible(false);
+            //stack3.setManaged(false);
         }
         if(gameData.getPlayers().size() == 3)
         {
