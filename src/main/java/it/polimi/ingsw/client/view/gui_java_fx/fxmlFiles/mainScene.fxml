@@ -51,7 +51,7 @@
                   </ContextMenu>
                </contextMenu>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#quitScene" prefHeight="92.0" prefWidth="258.0" text="QUIT">
+            <Button fx:id="quitButton" alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#quitScene" prefHeight="92.0" prefWidth="258.0" text="QUIT">
                <font>
                   <Font name="Book Antiqua Italic" size="28.0" />
                </font>

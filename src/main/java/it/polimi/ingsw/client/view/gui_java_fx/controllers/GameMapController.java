@@ -569,13 +569,7 @@ public class GameMapController {
 
 
     @FXML
-    private Label effectCardsLabel;
-    @FXML
-    private Label playerLabel1;
-    @FXML
-    private Label playerLabel2;
-    @FXML
-    private Label playerLabel3;
+    private GridPane cardsGrid;
     @FXML
     private ImageView effectOne;
     @FXML
@@ -631,10 +625,16 @@ public class GameMapController {
     @FXML
     public void initialize() {
 
+        //cardsGrid.setManaged(false);
+        /*effectOne.setVisible(false);
+        effectOne.setDisable(true);
+        effectTwo.setVisible(false);
+        effectTwo.setDisable(true);
+        effectThree.setVisible(false);
+        effectThree.setDisable(true);
+        cardsGrid.setManaged(false);4
 
-        playerLabel1.setText("ENDI");
-        playerLabel2.setText("GIOVANNI");
-        playerLabel3.setText("ALEN");
+         */
 
 
         //Entrance4.setImage(yellowImage);
