@@ -415,6 +415,7 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, false);
+        newGame.getPlayers().get(players.indexOf(nickname)).online = false;
         //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
         System.out.println("Player "+nickname+" disconnected");
     }
@@ -423,6 +424,7 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, true);
+        newGame.getPlayers().get(players.indexOf(nickname)).online = true;
         //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("RECONNECTED|"+nickname));
         System.out.println("Player "+nickname+" reconnected");
         updateView(nickname);

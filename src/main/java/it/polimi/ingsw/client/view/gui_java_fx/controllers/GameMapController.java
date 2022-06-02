@@ -1056,9 +1056,9 @@ public class GameMapController {
 
         if(gameData.getPlayers().size() == 2)
         {
-            //stack3.setDisable(true);
-            //stack3.setVisible(false);
-            //stack3.setManaged(false);
+            stack3.setDisable(true);
+            stack3.setVisible(false);
+            stack3.setManaged(false);
         }
         if(gameData.getPlayers().size() == 3)
         {
