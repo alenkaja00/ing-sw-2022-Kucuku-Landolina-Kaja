@@ -63,8 +63,8 @@ public class IslandHandler {
         ImageView newView  = new ImageView();
         Image image = getImageFromColor(disc);
 
-        newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.1));
-        newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.1));
+        newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+        newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
         newView.setImage(image);
         tilePane.getChildren().add(newView);
 

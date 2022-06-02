@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
@@ -49,6 +50,16 @@ public class GameMapController {
 
     @FXML
     private StackPane stack3;
+    @FXML
+    private StackPane cloudPane21;
+    @FXML
+    private StackPane cloudPane22;
+    @FXML
+    private StackPane cloudPane31;
+    @FXML
+    private StackPane cloudPane32;
+    @FXML
+    private StackPane cloudPane33;
 
     @FXML
     private ImageView dashboard1;
@@ -510,16 +521,6 @@ public class GameMapController {
 
     //two players clouds
     @FXML
-    private ImageView cloud21;
-    @FXML
-    private ImageView cloud22;
-    @FXML
-    private ImageView cloud31;
-    @FXML
-    private ImageView cloud32;
-    @FXML
-    private ImageView cloud33;
-    @FXML
     private GridPane cloudGrid21;
     @FXML
     private GridPane cloudGrid22;
@@ -568,6 +569,22 @@ public class GameMapController {
 
 
     @FXML
+    private Label effectCardsLabel;
+    @FXML
+    private Label playerLabel1;
+    @FXML
+    private Label playerLabel2;
+    @FXML
+    private Label playerLabel3;
+    @FXML
+    private ImageView effectOne;
+    @FXML
+    private ImageView effectTwo;
+    @FXML
+    private ImageView effectThree;
+
+
+    @FXML
     private TilePane tilePane1;
     @FXML
     private TilePane tilePane2;
@@ -613,6 +630,12 @@ public class GameMapController {
 
     @FXML
     public void initialize() {
+
+
+        playerLabel1.setText("ENDI");
+        playerLabel2.setText("GIOVANNI");
+        playerLabel3.setText("ALEN");
+
 
         //Entrance4.setImage(yellowImage);
         Entrance1 = new ArrayList<>();
@@ -1033,9 +1056,22 @@ public class GameMapController {
 
         if(gameData.getPlayers().size() == 2)
         {
-            stack3.setDisable(true);
-            stack3.setVisible(false);
-            stack3.setManaged(false);
+            //stack3.setDisable(true);
+            //stack3.setVisible(false);
+            //stack3.setManaged(false);
+        }
+        if(gameData.getPlayers().size() == 3)
+        {
+            cloudPane21.setDisable(true);
+            cloudPane21.setVisible(false);
+            cloudPane22.setDisable(true);
+            cloudPane22.setVisible(false);
+            cloudPane31.setDisable(false);
+            cloudPane31.setVisible(true);
+            cloudPane32.setDisable(false);
+            cloudPane32.setVisible(true);
+            cloudPane33.setDisable(false);
+            cloudPane33.setVisible(true);
         }
 
         for(i =0; i<Tilepanes.size();i++)
