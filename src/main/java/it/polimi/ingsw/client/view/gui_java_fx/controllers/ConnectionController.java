@@ -26,32 +26,35 @@ public class ConnectionController {
     private Parent root;
     @FXML
     private TextField ipTextField;
+    @FXML
+    private TextField nicknameTextField;
 
 
+    String Ip;
+    String Port;
+    String Nickname;
 
-    public void nicknameScene() throws IOException {
-
-        String ip = ipTextField.getText();
-        String port = portTextField.getText();
-
-        if(valid(ip,port))
+    public void goBack() throws IOException
+    {
+        Ip = ipTextField.getText();
+        Port = portTextField.getText();
+        Nickname = nicknameTextField.getText();
+        if(valid(Ip,Port))
         {
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/nicknameScene.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/mainScene.fxml").toURI().toURL());
             root = loader.load();
+            SceneController controller = loader.getController();
+            controller.setConnectionEstablished(true);
 
             stage = (Stage) ((Node) submitButton).getScene().getWindow();
             scene = new Scene(root);
 
             scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
-            stage.setTitle("Nickname Scene");
+            stage.setTitle("Main Scene");
             stage.setScene(scene);
 
             stage.show();
-
         }
-
-
-
 
     }
 
