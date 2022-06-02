@@ -23,6 +23,7 @@ public class ClientController
 
     public ClientController(String viewMode) throws IOException
     {
+        viewMode = "GUI";
         if (viewMode.equals("GUI"))
             view = new guiClass(this);
         else if (viewMode.equals("CLI"))

@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.view.gui_java_fx;
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
+import it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.DashboardHandler;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.IslandHandler;
 import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
@@ -15,13 +16,25 @@ public class guiClass implements ViewInterface
 {
     Gson gson = new Gson();
     GameClass gameData ;
+
+
+
+
+    ClientController controller;
+
+    mainStage stage;
     public guiClass(ClientController controller)
     {
-
+        this.controller = controller;
+        stage = new mainStage();
+        stage.setClientController(controller);
+        stage.main(null);
     }
 
     @Override
     public void startScreen(String serverIP) {
+
+
 
     }
 

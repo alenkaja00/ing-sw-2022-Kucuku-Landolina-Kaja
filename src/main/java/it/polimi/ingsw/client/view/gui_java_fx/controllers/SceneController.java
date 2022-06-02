@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
+import it.polimi.ingsw.client.controller.ClientController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,10 +22,23 @@ public class SceneController {
 
     private boolean connectionEstablished = false;
 
+    private ClientController controller;
+
+    public SceneController()
+    {
+
+    }
+
+    public void setClientController(ClientController controller)
+    {
+        controller = controller;
+    }
+
     public void setConnectionEstablished(boolean setconn)
     {
         connectionEstablished = setconn;
     }
+
 
 
 
@@ -43,6 +57,8 @@ public class SceneController {
     }
 
     public void quitScene(javafx.event.ActionEvent actionEvent) throws IOException {
+        System.exit(0);
+
 
     }
 
