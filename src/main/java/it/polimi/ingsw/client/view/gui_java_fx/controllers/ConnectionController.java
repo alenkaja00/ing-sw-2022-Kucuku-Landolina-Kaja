@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
+import it.polimi.ingsw.client.controller.ClientController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,13 +30,17 @@ public class ConnectionController {
     @FXML
     private TextField nicknameTextField;
 
+    private ClientController clientController;
 
     String Ip;
     String Port;
     String Nickname;
 
+
+
     public void goBack() throws IOException
     {
+        clientController = ClientControllerSingleton.getInstance().getClientController();
         Ip = ipTextField.getText();
         Port = portTextField.getText();
         Nickname = nicknameTextField.getText();

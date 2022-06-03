@@ -15,30 +15,17 @@ import java.net.URL;
 public class mainStage extends Application {
 
     private Parent root;
-    private ClientController clientController;
 
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void setClientController (ClientController clientController)
-    {
-        clientController = clientController;
-    }
-
-
 
     @Override
     public void start(final Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/mainScene.fxml").toURI().toURL());
         root = loader.load();
-
-
-
-        SceneController controller =loader.getController();
-        controller.setClientController(clientController);
-
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
@@ -53,4 +40,6 @@ public class mainStage extends Application {
         primaryStage.show();
 
     }
+
+
 }

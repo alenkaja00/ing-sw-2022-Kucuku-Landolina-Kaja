@@ -3,16 +3,11 @@ package it.polimi.ingsw.client.view.gui_java_fx;
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
-import it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.DashboardHandler;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.IslandHandler;
-import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 
-import javax.swing.text.html.ImageView;
-import java.util.ArrayList;
-
-public class guiClass implements ViewInterface
+public class guiClass  implements ViewInterface
 {
     Gson gson = new Gson();
     GameClass gameData ;
@@ -23,13 +18,15 @@ public class guiClass implements ViewInterface
     ClientController controller;
 
     mainStage stage;
-    public guiClass(ClientController controller)
+
+
+    public guiClass()
     {
-        this.controller = controller;
         stage = new mainStage();
-        stage.setClientController(controller);
         stage.main(null);
+
     }
+
 
     @Override
     public void startScreen(String serverIP) {
