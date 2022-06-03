@@ -1,11 +1,14 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
+import it.polimi.ingsw.client.controller.ClientController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -20,26 +23,42 @@ public class PlayerNumberController {
     @FXML
     private Parent root;
 
-    @FXML
-    private Button twoPlayers;
-    @FXML
-    private Button threePlayers;
-
-    @FXML
-    private Button normal;
-    @FXML
-    private  Button expert;
 
 
-    public void setPlayers(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/wizardScene.fxml").toURI().toURL());
-        root = loader.load();
+    @FXML
+    private ToggleButton playersButton;
+    @FXML
+    private  ToggleButton modeButton;
 
-        stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
-        stage.setTitle("Wizards");
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    private Button submit;
+
+
+
+
+    public void Submit(ActionEvent actionEvent) throws IOException {
+
+        int playerNumber = 2;
+        Boolean expertMode = false;
+
+        if (playersButton.isSelected()) playerNumber=3;
+        if(modeButton.isSelected()) expertMode = true;
+
+
+        ClientController clientController = ClientControllerSingleton.getInstance().getClientController();
+        if(clientController.requestNewGame(playerNumber,expertMode))
+        {
+            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/wizardScene.fxml").toURI().toURL());
+            root = loader.load();
+
+            stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
+            stage.setTitle("Wizards");
+            stage.setScene(scene);
+            stage.show();
+
+        }
+
     }
 }

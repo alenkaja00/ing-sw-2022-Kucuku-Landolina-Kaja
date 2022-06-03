@@ -30,7 +30,6 @@ public class SceneController {
 
     private boolean connectionEstablished = false;
 
-    private ClientController controller;
 
     public SceneController()
     {
