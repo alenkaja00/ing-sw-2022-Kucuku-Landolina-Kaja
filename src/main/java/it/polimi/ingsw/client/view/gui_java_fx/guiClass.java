@@ -5,23 +5,33 @@ import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.DashboardHandler;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.IslandHandler;
-import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 
-import javax.swing.text.html.ImageView;
-import java.util.ArrayList;
-
-public class guiClass implements ViewInterface
+public class guiClass  implements ViewInterface
 {
     Gson gson = new Gson();
     GameClass gameData ;
-    public guiClass(ClientController controller)
+
+
+
+
+    ClientController controller;
+
+    mainStage stage;
+
+
+    public guiClass()
     {
+        stage = new mainStage();
+        stage.main(null);
 
     }
 
+
     @Override
     public void startScreen(String serverIP) {
+
+
 
     }
 

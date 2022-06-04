@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController" >
+<GridPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui_java_fx.controllers.ConnectionController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
@@ -24,30 +24,51 @@
    <children>
       <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="327.0" text="Server Address">
+            <Label fx:id="ipLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="327.0" text="Server Address">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <TextField id="ipTextField" fx:id="ipTextField" onAction="#nicknameScene" prefHeight="30.0" prefWidth="0.0">
+            <TextField id="ipTextField" fx:id="ipTextField" onAction="#requestConnection" prefHeight="30.0" prefWidth="0.0">
                <VBox.margin>
-                  <Insets bottom="30.0" />
+                  <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="327.0" text="Port">
+            <Label fx:id="portLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="256.0" text="Port">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <TextField id="portTextField" fx:id="portTextField" onAction="#nicknameScene" prefHeight="30.0" prefWidth="228.0" />
-            <Button id="submitButton" fx:id="submitButton" mnemonicParsing="false" onAction="#nicknameScene" prefHeight="92.0" prefWidth="291.0" text="SUBMIT">
+            <TextField id="portTextField" fx:id="portTextField" onAction="#requestConnection" prefHeight="30.0" prefWidth="228.0">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin></TextField>
+            <Label fx:id="nicknameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="256.0" text="Nickname"  >
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+             <TextField fx:id="nicknameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="260.0" onAction="#requestNickname">
+                 <VBox.margin>
+                     <Insets bottom="70.0" />
+                 </VBox.margin>
+             </TextField>
+            <Button id="submitButton" fx:id="submitButton" mnemonicParsing="false" onAction="#requestConnection" prefHeight="92.0" prefWidth="291.0" text="SUBMIT">
                <font>
                   <Font name="Book Antiqua Italic" size="28.0" />
                </font>
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
+             <Button id="submitButton2" fx:id="submitButton2" mnemonicParsing="false" onAction="#requestNickname" prefHeight="92.0" prefWidth="291.0" text="SUBMIT">
+                 <font>
+                     <Font name="Book Antiqua Italic" size="28.0" />
+                 </font>
+                 <VBox.margin>
+                     <Insets bottom="50.0" />
+                 </VBox.margin>
+             </Button>
          </children>
       </VBox>
    </children>

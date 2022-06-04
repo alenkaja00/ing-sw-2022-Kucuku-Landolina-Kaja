@@ -1,5 +1,7 @@
 package it.polimi.ingsw.client.view.gui_java_fx;
 
+import it.polimi.ingsw.client.controller.ClientController;
+import it.polimi.ingsw.client.view.gui_java_fx.controllers.SceneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +14,8 @@ import java.net.URL;
 
 public class mainStage extends Application {
 
+    private Parent root;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -20,8 +24,8 @@ public class mainStage extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws IOException {
-        URL url = new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/mainScene.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/mainScene.fxml").toURI().toURL());
+        root = loader.load();
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
@@ -36,4 +40,6 @@ public class mainStage extends Application {
         primaryStage.show();
 
     }
+
+
 }

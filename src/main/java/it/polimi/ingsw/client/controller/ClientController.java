@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.controller;
 
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.cli.cliClass;
+import it.polimi.ingsw.client.view.gui_java_fx.controllers.ClientControllerSingleton;
 import it.polimi.ingsw.client.view.gui_java_fx.guiClass;
 import it.polimi.ingsw.server.model.cards.Wizard;
 
@@ -23,8 +24,12 @@ public class ClientController
 
     public ClientController(String viewMode) throws IOException
     {
-        if (viewMode.equals("GUI"))
-            view = new guiClass(this);
+        viewMode = "GUI";
+        if (viewMode.equals("GUI")) {
+            ClientControllerSingleton instance = ClientControllerSingleton.getInstance();
+            instance.setClientController(this);
+            view = new guiClass();
+        }
         else if (viewMode.equals("CLI"))
             view = new cliClass(this);
     }

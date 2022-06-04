@@ -2,6 +2,7 @@ package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.controller.ClientNetwork;
+import it.polimi.ingsw.client.view.gui_java_fx.controllers.ClientControllerSingleton;
 import it.polimi.ingsw.server.controller.ServerNetwork;
 
 import java.io.IOException;

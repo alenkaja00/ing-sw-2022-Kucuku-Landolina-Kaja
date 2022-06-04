@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
@@ -520,16 +521,6 @@ public class GameMapController {
 
     //two players clouds
     @FXML
-    private ImageView cloud21;
-    @FXML
-    private ImageView cloud22;
-    @FXML
-    private ImageView cloud31;
-    @FXML
-    private ImageView cloud32;
-    @FXML
-    private ImageView cloud33;
-    @FXML
     private GridPane cloudGrid21;
     @FXML
     private GridPane cloudGrid22;
@@ -578,6 +569,16 @@ public class GameMapController {
 
 
     @FXML
+    private GridPane cardsGrid;
+    @FXML
+    private ImageView effectOne;
+    @FXML
+    private ImageView effectTwo;
+    @FXML
+    private ImageView effectThree;
+
+
+    @FXML
     private TilePane tilePane1;
     @FXML
     private TilePane tilePane2;
@@ -623,6 +624,18 @@ public class GameMapController {
 
     @FXML
     public void initialize() {
+
+        //cardsGrid.setManaged(false);
+        /*effectOne.setVisible(false);
+        effectOne.setDisable(true);
+        effectTwo.setVisible(false);
+        effectTwo.setDisable(true);
+        effectThree.setVisible(false);
+        effectThree.setDisable(true);
+        cardsGrid.setManaged(false);4
+
+         */
+
 
         //Entrance4.setImage(yellowImage);
         Entrance1 = new ArrayList<>();

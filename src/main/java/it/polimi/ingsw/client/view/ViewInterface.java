@@ -1,5 +1,7 @@
 package it.polimi.ingsw.client.view;
 
+import it.polimi.ingsw.client.controller.ClientController;
+
 public interface ViewInterface
 {
     //all the system.out.println("FATAL ERROR") are only for debugging purpose
@@ -72,4 +74,5 @@ public interface ViewInterface
     void gameEnded(String endMessage);
 
     void changeState(String start);
+
 }
