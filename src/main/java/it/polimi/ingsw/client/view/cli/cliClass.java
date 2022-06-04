@@ -71,7 +71,7 @@ public class cliClass implements ViewInterface
         mainThread.start();
     }
 
-    public void changeState(String screen)
+    private void changeState(String screen)
     {
         currentState = screen;
         switch (screen)
@@ -107,7 +107,7 @@ public class cliClass implements ViewInterface
                 System.out.println("Write quit to exit the lobby.");
                 break;
 
-            case "GAME":
+            case "WIZARD":
                 flushCLI();
                 System.out.println("The game started! Select your wizard [WIZARD1-4]: ");
                 break;
@@ -136,6 +136,68 @@ public class cliClass implements ViewInterface
                 break;
         }
     }
+
+    private void helpMessages()
+    {
+        switch (currentState)
+        {
+            case "START":
+                System.out.println("CONNECT - To connect to a game server");
+                System.out.println("NEWGAME - To create a new game");
+                System.out.println("QUIT - To exit the game");
+                break;
+            case "ETX":
+                System.out.println("ETT|entranceIndex");
+                System.out.println("ETI|islandIndex|entranceIndex");
+                if (expertMode)
+                    System.out.println("EFFECT|CAVALIER\n" +
+                            "EFFECT|CENTAUR\n" +
+                            "EFFECT|VILLAIN\n" +
+                            "EFFECT|MAGICIAN\n" +
+                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
+                            "EFFECT|COOK|coloredDisc\n" +
+                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
+                            "EFFECT|LADY|islandID\n" +
+                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
+                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
+                            "EFFECT|BANDIT|studentColor\n" +
+                            "EFFECT|LORD|islandID");
+                break;
+            case "NATURE":
+                System.out.println("NATURE|motherNatureMoves");
+                if (expertMode)
+                    System.out.println("EFFECT|CAVALIER\n" +
+                            "EFFECT|CENTAUR\n" +
+                            "EFFECT|VILLAIN\n" +
+                            "EFFECT|MAGICIAN\n" +
+                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
+                            "EFFECT|COOK|coloredDisc\n" +
+                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
+                            "EFFECT|LADY|islandID\n" +
+                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
+                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
+                            "EFFECT|BANDIT|studentColor\n" +
+                            "EFFECT|LORD|islandID");
+                break;
+            case "CTE":
+                System.out.println("CTE|cloudIndex");
+                if (expertMode)
+                    System.out.println("EFFECT|CAVALIER\n" +
+                            "EFFECT|CENTAUR\n" +
+                            "EFFECT|VILLAIN\n" +
+                            "EFFECT|MAGICIAN\n" +
+                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
+                            "EFFECT|COOK|coloredDisc\n" +
+                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
+                            "EFFECT|LADY|islandID\n" +
+                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
+                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
+                            "EFFECT|BANDIT|studentColor\n" +
+                            "EFFECT|LORD|islandID");
+                break;
+        }
+    }
+
     private void parseInput(String input)
     {
         input = input.toUpperCase(Locale.ROOT);
@@ -172,7 +234,7 @@ public class cliClass implements ViewInterface
                     parseLobby(input);
                     break;
 
-                case "GAME":
+                case "WIZARD":
                     parseWizard(input);
                     break;
                 case "HELPER":
@@ -195,41 +257,6 @@ public class cliClass implements ViewInterface
                     System.out.println("Unrecognized Message");
                     break;
             }
-        }
-    }
-
-    private void helpMessages()
-    {
-        switch (currentState)
-        {
-            case "START":
-                System.out.println("CONNECT - To connect to a game server");
-                System.out.println("NEWGAME - To create a new game");
-                System.out.println("QUIT - To exit the game");
-                break;
-            case "ETX":
-                System.out.println("ETT|entranceIndex");
-                System.out.println("ETI|entranceIndex|IslandIndex");
-                if (expertMode)
-                    System.out.println("EFFECT|CAVALIER\n" +
-                            "EFFECT|CENTAUR\n" +
-                            "EFFECT|VILLAIN\n" +
-                            "EFFECT|MAGICIAN\n" +
-                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
-                            "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
-                            "EFFECT|LADY|islandID\n" +
-                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
-                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
-                            "EFFECT|BANDIT|studentColor\n" +
-                            "EFFECT|LORD|islandID");
-                break;
-            case "NATURE":
-                System.out.println("NATURE|motherNatureMoves");
-                break;
-            case "CTE":
-                System.out.println("CTE|cloudIndex");
-                break;
         }
     }
 
@@ -337,7 +364,7 @@ public class cliClass implements ViewInterface
                 System.out.println("You selected: "+selected);
                 changeState("LOCK");
                 waitUnlock();
-                System.out.println("fine wait");
+                //System.out.println("fine wait");
                 changeState("HELPER");
             }
             else
@@ -462,7 +489,7 @@ public class cliClass implements ViewInterface
                 changeState("CTE");
                 changeState("LOCK");
                 waitUnlock();
-                System.out.println("fine wait");
+                //System.out.println("fine wait");
                 changeState("HELPER");
                 return;
             }
@@ -516,49 +543,36 @@ public class cliClass implements ViewInterface
     }
 
     @Override
-    public void playHelper() {
+    public void startScene(String serverIP) {
+        changeState("START");
+    }
+
+    @Override
+    public void wizardScene() {
+        changeState("WIZARD");
+    }
+
+    @Override
+    public void helperScene() {
+        changeState("HELPER");
+    }
+
+    @Override
+    public void waitLobbyScene() {
+        changeState("WAITLOBBY");
+    }
+
+    @Override
+    public void messageScene(String message) {
 
     }
 
     @Override
-    public void playETX() {
+    public void endScene(String endMessage) {
 
     }
 
-    @Override
-    public void playNature() {
 
-    }
-
-    @Override
-    public void playCTE() {
-
-    }
-
-    @Override
-    public void gameEnded(String endMessage) {
-
-    }
-
-    @Override
-    public void startScreen(String serverIP) {
-
-    }
-
-    @Override
-    public void waitLobby() {
-
-    }
-
-    @Override
-    public void messageScreen(String message) {
-
-    }
-
-    @Override
-    public void newGame() {
-
-    }
 
     private void printBlock(ArrayList<String> message)
     {
@@ -584,7 +598,6 @@ public class cliClass implements ViewInterface
         eriantysCLI.clearConsole();
     }
 
-
     private String nextLine(String str)
     {
         String s = "";
@@ -596,6 +609,5 @@ public class cliClass implements ViewInterface
         }
         return s;
     }
-
 }
 

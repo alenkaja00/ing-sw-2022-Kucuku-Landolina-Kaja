@@ -1,7 +1,5 @@
 package it.polimi.ingsw.client.view;
 
-import it.polimi.ingsw.client.controller.ClientController;
-
 public interface ViewInterface
 {
     //all the system.out.println("FATAL ERROR") are only for debugging purpose
@@ -29,22 +27,14 @@ public interface ViewInterface
     - true in tutti gli altri casi, da qui è il controller a gestire tutto
     */
     //shows message when connected to server
-    public void startScreen(String serverIP);
+    public void startScene(String serverIP);
 
 
     /*
     La schermata wait viene mostrata quando il server è in attesa di altri giocatori per creare la partita
     se si è nella schermata WAIT mostrare un pulsante QUIT,
     che chiama il metodo quitLobby() e riporta l'user nella schermata iniziale*/
-    public void waitLobby(); //trasparente
-
-    //show a message
-    public void messageScreen(String message);
-
-    //first screen of a new game, lets the user choose between wizards, calls the requestWizard() method
-    //if the return value is true gives the ok and shows some wait effect
-    //otherwise lets the user choose again
-    public void newGame();
+    public void waitLobbyScene(); //trasparente
 
 
     /* ****** ALL THE FOLLOWING MESSAGES DO NOT RUN IN A NEW THREAD BUT IN THE MAIN THREAD ************ */
@@ -56,23 +46,18 @@ public interface ViewInterface
         WITH THE requesEffect() method if expertMode is ON
      */
 
+    void wizardScene();
+
     //enables the view to let the user choose a helper,
     // calls the requestHelper() method which return true or false based on the result
     // only allow the user to play the helper according to the rules
-    void playHelper();
-
-    //calls the requestETI() or requestETT()
-    void playETX();
-
-    //calls the requestNature()
-    void playNature();
-
-    //calls the requestCTE()
-    void playCTE();
+    void helperScene();
 
     //game ends with the following message
-    void gameEnded(String endMessage);
+    void messageScene(String message);
 
-    void changeState(String start);
+    //game ends with the following message
+    void endScene(String endMessage);
+
 
 }

@@ -10,34 +10,26 @@ import it.polimi.ingsw.server.model.gameClasses.GameClass;
 public class guiClass  implements ViewInterface
 {
     Gson gson = new Gson();
-    GameClass gameData ;
-
-
-
-
+    GameClass gameData;
     ClientController controller;
-
     mainStage stage;
-
 
     public guiClass()
     {
         stage = new mainStage();
         stage.main(null);
-
     }
 
 
     @Override
-    public void startScreen(String serverIP) {
+    public void startScene(String serverIP) {
 
 
 
     }
 
-
     @Override
-    public void waitLobby() {
+    public void waitLobbyScene() {
 
     }
 
@@ -51,43 +43,22 @@ public class guiClass  implements ViewInterface
     }
 
     @Override
-    public void playHelper() {
+    public void wizardScene() {
 
     }
 
     @Override
-    public void playETX() {
+    public void helperScene() {
 
     }
 
     @Override
-    public void playNature() {
+    public void messageScene(String message) {
 
     }
 
     @Override
-    public void playCTE() {
-
-    }
-
-    @Override
-    public void gameEnded(String endMessage) {
-
-    }
-
-    @Override
-    public void changeState(String start) {
-
-    }
-
-
-    @Override
-    public void messageScreen(String message) {
-
-    }
-
-    @Override
-    public void newGame() {
+    public void endScene(String endMessage) {
 
     }
 }

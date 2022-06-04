@@ -24,7 +24,6 @@ public class ClientController
 
     public ClientController(String viewMode) throws IOException
     {
-        viewMode = "GUI";
         if (viewMode.equals("GUI")) {
             ClientControllerSingleton instance = ClientControllerSingleton.getInstance();
             instance.setClientController(this);
@@ -74,21 +73,21 @@ public class ClientController
             List<String> message = nextServerMessage();
             if (message.get(0).equals("WAIT"))
             {
-                view.changeState("WAITLOBBY");
+                view.waitLobbyScene();
                 new Thread(() ->
                 {
                     List<String> ok = nextServerMessage();
                     if (ok.get(0).equals("OK")) {
-                        view.changeState("GAME");
+                        view.wizardScene();
                     }
                     else
-                        view.changeState("START");
+                        view.startScene(serverIP);
                 }
                 ).start();
                 return true;
             }
             if (message.get(0).equals("OK")) {
-                view.changeState("GAME");
+                view.wizardScene();
                 return true;
             }
             else
@@ -148,7 +147,7 @@ public class ClientController
                 System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
         } while (true);
 
-        view.changeState("HELPER");
+        view.helperScene();
 
         /*
         do{
@@ -186,6 +185,15 @@ public class ClientController
         } while (true);*/
     }
 
+    public boolean requestString(String message)
+    {
+        connectivity.sendMessage("PLAY|"+playerNickname+"|"+message);
+        if (nextServerMessage().get(0).equals("OK"))
+            return true;
+        else
+            return false;
+    }
+
     public boolean requestHelper(int helperID)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|HELPER|"+helperID);
@@ -207,15 +215,6 @@ public class ClientController
     public boolean requestETI(int IslandIndex, int entranceIndex)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|ETI|"+IslandIndex+"|"+entranceIndex);
-        if (nextServerMessage().get(0).equals("OK"))
-            return true;
-        else
-            return false;
-    }
-
-    public boolean requestString(String message)
-    {
-        connectivity.sendMessage("PLAY|"+playerNickname+"|"+message);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
@@ -295,13 +294,13 @@ public class ClientController
 
     public void parseServerMessage(String message)
     {
-        System.out.println("LOG [parseServerMessage]: I am the client and I received: " + message);
+        //System.out.println("LOG [parseServerMessage]: I am the client and I received: " + message);
 
         List<String> parsedMessage = Arrays.asList(message.split("\\|"));
 
         if (parsedMessage.get(0).equals("WINNER"))
         {
-            view.gameEnded(parsedMessage.get(1));
+            view.endScene(parsedMessage.get(1));
             return;
         }
         else if (parsedMessage.get(0).equals("JSON"))
@@ -330,8 +329,8 @@ public class ClientController
     public void playerDisconnected()
     {
         clearServerBuffer();
-        view.messageScreen("You disconnected from the server...");
-        view.startScreen("");
+        view.messageScene("You disconnected from the server...");
+        view.startScene("");
     }
 
     public void reconnected(String jsonString)
