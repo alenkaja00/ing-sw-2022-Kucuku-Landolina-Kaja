@@ -235,7 +235,7 @@ public class GameClassExpert extends GameClass
             int ID = player.getID();
             Tower color = player.getTowerColor();
 
-            if (towers[0].equals(color) && centaurEffect == false)
+            if (towers.length>0 && towers[0].equals(color) && centaurEffect == false)
             {
                 PlayersInfluence[ID]+= towers.length;
             }
@@ -256,11 +256,32 @@ public class GameClassExpert extends GameClass
                 }
             }
         }
+
+        //temporary can be substituted by functional
+        int index = -1;
+        int max = 0;
+        //for(int i=0 ; i < players.size(); i++)
+        for(int i=0 ; i < PlayersInfluence.length; i++)
+        {
+            if(PlayersInfluence[i] > max)
+            {
+                index = i;
+                max = PlayersInfluence[i];
+            }
+            else if(PlayersInfluence[i] == max)
+            {
+                index = -1;
+            }
+        }
+        return index;
+
+        /*
         //MIGHT RETURN -1
         return IntStream.range(0, PlayersInfluence.length)
                 .filter(i -> Arrays.stream(PlayersInfluence).max().getAsInt() == PlayersInfluence[i])
                 .findFirst() // first occurrence
                 .orElse(-1);
+         */
     }
 
     @Override
@@ -292,7 +313,10 @@ public class GameClassExpert extends GameClass
             return;
         }
 
-        Player influencePlayer = players.get(EvaluateInfluence(CurrentIsland));
+        int InfluencePlayerIndex = EvaluateInfluence(CurrentIsland);
+        if (InfluencePlayerIndex == -1)
+            return;
+        Player influencePlayer = players.get(InfluencePlayerIndex);
         if (CurrentIsland.getTowers().length == 0)
         {
             CurrentIsland.AddTower(influencePlayer.getTowerColor());

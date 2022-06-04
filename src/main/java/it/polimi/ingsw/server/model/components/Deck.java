@@ -23,7 +23,7 @@ public class Deck {
 
     public void useCard(int cardNum) throws InvalidKeyException
     {
-        if (deck.get(cardNum-1).isUsed() == true) {throw new InvalidKeyException();}
+        if (deck.get(cardNum-1).isUsed() == true) {throw new InvalidKeyException(); }
 
         deck.get(cardNum-1).setUsed(true);
     }

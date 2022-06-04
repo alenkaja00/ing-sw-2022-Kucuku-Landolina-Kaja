@@ -133,8 +133,9 @@ public class GameController
                         {
                             playerSockets.get(message.get(1)).sendMessage("NOK");
                         }
-                    } catch (InvalidKeyException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
+                        playerSockets.get(message.get(1)).sendMessage("NOK");
                     }
                 }
                 else

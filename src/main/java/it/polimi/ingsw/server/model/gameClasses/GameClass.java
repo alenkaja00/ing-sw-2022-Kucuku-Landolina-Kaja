@@ -191,8 +191,8 @@ public class GameClass {
     public void useHelperCard(int playerID, int cardNumber) throws InvalidKeyException
     {
         //controllare che non giochi le stesse carte gia giocate nel turno
-        playerMaxMoves[playerID] = players.get(playerID).deck.returnCard(cardNumber).getMaxMoves();
         players.get(playerID).deck.useCard(cardNumber);
+        playerMaxMoves[playerID] = players.get(playerID).deck.returnCard(cardNumber).getMaxMoves();
 
         //added
         playerCardValue[playerID] = cardNumber;
