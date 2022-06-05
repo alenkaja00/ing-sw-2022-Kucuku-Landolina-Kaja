@@ -46,18 +46,10 @@ public class PlayerNumberController {
 
 
         ClientController clientController = ClientControllerSingleton.getInstance().getClientController();
-        if(clientController.requestNewGame(playerNumber,expertMode))
+        if(!clientController.requestNewGame(playerNumber,expertMode))
         {
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/wizardScene.fxml").toURI().toURL());
-            root = loader.load();
-
-            stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
-            stage.setTitle("Wizards");
-            stage.setScene(scene);
-            stage.show();
-
+            // handle error
+            System.out.println("unable to create game");
         }
 
     }

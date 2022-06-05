@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
 import it.polimi.ingsw.client.controller.ClientController;
+import it.polimi.ingsw.client.view.gui_java_fx.mainStage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,7 +110,8 @@ public class ConnectionController implements Initializable {
             SceneController controller = loader.getController();
             controller.setConnectionEstablished(true);
 
-            stage = (Stage) ((Node) submitButton).getScene().getWindow();
+            //stage = (Stage) ((Node) submitButton).getScene().getWindow();
+            stage = StageSingleton.getInstance().getStage();
             scene = new Scene(root);
 
             scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
@@ -117,10 +119,8 @@ public class ConnectionController implements Initializable {
             stage.setScene(scene);
 
             stage.show();
+
         }
-
-
-
 
 
     }

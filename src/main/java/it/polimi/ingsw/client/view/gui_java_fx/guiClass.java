@@ -12,25 +12,31 @@ public class guiClass  implements ViewInterface
     Gson gson = new Gson();
     GameClass gameData;
     ClientController controller;
-    mainStage stage;
+    mainStage mainstage;
 
     public guiClass()
     {
-        stage = new mainStage();
-        stage.main(null);
+        mainstage = new mainStage();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mainstage.main(null);
+            }
+        }).start();
     }
 
 
     @Override
     public void startScene(String serverIP) {
 
-
+        mainstage.startScene();
 
     }
 
     @Override
     public void waitLobbyScene() {
 
+        mainstage.waitingScene();
     }
 
     @Override
@@ -44,7 +50,7 @@ public class guiClass  implements ViewInterface
 
     @Override
     public void wizardScene() {
-
+        mainstage.wizardScene();
     }
 
     @Override
