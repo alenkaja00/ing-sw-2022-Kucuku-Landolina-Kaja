@@ -57,6 +57,7 @@ public class WizardController {
         {
             if (ClientControllerSingleton.getInstance().getClientController().requestWizard(wizard))
             {
+                /*
                 FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/gameMap.fxml").toURI().toURL());
                 root = loader.load();
                 root.setId("gameMap");
@@ -70,16 +71,9 @@ public class WizardController {
                 stage.setScene(scene);
 
 
-                /*
-                PaneShift controller = loader.getController();
-                controller.setScene(scene);
-                System.out.println("Scene: " + scene);
-
-                //ExternalDashboardController controller = new ExternalDashboardController();
-                controller.listen();
-        */
-
                 stage.show();
+
+                 */
 
             }
         }

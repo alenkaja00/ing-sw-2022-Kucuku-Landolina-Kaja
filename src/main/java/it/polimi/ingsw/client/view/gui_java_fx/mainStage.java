@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.SceneController;
 import it.polimi.ingsw.client.view.gui_java_fx.controllers.StageSingleton;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -73,10 +74,9 @@ public class mainStage extends Application {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        stage.setTitle("Start");
-        stage.setScene(scene);
-        stage.show();
-
+        Platform.runLater(()->{stage.setTitle("Start");
+            stage.setScene(scene);
+            stage.show();});
 
 
     }
@@ -130,9 +130,10 @@ public class mainStage extends Application {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        stage.setTitle("Wizards");
-        stage.setScene(scene);
-        stage.show();
+        Platform.runLater(()->{stage.setTitle("Wizards");
+            stage.setScene(scene);
+            stage.show();});
+
 
 
     }

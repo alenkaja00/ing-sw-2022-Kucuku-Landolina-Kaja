@@ -972,11 +972,6 @@ public class GameMapController {
         entranceClicked = -1;
         tablesClicked = false;
 
-
-
-        String json = "{\"bag\":{\"bag\":{\"GREEN\":22,\"YELLOW\":22,\"PINK\":20,\"BLUE\":21,\"RED\":21},\"bagDimension\":26},\"GameID\":\"asd\",\"PlayerNumber\":2,\"islands\":[{\"ID\":0,\"graphicalIsland\":[0],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":1},\"towerList\":[],\"prohibited\":false},{\"ID\":1,\"graphicalIsland\":[1],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":1},\"towerList\":[],\"prohibited\":false},{\"ID\":2,\"graphicalIsland\":[2],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":3,\"graphicalIsland\":[3],\"students\":{\"GREEN\":0,\"YELLOW\":1,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":4,\"graphicalIsland\":[4],\"students\":{\"GREEN\":1,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":5,\"graphicalIsland\":[5],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":1,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":6,\"graphicalIsland\":[6],\"students\":{\"GREEN\":0,\"YELLOW\":1,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":7,\"graphicalIsland\":[7],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":1,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":8,\"graphicalIsland\":[8],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":9,\"graphicalIsland\":[9],\"students\":{\"GREEN\":1,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":10,\"graphicalIsland\":[10],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":1,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false},{\"ID\":11,\"graphicalIsland\":[11],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":1,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false}],\"clouds\":[{\"studentSpots\":[\"BLUE\", \"RED\"],\"cloudCapacity\":3},{\"studentSpots\":[\"BLUE\"],\"cloudCapacity\":3}],\"players\":[{\"ID\":0,\"nickname\":\"endi\",\"towerColor\":\"WHITE\",\"wizardID\":\"WIZARD1\",\"coinsAmount\":0,\"myDashboard\":{\"maxTowers\":8,\"entranceSpots\":[\"BLUE\",\"BLUE\",\"GREEN\",\"YELLOW\",\"YELLOW\",\"PINK\",\"RED\"],\"tables\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerNumber\":8,\"maxEntrance\":7,\"professorSpots\":[]},\"deck\":{\"deck\":[{\"cardNumber\":1,\"maxMoves\":1,\"used\":false},{\"cardNumber\":2,\"maxMoves\":1,\"used\":false},{\"cardNumber\":3,\"maxMoves\":2,\"used\":false},{\"cardNumber\":4,\"maxMoves\":2,\"used\":false},{\"cardNumber\":5,\"maxMoves\":3,\"used\":false},{\"cardNumber\":6,\"maxMoves\":3,\"used\":false},{\"cardNumber\":7,\"maxMoves\":4,\"used\":false},{\"cardNumber\":8,\"maxMoves\":4,\"used\":false},{\"cardNumber\":9,\"maxMoves\":5,\"used\":false},{\"cardNumber\":10,\"maxMoves\":5,\"used\":false}]},\"online\":true},{\"ID\":1,\"nickname\":\"giovanni\",\"towerColor\":\"BLACK\",\"wizardID\":\"WIZARD2\",\"coinsAmount\":0,\"myDashboard\":{\"maxTowers\":8,\"entranceSpots\":[\"GREEN\",\"BLUE\",\"RED\",\"RED\",\"PINK\",\"PINK\",\"PINK\"],\"tables\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerNumber\":8,\"maxEntrance\":7,\"professorSpots\":[]},\"deck\":{\"deck\":[{\"cardNumber\":1,\"maxMoves\":1,\"used\":false},{\"cardNumber\":2,\"maxMoves\":1,\"used\":false},{\"cardNumber\":3,\"maxMoves\":2,\"used\":false},{\"cardNumber\":4,\"maxMoves\":2,\"used\":false},{\"cardNumber\":5,\"maxMoves\":3,\"used\":false},{\"cardNumber\":6,\"maxMoves\":3,\"used\":false},{\"cardNumber\":7,\"maxMoves\":4,\"used\":false},{\"cardNumber\":8,\"maxMoves\":4,\"used\":false},{\"cardNumber\":9,\"maxMoves\":5,\"used\":false},{\"cardNumber\":10,\"maxMoves\":5,\"used\":false}]},\"online\":true}],\"playerMaxMoves\":[0,0],\"playerCardValue\":[0,0],\"nicknames\":[\"endi\",\"giovanni\",\"alen\"],\"NumOfIslands\":12,\"CurrentIsland\":{\"ID\":8,\"graphicalIsland\":[8],\"students\":{\"GREEN\":0,\"YELLOW\":0,\"PINK\":0,\"BLUE\":0,\"RED\":0},\"towerList\":[],\"prohibited\":false}}\n";
-
-        updateView(json);
     }
 
 
@@ -1042,17 +1037,8 @@ public class GameMapController {
 
     public void updateView(String json) {
 
+        System.out.println("gamemap method updateView called");
         gameData = gson.fromJson(json, GameClass.class);
-        DashboardHandler dashboardHandler = new DashboardHandler();
-        IslandHandler islandHandler = new IslandHandler();
-        CloudHandler cloudHandler = new CloudHandler();
-
-        int i=0;
-        for(Player player : gameData.getPlayers())
-        {
-            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.getTowerColor());
-            i++;
-        }
 
         if(gameData.getPlayers().size() == 2)
         {
@@ -1073,6 +1059,18 @@ public class GameMapController {
             cloudPane33.setDisable(false);
             cloudPane33.setVisible(true);
         }
+
+        DashboardHandler dashboardHandler = new DashboardHandler();
+        IslandHandler islandHandler = new IslandHandler();
+        CloudHandler cloudHandler = new CloudHandler();
+
+        int i=0;
+        for(Player player : gameData.getPlayers())
+        {
+            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.getTowerColor());
+            i++;
+        }
+
 
         for(i =0; i<Tilepanes.size();i++)
         {
