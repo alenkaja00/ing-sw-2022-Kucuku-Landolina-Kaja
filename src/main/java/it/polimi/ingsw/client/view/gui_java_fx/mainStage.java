@@ -30,6 +30,7 @@ public class mainStage extends Application {
 
     private String waitingPath = "src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/waitingScene.fxml";
 
+    private String deckPath = "src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/deckScene.fxml";
 
     public static void main(String[] args) {
         launch(args);
@@ -77,10 +78,35 @@ public class mainStage extends Application {
         Platform.runLater(()->{stage.setTitle("Start");
             stage.setScene(scene);
             stage.show();});
-
-
     }
 
+    public void helperScene()
+    {
+        stage = StageSingleton.getInstance().getStage();
+        FXMLLoader loader = null;
+        try {
+            loader = new FXMLLoader(new File(deckPath).toURI().toURL());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        scene = new Scene(root);
+        try {
+            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/cssFiles/main.css").toURI().toURL().toExternalForm());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+       // Platform.runLater(()->{
+            stage.setTitle("Deck");
+            stage.setScene(scene);
+            //stage.show();});
+            stage.show();
+    }
 
     public void waitingScene() {
         stage = StageSingleton.getInstance().getStage();
@@ -105,8 +131,6 @@ public class mainStage extends Application {
         stage.setTitle("Waiting");
         stage.setScene(scene);
         stage.show();
-
-
     }
 
 

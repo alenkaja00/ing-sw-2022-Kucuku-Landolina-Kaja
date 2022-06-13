@@ -57,10 +57,20 @@ public class WizardController {
         {
             if (ClientControllerSingleton.getInstance().getClientController().requestWizard(wizard))
             {
-                /*
-                FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/gameMap.fxml").toURI().toURL());
+                System.out.println("Waiting for your turn");
+                do {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                System.out.println("It's your turn");
+
+
+
+                FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui_java_fx/fxmlFiles/deckScene.fxml").toURI().toURL());
                 root = loader.load();
-                root.setId("gameMap");
                 stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
                 scene = new Scene(root);
 
@@ -73,7 +83,7 @@ public class WizardController {
 
                 stage.show();
 
-                 */
+
 
             }
         }

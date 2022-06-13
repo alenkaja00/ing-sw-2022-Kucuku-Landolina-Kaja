@@ -1,12 +1,20 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class DeckController {
@@ -47,6 +55,10 @@ public class DeckController {
 
     private boolean clicked;
 
+    private Parent root;
+    private Scene scene;
+    private Stage stage;
+
     @FXML
     public void initialize()
     {
@@ -77,7 +89,7 @@ public class DeckController {
         realScaleY = card2.getScaleY();
     }
 
-    public void chooseAssistant(MouseEvent mouseEvent) {
+    public void chooseAssistant(MouseEvent mouseEvent) throws IOException {
         ImageView chosen = (ImageView) mouseEvent.getSource();
         for(ImageView image : deck){
             if(image != chosen){
@@ -90,6 +102,42 @@ public class DeckController {
             chosen.setScaleY(chosen.getScaleY() * 1.5);
         }
         clicked = true;
+
+
+        int choise = -1;
+        for(int i =0; i<deck.size();i++)
+        {
+            if(deck.get(i).equals(chosen))choise = i;
+        }
+
+
+        int finalChoise1 = choise;
+        Platform.runLater(()->{
+            System.out.println("Waiting for your turn");
+            do {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+            System.out.println("It's your turn");
+            System.out.println("deck");
+
+
+
+            //stage = (Stage) ((Node) submitButton).getScene().getWindow();
+            stage = StageSingleton.getInstance().getStage();
+            scene = GameSceneSingleton.getInstance().getGameScene();
+
+
+            int finalChoise = finalChoise1 +1;
+            if(ClientControllerSingleton.getInstance().getClientController().requestHelper(finalChoise))
+            {  stage.setTitle("GameMap");
+                stage.setScene(scene);
+                stage.show();}
+            }
+          );
 
     }
 

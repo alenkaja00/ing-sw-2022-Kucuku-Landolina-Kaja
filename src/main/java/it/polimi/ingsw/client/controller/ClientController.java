@@ -139,14 +139,18 @@ public class ClientController
             message = nextServerMessage();
             if (message.get(0).equals("JSON"))
             {
+                System.out.println("json executed");
                 view.updateView(message.get(1));
             }
             else if (message.get(0).equals("UNLOCK"))
+            {
+                System.out.println("unlock executed");
                 break;
+            }
             else
                 System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
         } while (true);
-
+        System.out.println("qui");
         view.helperScene();
 
         /*

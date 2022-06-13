@@ -1,9 +1,14 @@
 package it.polimi.ingsw.client.view.gui_java_fx.controllers;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -12,7 +17,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,6 +53,11 @@ public class GameMapController {
 
     private int entranceClicked;
     private Boolean tablesClicked;
+    private int chosenCard;
+
+    private Parent root;
+    private Scene scene;
+    private Stage stage;
 
     private DashboardHandler handler;
 
@@ -621,9 +634,11 @@ public class GameMapController {
     private ArrayList<ArrayList<ImageView>> AllProfessors;
     private ArrayList<ArrayList<ImageView>> AllTowers;
 
+    private ClientController clientController;
+
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
 
         //cardsGrid.setManaged(false);
         /*effectOne.setVisible(false);
@@ -971,6 +986,10 @@ public class GameMapController {
 
         entranceClicked = -1;
         tablesClicked = false;
+        chosenCard = -1;
+
+        clientController = ClientControllerSingleton.getInstance().getClientController();
+
 
     }
 
@@ -1037,7 +1056,6 @@ public class GameMapController {
 
     public void updateView(String json) {
 
-        System.out.println("gamemap method updateView called");
         gameData = gson.fromJson(json, GameClass.class);
 
         if(gameData.getPlayers().size() == 2)
