@@ -8,6 +8,6 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
-        ClientController controller = new ClientController("CLI");
+        ClientController controller = new ClientController("GUI");
     }
 }
