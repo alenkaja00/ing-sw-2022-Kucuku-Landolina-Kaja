@@ -10,7 +10,7 @@
    <children>
       <HBox alignment="CENTER" layoutX="156.0" layoutY="231.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="1025.0">
          <children>
-            <ImageView fx:id="wizard1" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="wizard1" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../resources/WIZARDS/MAGO1.jpg" />
                </image>
@@ -18,7 +18,7 @@
                   <Insets right="40.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="wizard2" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="wizard2" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../resources/WIZARDS/MAGO2.jpg" />
                </image>
@@ -26,7 +26,7 @@
                   <Insets right="40.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="wizard3" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="wizard3" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../resources/WIZARDS/MAGO3.jpg" />
                </image>
@@ -34,7 +34,7 @@
                   <Insets right="40.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="wizard4" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="wizard4" fitHeight="316.0" fitWidth="230.0" onMouseClicked="#chooseWizard" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../../resources/WIZARDS/MAGO4.jpg" />
                </image>
