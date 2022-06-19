@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 public class WizardController {
     @FXML
@@ -31,11 +32,27 @@ public class WizardController {
     private Scene scene;
     private Parent root;
 
+    private ArrayList<ImageView> wizards;
+    private double realScaleX;
+    private double realScaleY;
+
+
+    @FXML
+    public void initialize(){
+        wizards = new ArrayList<>();
+        wizards.add(wizard1);
+        wizards.add(wizard2);
+        wizards.add(wizard3);
+        wizards.add(wizard4);
+
+        realScaleX = wizard1.getScaleX();
+        realScaleY = wizard2.getScaleY();
+    }
 
     public void chooseWizard(MouseEvent mouseEvent) throws IOException {
 
         Wizard wizard = null;
-
+        ImageView chosen = (ImageView) mouseEvent.getSource();
 
         if(mouseEvent.getSource().equals(wizard1)){
             System.out.println("MAGO1");
@@ -52,6 +69,17 @@ public class WizardController {
         if(mouseEvent.getSource().equals(wizard4)){
             System.out.println("MAGO4");
             wizard = Wizard.WIZARD4;
+        }
+
+        for(ImageView wiz : wizards)
+        {
+            chosen.setScaleX(realScaleX * 1.5);
+            chosen.setScaleY(realScaleY * 1.5);
+
+            if(mouseEvent.getSource()!=wiz)
+            {
+                wiz.setOpacity(0.7);
+            }
         }
 
         if(wizard!=null)
@@ -105,6 +133,38 @@ public class WizardController {
                 ));
                 new Thread(task).start();
             }
+            else
+            {
+                for(ImageView wiz : wizards)
+                {
+                    wiz.setOpacity(1.0);
+                }
+                chosen.setScaleX(realScaleX);
+                chosen.setScaleY(realScaleY);
+            }
+        }
+    }
+
+    public void enlightenOpacity(MouseEvent mouseEvent)
+    {
+        ImageView image = (ImageView) mouseEvent.getSource();
+        for(ImageView img : wizards)
+        {
+            if(img != image)
+            {
+                img.setOpacity(0.5);
+            }
+        }
+    }
+
+    public void resetOpacity(MouseEvent mouseEvent)
+    {
+        for(ImageView img : wizards)
+        {
+            img.setOpacity(1.0);
+            img.setScaleY(realScaleX);
+            img.setScaleX(realScaleY);
+
         }
     }
 }
