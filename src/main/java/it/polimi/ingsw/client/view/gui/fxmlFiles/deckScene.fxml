@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="deckGrid" alignment="CENTER" gridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.DeckController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="2147483647">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="infoLabel" text="Choose your assistant card">
+                     <font>
+                        <Font name="System Italic" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
+         <children>
+            <Label fx:id="errorLabel" text="Unavailable card, it has been played by other players!">
+               <font>
+                  <Font name="System Italic" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <StackPane fx:id="stack" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="card1" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="card2" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="card3" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente3.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="card4" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+         <children>
+            <ImageView fx:id="card5" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente5.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <ImageView fx:id="card6" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente6.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <children>
+            <ImageView fx:id="card7" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente7.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+         <children>
+            <ImageView fx:id="card8" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente8.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <children>
+            <ImageView fx:id="card9" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente9.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+         <children>
+            <ImageView fx:id="card10" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../resources/Assistants/Assistente10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </children>
+</GridPane>
