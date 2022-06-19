@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
+import it.polimi.ingsw.client.view.jsonObjects.jDashboard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
-import it.polimi.ingsw.server.model.components.Dashboard;
 import it.polimi.ingsw.server.model.components.Tower;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public class DashboardHandler {
 
 
-    String greenPath = "/greenDisk.png";
-    String redPath = "/redDisk.png";
-    String yellowPath = "/yellowDisk.png";
-    String pinkPath = "/pinkDisk.png";
-    String bluePath = "/blueDisk.png";
+    String greenPath = "/StudentDisks/greenDisk.png";
+    String redPath = "/StudentDisks/redDisk.png";
+    String yellowPath = "/StudentDisks/yellowDisk.png";
+    String pinkPath = "/StudentDisks/pinkDisk.png";
+    String bluePath = "/StudentDisks/blueDisk.png";
 
     Image greenImage = new Image(greenPath);
     Image redImage = new Image(redPath);
@@ -23,23 +23,23 @@ public class DashboardHandler {
     Image pinkImage = new Image(pinkPath);
     Image blueImage = new Image(bluePath);
 
-    String blackPath = "/Towers1/black_tower.png";
-    String greyPath = "/Towers1/grey_tower.png";
-    String whitePath = "/Towers1/white_tower.png";
+    String blackPath = "/Towers/black_tower.png";
+    String greyPath = "/Towers/grey_tower.png";
+    String whitePath = "/Towers/white_tower.png";
 
     Image blackImage = new Image(blackPath);
     Image greyImage = new Image(greyPath);
     Image whiteImage = new Image(whitePath);
 
 
-    public void updateDashboard(Dashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors, ArrayList<ImageView> Towers, Tower towerColor)
+    public void updateDashboard(jDashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors, ArrayList<ImageView> Towers, Tower towerColor)
     {
         // Update entrance :
-        for(int i=0;i<dashboard.getEntranceSpots().length;i++)
+        for(int i=0;i<dashboard.entranceSpots.length;i++)
         {
-            updateEntranceSpot(dashboard.getEntranceSpots()[i],Entrance.get(i));
+            updateEntranceSpot(dashboard.entranceSpots[i],Entrance.get(i));
         }
-        for(int i = dashboard.getEntranceSpots().length; i< Entrance.size(); i++ )
+        for(int i = dashboard.entranceSpots.length; i< Entrance.size(); i++ )
         {
             Entrance.get(i).setOpacity(0.0);
         }
@@ -48,11 +48,11 @@ public class DashboardHandler {
         for(int i=0 ; i<5; i++)
         {
             //Tables
-            for(int j=0;j< dashboard.SittedStudents(fromIndexToColor(i));j++)
+            for(int j=0;j< dashboard.tables.get(fromIndexToColor(i));j++)
             {
                 updateGenericImage(true,Tables.get((i*10)+j));
             }
-            for(int j = dashboard.SittedStudents(fromIndexToColor(i));j<10;j++)
+            for(int j = dashboard.tables.get(fromIndexToColor(i));j<10;j++)
             {
                 updateGenericImage(false,Tables.get((i*10)+j));
             }
@@ -64,11 +64,11 @@ public class DashboardHandler {
 
         //Towers:
 
-        for(int i=0;i<dashboard.TowerNumber();i++)
+        for(int i=0;i<dashboard.towerNumber;i++)
         {
             updateTower(towerColor,Towers.get(i));
         }
-        for(int i = dashboard.TowerNumber();i<Towers.size();i++)
+        for(int i = dashboard.towerNumber;i<Towers.size();i++)
         {
             Towers.get(i).setOpacity(0.0);
         }

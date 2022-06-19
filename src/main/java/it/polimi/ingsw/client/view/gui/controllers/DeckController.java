@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -88,13 +89,16 @@ public class DeckController {
 
     public void chooseAssistant(MouseEvent mouseEvent) throws IOException {
         ImageView chosen = (ImageView) mouseEvent.getSource();
-        for(ImageView image : deck){
-            if(image != chosen){
+        for(ImageView image : deck)
+        {
+            if(image != chosen)
+            {
                 image.setOpacity(0.5);
             }
         }
         chosen.setOpacity(1);
-        if(!clicked) {
+        if(!clicked)
+        {
             chosen.setScaleX(chosen.getScaleX() * 1.5);
             chosen.setScaleY(chosen.getScaleY() * 1.5);
         }
@@ -104,38 +108,40 @@ public class DeckController {
         int choise = -1;
         for(int i =0; i<deck.size();i++)
         {
-            if(deck.get(i).equals(chosen))choise = i;
+            if(deck.get(i).equals(chosen))
+                choise = i;
         }
+        int finalChoise = choise + 1;
 
-
-        int finalChoise1 = choise;
-        Platform.runLater(()->
+        if(ClientControllerSingleton.getInstance().getClientController().requestHelper(finalChoise))
         {
-            System.out.println("Waiting for your turn");
-            do {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            Task task = new Task<Void>() {
+                @Override
+                public Void call() {
+                    /*System.out.println("Waiting for your turn");
+                    do {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                    System.out.println("It's your turn");*/
+                    return null;
                 }
-            } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
-            System.out.println("It's your turn");
-            System.out.println("deck");
+            };
+            task.setOnSucceeded(taskFinishEvent -> Platform.runLater(()->
+            {
+                stage = StageSingleton.getInstance().getStage();
+                scene = GameSceneSingleton.getInstance().getGameScene();
 
-
-            stage = StageSingleton.getInstance().getStage();
-            scene = GameSceneSingleton.getInstance().getGameScene();
-
-
-            int finalChoise = finalChoise1 +1;
-            if(ClientControllerSingleton.getInstance().getClientController().requestHelper(finalChoise))
-            {  stage.setTitle("GameMap");
+                stage.setTitle("GameMap");
                 stage.setScene(scene);
                 stage.show();
                 GameSceneSingleton.getInstance().getController().ETX();
-            }
-        });
-
+            }));
+            new Thread(task).start();
+        }
     }
 
     public void enlightenOpacity(MouseEvent mouseEvent) {

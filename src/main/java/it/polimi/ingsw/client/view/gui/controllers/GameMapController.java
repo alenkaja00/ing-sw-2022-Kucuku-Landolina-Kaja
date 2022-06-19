@@ -2,6 +2,8 @@ package it.polimi.ingsw.client.view.gui.controllers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
+import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
+import it.polimi.ingsw.client.view.jsonObjects.jPlayer;
 import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.application.Platform;
@@ -21,26 +23,15 @@ import java.util.ArrayList;
 
 public class GameMapController {
 
-    private ArrayList<javafx.scene.image.ImageView> Entrance1;
-    private ArrayList<ImageView> Entrance2;
-    private ArrayList<ImageView> Entrance3;
+    private ArrayList<ImageView> Entrance1, Entrance2, Entrance3;
 
-    private ArrayList<ImageView> Tables1;
-    private ArrayList<ImageView> Tables2;
-    private ArrayList<ImageView> Tables3;
+    private ArrayList<ImageView> Tables1, Tables2, Tables3;
 
-    private ArrayList<ImageView> Professors1;
-    private ArrayList<ImageView> Professors2;
-    private ArrayList<ImageView> Professors3;
+    private ArrayList<ImageView> Professors1, Professors2, Professors3;
 
+    private ArrayList<ImageView> Towers1, Towers2 ,Towers3;
 
-    private ArrayList<ImageView> Towers1;
-    private ArrayList<ImageView> Towers2;
-    private ArrayList<ImageView> Towers3;
-
-
-    private ArrayList<GridPane> CloudTwoGrids;
-    private ArrayList<GridPane> CloudThreeGrids;
+    private ArrayList<GridPane> CloudTwoGrids, CloudThreeGrids;
 
     private ArrayList<TilePane> Tilepanes;
 
@@ -49,46 +40,18 @@ public class GameMapController {
     private Boolean tablesClicked;
     private int chosenCard;
 
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
 
-    private DashboardHandler handler;
 
     @FXML
     private StackPane stack3;
     @FXML
-    private StackPane cloudPane21;
+    private GridPane namePanel3;
     @FXML
-    private StackPane cloudPane22;
-    @FXML
-    private StackPane cloudPane31;
-    @FXML
-    private StackPane cloudPane32;
-    @FXML
-    private StackPane cloudPane33;
+    private StackPane cloudPane21, cloudPane22, cloudPane31, cloudPane32, cloudPane33;
 
     @FXML
-    private ImageView dashboard1;
-
-    @FXML
-    private ImageView dashboard1Entrance0;
-    @FXML
-    private ImageView dashboard1Entrance1;
-    @FXML
-    private ImageView dashboard1Entrance2;
-    @FXML
-    private ImageView dashboard1Entrance3;
-    @FXML
-    private ImageView dashboard1Entrance4;
-    @FXML
-    private ImageView dashboard1Entrance5;
-    @FXML
-    private ImageView dashboard1Entrance6;
-    @FXML
-    private ImageView dashboard1Entrance7;
-    @FXML
-    private ImageView dashboard1Entrance8;
+    private ImageView dashboard1Entrance0, dashboard1Entrance1, dashboard1Entrance2, dashboard1Entrance3,
+            dashboard1Entrance4, dashboard1Entrance5, dashboard1Entrance6, dashboard1Entrance7, dashboard1Entrance8;
 
     @FXML
     private ImageView dashboard1Tables0;
@@ -372,10 +335,6 @@ public class GameMapController {
     private ImageView dashboard2Towers7;
 
 
-
-
-
-
     @FXML
     private ImageView dashboard3Entrance0;
     @FXML
@@ -611,7 +570,7 @@ public class GameMapController {
     private TilePane tilePane12;
 
     private Gson gson = new Gson();
-    private GameClass gameData;
+    private jGameClassExpert gameData;
 
 
     private ArrayList<ImageView> Students11;
@@ -1063,20 +1022,44 @@ public class GameMapController {
 
     public void updateView(String json) {
 
-        gameData = gson.fromJson(json, GameClass.class);
+        gameData = gson.fromJson(json, jGameClassExpert.class);
 
-        if(gameData.getPlayers().size() == 2)
+        //enable or disable view elements based on the player number
+        if(gameData.players.size() == 2)
         {
             stack3.setDisable(true);
             stack3.setVisible(false);
             stack3.setManaged(false);
+            namePanel3.setDisable(true);
+            namePanel3.setVisible(false);
+            namePanel3.setManaged(false);
+
+            cloudPane21.setDisable(false);
+            cloudPane21.setVisible(true);
+            cloudPane22.setDisable(false);
+            cloudPane22.setVisible(true);
+
+            cloudPane31.setDisable(true);
+            cloudPane31.setVisible(false);
+            cloudPane32.setDisable(true);
+            cloudPane32.setVisible(false);
+            cloudPane33.setDisable(true);
+            cloudPane33.setVisible(false);
         }
-        if(gameData.getPlayers().size() == 3)
+        if(gameData.players.size() == 3)
         {
+            stack3.setDisable(false);
+            stack3.setVisible(true);
+            stack3.setManaged(true);
+            namePanel3.setDisable(false);
+            namePanel3.setVisible(true);
+            namePanel3.setManaged(true);
+
             cloudPane21.setDisable(true);
             cloudPane21.setVisible(false);
             cloudPane22.setDisable(true);
             cloudPane22.setVisible(false);
+
             cloudPane31.setDisable(false);
             cloudPane31.setVisible(true);
             cloudPane32.setDisable(false);
@@ -1085,33 +1068,34 @@ public class GameMapController {
             cloudPane33.setVisible(true);
         }
 
+
         DashboardHandler dashboardHandler = new DashboardHandler();
         IslandHandler islandHandler = new IslandHandler();
         CloudHandler cloudHandler = new CloudHandler();
 
         int i=0;
-        for(Player player : gameData.getPlayers())
+        for(jPlayer player : gameData.players)
         {
-            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.getTowerColor());
+            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.towerColor);
             i++;
         }
 
 
         for(i =0; i<Tilepanes.size();i++)
         {
-            islandHandler.updateIsland(Tilepanes.get(i),gameData.getIslands().get(i));
+            islandHandler.updateIsland(Tilepanes.get(i), gameData.islands.get(i), gameData.CurrentIsland.ID);
         }
 
         //cloud management
-        for(i=0; i<gameData.getClouds().size(); i++)
+        for(i=0; i<gameData.clouds.size(); i++)
         {
-            if(gameData.getClouds().size()==2)
+            if(gameData.clouds.size()==2)
             {
-                cloudHandler.updateCloud(AllCloudStudentsTwo.get(i), gameData.getClouds().get(i));
+                cloudHandler.updateCloud(AllCloudStudentsTwo.get(i), gameData.clouds.get(i));
             }
-            else if(gameData.getClouds().size()==3)
+            else if(gameData.clouds.size()==3)
             {
-                cloudHandler.updateCloud(AllCloudStudentsThree.get(i), gameData.getClouds().get(i));
+                cloudHandler.updateCloud(AllCloudStudentsThree.get(i), gameData.clouds.get(i));
             }
         }
 
@@ -1119,7 +1103,7 @@ public class GameMapController {
 
     public void ETX()
     {
-        entranceClickable = true;
+        /*entranceClickable = true;
 
         Platform.runLater(()->{
             while (entranceClicked==-1) continue;
@@ -1128,7 +1112,7 @@ public class GameMapController {
             entranceClickable = false;
             System.out.println("etx executed");
             Nature();
-        });
+        });*/
 
     }
 

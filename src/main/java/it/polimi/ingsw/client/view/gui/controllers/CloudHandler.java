@@ -1,6 +1,6 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
-import it.polimi.ingsw.server.model.components.Cloud;
+import it.polimi.ingsw.client.view.jsonObjects.jCloud;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class CloudHandler {
 
-    String greenPath = "/greenDisk.png";
-    String redPath = "/redDisk.png";
-    String yellowPath = "/yellowDisk.png";
-    String pinkPath = "/pinkDisk.png";
-    String bluePath = "/blueDisk.png";
+    String greenPath = "/StudentDisks/greenDisk.png";
+    String redPath = "/StudentDisks/redDisk.png";
+    String yellowPath = "/StudentDisks/yellowDisk.png";
+    String pinkPath = "/StudentDisks/pinkDisk.png";
+    String bluePath = "/StudentDisks/blueDisk.png";
 
     Image greenImage = new Image(greenPath);
     Image redImage = new Image(redPath);
@@ -55,9 +55,9 @@ public class CloudHandler {
     }
 
 
-    public void updateCloud(ArrayList<ImageView> students, Cloud cloud)
+    public void updateCloud(ArrayList<ImageView> students, jCloud cloud)
     {
-        ArrayList<ColoredDisc> studentSpots = cloud.getStudents();
+        ArrayList<ColoredDisc> studentSpots = cloud.studentSpots;
 
         for(int i=0 ; i< studentSpots.size() ; i++ )
         {

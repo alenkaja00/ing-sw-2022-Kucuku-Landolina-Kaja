@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
+import it.polimi.ingsw.client.view.jsonObjects.jIsland;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
-import it.polimi.ingsw.server.model.components.Island;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -13,11 +13,12 @@ import java.util.HashMap;
 public class IslandHandler {
 
 
-    String greenPath = "/greenDisk.png";
-    String redPath = "/redDisk.png";
-    String yellowPath = "/yellowDisk.png";
-    String pinkPath = "/pinkDisk.png";
-    String bluePath = "/blueDisk.png";
+    String greenPath = "/StudentDisks/greenDisk.png";
+    String redPath = "/StudentDisks/redDisk.png";
+    String yellowPath = "/StudentDisks/yellowDisk.png";
+    String pinkPath = "/StudentDisks/pinkDisk.png";
+    String bluePath = "/StudentDisks/blueDisk.png";
+    String motherNaturePath = "mother_nature.png";
 
     Image greenImage = new Image(greenPath);
     Image redImage = new Image(redPath);
@@ -125,9 +126,32 @@ public class IslandHandler {
 
     }
 
-    public void updateIsland(TilePane tilePane, Island island)
+    public void updateIsland(TilePane tilePane, jIsland island, int currentIslandID)
     {
-        // Update Students
+        tilePane.getChildren().removeAll(tilePane.getChildren());
+
+        if (island.ID == currentIslandID)
+        {
+            ImageView newView  = new ImageView();
+            Image image = new Image(motherNaturePath);
+
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.setImage(image);
+            tilePane.getChildren().add(newView);
+        }
+
+        HashMap<ColoredDisc,Integer> students = island.students;
+        for(ColoredDisc color : students.keySet())
+        {
+            for (int i = 0; i < students.get(color); i++)
+            {
+                addStudent(tilePane, color);
+            }
+        }
+
+
+        /*// Update Students
         HashMap<ColoredDisc,Integer> students = island.getStudents();
         for(ColoredDisc color : ColoredDisc.values())
         {
@@ -147,7 +171,7 @@ public class IslandHandler {
                     removeStudent(tilePane,color);
                 }
             }
-        }
+        }*/
 
         // Update Towers
     }

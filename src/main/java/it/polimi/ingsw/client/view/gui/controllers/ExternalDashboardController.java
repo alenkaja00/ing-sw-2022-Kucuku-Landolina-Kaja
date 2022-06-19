@@ -187,11 +187,11 @@ public class ExternalDashboardController {
     private ImageView Towers7;
 
 
-    String greenPath = "/greenDisk.png";
-    String redPath = "/redDisk.png";
-    String yellowPath = "/yellowDisk.png";
-    String pinkPath = "/pinkDisk.png";
-    String bluePath = "/blueDisk.png";
+    String greenPath = "/StudentDisks/greenDisk.png";
+    String redPath = "/StudentDisks/redDisk.png";
+    String yellowPath = "/StudentDisks/yellowDisk.png";
+    String pinkPath = "/StudentDisks/pinkDisk.png";
+    String bluePath = "/StudentDisks/blueDisk.png";
 
     Image greenImage = new Image(greenPath);
     Image redImage = new Image(redPath);
