@@ -60,6 +60,11 @@ public class ClientController
         return false;
     }
 
+    public String getNickname()
+    {
+        return playerNickname;
+    }
+
     public boolean requestNewGame(int playerNumber, Boolean expertMode)
     {
         if (connectivity== null || !connectivity.connected)

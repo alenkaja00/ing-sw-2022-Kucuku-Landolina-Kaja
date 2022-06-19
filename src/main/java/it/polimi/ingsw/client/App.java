@@ -6,13 +6,8 @@ import java.io.IOException;
 
 public class App
 {
-    public static void main( String[] args ) throws IOException {
-        ClientController controller = new ClientController("GUI");
-
-        //connectivity.sendMessage("NICKNAME|Alen");
-        //connectivity.sendMessage("GAME|Alen|2|true");
-        //connectivity.sendMessage("PLAY|ENDI");
-        //connectivity.sendMessage("QUIT|ENDI");
-        //connectivity.sendMessage("GAME|ENDI");
+    public static void main( String[] args ) throws IOException
+    {
+        ClientController controller = new ClientController("CLI");
     }
 }
