@@ -443,17 +443,17 @@
                <children>
                   <ImageView fx:id="effectOne" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../resources/Effetti/CarteTOT_front2.jpg" />
+                        <Image url="@../../../../../../../../resources/Effects/lord.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="effectTwo" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../resources/Effetti/CarteTOT_front9.jpg" />
+                        <Image url="@../../../../../../../../resources/Effects/musician.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="effectThree" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../resources/Effetti/CarteTOT_front10.jpg" />
+                        <Image url="@../../../../../../../../resources/Effects/queen.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -476,7 +476,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="${namePanel1.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Effetti/CarteTOT_front8.jpg" />
+                                          <Image url="@../../../../../../../../resources/Effects/cook.jpg" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -1048,7 +1048,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="${namePane2.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Effetti/CarteTOT_front8.jpg" />
+                                          <Image url="@../../../../../../../../resources/Effects/cook.jpg" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -1620,7 +1620,7 @@
                                  <children>
                                     <ImageView fitHeight="150.0" fitWidth="${namePanel3.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Effetti/CarteTOT_front8.jpg" />
+                                          <Image url="@../../../../../../../../resources/Effects/cook.jpg" />
                                        </image>
                                     </ImageView>
                                  </children>
