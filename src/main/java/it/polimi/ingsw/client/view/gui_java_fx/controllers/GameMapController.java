@@ -6,11 +6,8 @@ import it.polimi.ingsw.server.model.components.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
@@ -19,11 +16,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class GameMapController {
 
@@ -637,6 +631,13 @@ public class GameMapController {
     private ClientController clientController;
 
 
+    private Boolean cloudClickable = false;
+    private Boolean entranceClickable = false;
+    private Boolean tablesClickable = false;
+    private Boolean islandClickable = false;
+
+
+
     @FXML
     public void initialize() throws IOException {
 
@@ -994,20 +995,22 @@ public class GameMapController {
     }
 
 
-    public void clickAttempt(MouseEvent mouseEvent)
+    public void entranceStudentClicked(MouseEvent mouseEvent)
     {
+        if(!entranceClickable) return;
         for(int i=0;i<Entrance1.size();i++)
         {
             if(Entrance1.get(i).equals(mouseEvent.getSource()))
             {
                 entranceClicked = i;
-                tablesClicked = false;
             }
         }
     }
 
+
     public void MoveToDashboard(MouseEvent mouseEvent)
     {
+        /*
         if(entranceClicked == -1) return;
 
         if(mouseEvent.getX() < dashboard1.getFitWidth() * 0.16 || mouseEvent.getX() > dashboard1.getFitWidth() * 0.7 ) return;
@@ -1016,10 +1019,13 @@ public class GameMapController {
         System.out.println("ETT "+entranceClicked);
         entranceClicked = -1;
         tablesClicked = true;
+         */
 
     }
 
-    public void selectCloud(MouseEvent mouseEvent) {
+
+    public void cloudClicked(MouseEvent mouseEvent) {
+        if(!cloudClickable) return;
         int index = -1;
         String version = "";
 
@@ -1044,6 +1050,7 @@ public class GameMapController {
 
     public void islandClicked(MouseEvent mouseEvent) {
 
+        if(!islandClickable) return;
         if(entranceClicked==-1) return;
 
         TilePane tilePane = (TilePane) mouseEvent.getSource();
@@ -1110,6 +1117,36 @@ public class GameMapController {
 
     }
 
+    public void ETX()
+    {
+        entranceClickable = true;
+
+        Platform.runLater(()->{
+            while (entranceClicked==-1) continue;
+            islandClickable = true;
+            tablesClickable = true;
+            entranceClickable = false;
+            System.out.println("etx executed");
+            Nature();
+        });
+
+    }
+
+    public void Nature()
+    {
+
+        CTE();
+    }
+
+    public void CTE()
+    {
 
 
     }
+
+    public void effectCard()
+    {
+
+    }
+
+}

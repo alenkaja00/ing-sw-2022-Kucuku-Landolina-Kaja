@@ -135,7 +135,9 @@ public class DeckController {
             if(ClientControllerSingleton.getInstance().getClientController().requestHelper(finalChoise))
             {  stage.setTitle("GameMap");
                 stage.setScene(scene);
-                stage.show();}
+                stage.show();
+                GameSceneSingleton.getInstance().getController().ETX();
+            }
             }
           );
 
