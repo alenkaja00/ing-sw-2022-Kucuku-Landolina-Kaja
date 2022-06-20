@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.view.gui.controllers;
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
+import it.polimi.ingsw.client.view.jsonObjects.jIsland;
 import it.polimi.ingsw.client.view.jsonObjects.jPlayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -176,18 +177,20 @@ public class GameMapController
 
 
     private Boolean entranceClickable = false;
-    private int clickedEntrance;
+    private int clickedEntrance = -1;
 
     private Boolean islandClickable = false;
-    private int clickedIsland;
+    private int clickedIsland = -1;
 
     private Boolean cloudClickable = false;
-    private int clickedCloud;
+    private int clickedCloud = -1;
 
     private Boolean tablesClickable = false;
-    private Boolean tablesClicked;
+    private Boolean tablesClicked = false;
 
     private int chosenCard;
+    private int currentIslandID;
+    private ArrayList<jIsland> islandsData;
 
     private Boolean expertMode = false;
     private Boolean effectPlayed = false;
@@ -443,6 +446,8 @@ public class GameMapController
 
         gameData = gson.fromJson(json, jGameClassExpert.class);
 
+        currentIslandID = gameData.CurrentIsland.ID;
+        islandsData = gameData.islands;
 
         //manage expert mode
         if (gameData.ChosenCards==null)
@@ -579,6 +584,7 @@ public class GameMapController
                 }
             }
 
+            System.out.println("clicked entrance student: " + clickedEntrance);
             entranceClickable = false;
             islandClickable = true;
             tablesClickable = true;
@@ -591,28 +597,33 @@ public class GameMapController
                     e.printStackTrace();
                 }
             }
+            System.out.println("out of the box");
 
             islandClickable = false;
             tablesClickable = false;
 
             if (clickedIsland != -1) {
-                if (!clientController.requestETI(clickedIsland, clickedEntrance))
+                if (!clientController.requestETI(clickedIsland-1, clickedEntrance))
                     System.out.println("Unable to play ETI");
-                else
+                else {
+                    System.out.println("played eti");
                     count++;
+                }
             }
             else if (tablesClicked) {
                 if (!clientController.requestETT(clickedEntrance))
                     System.out.println("Unable to play ETT");
-                else
+                else {
+                    System.out.println("played ett");
                     count++;
+                }
             }
 
             resetClickedValues();
 
             System.out.println("ETX executed");
 
-        } while (count <2);
+        } while (count <3);
 
         System.out.println("Exiting ETX phase");
 
@@ -621,12 +632,69 @@ public class GameMapController
 
     public void Nature()
     {
+        do
+        {
+            lockGui();
+            islandClickable = true;
+
+            while (clickedIsland ==-1)
+            {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            System.out.println("clicked island: " + clickedIsland);
+            islandClickable = false;
+
+            int currentIslandPosition = islandsData.stream().filter(x->x.ID == currentIslandID).map(x->islandsData.indexOf(x)).collect(Collectors.toList()).get(0);
+            int clickedIslandPosition = islandsData.stream().filter(x->x.ID == clickedIsland-1).map(x->islandsData.indexOf(x)).collect(Collectors.toList()).get(0);
+            int motherNatureMoves = (clickedIslandPosition + islandsData.size() - currentIslandPosition) % islandsData.size();
+            resetClickedValues();
+
+            if (!clientController.requestNature(motherNatureMoves))
+                System.out.println("Unable to move mother nature");
+            else {
+                System.out.println("Moved mother nature");
+                break;
+            }
+        } while (true);
+
         CTE();
     }
 
     public void CTE()
     {
+        do
+        {
+            lockGui();
+            cloudClickable = true;
 
+            while (clickedCloud ==-1)
+            {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            System.out.println("clicked cloud: " + (clickedCloud));
+            cloudClickable = false;
+
+
+
+            if (!clientController.requestCTE(clickedCloud))
+                System.out.println("Unable to do CTE");
+            else {
+                System.out.println("Correctly done CTE");
+                resetClickedValues();
+                break;
+            }
+        } while (true);
         effectPlayed = false;
+        System.out.println("ONE ROUND OK");
     }
 }

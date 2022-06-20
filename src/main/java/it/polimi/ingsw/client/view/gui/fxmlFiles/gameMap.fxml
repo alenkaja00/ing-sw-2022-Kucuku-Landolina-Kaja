@@ -473,7 +473,7 @@
                                 </columnConstraints>
                                 <rowConstraints>
                                    <RowConstraints minHeight="${centralPane1.width*0.01}" />
-                                   <RowConstraints />
+                                   <RowConstraints/>
                                 </rowConstraints>
                                  <children>
                                     <ImageView fx:id="helper1" fitWidth="${namePanel1.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -503,7 +503,7 @@
                                           <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="false" maxHeight="${dashboard1.fitHeight}" minHeight="${dashboard1.fitHeight}" minWidth="0" onMouseClicked="#tablesClicked" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
+                                    <GridPane gridLinesVisible="false" prefHeight="${dashboard1.fitHeight}" minWidth="0" onMouseClicked="#tablesClicked" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="0.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -1058,8 +1058,8 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="${centralPane1.width*0.01}" />
-                                    <RowConstraints />
+                                    <RowConstraints minHeight="${centralPane1.width*0.01}"/>
+                                    <RowConstraints/>
                                  </rowConstraints>
                                  <children>
                                     <ImageView fx:id="helper2" fitWidth="${namePanel2.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -1644,8 +1644,8 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="${centralPane1.width*0.01}" />
-                                    <RowConstraints />
+                                    <RowConstraints minHeight="${centralPane1.width*0.01}"/>
+                                    <RowConstraints/>
                                  </rowConstraints>
                                  <children>
                                     <ImageView fx:id="helper3" fitWidth="${namePanel3.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">

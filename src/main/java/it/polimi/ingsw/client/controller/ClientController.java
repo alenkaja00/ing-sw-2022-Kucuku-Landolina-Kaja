@@ -232,7 +232,7 @@ public class ClientController
 
     public boolean requestETT(int entranceIndex)
     {
-        connectivity.sendMessage("PLAY|"+playerNickname+"|ETI|"+entranceIndex);
+        connectivity.sendMessage("PLAY|"+playerNickname+"|ETT|"+entranceIndex);
         if (nextServerMessage().get(0).equals("OK"))
             return true;
         else
