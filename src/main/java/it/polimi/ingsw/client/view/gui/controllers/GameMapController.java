@@ -147,15 +147,22 @@ public class GameMapController
     private ClientController clientController;
 
 
-    private int entranceClicked;
-    private Boolean tablesClicked;
-    private int chosenCard;
+    private Boolean entranceClickable = false;
+    private int clickedEntrance;
+
+    private Boolean islandClickable = false;
+    private int clickedIsland;
 
     private Boolean cloudClickable = false;
-    private Boolean entranceClickable = false;
-    private Boolean tablesClickable = false;
-    private Boolean islandClickable = false;
+    private int clickedCloud;
 
+    private Boolean tablesClickable = false;
+    private Boolean tablesClicked;
+
+    private int chosenCard;
+
+    private Boolean expertMode = false;
+    private Boolean effectPlayed = false;
 
 
     @FXML
@@ -286,11 +293,12 @@ public class GameMapController
         AllTowers.add(Towers2);
         AllTowers.add(Towers3);
 
-        entranceClicked = -1;
+        clickedEntrance = -1;
         tablesClicked = false;
         chosenCard = -1;
 
         clientController = ClientControllerSingleton.getInstance().getClientController();
+
     }
 
 
@@ -301,14 +309,17 @@ public class GameMapController
         {
             if(Entrance1.get(i).equals(mouseEvent.getSource()))
             {
-                entranceClicked = i;
+                clickedEntrance = i;
             }
         }
     }
 
 
-    public void MoveToDashboard(MouseEvent mouseEvent)
+    public void tablesClicked(MouseEvent mouseEvent)
     {
+        if (!tablesClickable) return;
+
+        tablesClicked = true;
         /*
         if(entranceClicked == -1) return;
 
@@ -323,7 +334,8 @@ public class GameMapController
     }
 
 
-    public void cloudClicked(MouseEvent mouseEvent) {
+    public void cloudClicked(MouseEvent mouseEvent)
+    {
         if(!cloudClickable) return;
         int index = -1;
         String version = "";
@@ -342,22 +354,31 @@ public class GameMapController
         }
 
         if( index != -1)
-            System.out.println("CTE "+ index+ " "+ version);
-
-
+        {
+            clickedCloud = index;
+            System.out.println("CTE " + index + " " + version);
+        }
     }
 
-    public void islandClicked(MouseEvent mouseEvent) {
-
+    public void islandClicked(MouseEvent mouseEvent)
+    {
         if(!islandClickable) return;
-        if(entranceClicked==-1) return;
 
         TilePane tilePane = (TilePane) mouseEvent.getSource();
         String ID = tilePane.getId();
         String[] IDchars = ID.split("");
+        ID = ID.length()==10? IDchars[8] + IDchars[9]: IDchars[8];
 
-        System.out.println("ETI | "+  (ID.length()==10? IDchars[8] + IDchars[9]: IDchars[8]) +" " +entranceClicked);
-        entranceClicked = -1;
+        System.out.println("ETI | "+ ID + " " + clickedEntrance);
+
+        clickedIsland = Integer.parseInt(ID);
+    }
+
+    public void effectClicked(MouseEvent mouseEvent)
+    {
+        if (!expertMode || effectPlayed) return;
+
+        //do things with the effects
     }
 
     public void updateView(String json) {
@@ -368,12 +389,14 @@ public class GameMapController
         //manage expert mode
         if (gameData.ChosenCards==null)
         {
+            expertMode = false;
             cardsGrid.setDisable(true);
             cardsGrid.setManaged(false);
             cardsGrid.getChildren().removeAll(cardsGrid.getChildren());
         }
         else
         {
+            expertMode = true;
             cardsGrid.setDisable(false);
             cardsGrid.setManaged(true);
         }
@@ -458,19 +481,79 @@ public class GameMapController
 
     }
 
+    private void lockGui()
+    {
+        entranceClickable = false;
+        cloudClickable = false;
+        islandClickable = false;
+        tablesClickable = false;
+    }
+
+    private void resetClickedValues()
+    {
+        clickedIsland = -1;
+        clickedEntrance = -1;
+        tablesClicked = false;
+        clickedCloud = -1;
+    }
+
     public void ETX()
     {
-        /*entranceClickable = true;
+        System.out.println("Entering ETX phase");
 
-        Platform.runLater(()->{
-            while (entranceClicked==-1) continue;
+        int count = 0;
+        do
+        {
+            lockGui();
+            entranceClickable = true;
+
+            while (clickedEntrance ==-1)
+            {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            entranceClickable = false;
             islandClickable = true;
             tablesClickable = true;
-            entranceClickable = false;
-            System.out.println("etx executed");
-            Nature();
-        });*/
 
+            while (clickedIsland == -1 && !tablesClicked)
+            {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            islandClickable = false;
+            tablesClickable = false;
+
+            if (clickedIsland != -1) {
+                if (!clientController.requestETI(clickedIsland, clickedEntrance))
+                    System.out.println("Unable to play ETI");
+                else
+                    count++;
+            }
+            else if (tablesClicked) {
+                if (!clientController.requestETT(clickedEntrance))
+                    System.out.println("Unable to play ETT");
+                else
+                    count++;
+            }
+
+            resetClickedValues();
+
+            System.out.println("ETX executed");
+
+        } while (count <2);
+
+        System.out.println("Exiting ETX phase");
+
+        Nature();
     }
 
     public void Nature()
@@ -481,12 +564,6 @@ public class GameMapController
     public void CTE()
     {
 
-
+        effectPlayed = false;
     }
-
-    public void effectCard()
-    {
-
-    }
-
 }

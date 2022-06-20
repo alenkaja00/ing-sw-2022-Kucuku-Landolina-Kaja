@@ -138,9 +138,16 @@ public class DeckController {
                 stage.setTitle("GameMap");
                 stage.setScene(scene);
                 stage.show();
-                GameSceneSingleton.getInstance().getController().ETX();
             }));
             new Thread(task).start();
+            Task gameLogic = new Task<Void>() {
+                @Override
+                public Void call() {
+                    GameSceneSingleton.getInstance().getController().ETX();
+                    return null;
+                }
+            };
+            new Thread(gameLogic).start();
         }
     }
 

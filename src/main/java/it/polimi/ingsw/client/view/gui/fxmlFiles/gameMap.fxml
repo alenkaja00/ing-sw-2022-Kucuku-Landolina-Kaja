@@ -488,7 +488,7 @@
                                        <Label maxHeight="${centralPane1.width*0.06}" text="x "  style="-fx-font-size:2em;"></Label>
                                        <ImageView fx:id="coin1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" >
                                           <image>
-                                             <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
+                                             <Image url="@../../../../../../../../resources/moneta.png" />
                                           </image>
                                        </ImageView>
                                     </HBox>
@@ -501,7 +501,7 @@
                                           <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="false" minWidth="0" onMouseClicked="#MoveToDashboard" minHeight="${dashboard1.fitHeight}" maxHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
+                                    <GridPane gridLinesVisible="false" minWidth="0" onMouseClicked="#tablesClicked" minHeight="${dashboard1.fitHeight}" maxHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="0.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -1072,7 +1072,7 @@
                                        <Label maxHeight="${centralPane1.width*0.06}" text="x "  style="-fx-font-size:2em;"></Label>
                                        <ImageView fx:id="coin2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" >
                                           <image>
-                                             <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
+                                             <Image url="@../../../../../../../../resources/moneta.png" />
                                           </image>
                                        </ImageView>
                                     </HBox>
@@ -1656,7 +1656,7 @@
                                        <Label maxHeight="${centralPane1.width*0.06}" text="x "  style="-fx-font-size:2em;"></Label>
                                        <ImageView fx:id="coin3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" >
                                           <image>
-                                             <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
+                                             <Image url="@../../../../../../../../resources/moneta.png" />
                                           </image>
                                        </ImageView>
                                     </HBox>
