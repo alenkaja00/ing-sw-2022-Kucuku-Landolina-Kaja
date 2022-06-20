@@ -451,12 +451,16 @@ public class GameMapController
             cardsGrid.setDisable(true);
             cardsGrid.setManaged(false);
             cardsGrid.getChildren().removeAll(cardsGrid.getChildren());
+            CoinsImages.stream().forEach(x->x.setDisable(true));
+            CoinsImages.stream().forEach(x->x.setManaged(false));
         }
         else
         {
             expertMode = true;
             cardsGrid.setDisable(false);
             cardsGrid.setManaged(true);
+            CoinsImages.stream().forEach(x->x.setDisable(false));
+            CoinsImages.stream().forEach(x->x.setManaged(true));
         }
 
         //enable or disable view elements based on the player number

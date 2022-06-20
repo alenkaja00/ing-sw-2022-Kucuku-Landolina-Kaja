@@ -479,7 +479,7 @@
                                     <ImageView fx:id="helper1" fitWidth="${namePanel1.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     </ImageView>
                                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <ImageView fx:id="online1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
+                                       <ImageView fx:id="online1" fitHeight="${centralPane1.width*0.04}" fitWidth="${centralPane1.width*0.04}">
                                           <image>
                                              <Image url="@../../../../../../../../resources/online.png" />
                                           </image>
@@ -1065,7 +1065,7 @@
                                     <ImageView fx:id="helper2" fitWidth="${namePanel2.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     </ImageView>
                                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <ImageView fx:id="online2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
+                                       <ImageView fx:id="online2" fitHeight="${centralPane1.width*0.04}" fitWidth="${centralPane1.width*0.04}">
                                           <image>
                                              <Image url="@../../../../../../../../resources/online.png" />
                                           </image>
@@ -1651,7 +1651,7 @@
                                     <ImageView fx:id="helper3" fitWidth="${namePanel3.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     </ImageView>
                                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <ImageView fx:id="online3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
+                                       <ImageView fx:id="online3" fitHeight="${centralPane1.width*0.04}" fitWidth="${centralPane1.width*0.04}">
                                           <image>
                                              <Image url="@../../../../../../../../resources/online.png" />
                                           </image>
