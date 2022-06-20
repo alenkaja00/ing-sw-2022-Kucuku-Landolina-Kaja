@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Label?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.GameMapController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" prefWidth="100.0" />
@@ -432,7 +432,7 @@
       <HBox style="-fx-background-color: cyan; " GridPane.columnSpan="2147483647" />
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <GridPane fx:id="cardsGrid" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}" >
+            <GridPane fx:id="cardsGrid" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.4" prefWidth="100.0" />
@@ -459,13 +459,13 @@
                   </ImageView>
                </children>
             </GridPane>
-            <ScrollPane fx:id="centralPane1"  fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-border-color: black;" VBox.vgrow="SOMETIMES">
+            <ScrollPane fx:id="centralPane1" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-border-color: black;" VBox.vgrow="SOMETIMES">
                <content>
                   <StackPane fx:id="columnStack" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-border-color: red;">
                      <children>
                         <VBox fx:id="vbox" alignment="CENTER_LEFT" prefWidth="${centralPane1.width}" style="-fx-background-color: transparent;" StackPane.alignment="CENTER_LEFT">
                            <children>
-                              <GridPane fx:id="namePanel1" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" maxHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
+                              <GridPane fx:id="namePanel1" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15" />
@@ -473,20 +473,22 @@
                                 </columnConstraints>
                                 <rowConstraints>
                                    <RowConstraints minHeight="${centralPane1.width*0.01}" />
-                                   <RowConstraints/>
+                                   <RowConstraints />
                                 </rowConstraints>
                                  <children>
-                                    <ImageView fitWidth="${namePanel1.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Effects/cook.jpg" />
-                                       </image>
+                                    <ImageView fx:id="helper1" fitWidth="${namePanel1.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     </ImageView>
                                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <Label fx:id="nameLabel1" maxHeight="${centralPane1.width*0.06}" text="Endi" style="-fx-font-size:2em;"></Label>
-                                       <Label maxHeight="${centralPane1.width*0.06}" text="   "  style="-fx-font-size:2em;"></Label>
-                                       <Label fx:id="coinsLabel1" maxHeight="${centralPane1.width*0.06}" text="4"  style="-fx-font-size:2em;"></Label>
-                                       <Label maxHeight="${centralPane1.width*0.06}" text="x "  style="-fx-font-size:2em;"></Label>
-                                       <ImageView fx:id="coin1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" >
+                                       <ImageView fx:id="online1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
+                                          <image>
+                                             <Image url="@../../../../../../../../resources/online.png" />
+                                          </image>
+                                       </ImageView>
+                                       <Label fx:id="nameLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="Endi" />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="   " />
+                                       <Label fx:id="coinsLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="x " />
+                                       <ImageView fx:id="coin1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
                                              <Image url="@../../../../../../../../resources/moneta.png" />
                                           </image>
@@ -501,7 +503,7 @@
                                           <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="false" minWidth="0" onMouseClicked="#tablesClicked" minHeight="${dashboard1.fitHeight}" maxHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
+                                    <GridPane gridLinesVisible="false" maxHeight="${dashboard1.fitHeight}" minHeight="${dashboard1.fitHeight}" minWidth="0" onMouseClicked="#tablesClicked" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="0.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -1049,28 +1051,30 @@
                                     <Insets />
                                  </VBox.margin>
                               </StackPane>
-                              <GridPane fx:id="namePane2" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" maxHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
+                              <GridPane fx:id="namePanel2" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="${centralPane1.width*0.01}"/>
-                                    <RowConstraints/>
+                                    <RowConstraints minHeight="${centralPane1.width*0.01}" />
+                                    <RowConstraints />
                                  </rowConstraints>
                                  <children>
-                                    <ImageView fitWidth="${namePane2.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Effects/cook.jpg" />
-                                       </image>
+                                    <ImageView fx:id="helper2" fitWidth="${namePanel2.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     </ImageView>
                                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <Label fx:id="nameLabel2" maxHeight="${centralPane1.width*0.06}" text="Endi" style="-fx-font-size:2em;"></Label>
-                                       <Label maxHeight="${centralPane1.width*0.06}" text="   "  style="-fx-font-size:2em;"></Label>
-                                       <Label fx:id="coinsLabel2" maxHeight="${centralPane1.width*0.06}" text="4"  style="-fx-font-size:2em;"></Label>
-                                       <Label maxHeight="${centralPane1.width*0.06}" text="x "  style="-fx-font-size:2em;"></Label>
-                                       <ImageView fx:id="coin2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" >
+                                       <ImageView fx:id="online2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
+                                          <image>
+                                             <Image url="@../../../../../../../../resources/online.png" />
+                                          </image>
+                                       </ImageView>
+                                       <Label fx:id="nameLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="Endi" />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="   " />
+                                       <Label fx:id="coinsLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="x " />
+                                       <ImageView fx:id="coin2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
                                              <Image url="@../../../../../../../../resources/moneta.png" />
                                           </image>
@@ -1633,28 +1637,30 @@
                                     <Insets />
                                  </VBox.margin>
                               </StackPane>
-                              <GridPane fx:id="namePanel3" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" maxHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
+                              <GridPane fx:id="namePanel3" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="${centralPane1.width*0.01}"/>
-                                    <RowConstraints/>
+                                    <RowConstraints minHeight="${centralPane1.width*0.01}" />
+                                    <RowConstraints />
                                  </rowConstraints>
                                  <children>
-                                    <ImageView fitWidth="${namePanel3.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Effects/cook.jpg" />
-                                       </image>
+                                    <ImageView fx:id="helper3" fitWidth="${namePanel3.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     </ImageView>
                                     <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-                                       <Label fx:id="nameLabel3" maxHeight="${centralPane1.width*0.06}" text="Endi" style="-fx-font-size:2em;"></Label>
-                                       <Label maxHeight="${centralPane1.width*0.06}" text="   "  style="-fx-font-size:2em;"></Label>
-                                       <Label fx:id="coinsLabel3" maxHeight="${centralPane1.width*0.06}" text="4"  style="-fx-font-size:2em;"></Label>
-                                       <Label maxHeight="${centralPane1.width*0.06}" text="x "  style="-fx-font-size:2em;"></Label>
-                                       <ImageView fx:id="coin3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" >
+                                       <ImageView fx:id="online3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
+                                          <image>
+                                             <Image url="@../../../../../../../../resources/online.png" />
+                                          </image>
+                                       </ImageView>
+                                       <Label fx:id="nameLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="Endi" />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="   " />
+                                       <Label fx:id="coinsLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="x " />
+                                       <ImageView fx:id="coin3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
                                              <Image url="@../../../../../../../../resources/moneta.png" />
                                           </image>

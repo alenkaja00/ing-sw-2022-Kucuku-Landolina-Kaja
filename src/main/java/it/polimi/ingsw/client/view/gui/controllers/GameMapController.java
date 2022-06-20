@@ -5,6 +5,7 @@ import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
 import it.polimi.ingsw.client.view.jsonObjects.jPlayer;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
@@ -57,7 +58,28 @@ public class GameMapController
     @FXML
     private StackPane stack3;
     @FXML
-    private GridPane namePanel3;
+    private GridPane namePanel1, namePanel2, namePanel3;
+
+    ///Online//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private ImageView online1, online2, online3;
+
+    ///nicknames//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private Label nameLabel1, nameLabel2, nameLabel3;
+
+    ///CoinsAmount//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private Label coinsLabel1, coinsLabel2, coinsLabel3;
+
+    ///CoinsImages//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private ImageView coin1, coin2, coin3;
+
+    ///HelperCards//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @FXML
+    private ImageView helper1, helper2, helper3;
+
 
 
     ///dashboard1//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,6 +150,12 @@ public class GameMapController
     private ArrayList<ImageView> Towers1, Towers2 ,Towers3;
     private ArrayList<GridPane> CloudTwoGrids, CloudThreeGrids;
     private ArrayList<TilePane> Tilepanes;
+    private ArrayList<ImageView> Online;
+    private ArrayList<Label> Nicknames;
+    private ArrayList<Label> CoinsAmount;
+    private ArrayList<ImageView> CoinsImages;
+    private ArrayList<GridPane> NamePanels;
+    private ArrayList<ImageView> HelperCards;
     ///
     private ArrayList<ImageView> Students11, Students12;
     private ArrayList<ImageView> StudentsThree1, StudentsThree2, StudentsThree3;
@@ -273,6 +301,36 @@ public class GameMapController
         Tilepanes.add(tilePane11);
         Tilepanes.add(tilePane12);
 
+        Online = new ArrayList<>();
+        Online.add(online1);
+        Online.add(online2);
+        Online.add(online3);
+
+        Nicknames = new ArrayList<>();
+        Nicknames.add(nameLabel1);
+        Nicknames.add(nameLabel2);
+        Nicknames.add(nameLabel3);
+
+        CoinsAmount = new ArrayList<>();
+        CoinsAmount.add(coinsLabel1);
+        CoinsAmount.add(coinsLabel2);
+        CoinsAmount.add(coinsLabel3);
+
+        CoinsImages = new ArrayList<>();
+        CoinsImages.add(coin1);
+        CoinsImages.add(coin2);
+        CoinsImages.add(coin3);
+
+        NamePanels = new ArrayList<>();
+        NamePanels.add(namePanel1);
+        NamePanels.add(namePanel2);
+        NamePanels.add(namePanel3);
+
+        HelperCards = new ArrayList<>();
+        HelperCards.add(helper1);
+        HelperCards.add(helper2);
+        HelperCards.add(helper3);
+
         Entrances = new ArrayList<>();
         Entrances.add(Entrance1);
         Entrances.add(Entrance2);
@@ -410,6 +468,7 @@ public class GameMapController
             namePanel3.setDisable(true);
             namePanel3.setVisible(false);
             namePanel3.setManaged(false);
+            namePanel3.getChildren().removeAll(namePanel3.getChildren());
 
             cloudPane21.setDisable(false);
             cloudPane21.setVisible(true);
@@ -448,12 +507,12 @@ public class GameMapController
 
         //Dashboard management
         DashboardHandler dashboardHandler = new DashboardHandler();
-        gameData.players.stream().filter(x->x.nickname.equals(clientController.getNickname())).forEach(x->dashboardHandler.updateDashboard(x.myDashboard,Entrances.get(0),AllTables.get(0),AllProfessors.get(0),AllTowers.get(0),x.towerColor));
+        gameData.players.stream().filter(x->x.nickname.equals(clientController.getNickname())).forEach(x->dashboardHandler.updateDashboard(x.myDashboard,Entrances.get(0),AllTables.get(0),AllProfessors.get(0),AllTowers.get(0),x.towerColor,x,Online.get(0),Nicknames.get(0),CoinsAmount.get(0),HelperCards.get(0),gameData.playerCardValue[gameData.players.indexOf(x)]));
         List<jPlayer> remainingPlayers = gameData.players.stream().filter(x->!x.nickname.equals(clientController.getNickname())).collect(Collectors.toList());
         for(jPlayer player : remainingPlayers)
         {
             int i = remainingPlayers.indexOf(player)+1;
-            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.towerColor);
+            dashboardHandler.updateDashboard(player.myDashboard,Entrances.get(i),AllTables.get(i),AllProfessors.get(i),AllTowers.get(i),player.towerColor,player,Online.get(i),Nicknames.get(i),CoinsAmount.get(i),HelperCards.get(i),gameData.playerCardValue[gameData.players.indexOf(player)]);
         }
 
 

@@ -1,12 +1,20 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.view.jsonObjects.jDashboard;
+import it.polimi.ingsw.client.view.jsonObjects.jPlayer;
+import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Tower;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DashboardHandler {
 
@@ -31,9 +39,36 @@ public class DashboardHandler {
     Image greyImage = new Image(greyPath);
     Image whiteImage = new Image(whitePath);
 
+    String onlinePath = "/online.png";
+    String offlinePath = "/offline.png";
 
-    public void updateDashboard(jDashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors, ArrayList<ImageView> Towers, Tower towerColor)
+    Image online = new Image(onlinePath);
+    Image offline = new Image(offlinePath);
+
+    ArrayList<String> helperPaths = new ArrayList<>(Arrays.asList("/Assistants/Assistente1.png","/Assistants/Assistente2.png","/Assistants/Assistente3.png",
+            "/Assistants/Assistente4.png","/Assistants/Assistente5.png","/Assistants/Assistente6.png","/Assistants/Assistente7.png",
+            "/Assistants/Assistente8.png","/Assistants/Assistente9.png","/Assistants/Assistente10.png"));
+
+    public void updateDashboard(jDashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors, ArrayList<ImageView> Towers, Tower towerColor, jPlayer player, ImageView Status, Label Nickname, Label CoinsAmount, ImageView HelperCard, int CardValue)
     {
+        //update labels
+        if(player.online)
+        {
+            Status.setImage(online);
+        }
+        else
+        {
+            Status.setImage(offline);
+        }
+
+        Nickname.setText(player.nickname);
+        CoinsAmount.setText(String.valueOf(player.coinsAmount));
+
+        if(CardValue>0)
+        {
+            HelperCard.setImage(new Image (helperPaths.get(CardValue-1)));
+        }
+
         // Update entrance :
         for(int i=0;i<dashboard.entranceSpots.length;i++)
         {
