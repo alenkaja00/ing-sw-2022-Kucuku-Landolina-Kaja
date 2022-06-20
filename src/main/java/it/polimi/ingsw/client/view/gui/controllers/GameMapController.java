@@ -456,7 +456,12 @@ public class GameMapController
             cardsGrid.setDisable(true);
             cardsGrid.setManaged(false);
             cardsGrid.getChildren().removeAll(cardsGrid.getChildren());
+
+            CoinsAmount.stream().forEach(x->x.setDisable(true));
+            CoinsAmount.stream().forEach(x->x.setVisible(false));
+            CoinsAmount.stream().forEach(x->x.setManaged(false));
             CoinsImages.stream().forEach(x->x.setDisable(true));
+            CoinsImages.stream().forEach(x->x.setVisible(false));
             CoinsImages.stream().forEach(x->x.setManaged(false));
         }
         else
@@ -464,7 +469,11 @@ public class GameMapController
             expertMode = true;
             cardsGrid.setDisable(false);
             cardsGrid.setManaged(true);
+            CoinsAmount.stream().forEach(x->x.setDisable(false));
+            CoinsAmount.stream().forEach(x->x.setVisible(true));
+            CoinsAmount.stream().forEach(x->x.setManaged(true));
             CoinsImages.stream().forEach(x->x.setDisable(false));
+            CoinsImages.stream().forEach(x->x.setVisible(true));
             CoinsImages.stream().forEach(x->x.setManaged(true));
         }
 

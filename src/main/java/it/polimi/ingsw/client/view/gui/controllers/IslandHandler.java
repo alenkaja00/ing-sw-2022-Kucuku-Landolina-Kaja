@@ -2,12 +2,15 @@ package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.view.jsonObjects.jIsland;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
+import it.polimi.ingsw.server.model.components.Tower;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class IslandHandler {
@@ -25,6 +28,8 @@ public class IslandHandler {
     Image yellowImage = new Image(yellowPath);
     Image pinkImage = new Image(pinkPath);
     Image blueImage = new Image(bluePath);
+
+    ArrayList<String> towersPath = new ArrayList<>(Arrays.asList("/Towers/black_tower.png","/Towers/grey_tower.png","/Towers/white_tower.png"));
 
 
     public Image getImageFromColor(ColoredDisc disc)
@@ -174,6 +179,22 @@ public class IslandHandler {
         }*/
 
         // Update Towers
+        for(Tower tower : island.towerList)
+        {
+            ImageView newView = new ImageView();
+            Image image = null;
+            switch(tower)
+            {
+                case BLACK: image = new Image(towersPath.get(0)); break;
+                case GREY:  image = new Image(towersPath.get(1)); break;
+                case WHITE: image = new Image(towersPath.get(2)); break;
+
+            }
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.4));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.4));
+            newView.setImage(image);
+            tilePane.getChildren().add(newView);
+        }
     }
 
 

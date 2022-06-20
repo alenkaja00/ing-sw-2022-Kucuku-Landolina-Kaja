@@ -62,7 +62,7 @@ public class DashboardHandler {
         }
 
         Nickname.setText(player.nickname);
-        CoinsAmount.setText(String.valueOf(player.coinsAmount));
+        CoinsAmount.setText(String.valueOf(player.coinsAmount)+"x ");
 
         if(CardValue>0)
         {

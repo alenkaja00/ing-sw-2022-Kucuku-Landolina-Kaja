@@ -127,4 +127,8 @@ public class EffectCard {
         return disc;
     }
 
+
+    public int getProhibitionCard(){
+        return this.prohibitionCard;
+    }
 }
