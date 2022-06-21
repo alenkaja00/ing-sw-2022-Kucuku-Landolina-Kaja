@@ -54,7 +54,7 @@
                               <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack1" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                  <children>
                                     <ImageView fx:id="island1" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -66,7 +66,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                              <StackPane fx:id="islandStack2" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                  <children>
                                     <ImageView fx:id="island2" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -78,7 +78,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                              <StackPane fx:id="islandStack3" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="island3" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -90,7 +90,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                              <StackPane fx:id="islandStack4" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="island4" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -102,7 +102,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                              <StackPane fx:id="islandStack5" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                                  <children>
                                     <ImageView fx:id="island5" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -114,7 +114,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack6" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                  <children>
                                     <ImageView fx:id="island6" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -126,7 +126,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack7" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" GridPane.valignment="TOP">
                                  <children>
                                     <ImageView fx:id="island7" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -138,7 +138,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack8" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                  <children>
                                     <ImageView fx:id="island8" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -150,7 +150,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <StackPane fx:id="islandStack9" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <children>
                                     <ImageView fx:id="island9" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -162,7 +162,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <StackPane fx:id="islandStack10" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <ImageView fx:id="island10" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -174,7 +174,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <StackPane fx:id="islandStack11" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="island11" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
@@ -186,7 +186,7 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <StackPane fx:id="islandStack12" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <children>
                                     <ImageView fx:id="island12" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
                                        <image>
