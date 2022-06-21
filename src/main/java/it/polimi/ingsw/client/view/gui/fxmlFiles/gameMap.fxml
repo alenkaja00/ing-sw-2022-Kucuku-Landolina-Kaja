@@ -430,14 +430,6 @@
             </StackPane>
          </content>
       </ScrollPane>
-      <HBox alignment="TOP_CENTER" style="-fx-background-color: cyan; " GridPane.columnSpan="2147483647">
-         <children>
-            <ImageView fx:id="banner" fitHeight="${base.height*0.1}" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
-               <image>
-                  <Image url="@../../../../../../../../resources/banner.png" />
-               </image>
-            </ImageView>
-         </children></HBox>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <GridPane fx:id="cardsGrid" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}">
@@ -2291,7 +2283,7 @@
                </HBox>
                <StackPane fx:id="stack" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <children>
-                     <ImageView fx:id="card1" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card1" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente1.png" />
                         </image>
@@ -2300,7 +2292,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                   <children>
-                     <ImageView fx:id="card2" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card2" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente2.png" />
                         </image>
@@ -2309,7 +2301,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                   <children>
-                     <ImageView fx:id="card3" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card3" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente3.png" />
                         </image>
@@ -2318,7 +2310,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                   <children>
-                     <ImageView fx:id="card4" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card4" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente4.png" />
                         </image>
@@ -2327,7 +2319,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                   <children>
-                     <ImageView fx:id="card5" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card5" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente5.png" />
                         </image>
@@ -2336,7 +2328,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                   <children>
-                     <ImageView fx:id="card6" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card6" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente6.png" />
                         </image>
@@ -2345,7 +2337,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                   <children>
-                     <ImageView fx:id="card7" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card7" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente7.png" />
                         </image>
@@ -2354,7 +2346,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                   <children>
-                     <ImageView fx:id="card8" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card8" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente8.png" />
                         </image>
@@ -2363,7 +2355,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                   <children>
-                     <ImageView fx:id="card9" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card9" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente9.png" />
                         </image>
@@ -2372,7 +2364,7 @@
                </StackPane>
                <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                   <children>
-                     <ImageView fx:id="card10" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="card10" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@../../../../../../../../resources/Assistants/Assistente10.png" />
                         </image>
@@ -2382,5 +2374,17 @@
             </children>
          </GridPane>
       </StackPane >
+      <StackPane alignment="TOP_CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-background-color: transparent; " GridPane.columnSpan="2147483647">
+         <children>
+            <ImageView fx:id="banner" fitHeight="${base.height*0.1}" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../../../../../../../../resources/banner.png" />
+               </image>
+            </ImageView>
+         </children>
+         <children>
+            <Label fx:id="bannerText" style="-fx-font-size: 2em" prefHeight="${banner.fitHeight}" text="..."></Label>
+         </children>
+      </StackPane>
    </children>
 </GridPane>

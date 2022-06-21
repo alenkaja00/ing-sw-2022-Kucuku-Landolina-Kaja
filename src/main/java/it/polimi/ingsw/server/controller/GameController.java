@@ -83,6 +83,7 @@ public class GameController
                     System.out.println(playerWizards);
                     System.out.println(message);*/
                 playerSockets.get(message.get(1)).sendMessage("OK");
+                //updateView(message.get(1));
                 playerWizards.put(message.get(1), Wizard.valueOf(message.get(3)));
             }
             else

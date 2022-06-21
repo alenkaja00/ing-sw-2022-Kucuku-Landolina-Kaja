@@ -86,52 +86,21 @@ public class WizardController {
         {
             if (ClientControllerSingleton.getInstance().getClientController().requestWizard(wizard))
             {
-                Task task = new Task<Void>() {
+                stage = StageSingleton.getInstance().getStage();
+                scene = GameSceneSingleton.getInstance().getGameScene();
+
+                stage.setTitle("GameMap");
+                stage.setScene(scene);
+                stage.show();
+
+                Task gameLogic = new Task<Void>() {
                     @Override
                     public Void call() {
-                        System.out.println("Waiting for your turn");
-                        do {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
-                        System.out.println("It's your turn");
+                        GameSceneSingleton.getInstance().getController().ETX();
                         return null;
                     }
                 };
-                task.setOnSucceeded(taskFinishEvent -> Platform.runLater(
-                        ()->
-                        {
-                            FXMLLoader loader = null;
-                            try {
-                                loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/deckScene.fxml").toURI().toURL());
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            }
-                            try {
-                                root = loader.load();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-                            scene = new Scene(root);
-
-
-                            try {
-                                scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            }
-                            stage.setTitle("Ip and Port");
-                            stage.setScene(scene);
-
-
-                            stage.show();
-                        }
-                ));
-                new Thread(task).start();
+                new Thread(gameLogic).start();
             }
             else
             {

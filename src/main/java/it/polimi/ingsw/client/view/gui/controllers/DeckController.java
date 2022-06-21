@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.view.gui.controllers;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,7 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class DeckController {
@@ -45,7 +48,6 @@ public class DeckController {
     private Label errorLabel;
     @FXML
     private StackPane stack;
-
     private ArrayList<ImageView> deck;
 
     private double realScaleX;
@@ -143,8 +145,8 @@ public class DeckController {
             Task gameLogic = new Task<Void>() {
                 @Override
                 public Void call() {
-                    GameSceneSingleton.getInstance().getController().ETX();
-                    return null;
+                GameSceneSingleton.getInstance().getController().ETX();
+                return null;
                 }
             };
             new Thread(gameLogic).start();

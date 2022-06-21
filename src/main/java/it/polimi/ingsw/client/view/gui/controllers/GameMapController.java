@@ -2,20 +2,16 @@ package it.polimi.ingsw.client.view.gui.controllers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
-import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
-import it.polimi.ingsw.client.view.jsonObjects.jIsland;
-import it.polimi.ingsw.client.view.jsonObjects.jPlayer;
+import it.polimi.ingsw.client.view.jsonObjects.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,10 +21,14 @@ import java.util.stream.Collectors;
 
 public class GameMapController
 {
-
+    //deckpane
     @FXML
     private StackPane deckStack;
+    @FXML
+    private ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10;
 
+    @FXML
+    private Label bannerText;
 
     ///clouds
     @FXML
@@ -176,6 +176,8 @@ public class GameMapController
     private ArrayList<ArrayList<ImageView>> AllTables;
     private ArrayList<ArrayList<ImageView>> AllProfessors;
     private ArrayList<ArrayList<ImageView>> AllTowers;
+    //
+    private ArrayList<ImageView> deck;
 
 
     ///logic variables
@@ -203,14 +205,15 @@ public class GameMapController
     private Boolean expertMode = false;
     private Boolean effectPlayed = false;
 
+    private int clickedCard = -1;
+
 
     @FXML
     public void initialize() throws IOException {
 
-        //base.getChildren().stream().forEach(x->x.setDisable(true));
-
-        deckStack.setVisible(true);
-        deckStack.setDisable(false);
+        //deck management
+        deck = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10));
+        showDeck(false);
 
 
         ///dashboard1//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -377,6 +380,28 @@ public class GameMapController
 
     }
 
+    @FXML
+    private void cardClicked(MouseEvent mouseEvent)
+    {
+        System.out.println("chiamato");
+        ImageView chosen = (ImageView) mouseEvent.getSource();
+
+        for(int i =0; i<deck.size();i++)
+        {
+            deck.get(i).setDisable(true);
+            if(deck.get(i).equals(chosen))
+            {
+                clickedCard = i+1;
+                chosen.setOpacity(1);
+                deck.get(i).setScaleY(1.1);
+                deck.get(i).setScaleX(1.1);
+            }
+            else
+            {
+                deck.get(i).setOpacity(0.5);
+            }
+        }
+    }
 
     public void entranceStudentClicked(MouseEvent mouseEvent)
     {
@@ -389,7 +414,6 @@ public class GameMapController
             }
         }
     }
-
 
     public void tablesClicked(MouseEvent mouseEvent)
     {
@@ -408,7 +432,6 @@ public class GameMapController
          */
 
     }
-
 
     public void cloudClicked(MouseEvent mouseEvent)
     {
@@ -571,6 +594,9 @@ public class GameMapController
             }
         }
 
+
+        //deck management
+        resetDeck();
     }
 
     private void lockGui()
@@ -583,19 +609,90 @@ public class GameMapController
 
     private void resetClickedValues()
     {
+        clickedCard = -1;
         clickedIsland = -1;
         clickedEntrance = -1;
         tablesClicked = false;
         clickedCloud = -1;
     }
 
+    private void showDeck(boolean val)
+    {
+        deckStack.setManaged(val);
+        deckStack.setVisible(val);
+        deckStack.setDisable(!val);
+        deckStack.getChildren().forEach(x->{x.setManaged(val); x.setVisible(val); x.setDisable(!val);});
+    }
+    private void resetDeck()
+    {
+        for (ImageView card : deck)
+        {
+            card.setScaleX(1);
+            card.setScaleY(1);
+            card.setDisable(false);
+            card.setOpacity(1);
+        }
+        ArrayList<jHelperCard> playerDeck = gameData.players.stream().filter(x->x.nickname.equals(clientController.getNickname())).map(x->x.deck.deck).collect(Collectors.toList()).get(0);
+        for (int i=0; i<deck.size(); i++)
+        {
+            if (playerDeck.get(i).used)
+            {
+                deck.get(i).setOpacity(0.5);
+                deck.get(i).setDisable(true);
+            }
+        }
+    }
+
     public void ETX()
     {
-        System.out.println("Entering ETX phase");
+        bannerMessage("Waiting for your turn...");
+
+        do {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+        showDeck(true);
+        do {
+            bannerMessage("Select a card!");
+
+            while (clickedCard == -1) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (clientController.requestHelper(clickedCard))
+            {
+                resetClickedValues();
+                resetDeck();
+                showDeck(false);
+                break;
+            }
+            else
+            {
+                bannerMessage("The card you selected is not valid");
+                resetDeck();
+            }
+        } while (true);
+
+        bannerMessage("Waiting for your turn...");
+        do {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
 
         int count = 0;
         do
         {
+            bannerMessage("Move a student to an island or to the tables! (" + (3-count) + " left)");
             lockGui();
             entranceClickable = true;
 
@@ -628,7 +725,14 @@ public class GameMapController
 
             if (clickedIsland != -1) {
                 if (!clientController.requestETI(clickedIsland-1, clickedEntrance))
-                    System.out.println("Unable to play ETI");
+                {
+                    bannerMessage("Invalid student move. Try again!");
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 else {
                     System.out.println("played eti");
                     count++;
@@ -636,7 +740,9 @@ public class GameMapController
             }
             else if (tablesClicked) {
                 if (!clientController.requestETT(clickedEntrance))
-                    System.out.println("Unable to play ETT");
+                {
+                    bannerMessage("Invalid student move. Try again!");
+                }
                 else {
                     System.out.println("played ett");
                     count++;
@@ -656,6 +762,7 @@ public class GameMapController
 
     public void Nature()
     {
+        bannerMessage("Move mother nature!");
         do
         {
             lockGui();
@@ -679,7 +786,9 @@ public class GameMapController
             resetClickedValues();
 
             if (!clientController.requestNature(motherNatureMoves))
-                System.out.println("Unable to move mother nature");
+            {
+                bannerMessage("Invalid mother nature move. Try again!");
+            }
             else {
                 System.out.println("Moved mother nature");
                 break;
@@ -691,6 +800,7 @@ public class GameMapController
 
     public void CTE()
     {
+        bannerMessage("Select a cloud to refill your entrance!");
         do
         {
             lockGui();
@@ -711,7 +821,9 @@ public class GameMapController
 
 
             if (!clientController.requestCTE(clickedCloud))
-                System.out.println("Unable to do CTE");
+            {
+                bannerMessage("Invalid cloud selection. Try again!");
+            }
             else {
                 System.out.println("Correctly done CTE");
                 resetClickedValues();
@@ -720,6 +832,7 @@ public class GameMapController
         } while (true);
         effectPlayed = false;
         System.out.println("ONE ROUND OK");
+        ETX();
     }
 
     public void chooseAssistant(MouseEvent mouseEvent) {
@@ -732,5 +845,10 @@ public class GameMapController
 
     public void resetOpacity(MouseEvent mouseEvent) {
         //empty
+    }
+    
+    public void bannerMessage(String text)
+    {
+        Platform.runLater(()->bannerText.setText(text));
     }
 }
