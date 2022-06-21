@@ -30,6 +30,10 @@ public class GameMapController
     @FXML
     private Label bannerText;
 
+    @FXML
+    private StackPane islandStack1, islandStack2, islandStack3, islandStack4, islandStack5, islandStack6, islandStack7, islandStack8, islandStack9, islandStack10, islandStack11, islandStack12;
+
+
     ///clouds
     @FXML
     private StackPane cloudPane21, cloudPane22, cloudPane31, cloudPane32, cloudPane33;
@@ -88,7 +92,6 @@ public class GameMapController
     ///HelperCards//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
     private ImageView helper1, helper2, helper3;
-
 
 
     ///dashboard1//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,6 +182,8 @@ public class GameMapController
     //
     private ArrayList<ImageView> deck;
 
+    private ArrayList<StackPane> IslandStacks;
+
 
     ///logic variables
     private Gson gson = new Gson();
@@ -214,6 +219,9 @@ public class GameMapController
         //deck management
         deck = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10));
         showDeck(false);
+
+        //IslandStacks
+        IslandStacks = new ArrayList<>(Arrays.asList(islandStack1, islandStack2, islandStack3, islandStack4, islandStack5, islandStack6, islandStack7, islandStack8, islandStack9, islandStack10, islandStack11, islandStack12));
 
 
         ///dashboard1//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -574,9 +582,23 @@ public class GameMapController
 
         //Island management
         IslandHandler islandHandler = new IslandHandler();
+        List<Integer> islandsID = gameData.islands.stream().map(x->x.ID).collect(Collectors.toList());
         for(int i =0; i<Tilepanes.size();i++)
         {
-            islandHandler.updateIsland(Tilepanes.get(i), gameData.islands.get(i), gameData.CurrentIsland.ID);
+            if(islandsID.contains(i))
+            {
+                int index = islandsID.indexOf(i);
+                islandHandler.updateIsland(Tilepanes.get(i), gameData.islands.get(index), gameData.CurrentIsland.ID);
+                IslandStacks.get(i).setVisible(true);
+                IslandStacks.get(i).setDisable(false);
+                IslandStacks.get(i).setManaged(true);
+            }
+            else
+            {
+                IslandStacks.get(i).setVisible(false);
+                IslandStacks.get(i).setDisable(true);
+                IslandStacks.get(i).setManaged(false);
+            }
         }
 
 
