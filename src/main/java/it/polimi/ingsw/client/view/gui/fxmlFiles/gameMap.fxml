@@ -2259,28 +2259,6 @@
                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="2147483647">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                        <children>
-                           <Label fx:id="infoLabel" text="Choose your assistant card">
-                              <font>
-                                 <Font name="System Italic" size="40.0" />
-                              </font>
-                           </Label>
-                        </children>
-                     </HBox>
-                  </children>
-               </StackPane>
-               <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
-                  <children>
-                     <Label fx:id="errorLabel" text="Unavailable card, it has been played by other players!">
-                        <font>
-                           <Font name="System Italic" size="35.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </HBox>
                <StackPane fx:id="stack" prefHeight="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <children>
                      <ImageView fx:id="card1" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">

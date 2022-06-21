@@ -697,7 +697,13 @@ public class GameMapController
             }
             else
             {
+                resetClickedValues();
                 bannerMessage("The card you selected is not valid");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 resetDeck();
             }
         } while (true);
@@ -764,6 +770,11 @@ public class GameMapController
                 if (!clientController.requestETT(clickedEntrance))
                 {
                     bannerMessage("Invalid student move. Try again!");
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     System.out.println("played ett");
@@ -840,11 +851,10 @@ public class GameMapController
             System.out.println("clicked cloud: " + (clickedCloud));
             cloudClickable = false;
 
-
-
             if (!clientController.requestCTE(clickedCloud))
             {
                 bannerMessage("Invalid cloud selection. Try again!");
+                resetClickedValues();
             }
             else {
                 System.out.println("Correctly done CTE");
