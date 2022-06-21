@@ -7,12 +7,15 @@ import it.polimi.ingsw.client.view.jsonObjects.jIsland;
 import it.polimi.ingsw.client.view.jsonObjects.jPlayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +25,11 @@ import java.util.stream.Collectors;
 
 public class GameMapController
 {
+
+    @FXML
+    private StackPane deckStack;
+
+
     ///clouds
     @FXML
     private StackPane cloudPane21, cloudPane22, cloudPane31, cloudPane32, cloudPane33;
@@ -198,6 +206,13 @@ public class GameMapController
 
     @FXML
     public void initialize() throws IOException {
+
+        //base.getChildren().stream().forEach(x->x.setDisable(true));
+
+        deckStack.setVisible(true);
+        deckStack.setDisable(false);
+
+
         ///dashboard1//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Entrance1 = new ArrayList<>(Arrays.asList(dashboard1Entrance0, dashboard1Entrance1,dashboard1Entrance2,dashboard1Entrance3,dashboard1Entrance4,
                 dashboard1Entrance5,dashboard1Entrance6,dashboard1Entrance7,dashboard1Entrance8));
@@ -705,5 +720,17 @@ public class GameMapController
         } while (true);
         effectPlayed = false;
         System.out.println("ONE ROUND OK");
+    }
+
+    public void chooseAssistant(MouseEvent mouseEvent) {
+        //empty
+    }
+
+    public void enlightenOpacity(MouseEvent mouseEvent) {
+        //empty
+    }
+
+    public void resetOpacity(MouseEvent mouseEvent) {
+        //empty
     }
 }
