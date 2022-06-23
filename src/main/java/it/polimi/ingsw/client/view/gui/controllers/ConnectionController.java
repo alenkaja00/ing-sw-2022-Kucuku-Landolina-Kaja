@@ -137,6 +137,7 @@ public class ConnectionController
         {
             FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/mainScene.fxml").toURI().toURL());
             root = loader.load();
+            root.setId("startScene");
             SceneController controller = loader.getController();
             controller.setConnectionEstablished(true);
 

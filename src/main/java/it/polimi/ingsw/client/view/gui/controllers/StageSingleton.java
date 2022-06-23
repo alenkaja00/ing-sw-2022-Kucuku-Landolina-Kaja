@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class StageSingleton {
@@ -25,5 +26,13 @@ public class StageSingleton {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        stage.setMinWidth(950);
+        stage.setMinHeight(700);
+
+        stage.setOnCloseRequest(event->
+        {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 }

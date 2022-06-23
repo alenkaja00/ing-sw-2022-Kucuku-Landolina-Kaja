@@ -874,15 +874,31 @@ public class GameMapController
         //empty
     }
 
-    public void enlightenOpacity(MouseEvent mouseEvent) {
-        //empty
+    @FXML
+    private void mouseEntered(MouseEvent mouseEvent)
+    {
+        ImageView image = (ImageView) mouseEvent.getSource();
+        for(ImageView img : HelperCards)
+        {
+            if(img.equals(image))
+            {
+                img.setScaleY(2);
+                img.setScaleX(2);
+            }
+        }
     }
 
-    public void resetOpacity(MouseEvent mouseEvent) {
-        //empty
+    @FXML
+    private void mouseExited(MouseEvent mouseEvent)
+    {
+        for(ImageView img : HelperCards)
+        {
+            img.setScaleY(1);
+            img.setScaleX(1);
+        }
     }
     
-    public void bannerMessage(String text)
+    private void bannerMessage(String text)
     {
         Platform.runLater(()->bannerText.setText(text));
     }

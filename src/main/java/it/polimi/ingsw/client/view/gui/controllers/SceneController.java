@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -47,6 +48,7 @@ public class SceneController {
 
             FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/connectionScene.fxml").toURI().toURL());
             root = loader.load();
+            root.setId("connectionScene");
             //Parent root = FXMLLoader.load(new File("src/main/java/it/polimi/ingsw/client/view/gui/connectionScene.fxml").toURI().toURL());
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -57,16 +59,18 @@ public class SceneController {
 
     }
 
-    public void quitScene(javafx.event.ActionEvent actionEvent) throws IOException {
-        //System.exit(0);
+    public void quitScene(javafx.event.ActionEvent actionEvent) throws IOException
+    {
+        stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+        /*//System.exit(0);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Quit");
             alert.setHeaderText("Are you sure you want to exit? ");
             if(alert.showAndWait().get() == ButtonType.OK)
             {
-                stage = (Stage) quitButton.getScene().getWindow();
-                stage.close();
-            }
+
+            }*/
     }
 
 
@@ -76,7 +80,7 @@ public class SceneController {
         if(connectionEstablished)
         {
             Parent root = FXMLLoader.load(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/playerNumberScene.fxml").toURI().toURL());
-            root.setId("playerNum");
+            root.setId("playerNumScene");
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
             scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());

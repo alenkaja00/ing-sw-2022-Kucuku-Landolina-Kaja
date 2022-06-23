@@ -1,6 +1,11 @@
-.root, #pane, #mode, #playerNum, #gameMap
+#startScene, #waitingScene, #wizardScene, #helperScene, #connectionScene, #playerNumScene
 {
     -fx-background-image: url("../../../../../../../../resources/islandsinbackground.jpg");
+    -fx-background-position: center center;
+}
+.root
+{
+    -fx-background-image: url("../../../../../../../../resources/darkBackground.jpg");
     -fx-background-position: center center;
 }
 
@@ -9,7 +14,7 @@
 }
 
 .button, .toggle-button {
-    -fx-background-color: rgba(60,60,60,1);
+    -fx-background-color: rgba(60,60,60,0.9);
     -fx-background-radius: 30;
     -fx-border-color: rgba(110,110,110,1);
     -fx-border-size: 10;
