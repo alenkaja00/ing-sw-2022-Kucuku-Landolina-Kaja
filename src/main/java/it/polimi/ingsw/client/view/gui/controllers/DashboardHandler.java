@@ -45,6 +45,19 @@ public class DashboardHandler {
     Image online = new Image(onlinePath);
     Image offline = new Image(offlinePath);
 
+    String professorGreen = "/Professors/greenTeacher.png";
+    String professorRed = "/Professors/redTeacher.png";
+    String professorYellow = "/Professors/yellowTeacher.png";
+    String professorPink = "/Professors/pinkTeacher.png";
+    String professorBlue = "/Professors/blueTeacher.png";
+
+    Image greenTeacher = new Image(professorGreen);
+    Image redTeacher = new Image(professorRed);
+    Image yellowTeacher = new Image(professorYellow);
+    Image pinkTeacher = new Image(professorPink);
+    Image blueTeacher = new Image(professorBlue);
+
+
     ArrayList<String> helperPaths = new ArrayList<>(Arrays.asList("/Assistants/Assistente1.png","/Assistants/Assistente2.png","/Assistants/Assistente3.png",
             "/Assistants/Assistente4.png","/Assistants/Assistente5.png","/Assistants/Assistente6.png","/Assistants/Assistente7.png",
             "/Assistants/Assistente8.png","/Assistants/Assistente9.png","/Assistants/Assistente10.png"));
@@ -62,7 +75,7 @@ public class DashboardHandler {
         }
 
         Nickname.setText(player.nickname);
-        CoinsAmount.setText(String.valueOf(player.coinsAmount)+"x ");
+        CoinsAmount.setText(player.coinsAmount + "x ");
 
         if(CardValue>0)
         {
@@ -72,7 +85,7 @@ public class DashboardHandler {
         // Update entrance :
         for(int i=0;i<dashboard.entranceSpots.length;i++)
         {
-            updateEntranceSpot(dashboard.entranceSpots[i],Entrance.get(i));
+            updateSpot(dashboard.entranceSpots[i],Entrance.get(i));
         }
         for(int i = dashboard.entranceSpots.length; i< Entrance.size(); i++ )
         {
@@ -80,25 +93,16 @@ public class DashboardHandler {
         }
 
         // Update Tables && Professors:
-        for(int i=0 ; i<5; i++)
+        for(int i = 0; i < 5 ; i++)
         {
-            //Tables
-            for(int j=0;j< dashboard.tables.get(fromIndexToColor(i));j++)
+            for(int j=0; j < dashboard.tables.get(fromIndexToColor(i)); j++)
             {
-                updateGenericImage(true,Tables.get((i*10)+j));
+                updateSpot(fromIndexToColor(i), Tables.get((i*10)+j));
             }
-            for(int j = dashboard.tables.get(fromIndexToColor(i));j<10;j++)
-            {
-                updateGenericImage(false,Tables.get((i*10)+j));
-            }
-
-            //Professors
-
-            updateGenericImage(dashboard.professorSpots.contains(fromIndexToColor(i)),Professors.get(i));
+            updateProfessorSpot(dashboard.professorSpots.contains(fromIndexToColor(i)), fromIndexToColor(i),  Professors.get(i));
         }
 
         //Towers:
-
         for(int i=0;i<dashboard.towerNumber;i++)
         {
             updateTower(towerColor,Towers.get(i));
@@ -107,47 +111,62 @@ public class DashboardHandler {
         {
             Towers.get(i).setOpacity(0.0);
         }
-
     }
 
-    public void updateEntranceSpot(ColoredDisc disc, ImageView student) {
+    private Image getImageFromColor(ColoredDisc disk, boolean professor){
+        Image student = null;
+        Image teacher = null;
+        switch (disk)
+        {
+            case GREEN:
+                student = greenImage;
+                teacher = greenTeacher;
+                break;
+            case RED:
+                student = redImage;
+                teacher = redTeacher;
+                break;
+            case YELLOW:
+                student = yellowImage;
+                teacher = yellowTeacher;
+                break;
+            case PINK:
+                student = pinkImage;
+                teacher = pinkTeacher;
+                break;
+            case BLUE:
+                student = blueImage;
+                teacher = blueTeacher;
+        }
+        if(professor)
+        {
+            return teacher;
+        }
+        return student;
+    }
 
-        Image image = null;
-
+    public void updateSpot(ColoredDisc disc, ImageView spot)
+    {
+        Image image;
         if(disc==null)
         {
-            student.setOpacity(0.0);
+            spot.setOpacity(0.0);
             return;
         }
 
-        switch (disc)
-        {
-            case GREEN:
-                image = greenImage;
-                break;
-            case RED:
-                image = redImage;
-                break;
-            case YELLOW:
-                image = yellowImage;
-                break;
-            case PINK:
-                image = pinkImage;
-                break;
-            case BLUE:
-                image = blueImage;
-        }
-
-        student.setOpacity(1.0);
-        student.setImage(image);
+        image = getImageFromColor(disc,false);
+        spot.setOpacity(1.0);
+        spot.setImage(image);
 
     }
 
-    public void updateGenericImage(Boolean bool, ImageView generic)
+    public void updateProfessorSpot(Boolean bool, ColoredDisc color, ImageView professor)
     {
-        if(bool) generic.setOpacity(1.0);
-        else generic.setOpacity(0.0);
+        if (bool) professor.setOpacity(1.0);
+        else professor.setOpacity(0.0);
+        professor.setImage(getImageFromColor(color,true));
     }
+
     public ColoredDisc fromIndexToColor(int ind)
     {
         ColoredDisc disc = null;
@@ -172,33 +191,6 @@ public class DashboardHandler {
         return disc;
     }
 
-    public int fromColorToIndex(ColoredDisc disc)
-    {
-        int index = -1;
-        switch (disc)
-        {
-            case GREEN:
-                index = 0;
-                break;
-
-            case RED:
-                index =1;
-                break;
-
-            case YELLOW:
-                index = 2;
-                break;
-
-            case PINK:
-                index = 3;
-                break;
-            case BLUE:
-                index = 4;
-                break;
-        }
-        return index;
-    }
-
     public void updateTower(Tower towerColor, ImageView towerView)
     {
         Image image = getImageFromTower(towerColor);
@@ -220,14 +212,7 @@ public class DashboardHandler {
             case WHITE:
                 image = whiteImage;
                 break;
-
         }
         return  image;
     }
-
-
-
-
-
-
 }
