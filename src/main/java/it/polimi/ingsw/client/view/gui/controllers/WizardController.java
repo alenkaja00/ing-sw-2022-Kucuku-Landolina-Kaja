@@ -4,55 +4,62 @@ import it.polimi.ingsw.server.model.cards.Wizard;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WizardController {
     @FXML
-    ImageView wizard1;
-    @FXML
-    ImageView wizard2;
-    @FXML
-    ImageView wizard3;
-    @FXML
-    ImageView wizard4;
+    ImageView wizard1, wizard2, wizard3, wizard4;
 
     @FXML
     private Stage stage;
     private Scene scene;
-    private Parent root;
 
     private ArrayList<ImageView> wizards;
-    private double realScaleX;
-    private double realScaleY;
 
+    private ImageView clickedWizard;
+
+    @FXML
+    private Label bannerText;
 
     @FXML
     public void initialize(){
-        wizards = new ArrayList<>();
-        wizards.add(wizard1);
-        wizards.add(wizard2);
-        wizards.add(wizard3);
-        wizards.add(wizard4);
+        wizards = new ArrayList<>(Arrays.asList(wizard1, wizard2, wizard3, wizard4));
 
-        realScaleX = wizard1.getScaleX();
-        realScaleY = wizard2.getScaleY();
+        bannerText.setText("Select your wizard!");
+
+        wizards.stream().forEach(x-> {
+            x.setDisable(false);
+            x.setOpacity(1);
+            x.setScaleX(1);
+            x.setScaleY(1);
+        });
     }
 
-    public void chooseWizard(MouseEvent mouseEvent) throws IOException {
+    private void resetCards()
+    {
+        wizards.stream().forEach(x-> {
+            x.setDisable(false);
+            x.setOpacity(1);
+            x.setScaleX(1);
+            x.setScaleY(1);
+            clickedWizard = null;
+        });
+    }
 
+    @FXML
+    private void chooseWizard(MouseEvent mouseEvent) throws IOException
+    {
+        clickedWizard = (ImageView) mouseEvent.getSource();
         Wizard wizard = null;
-        ImageView chosen = (ImageView) mouseEvent.getSource();
 
         if(mouseEvent.getSource().equals(wizard1)){
             System.out.println("MAGO1");
@@ -71,21 +78,35 @@ public class WizardController {
             wizard = Wizard.WIZARD4;
         }
 
+        clickedWizard.setScaleX(1.1);
+        clickedWizard.setScaleY(1.1);
+
         for(ImageView wiz : wizards)
         {
-            chosen.setScaleX(realScaleX * 1.5);
-            chosen.setScaleY(realScaleY * 1.5);
-
-            if(mouseEvent.getSource()!=wiz)
+            wiz.setDisable(true);
+            if(wiz != clickedWizard)
             {
-                wiz.setOpacity(0.7);
+                wiz.setOpacity(0.5);
             }
         }
 
-        if(wizard!=null)
+        if (ClientControllerSingleton.getInstance().getClientController().requestWizard(wizard))
         {
-            if (ClientControllerSingleton.getInstance().getClientController().requestWizard(wizard))
-            {
+            bannerText.setText("Waiting for game start...");
+            Task waitTurn = new Task<Void>() {
+                @Override
+                public Void call() {
+                    do {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                    return null;
+                }
+            };
+            waitTurn.setOnSucceeded(event -> {
                 stage = StageSingleton.getInstance().getStage();
                 scene = GameSceneSingleton.getInstance().getGameScene();
 
@@ -101,39 +122,35 @@ public class WizardController {
                     }
                 };
                 new Thread(gameLogic).start();
-            }
-            else
-            {
-                for(ImageView wiz : wizards)
-                {
-                    wiz.setOpacity(1.0);
-                }
-                chosen.setScaleX(realScaleX);
-                chosen.setScaleY(realScaleY);
-            }
+            });
+            new Thread(waitTurn).start();
+        }
+        else
+        {
+            bannerText.setText("Invalid selection! Choose another wizard");
+            resetCards();
         }
     }
 
-    public void enlightenOpacity(MouseEvent mouseEvent)
+    @FXML
+    private void mouseEntered(MouseEvent mouseEvent)
     {
+        if (clickedWizard !=null) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         for(ImageView img : wizards)
         {
-            if(img != image)
+            if(img.equals(image))
             {
-                img.setOpacity(0.5);
+                img.setScaleY(1.05);
+                img.setScaleX(1.05);
             }
         }
     }
 
-    public void resetOpacity(MouseEvent mouseEvent)
+    @FXML
+    private void mouseExited(MouseEvent mouseEvent)
     {
-        for(ImageView img : wizards)
-        {
-            img.setOpacity(1.0);
-            img.setScaleY(realScaleX);
-            img.setScaleX(realScaleY);
-
-        }
+        if (clickedWizard !=null) return;
+        resetCards();
     }
 }

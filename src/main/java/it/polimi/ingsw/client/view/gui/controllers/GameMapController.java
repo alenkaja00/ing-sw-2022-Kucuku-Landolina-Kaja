@@ -667,15 +667,9 @@ public class GameMapController
 
     public void ETX()
     {
-        bannerMessage("Waiting for your turn...");
+        //System.out.println("etx function");
 
-        do {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+
         showDeck(true);
         do {
             bannerMessage("Select a card!");
@@ -864,6 +858,15 @@ public class GameMapController
         } while (true);
         effectPlayed = false;
         System.out.println("ONE ROUND OK");
+
+        bannerMessage("Waiting for your turn...");
+        do {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
         ETX();
     }
 

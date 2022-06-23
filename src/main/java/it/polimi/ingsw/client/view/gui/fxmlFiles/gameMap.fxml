@@ -30,33 +30,29 @@
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                      <children>
-                        <GridPane fx:id="parentGrid" gridLinesVisible="false" prefHeight="${firstStackPane.fitHeight}" scaleShape="false" style="-fx-background-color: transparent;">
+                        <GridPane fx:id="parentGrid" gridLinesVisible="false" prefHeight="${firstStackPane.fitHeight}" alignment="CENTER" scaleShape="false" >
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="10.28" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="9.14" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="9.14" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="14.28" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="14.28" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="9.14" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="9.14" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="14.28" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="10.28" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="1" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="0.0" percentHeight="7.14" prefHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="7.14" prefHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="7.14" prefHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="7.14" prefHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="14.28" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="1" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="15.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <StackPane fx:id="islandStack1" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.valignment="TOP" >
                                  <children>
-                                    <ImageView fx:id="island1" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island1" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
@@ -66,139 +62,139 @@
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack2" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                              <StackPane fx:id="islandStack2"  GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                                  <children>
-                                    <ImageView fx:id="island2" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island2" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane2" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack3" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                              <StackPane fx:id="islandStack3" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island3" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island3" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack4" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                              <StackPane fx:id="islandStack4" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island4" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island4" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack5" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                              <StackPane fx:id="islandStack5" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island5" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island5" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack6" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack6" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island6" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island6" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack7" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack7" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                                  <children>
-                                    <ImageView fx:id="island7" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island7" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack8" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                              <StackPane fx:id="islandStack8" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                                  <children>
-                                    <ImageView fx:id="island8" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island8" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack9" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <StackPane fx:id="islandStack9" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island9" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island9" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack10" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <StackPane fx:id="islandStack10" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island10" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island10" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack11" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <StackPane fx:id="islandStack11" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island11" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island11" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="islandStack12" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <StackPane fx:id="islandStack12" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <children>
-                                    <ImageView fx:id="island12" fitHeight="${parentGrid.width*0.143}" fitWidth="${parentGrid.width*0.143}" pickOnBounds="true">
+                                    <ImageView fx:id="island12" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
                                           <Image url="@../../../../../../../../resources/Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                       </TilePane>
+                                    </TilePane>
                                  </children>
                               </StackPane>
 
-                              <StackPane fx:id="cloudPane33" disable="true" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane33" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="cloud33" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
@@ -245,7 +241,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane fx:id="cloudPane31" disable="true" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane31" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="cloud31" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
@@ -292,7 +288,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane fx:id="cloudPane32" disable="true" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane32" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="cloud32" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
@@ -305,14 +301,14 @@
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
-                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                           <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
                                           <ImageView fx:id="studentThree21" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -320,26 +316,26 @@
                                                 <Image url="@../../../../../../../../resources/StudentDisks/redDisk.png" />
                                              </image>
                                           </ImageView>
-                                           <ImageView fx:id="studentThree22" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                               <image>
-                                                   <Image url="@../../../../../../../../resources/StudentDisks/greenDisk.png" />
-                                               </image>
-                                           </ImageView>
-                                           <ImageView fx:id="studentThree23" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                               <image>
-                                                   <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
-                                               </image>
-                                           </ImageView>
-                                           <ImageView fx:id="studentThree24" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                               <image>
-                                                   <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
-                                               </image>
-                                           </ImageView>
+                                          <ImageView fx:id="studentThree22" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/StudentDisks/greenDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="studentThree23" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="studentThree24" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../../../../../../../resources/StudentDisks/yellowDisk.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane fx:id="cloudPane21" disable="false" visible="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane21" disable="false" visible="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="cloud21" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
@@ -381,7 +377,7 @@
                                     </GridPane>
                                  </children>
                               </StackPane>
-                              <StackPane fx:id="cloudPane22" disable="false" visible="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                              <StackPane fx:id="cloudPane22" disable="false" visible="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                  <children>
                                     <ImageView fx:id="cloud22" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>

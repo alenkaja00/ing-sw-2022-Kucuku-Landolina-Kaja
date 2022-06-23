@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -7,27 +10,52 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.PlayerNumberController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane fx:id="mainGrid" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.PlayerNumberController">
   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="5.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="50.0" prefHeight="271.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="122.0" minHeight="0.0" percentHeight="10.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="186.60006713867188" minHeight="0.0" percentHeight="10.0" prefHeight="186.60006713867188" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="327.0" minHeight="10.0" percentHeight="40.0" prefHeight="140.39993286132812" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="327.0" minHeight="10.0" percentHeight="40.0" prefHeight="140.39993286132812" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="12.0" prefHeight="271.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="7.0" prefHeight="271.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="8.0" prefHeight="271.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="5.0" prefHeight="271.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="5.0" prefHeight="271.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="321.3999938964844" minHeight="10.0" percentHeight="10.0" prefHeight="271.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="122.0" minHeight="0.0" percentHeight="8.0" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="186.60006713867188" minHeight="0.0" percentHeight="5.0" prefHeight="186.60006713867188" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="327.0" minHeight="10.0" percentHeight="5.0" prefHeight="140.39993286132812" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="327.0" minHeight="10.0" percentHeight="5.0" prefHeight="140.39993286132812" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="327.0" minHeight="10.0" percentHeight="20.0" prefHeight="140.39993286132812" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="327.0" minHeight="10.0" percentHeight="10.0" prefHeight="140.39993286132812" vgrow="SOMETIMES" />
       <RowConstraints />
   </rowConstraints>
    <children>
-       <Button fx:id="submit" prefHeight="94.0" prefWidth="256.0" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4" onAction="#Submit"/>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <ToggleButton fx:id="playersButton" mnemonicParsing="false" prefHeight="90.0" prefWidth="257.0" text="3 Players" />
-            <ToggleButton fx:id="modeButton" mnemonicParsing="false" prefHeight="110.0" prefWidth="256.0" text="ExpertMode" />
-         </children>
-      </VBox>
+       <Button fx:id="submit" onAction="#Submit" prefHeight="94.0" prefWidth="256.0" text="Submit" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-background-color: rgba(60,60,60,0.4);" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" GridPane.rowSpan="3" />
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-background-color: rgba(60,60,60,0.4);" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="6" GridPane.rowSpan="3" />
+      <ToggleButton fx:id="twoPlayers" onAction="#buttonClicked" mnemonicParsing="false" text="2 Players" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+      <ToggleButton fx:id="expert" onAction="#buttonClicked" mnemonicParsing="false" text="Expert Mode" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+      <ToggleButton fx:id="normal" onAction="#buttonClicked" mnemonicParsing="false" text="Normal Mode" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+      <ToggleButton fx:id="threePlayers" onAction="#buttonClicked" mnemonicParsing="false" text="3 Players" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+       <StackPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-background-color: transparent; " GridPane.columnSpan="10">
+           <children>
+               <ImageView fx:id="banner" fitHeight="${mainGrid.height*0.1}" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                   <image>
+                       <Image url="@../../../../../../../../resources/banner.png" />
+                   </image>
+               </ImageView>
+           </children>
+           <children>
+               <Label fx:id="bannerText" style="-fx-font-size: 2em" prefHeight="${banner.fitHeight}" text="..."></Label>
+           </children>
+       </StackPane>
    </children>
 </GridPane>
