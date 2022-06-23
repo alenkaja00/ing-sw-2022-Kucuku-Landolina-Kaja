@@ -99,6 +99,11 @@ public class DashboardHandler {
             {
                 updateSpot(fromIndexToColor(i), Tables.get((i*10)+j));
             }
+            for(int j = dashboard.tables.get(fromIndexToColor(i));j<10;j++)
+            {
+                updateSpot(fromIndexToColor(i), Tables.get((i*10)+j));
+            }
+
             updateProfessorSpot(dashboard.professorSpots.contains(fromIndexToColor(i)), fromIndexToColor(i),  Professors.get(i));
         }
 
