@@ -10,63 +10,66 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.ConnectionController">
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane fx:id="base" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.ConnectionController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="35.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="35.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="20.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="40.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="40.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="20.0" percentHeight="12.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="40.0" percentHeight="88.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+       <StackPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-background-color: transparent; " GridPane.columnSpan="2147483647">
+           <children>
+               <ImageView fx:id="banner" fitHeight="${base.height*0.1}" fitWidth="${base.width*0.7}" pickOnBounds="true" preserveRatio="false">
+                   <image>
+                       <Image url="@../../../../../../../../resources/banner.png"/>
+                   </image>
+               </ImageView>
+           </children>
+           <children>
+               <Label fx:id="bannerText" StackPane.alignment="TOP_CENTER" style="-fx-font-size: 2em; -fx-text-fill: black; -fx-background-color: transparent;" prefHeight="${banner.fitHeight}" text="..."></Label>
+           </children>
+       </StackPane>
+      <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS" >
          <children>
-            <Label fx:id="ipLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="327.0" text="Server Address">
-               <font>
-                  <Font size="25.0" />
-               </font>
+            <Label fx:id="ipLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="${base.width*0.3}" text="Server Address">
             </Label>
-            <TextField id="ipTextField" fx:id="ipTextField" onAction="#requestConnection" prefHeight="30.0" prefWidth="0.0">
+            <TextField id="ipTextField" fx:id="ipTextField" onAction="#requestConnection" prefWidth="${base.width*0.3}" prefHeight="30.0" >
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="portLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="256.0" text="Port">
-               <font>
-                  <Font size="25.0" />
-               </font>
+
+            <Label fx:id="portLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="${base.width*0.3}" text="Port">
             </Label>
-            <TextField id="portTextField" fx:id="portTextField" onAction="#requestConnection" prefHeight="30.0" prefWidth="228.0">
+            <TextField id="portTextField" fx:id="portTextField" onAction="#requestConnection" prefWidth="${base.width*0.3}" prefHeight="30.0" >
                <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin></TextField>
-            <Label fx:id="nicknameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="256.0" text="Nickname"  >
-                <font>
-                    <Font size="25.0" />
-                </font>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </TextField>
+
+            <Label fx:id="nicknameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="${base.width*0.3}" text="Nickname"  >
             </Label>
-             <TextField fx:id="nicknameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="260.0" onAction="#requestNickname">
+             <TextField fx:id="nicknameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="${base.width*0.3}" prefHeight="30.0" onAction="#requestNickname">
                  <VBox.margin>
                      <Insets bottom="70.0" />
                  </VBox.margin>
              </TextField>
-            <Button id="submitButton" fx:id="submitButton" mnemonicParsing="false" onAction="#requestConnection" prefHeight="92.0" prefWidth="291.0" text="SUBMIT">
-               <font>
-                  <Font name="Book Antiqua Italic" size="28.0" />
-               </font>
+            <Button id="submitButton" fx:id="submitButton" mnemonicParsing="false" onAction="#requestConnection" prefHeight="92.0" prefWidth="${base.width*0.3}" text="SUBMIT">
                <VBox.margin>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="50.0" top="50.0" />
                </VBox.margin>
             </Button>
-             <Button id="submitButton2" fx:id="submitButton2" mnemonicParsing="false" onAction="#requestNickname" prefHeight="92.0" prefWidth="291.0" text="SUBMIT">
-                 <font>
-                     <Font name="Book Antiqua Italic" size="28.0" />
-                 </font>
+             <Button id="submitButton2" fx:id="submitButton2" mnemonicParsing="false" onAction="#requestNickname" prefHeight="92.0" prefWidth="${base.width*0.3}" text="SUBMIT">
+                 
                  <VBox.margin>
-                     <Insets bottom="50.0" />
+                     <Insets bottom="50.0" top="50.0" />
                  </VBox.margin>
              </Button>
          </children>

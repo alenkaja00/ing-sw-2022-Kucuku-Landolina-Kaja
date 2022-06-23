@@ -1,47 +1,33 @@
-.root{
-    -fx-background-image: url("../../../../../../../../resources/eriantys.jpg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 100% 100%;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-}
-
-
-#pane{
-    -fx-background-image: url("../../../../../../../../resources/eriantys.jpg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 100% 100%;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-}
-
-#mode{
-    -fx-background-image: url("../../../../../../../../resources/eriantysMode.jpeg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 100% 100%;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-}
-
-
-#playerNum{
-    -fx-background-image: url("../../../../../../../../resources/eriantysPlayerNumber.jpeg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 100% 100%;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-}
-
-#gameMap{
+.root, #pane, #mode, #playerNum, #gameMap
+{
     -fx-background-image: url("../../../../../../../../resources/islandsinbackground.jpg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 100% 100%;
     -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
-
-
 }
 
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
+}
+
+.button, .toggle-button {
+    -fx-background-color: rgba(60,60,60,1);
+    -fx-background-radius: 30;
+    -fx-border-color: rgba(110,110,110,1);
+    -fx-border-size: 10;
+    -fx-border-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-family: "Candara Light";
+    -fx-font-size: 25;
+}
+
+.toggle-button:selected
+{
+    -fx-background-color: rgba(131, 224, 229, 0.9)
+}
+
+.label {
+    -fx-font-family: "Candara Light";
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-background-color: rgba(60,60,60,0.5);
 }

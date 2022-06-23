@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.controller.ClientController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +18,8 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-public class ConnectionController implements Initializable {
+public class ConnectionController
+{
 
     @FXML
     private TextField portTextField;
@@ -40,7 +42,7 @@ public class ConnectionController implements Initializable {
     @FXML
     private Label ipLabel;
     @FXML
-    private Label portLabel;
+    private Label portLabel, bannerText;
 
     private ClientController clientController;
 
@@ -48,49 +50,75 @@ public class ConnectionController implements Initializable {
     int Port;
     String Nickname;
 
+    @FXML
+    private void initialize()
+    {
+        bannerText.setText("Connect to your game server!");
+
+        nicknameLabel.setVisible(false);
+        nicknameLabel.setDisable(true);
+        nicknameLabel.setManaged(false);
+        nicknameTextField.setVisible(false);
+        nicknameTextField.setDisable(true);
+        nicknameTextField.setManaged(false);
+        submitButton2.setVisible(false);
+        submitButton2.setDisable(true);
+        submitButton2.setManaged(false);
+    }
 
 
-
-
-    public void requestConnection()
+    @FXML
+    private void requestConnection()
     {
         clientController = ClientControllerSingleton.getInstance().getClientController();
         Ip = ipTextField.getText();
-        Port = Integer.parseInt(portTextField.getText());
-
-        if(clientController.requestConnection(Ip,Port))
+        try {
+            Port = Integer.parseInt(portTextField.getText());
+        }catch (Exception e)
         {
-
-            nicknameLabel.setVisible(true);
-            nicknameLabel.setDisable(false);
-            nicknameLabel.setManaged(true);
-            nicknameTextField.setVisible(true);
-            nicknameTextField.setDisable(false);
-            nicknameTextField.setManaged(true);
-            submitButton2.setVisible(true);
-            submitButton2.setDisable(false);
-            submitButton2.setManaged(true);
-
-            ipLabel.setVisible(false);
-            ipLabel.setDisable(true);
-            ipLabel.setManaged(false);
-            portLabel.setVisible(false);
-            portLabel.setDisable(true);
-            portLabel.setManaged(false);
-            ipTextField.setVisible(false);
-            ipTextField.setDisable(true);
-            ipTextField.setManaged(false);
-            portTextField.setVisible(false);
-            portTextField.setDisable(true);
-            portTextField.setManaged(false);
-            submitButton.setVisible(false);
-            submitButton.setDisable(true);
-            submitButton.setManaged(false);
-
-
-
-
+            bannerText.setText("Invalid port number. Try again!");
+            return;
         }
+
+        bannerText.setText("Attempting Connection to the server...");
+
+        Platform.runLater(()->
+        {
+            if(clientController.requestConnection(Ip,Port))
+            {
+
+                nicknameLabel.setVisible(true);
+                nicknameLabel.setDisable(false);
+                nicknameLabel.setManaged(true);
+                nicknameTextField.setVisible(true);
+                nicknameTextField.setDisable(false);
+                nicknameTextField.setManaged(true);
+                submitButton2.setVisible(true);
+                submitButton2.setDisable(false);
+                submitButton2.setManaged(true);
+
+                ipLabel.setVisible(false);
+                ipLabel.setDisable(true);
+                ipLabel.setManaged(false);
+                portLabel.setVisible(false);
+                portLabel.setDisable(true);
+                portLabel.setManaged(false);
+                ipTextField.setVisible(false);
+                ipTextField.setDisable(true);
+                ipTextField.setManaged(false);
+                portTextField.setVisible(false);
+                portTextField.setDisable(true);
+                portTextField.setManaged(false);
+                submitButton.setVisible(false);
+                submitButton.setDisable(true);
+                submitButton.setManaged(false);
+                bannerText.setText("Select your Nickname!");
+            }
+            else
+            {
+                bannerText.setText("Connection failed... Try again!");
+            }
+        });
 
 
     }
@@ -99,6 +127,11 @@ public class ConnectionController implements Initializable {
     public void requestNickname() throws IOException {
 
         Nickname = nicknameTextField.getText();
+        if (Nickname==null || Nickname.equals(""))
+        {
+            bannerText.setText("The field is empty! Insert a nickname to proceed!");
+            return;
+        }
 
         if(clientController.requestNickname(Nickname))
         {
@@ -118,21 +151,11 @@ public class ConnectionController implements Initializable {
             stage.show();
 
         }
+        else
+        {
+            bannerText.setText("This nickname is already taken. Choose another one!");
+        }
 
 
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        nicknameLabel.setVisible(false);
-        nicknameLabel.setDisable(true);
-        nicknameLabel.setManaged(false);
-        nicknameTextField.setVisible(false);
-        nicknameTextField.setDisable(true);
-        nicknameTextField.setManaged(false);
-        submitButton2.setVisible(false);
-        submitButton2.setDisable(true);
-        submitButton2.setManaged(false);
     }
 }

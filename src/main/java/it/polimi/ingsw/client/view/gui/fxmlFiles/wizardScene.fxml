@@ -22,16 +22,16 @@
       <RowConstraints minHeight="10.0" percentHeight="88.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <StackPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-background-color: transparent; " GridPane.columnSpan="4">
+      <StackPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-background-color: transparent; " GridPane.columnSpan="2147483647">
          <children>
-            <ImageView fx:id="banner" fitHeight="${wizardsGrid.height*0.1}" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+            <ImageView fx:id="banner" fitHeight="${wizardsGrid.height*0.1}" fitWidth="${wizardsGrid.width*0.7}" pickOnBounds="true" preserveRatio="false">
                <image>
                   <Image url="@../../../../../../../../resources/banner.png" />
                </image>
             </ImageView>
          </children>
          <children>
-            <Label fx:id="bannerText" style="-fx-font-size: 2em" prefHeight="${banner.fitHeight}" text="..."></Label>
+            <Label fx:id="bannerText" StackPane.alignment="TOP_CENTER" style="-fx-font-size: 2em; -fx-text-fill: black; -fx-background-color: transparent;" prefHeight="${banner.fitHeight}" text="..."></Label>
          </children>
       </StackPane>
       <ImageView fx:id="wizard1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.rowIndex="1" GridPane.columnIndex="0" fitWidth="${wizardsGrid.width*0.2}" onMouseClicked="#chooseWizard" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" preserveRatio="true">

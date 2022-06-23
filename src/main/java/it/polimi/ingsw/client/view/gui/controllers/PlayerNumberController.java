@@ -46,9 +46,9 @@ public class PlayerNumberController {
     {
         bannerText.setText("Select player number and game mode!");
         normal.setSelected(true);
-        expert.setSelected(false);
         twoPlayers.setSelected(true);
-        twoPlayers.setSelected(false);
+        expert.setSelected(false);
+        threePlayers.setSelected(false);
     }
 
     @FXML
@@ -57,55 +57,27 @@ public class PlayerNumberController {
         ToggleButton chosen = (ToggleButton) actionEvent.getSource();
         if (chosen.equals(twoPlayers))
         {
-            if (twoPlayers.isSelected())
-            {
-                threePlayers.setSelected(false);
-                playerNumber = 2;
-            }
-            else
-            {
-                threePlayers.setSelected(true);
-                playerNumber = 3;
-            }
+            twoPlayers.setSelected(true);
+            threePlayers.setSelected(false);
+            playerNumber = 2;
         }
         else if (chosen.equals(threePlayers))
         {
-            if (threePlayers.isSelected())
-            {
-                threePlayers.setSelected(false);
-                playerNumber = 2;
-            }
-            else
-            {
-                threePlayers.setSelected(false);
-                playerNumber = 2;
-            }
+            twoPlayers.setSelected(false);
+            threePlayers.setSelected(true);
+            playerNumber = 3;
         }
         else if (chosen.equals(expert))
         {
-            if (expert.isSelected())
-            {
-                normal.setSelected(false);
-                expertMode = true;
-            }
-            else
-            {
-                normal.setSelected(true);
-                expertMode = false;
-            }
+            normal.setSelected(false);
+            expert.setSelected(true);
+            expertMode = true;
         }
         else if (chosen.equals(normal))
         {
-            if (normal.isSelected())
-            {
-                expert.setSelected(false);
-                expertMode = false;
-            }
-            else
-            {
-                expert.setSelected(true);
-                expertMode = true;
-            }
+            normal.setSelected(true);
+            expert.setSelected(false);
+            expertMode = false;
         }
     }
 
