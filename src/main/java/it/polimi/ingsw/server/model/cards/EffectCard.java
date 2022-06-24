@@ -5,6 +5,10 @@ import it.polimi.ingsw.server.model.components.ColoredDisc;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * this class stores the data of the effect card
+ * it contains the card id, the price, the used flag and eventually an array of students (disks) on it and prohibition cards
+ */
 public class EffectCard {
 
     private EffectName ID;
@@ -13,6 +17,11 @@ public class EffectCard {
     private ColoredDisc[] students;
     public  int prohibitionCard = 0;
 
+    /**
+     * constructor sets up a card based on the input id
+     * it sets the price of the card, the used flag and the array of students on it
+     * @param myEffect identifier which determines the type of card to instantiate
+     */
     public EffectCard(EffectName myEffect)
     {
         used = false;
@@ -82,6 +91,10 @@ public class EffectCard {
         used = true;
     }
 
+    /**
+     *
+     * @return the price of a card
+     */
     public int getPrice()
     {
         if (used)
@@ -103,11 +116,20 @@ public class EffectCard {
         return  this.used;
     }
 
+    /**
+     *
+     * @return the array of disks over a card
+     */
     public ColoredDisc[] getStudents()
     {
         return students.clone();
     }
 
+    /**
+     *
+     * @param myStudent disk to be added over the card
+     * @param index array position where to store the disk
+     */
     public void addStudent(ColoredDisc myStudent, int index)
     {
         if(students[index]!=null)
@@ -120,6 +142,11 @@ public class EffectCard {
 
     }
 
+    /**
+     *
+     * @param index position of the student to be removed from the card
+     * @return removed disk from the card
+     */
     public ColoredDisc removeStudent(int index)
     {
         ColoredDisc disc = students[index];
@@ -127,7 +154,10 @@ public class EffectCard {
         return disc;
     }
 
-
+    /**
+     *
+     * @return the number of prohibition tokens over a card
+     */
     public int getProhibitionCard(){
         return this.prohibitionCard;
     }

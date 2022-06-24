@@ -1,5 +1,8 @@
 package it.polimi.ingsw.server.model.cards;
 
+/**
+ * List of the effect identifiers used in the game
+ */
 public enum EffectName {
     MONK,
     QUEEN,

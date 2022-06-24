@@ -2,6 +2,10 @@ package it.polimi.ingsw.server.model.components;
 
 import it.polimi.ingsw.server.model.cards.Wizard;
 
+/**
+ * class Player represents the user and player of the board game
+ */
+
 public class Player{
     private int ID;
 
@@ -13,7 +17,14 @@ public class Player{
     public Deck deck;
     public boolean online;
 
-
+    /**
+     * Constructor that sets the Player instance
+     * @param ID is the player identifier
+     * @param nickname is the player nickname
+     * @param towerColor is the color of its dashboard's towers
+     * @param wizardID is the chosen wizard
+     * @param numberPlayers number of players in the game
+     */
     public Player(int ID,String nickname, Tower towerColor, Wizard wizardID, int numberPlayers) {
         this.ID= ID;
         this.online = true;
@@ -25,32 +36,56 @@ public class Player{
         this.coinsAmount = 0;
     }
 
-    public Tower getTowerColor() {
-
-        return towerColor;
+    public String getNickname()
+    {
+        return nickname;
     }
 
     public int getID() {
         return ID;
     }
 
+    /**
+     *
+     * @param wizardID identifier of the player's associate wizard
+     */
     public void setWizardID(Wizard wizardID) {
         this.wizardID = wizardID;
     }
 
-    public Wizard getWizardID(){
+    public Wizard getWizardID()
+    {
         return this.wizardID;
     }
 
-    public void setTowerColor(Tower towerColor) {
+    /**
+     *
+     * @param towerColor color of the towers associated to the player
+     */
+    public void setTowerColor(Tower towerColor)
+    {
         this.towerColor = towerColor;
     }
 
+    public Tower getTowerColor()
+    {
+        return towerColor;
+    }
+
+    /**
+     * increases the number of coins of the player
+     * @param addition number of coins to be added to each player
+     */
     public void addCoins(int addition)
     {
         coinsAmount += addition;
     }
 
+    /**
+     * decreases the number of coins of the player
+     * @param removal is the number of coins to be removed
+     * @throws IllegalArgumentException if the coins to be removed are more than the actual coins
+     */
     public void spendCoins(int removal) throws  IllegalArgumentException
     {
         if(removal > coinsAmount)
@@ -64,17 +99,8 @@ public class Player{
         }
 
     }
-
-    public String getNickname()
-    {
-        return nickname;
-        // Strings are immutable in java, so this should be safe
-    }
-
     public int getCoinsAmount()
     {
         return coinsAmount;
     }
-
-
 }

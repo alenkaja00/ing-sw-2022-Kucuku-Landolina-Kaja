@@ -3,6 +3,9 @@ package it.polimi.ingsw.server.model.components;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+/**
+ * class that represents the element cloud of the board game
+ */
 public class Cloud {
     private ArrayList<ColoredDisc> studentSpots;
     private int cloudCapacity;
