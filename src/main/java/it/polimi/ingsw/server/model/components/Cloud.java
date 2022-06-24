@@ -42,6 +42,11 @@ public class Cloud {
         return (ArrayList<ColoredDisc>) studentSpots.clone();
     }
 
+    /**
+     * this method removes all students from the clouds and returns them (for the cloud)
+     * to entrance method
+     * @return all the students
+     */
     public ArrayList<ColoredDisc> removeAll()
     {
         ArrayList<ColoredDisc> clone = (ArrayList<ColoredDisc>) studentSpots.clone();
@@ -49,6 +54,12 @@ public class Cloud {
         return clone;
     }
 
+    /**
+     *
+     * @param myStudent is the color of the student to remove
+     * @return the color of the selected student
+     * @throws InvalidParameterException
+     */
     public ColoredDisc removeStudent(ColoredDisc myStudent) throws InvalidParameterException
     {
         if (studentSpots.contains(myStudent))
