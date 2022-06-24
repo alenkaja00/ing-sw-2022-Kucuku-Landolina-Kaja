@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.view.jsonObjects.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
@@ -21,6 +22,9 @@ import java.util.stream.Collectors;
 
 public class GameMapController
 {
+    //scrollpanes
+    @FXML
+    private ScrollPane centralPane, centralPane1;
     //deckpane
     @FXML
     private StackPane deckStack;
@@ -62,10 +66,11 @@ public class GameMapController
     private ImageView effectOne, effectTwo, effectThree;
 
 
-    ///island tilepanes
+    ///island
     @FXML
     private TilePane tilePane1, tilePane2, tilePane3, tilePane4, tilePane5, tilePane6, tilePane7, tilePane8, tilePane9, tilePane10, tilePane11, tilePane12;
-
+    @FXML
+    private ImageView island1, island2, island3, island4, island5, island6, island7, island8, island9, island10, island11, island12;
 
     ///third player panes
     @FXML
@@ -183,6 +188,7 @@ public class GameMapController
     private ArrayList<ImageView> deck;
 
     private ArrayList<StackPane> IslandStacks;
+    private ArrayList<ImageView> IslandImages;
 
 
     ///logic variables
@@ -215,14 +221,13 @@ public class GameMapController
 
     @FXML
     public void initialize() throws IOException {
-
         //deck management
         deck = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10));
         showDeck(false);
 
         //IslandStacks
         IslandStacks = new ArrayList<>(Arrays.asList(islandStack1, islandStack2, islandStack3, islandStack4, islandStack5, islandStack6, islandStack7, islandStack8, islandStack9, islandStack10, islandStack11, islandStack12));
-
+        IslandImages = new ArrayList<>(Arrays.asList(island1, island2, island3, island4, island5, island6, island7, island8, island9, island10, island11, island12));
 
         ///dashboard1//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Entrance1 = new ArrayList<>(Arrays.asList(dashboard1Entrance0, dashboard1Entrance1,dashboard1Entrance2,dashboard1Entrance3,dashboard1Entrance4,
@@ -588,7 +593,7 @@ public class GameMapController
             if(islandsID.contains(i))
             {
                 int index = islandsID.indexOf(i);
-                islandHandler.updateIsland(Tilepanes.get(i), gameData.islands.get(index), gameData.CurrentIsland.ID);
+                islandHandler.updateIsland(Tilepanes.get(i), IslandImages.get(i), gameData.islands.get(index), gameData.CurrentIsland.ID);
                 IslandStacks.get(i).setVisible(true);
                 IslandStacks.get(i).setDisable(false);
                 IslandStacks.get(i).setManaged(true);

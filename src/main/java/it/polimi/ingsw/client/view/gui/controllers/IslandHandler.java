@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.view.jsonObjects.jIsland;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Tower;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,7 +31,9 @@ public class IslandHandler {
     Image blueImage = new Image(bluePath);
 
     ArrayList<String> towersPath = new ArrayList<>(Arrays.asList("/Towers/black_tower.png","/Towers/grey_tower.png","/Towers/white_tower.png"));
-
+    ArrayList<String> unitedIslands = new ArrayList<>(Arrays.asList("/Islands/United/island2.png",
+            "/Islands/United/island3.png","/Islands/United/island4.png","/Islands/United/island5.png",
+            "/Islands/United/island6.png","/Islands/United/island7.png","/Islands/United/island8.png"));
 
     public Image getImageFromColor(ColoredDisc disc)
     {
@@ -64,8 +67,8 @@ public class IslandHandler {
         ImageView newView  = new ImageView();
         Image image = getImageFromColor(disc);
 
-        newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.2));
-        newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.2));
+        newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+        newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
         newView.setImage(image);
         tilePane.getChildren().add(newView);
 
@@ -131,17 +134,21 @@ public class IslandHandler {
 
     }
 
-    public void updateIsland(TilePane tilePane, jIsland island, int currentIslandID)
+    public void updateIsland(TilePane tilePane, ImageView imageView, jIsland island, int currentIslandID)
     {
         tilePane.getChildren().removeAll(tilePane.getChildren());
+
+        if (island.graphicalIsland.size()>1)
+            imageView.setImage(new Image(unitedIslands.get(island.graphicalIsland.size()-2)));
+
 
         if (island.ID == currentIslandID)
         {
             ImageView newView  = new ImageView();
             Image image = new Image(motherNaturePath);
 
-            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.2));
-            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.2));
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
             newView.setImage(image);
             tilePane.getChildren().add(newView);
         }
@@ -190,8 +197,8 @@ public class IslandHandler {
                 case WHITE: image = new Image(towersPath.get(2)); break;
 
             }
-            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.2));
-            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.2));
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
             newView.setImage(image);
             tilePane.getChildren().add(newView);
         }
