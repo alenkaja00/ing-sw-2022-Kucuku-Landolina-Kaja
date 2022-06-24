@@ -7,7 +7,6 @@ import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 
-import java.security.InvalidKeyException;
 import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -255,7 +254,7 @@ public class GameController
                 gameEnded(players.indexOf(currentPlayer));
                 break;
             }
-            if (newGame.inslandsGameEnded())
+            if (newGame.islandsGameEnded())
             {
                 gameEnded(newGame.lessTowersMoreProfessors());
                 break;
