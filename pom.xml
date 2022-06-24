@@ -3,9 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>it.polimi.ingsw</groupId>
-
   <artifactId>PSP49</artifactId>
-
   <version>1.0-SNAPSHOT</version>
   <name>Eriantys</name>
 
@@ -55,7 +53,6 @@
     </dependency>
   </dependencies>
 
-
   <build>
     <plugins>
       <!-- Compiler plugin, sets the Java version -->
@@ -76,6 +73,55 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.1</version>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.4</version>
+        <executions>
+
+          <!-- SERVER -->
+          <execution>
+            <id>serverEriantys</id>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>project-classifier</shadedClassifierName>
+              <outputFile>shade\serverEriantys.jar</outputFile>
+              <transformers>
+                <transformer implementation=
+                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>it.polimi.ingsw.server.App</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+
+          <!-- GUI -->
+          <execution>
+            <id>guiEriantys</id>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>project-classifier</shadedClassifierName>
+              <outputFile>shade\guiEriantys.jar</outputFile>
+              <transformers>
+                <transformer implementation=
+                                     "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>it.polimi.ingsw.client.App</mainClass>
+                </transformer>
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
+
   </build>
 </project>
