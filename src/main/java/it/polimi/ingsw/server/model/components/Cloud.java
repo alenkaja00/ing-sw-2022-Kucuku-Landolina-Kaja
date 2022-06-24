@@ -12,6 +12,12 @@ public class Cloud {
         this.studentSpots = new ArrayList<ColoredDisc>();
     }
 
+    /**
+     * this method is used to refill the cloud.
+     *
+     * @param newStudentArray
+     * @throws IndexOutOfBoundsException if the number of new students is incorrect (exceeds cloud capacity)
+     */
     public void AddStudents(ArrayList<ColoredDisc> newStudentArray) throws IndexOutOfBoundsException
     {
         if (studentSpots.size() + newStudentArray.size() > cloudCapacity) {throw new IndexOutOfBoundsException();}
@@ -20,6 +26,11 @@ public class Cloud {
         }
     }
 
+    /**
+     * this method adds a student to the class array
+     * @param student
+     * @throws IndexOutOfBoundsException if the insertion will exceed the cloud capacity
+     */
     public void AddStudent(ColoredDisc student) throws IndexOutOfBoundsException
     {
         if (studentSpots.size() + 1 > cloudCapacity) {throw new IndexOutOfBoundsException();}

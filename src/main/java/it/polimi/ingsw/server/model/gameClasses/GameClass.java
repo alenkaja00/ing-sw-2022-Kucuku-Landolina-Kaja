@@ -3,7 +3,6 @@ package it.polimi.ingsw.server.model.gameClasses;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.*;
 
-import javax.sound.midi.Soundbank;
 import java.security.InvalidKeyException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -11,8 +10,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
+/**
+ * this class contains all the data needed to describe a game
+ */
 public class GameClass {
 
     protected StudentBag bag;
@@ -35,7 +36,13 @@ public class GameClass {
     //protected HashMap<Integer, Integer> RoundOrder = new HashMap<Integer, Integer>();
     //public int firstPlayer;
 
-
+    /**
+     * creates the islands,clouds arrays, creates the player objects with their nicknames and wizards
+     * @param ID uniquely identifies the game
+     * @param PlayerNumber can be 2 or 3
+     * @param nicknames are the chosen nicknames for the players
+     * @param wizards are the chosen wizards for the players
+     */
     public GameClass(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards)
     {
         this.GameID = ID;
@@ -96,6 +103,12 @@ public class GameClass {
 
     }
 
+    /**
+     * this method moves the students from the bag to the player's entrance
+     * @param number is the number of students to move
+     * @param player is the player whose entrance has to be filled
+     * @throws IndexOutOfBoundsException if the insertion will exceed the max entrance capacity
+     */
     public void bagToEntrance(int number, Player player) throws IndexOutOfBoundsException
     {
         int entranceindex = 0;
@@ -123,7 +136,11 @@ public class GameClass {
         }
     }
 
-
+    /**
+     moves all the students from cloud to the player's entrance
+     @param CloudIndex is the index of the cloud to empty in the clouds array
+     @param PlayerID is the ID of the player whose entrance has to be filled
+     */
     public void CloudToEntrance(int CloudIndex, int PlayerID)
     {
         if (clouds.get(CloudIndex).getStudents().size()==0)
@@ -146,6 +163,9 @@ public class GameClass {
         }
     }
 
+    /**
+     * method used to refill all the clouds of new students
+     */
     public void BagToCloud()
     {
         for(Cloud cloud: clouds)
@@ -157,6 +177,13 @@ public class GameClass {
         setClouds(clouds);
     }
 
+    /**
+     * moves the student of index "index" from entrance to tables
+     * the student will be moved in the correct table depending on its color
+     * after the moving, professors' ownership is updated using the "evaluateProfessors" method
+     * @param PlayerID is the ID of the player whose dashboard is updated
+     * @param index is the index of the chosen student to move
+     */
     public void EntranceToTables(int PlayerID, int index)
     {
         ColoredDisc color = players.get(PlayerID).myDashboard.getEntranceSpots()[index];
@@ -164,6 +191,11 @@ public class GameClass {
         evaluateProfessors(PlayerID, color);
     }
 
+    /**
+     * checks if the player identified with "PlayerID" has the right to claim the professor
+     * @param PlayerID is the ID of the new candidate owner
+     * @param student is the color of the professor to check
+     */
     protected void evaluateProfessors(int PlayerID, ColoredDisc student)
     {
         Player lastPlayer = players.get(PlayerID);
@@ -179,7 +211,12 @@ public class GameClass {
         lastPlayer.myDashboard.professorSpots.add(student);
     }
 
-
+    /**
+     * this method moves a student from the dashboard's entrance at position "index" to the chosen island
+     * @param PlayerID is the ID of the player who performs the action
+     * @param IslandID is the ID of the chosen island
+     * @param index is the index of the chosen student in the dashboard's entrance
+     */
     public void EntranceToIsland(int PlayerID, int IslandID,int index)
     {
         ColoredDisc color = players.get(PlayerID).myDashboard.getEntranceSpots()[index];
@@ -187,7 +224,14 @@ public class GameClass {
         players.get(PlayerID).myDashboard.RemoveFromEntrance(index);
     }
 
-
+    /**
+     * this method handles the selection of the helper card in the pianification phase
+     * it sets the selected card to used
+     * it checks that the player doesn't choose a card that was already selected in the same turn
+     * @param playerID is the ID of the player who performs the action
+     * @param cardNumber is the chosen card ID
+     * @throws InvalidKeyException if the card was already selected in that turn
+     */
     public void useHelperCard(int playerID, int cardNumber) throws InvalidKeyException
     {
         //controllare che non giochi le stesse carte gia giocate nel turno
@@ -207,7 +251,13 @@ public class GameClass {
         return playerMaxMoves[playerID];
     }
 
-    /** returns true if game ends for lack of towers or maximum number of islands*/
+
+    /**
+     * this method moves mother nature N steps where N="moves"
+     * it also calls the "EvaluateInfluence" method to entablish who has the influence on the current Island
+     * @param moves is the number of steps mother nature has to take
+     * @throws RuntimeException if the player has not the sufficient amount of towers
+     */
     public void MoveMotherNature(int moves) throws RuntimeException
     {
         CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
@@ -279,7 +329,10 @@ public class GameClass {
         }
     }
 
-    /** Returns the playerID of the player who has influence on that island*/
+    /**
+     *  Returns the playerID of the player who has influence on that island
+     * @param island is the ID of the chosen island
+     */
     public int EvaluateInfluence(Island island)
     {
         Tower [] towers = island.getTowers();
@@ -336,6 +389,10 @@ public class GameClass {
     }
 
 
+    /**
+     * if a player uses his last tower, the game has to end
+     * @return if the game is finished or not
+     */
     public Boolean towerGameEnded()
     {
         /*
@@ -358,7 +415,10 @@ public class GameClass {
         return false;
     }
 
-    public Boolean inslandsGameEnded()
+    /**
+     * @return true if the number of islands is less then three
+     */
+    public Boolean islandsGameEnded()
     {
         // 2)
 
@@ -370,6 +430,10 @@ public class GameClass {
 
         return false;
     }
+
+    /**
+     * @return true if either the bag is empty or some player has 0 assistant cards
+     */
     public Boolean roundGameEnded()
     {
         /*
@@ -399,6 +463,9 @@ public class GameClass {
 
     }
 
+    /**
+     * @return the ID of the winner player
+     */
     public int lessTowersMoreProfessors()
     {
         int winnerIndex = 0;
