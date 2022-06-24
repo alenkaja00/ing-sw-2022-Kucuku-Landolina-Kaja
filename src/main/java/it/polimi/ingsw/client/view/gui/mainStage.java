@@ -60,7 +60,7 @@ public class mainStage extends Application {
         }
         try {
             root = loader.load();
-            root.setId("pane");
+            root.setId("startScene");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,6 +87,7 @@ public class mainStage extends Application {
         }
         try {
             root = loader.load();
+            root.setId("helperScene");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,6 +115,7 @@ public class mainStage extends Application {
         }
         try {
             root = loader.load();
+            root.setId("waitingScene");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,6 +142,7 @@ public class mainStage extends Application {
         }
         try {
             root = loader.load();
+            root.setId("wizardScene");
         } catch (IOException e) {
             e.printStackTrace();
         }

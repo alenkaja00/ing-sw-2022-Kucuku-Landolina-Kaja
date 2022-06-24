@@ -64,8 +64,8 @@ public class IslandHandler {
         ImageView newView  = new ImageView();
         Image image = getImageFromColor(disc);
 
-        newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
-        newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
+        newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.2));
+        newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.2));
         newView.setImage(image);
         tilePane.getChildren().add(newView);
 
@@ -140,8 +140,8 @@ public class IslandHandler {
             ImageView newView  = new ImageView();
             Image image = new Image(motherNaturePath);
 
-            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
-            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.2));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.2));
             newView.setImage(image);
             tilePane.getChildren().add(newView);
         }
@@ -190,8 +190,8 @@ public class IslandHandler {
                 case WHITE: image = new Image(towersPath.get(2)); break;
 
             }
-            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.4));
-            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.4));
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.2));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.2));
             newView.setImage(image);
             tilePane.getChildren().add(newView);
         }
