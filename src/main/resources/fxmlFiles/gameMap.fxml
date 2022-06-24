@@ -30,7 +30,7 @@
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                      <children>
-                        <GridPane fx:id="parentGrid" gridLinesVisible="false" prefHeight="${firstStackPane.fitHeight}" alignment="CENTER" scaleShape="false" >
+                        <GridPane fx:id="parentGrid"  prefHeight="${firstStackPane.fitHeight}" alignment="CENTER" scaleShape="false" >
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
@@ -57,7 +57,7 @@
                                           <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack2"  GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
@@ -67,7 +67,7 @@
                                           <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane2" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane2" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack3" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -77,7 +77,7 @@
                                           <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack4" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
@@ -87,7 +87,7 @@
                                           <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack5" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
@@ -97,7 +97,7 @@
                                           <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack6" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -107,7 +107,7 @@
                                           <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack7" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
@@ -117,7 +117,7 @@
                                           <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack8" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
@@ -127,7 +127,7 @@
                                           <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack9" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -137,7 +137,7 @@
                                           <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack10" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
@@ -147,7 +147,7 @@
                                           <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack11" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
@@ -157,7 +157,7 @@
                                           <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="islandStack12" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -167,7 +167,7 @@
                                           <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
-                                    <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
+                                    <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" ></TilePane>
                                  </children>
                               </StackPane>
                               <StackPane fx:id="cloudPane33" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -177,7 +177,7 @@
                                           <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid33" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
+                                    <GridPane fx:id="cloudGrid33"  minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -208,7 +208,7 @@
                                           <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid31" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
+                                    <GridPane fx:id="cloudGrid31"  minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -239,7 +239,7 @@
                                           <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid32" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
+                                    <GridPane fx:id="cloudGrid32"  minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -270,7 +270,7 @@
                                           <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid21" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
+                                    <GridPane fx:id="cloudGrid21"  minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -300,7 +300,7 @@
                                           <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane fx:id="cloudGrid22" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
+                                    <GridPane fx:id="cloudGrid22"  minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
@@ -333,7 +333,7 @@
       </ScrollPane>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <GridPane fx:id="cardsGrid" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}">
+            <GridPane fx:id="cardsGrid" style="-fx-padding: 10px;" alignment="TOP_CENTER"  minHeight="-Infinity" maxWidth="${centralPane1.width}">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.4" prefWidth="100.0" />
@@ -359,14 +359,16 @@
                      </image>
                   </ImageView>
                </children>
+
             </GridPane>
-            <ScrollPane fx:id="centralPane1" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-border-color: black;" VBox.vgrow="SOMETIMES">
+            <ScrollPane fx:id="centralPane1" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; " VBox.vgrow="SOMETIMES">
                <content>
-                  <StackPane fx:id="columnStack" alignment="CENTER_LEFT" style="-fx-background-color: transparent; -fx-border-color: red;">
+                  <StackPane fx:id="columnStack" alignment="CENTER_LEFT" style="-fx-background-color: transparent; ">
                      <children>
                         <VBox fx:id="vbox" alignment="CENTER_LEFT" prefWidth="${centralPane1.width}" style="-fx-background-color: transparent;" StackPane.alignment="CENTER_LEFT">
                            <children>
-                              <GridPane fx:id="namePanel1" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
+                              <StackPane minHeight="${centralPane1.width*0.05}"></StackPane>
+                              <GridPane fx:id="namePanel1" alignment="TOP_CENTER"  maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15" />
@@ -402,7 +404,7 @@
                                           <Image url="@../Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="false" minWidth="0" onMouseClicked="#tablesClicked" prefHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
+                                    <GridPane  minWidth="0" onMouseClicked="#tablesClicked" prefHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="0.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -694,7 +696,9 @@
                                     <Insets />
                                  </VBox.margin>
                               </StackPane>
-                              <GridPane fx:id="namePanel2" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
+
+                              <StackPane minHeight="${centralPane1.width*0.05}"></StackPane>
+                              <GridPane fx:id="namePanel2" alignment="TOP_CENTER"  maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15" />
@@ -730,7 +734,7 @@
                                           <Image url="@../Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="false" minHeight="0" minWidth="0" prefHeight="${dashboard2.fitHeight}" prefWidth="${dashboard2.fitWidth}" scaleShape="false">
+                                    <GridPane  minHeight="0" minWidth="0" prefHeight="${dashboard2.fitHeight}" prefWidth="${dashboard2.fitWidth}" scaleShape="false">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="0.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -1022,7 +1026,9 @@
                                     <Insets />
                                  </VBox.margin>
                               </StackPane>
-                              <GridPane fx:id="namePanel3" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
+
+                              <StackPane minHeight="${centralPane1.width*0.05}"></StackPane>
+                              <GridPane fx:id="namePanel3" alignment="TOP_CENTER"  maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15" />
@@ -1058,7 +1064,7 @@
                                           <Image url="@../Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
-                                    <GridPane gridLinesVisible="false" minHeight="0" minWidth="0" prefHeight="${dashboard3.fitHeight}" prefWidth="${dashboard3.fitWidth}" scaleShape="false">
+                                    <GridPane  minHeight="0" minWidth="0" prefHeight="${dashboard3.fitHeight}" prefWidth="${dashboard3.fitWidth}" scaleShape="false">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="61.866668701171875" minWidth="10.0" percentWidth="3.45" prefWidth="20.600003051757813" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="82.66667175292969" minWidth="0.0" percentWidth="4.0" prefWidth="29.666653442382806" />
@@ -1371,7 +1377,7 @@
          </children>
       </VBox>
       <StackPane fx:id="deckStack" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS" style="-fx-background-color: rgba(60, 60, 60, 0.7);">
-         <GridPane fx:id="deckGrid" alignment="CENTER" gridLinesVisible="false" prefWidth="${deckStack.width}" prefHeight="${deckStack.height}" >
+         <GridPane fx:id="deckGrid" alignment="CENTER"  prefWidth="${deckStack.width}" prefHeight="${deckStack.height}" >
             <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
