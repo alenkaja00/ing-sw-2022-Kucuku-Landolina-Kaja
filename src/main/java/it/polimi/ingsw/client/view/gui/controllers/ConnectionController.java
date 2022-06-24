@@ -135,7 +135,7 @@ public class ConnectionController
 
         if(clientController.requestNickname(Nickname))
         {
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/mainScene.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/mainScene.fxml"));
             root = loader.load();
             root.setId("startScene");
             SceneController controller = loader.getController();
@@ -145,7 +145,7 @@ public class ConnectionController
             stage = StageSingleton.getInstance().getStage();
             scene = new Scene(root);
 
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
             stage.setTitle("Main Scene");
             stage.setScene(scene);
 

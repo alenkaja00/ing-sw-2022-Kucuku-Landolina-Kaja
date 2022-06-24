@@ -54,7 +54,7 @@
          <children>
             <ImageView fx:id="card1" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente1.png" />
+                  <Image url="@../Assistants/Assistente1.png" />
                </image>
             </ImageView>
          </children>
@@ -63,7 +63,7 @@
          <children>
             <ImageView fx:id="card2" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente2.png" />
+                  <Image url="@../Assistants/Assistente2.png" />
                </image>
             </ImageView>
          </children>
@@ -72,7 +72,7 @@
          <children>
             <ImageView fx:id="card3" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente3.png" />
+                  <Image url="@../Assistants/Assistente3.png" />
                </image>
             </ImageView>
          </children>
@@ -81,7 +81,7 @@
          <children>
             <ImageView fx:id="card4" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente4.png" />
+                  <Image url="@../Assistants/Assistente4.png" />
                </image>
             </ImageView>
          </children>
@@ -90,7 +90,7 @@
          <children>
             <ImageView fx:id="card5" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente5.png" />
+                  <Image url="@../Assistants/Assistente5.png" />
                </image>
             </ImageView>
          </children>
@@ -99,7 +99,7 @@
          <children>
             <ImageView fx:id="card6" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente6.png" />
+                  <Image url="@../Assistants/Assistente6.png" />
                </image>
             </ImageView>
          </children>
@@ -108,7 +108,7 @@
          <children>
             <ImageView fx:id="card7" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente7.png" />
+                  <Image url="@../Assistants/Assistente7.png" />
                </image>
             </ImageView>
          </children>
@@ -117,7 +117,7 @@
          <children>
             <ImageView fx:id="card8" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente8.png" />
+                  <Image url="@../Assistants/Assistente8.png" />
                </image>
             </ImageView>
          </children>
@@ -126,7 +126,7 @@
          <children>
             <ImageView fx:id="card9" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente9.png" />
+                  <Image url="@../Assistants/Assistente9.png" />
                </image>
             </ImageView>
          </children>
@@ -135,7 +135,7 @@
          <children>
             <ImageView fx:id="card10" fitHeight="${stack.width}" fitWidth="150.0" onMouseClicked="#chooseAssistant" onMouseEntered="#enlightenOpacity" onMouseExited="#resetOpacity" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../resources/Assistants/Assistente10.png" />
+                  <Image url="@../Assistants/Assistente10.png" />
                </image>
             </ImageView>
          </children>

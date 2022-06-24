@@ -52,7 +52,7 @@
            <children>
                <ImageView fx:id="banner" fitHeight="${mainGrid.height*0.1}" fitWidth="${mainGrid.width*0.7}" pickOnBounds="true" preserveRatio="false">
                    <image>
-                       <Image url="@../../../../../../../../resources/banner.png" />
+                       <Image url="@../banner.png" />
                    </image>
                </ImageView>
            </children>

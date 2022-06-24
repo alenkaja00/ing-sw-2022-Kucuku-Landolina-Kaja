@@ -1,6 +1,6 @@
 .root, #startScene, #waitingScene, #wizardScene, #helperScene, #connectionScene, #playerNumScene
 {
-    -fx-background-image: url("../../../../../../../../resources/islandsinbackground.jpg");
+    -fx-background-image: url("../islandsinbackground.jpg");
     -fx-background-position: center center;
     -fx-background-size: cover;
 }

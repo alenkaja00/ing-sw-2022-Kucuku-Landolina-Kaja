@@ -20,13 +20,13 @@ public class mainStage extends Application {
 
     private Scene scene;
 
-    private String wizardPath = "src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/wizardScene.fxml";
+    private String wizardPath = "/fxmlFiles/wizardScene.fxml";
 
-    private String startPath = "src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/mainScene.fxml";
+    private String startPath = "/fxmlFiles/mainScene.fxml";
 
-    private String waitingPath = "src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/waitingScene.fxml";
+    private String waitingPath = "/fxmlFiles/waitingScene.fxml";
 
-    private String deckPath = "src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/deckScene.fxml";
+    private String deckPath = "/fxmlFiles/deckScene.fxml";
 
     public static void main(String[] args) {
         launch(args);
@@ -53,24 +53,16 @@ public class mainStage extends Application {
     public void startScene() {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
-        try {
-            loader = new FXMLLoader(new File(startPath).toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        loader = new FXMLLoader(getClass().getResource(startPath));
         try {
             root = loader.load();
-            root.setId("startScene");
+            root.setId("pane");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         scene = new Scene(root);
-        try {
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
         Platform.runLater(()->{stage.setTitle("Start");
             stage.setScene(scene);
             stage.show();});
@@ -80,25 +72,16 @@ public class mainStage extends Application {
     {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
-        try {
-            loader = new FXMLLoader(new File(deckPath).toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        loader = new FXMLLoader(getClass().getResource(deckPath));
         try {
             root = loader.load();
-            root.setId("helperScene");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         scene = new Scene(root);
-        try {
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-       // Platform.runLater(()->{
+        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
+        // Platform.runLater(()->{
             stage.setTitle("Deck");
             stage.setScene(scene);
             //stage.show();});
@@ -108,24 +91,15 @@ public class mainStage extends Application {
     public void waitingScene() {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
-        try {
-            loader = new FXMLLoader(new File(waitingPath).toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        loader = new FXMLLoader(getClass().getResource(waitingPath));
         try {
             root = loader.load();
-            root.setId("waitingScene");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         scene = new Scene(root);
-        try {
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
         stage.setTitle("Waiting");
         stage.setScene(scene);
         stage.show();
@@ -135,24 +109,15 @@ public class mainStage extends Application {
     public void wizardScene() {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
-        try {
-            loader = new FXMLLoader(new File(wizardPath).toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        loader = new FXMLLoader(getClass().getResource(wizardPath));
         try {
             root = loader.load();
-            root.setId("wizardScene");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         scene = new Scene(root);
-        try {
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
         Platform.runLater(()->{stage.setTitle("Wizards");
             stage.setScene(scene);
             stage.show();});

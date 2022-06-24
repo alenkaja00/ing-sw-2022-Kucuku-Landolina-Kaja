@@ -54,7 +54,7 @@
                                  <children>
                                     <ImageView fx:id="island1" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                          <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -64,7 +64,7 @@
                                  <children>
                                     <ImageView fx:id="island2" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                          <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane2" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -74,7 +74,7 @@
                                  <children>
                                     <ImageView fx:id="island3" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                          <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -84,7 +84,7 @@
                                  <children>
                                     <ImageView fx:id="island4" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                          <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -94,7 +94,7 @@
                                  <children>
                                     <ImageView fx:id="island5" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                          <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -104,7 +104,7 @@
                                  <children>
                                     <ImageView fx:id="island6" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                          <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -114,7 +114,7 @@
                                  <children>
                                     <ImageView fx:id="island7" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                          <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -124,7 +124,7 @@
                                  <children>
                                     <ImageView fx:id="island8" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                          <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -134,7 +134,7 @@
                                  <children>
                                     <ImageView fx:id="island9" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                          <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -144,7 +144,7 @@
                                  <children>
                                     <ImageView fx:id="island10" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
+                                          <Image url="@../Islands/island1.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -154,7 +154,7 @@
                                  <children>
                                     <ImageView fx:id="island11" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
+                                          <Image url="@../Islands/island2.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -164,7 +164,7 @@
                                  <children>
                                     <ImageView fx:id="island12" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
+                                          <Image url="@../Islands/island3.png" />
                                        </image>
                                     </ImageView>
                                     <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;"></TilePane>
@@ -174,7 +174,7 @@
                                  <children>
                                     <ImageView fx:id="cloud33" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                          <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane fx:id="cloudGrid33" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
@@ -205,7 +205,7 @@
                                  <children>
                                     <ImageView fx:id="cloud31" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                          <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane fx:id="cloudGrid31" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
@@ -236,7 +236,7 @@
                                  <children>
                                     <ImageView fx:id="cloud32" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                          <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane fx:id="cloudGrid32" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
@@ -267,7 +267,7 @@
                                  <children>
                                     <ImageView fx:id="cloud21" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                          <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane fx:id="cloudGrid21" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
@@ -297,7 +297,7 @@
                                  <children>
                                     <ImageView fx:id="cloud22" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
+                                          <Image url="@../cloud_card.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane fx:id="cloudGrid22" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
@@ -345,17 +345,17 @@
                <children>
                   <ImageView fx:id="effectOne" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../resources/Effects/lord.jpg" />
+                        <Image url="@../Effects/lord.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="effectTwo" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../resources/Effects/musician.jpg" />
+                        <Image url="@../Effects/musician.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="effectThree" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../resources/Effects/queen.jpg" />
+                        <Image url="@../Effects/queen.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -381,7 +381,7 @@
                                     <HBox alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                        <ImageView fx:id="online1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
-                                             <Image url="@../../../../../../../../resources/online.png" />
+                                             <Image url="@../online.png" />
                                           </image>
                                        </ImageView>
                                        <Label fx:id="nameLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="..." />
@@ -389,7 +389,7 @@
                                        <Label fx:id="coinsLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
                                        <ImageView fx:id="coin1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
-                                             <Image url="@../../../../../../../../resources/moneta.png" />
+                                             <Image url="@../moneta.png" />
                                           </image>
                                        </ImageView>
                                     </HBox>
@@ -399,7 +399,7 @@
                                  <children>
                                     <ImageView fx:id="dashboard1" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
+                                          <Image url="@../Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane gridLinesVisible="false" minWidth="0" onMouseClicked="#tablesClicked" prefHeight="${dashboard1.fitHeight}" prefWidth="${dashboard1.fitWidth}" scaleShape="false">
@@ -608,56 +608,56 @@
                                        <children>
                                           <ImageView fx:id="dashboard1Towers0" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="2">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers1" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="2">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers2" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="4">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers3" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="4">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers4" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="6">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers5" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="6">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers6" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="8">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Towers7" fitHeight="${dashboard1.fitWidth*0.055}" fitWidth="${dashboard1.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="8">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -709,7 +709,7 @@
                                     <HBox alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                        <ImageView fx:id="online2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}" GridPane.valignment="CENTER">
                                           <image>
-                                             <Image url="@../../../../../../../../resources/online.png" />
+                                             <Image url="@../online.png" />
                                           </image>
                                        </ImageView>
                                        <Label fx:id="nameLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="..." />
@@ -717,7 +717,7 @@
                                        <Label fx:id="coinsLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
                                        <ImageView fx:id="coin2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
-                                             <Image url="@../../../../../../../../resources/moneta.png" />
+                                             <Image url="@../moneta.png" />
                                           </image>
                                        </ImageView>
                                     </HBox>
@@ -727,7 +727,7 @@
                                  <children>
                                     <ImageView fx:id="dashboard2" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
+                                          <Image url="@../Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane gridLinesVisible="false" minHeight="0" minWidth="0" prefHeight="${dashboard2.fitHeight}" prefWidth="${dashboard2.fitWidth}" scaleShape="false">
@@ -936,56 +936,56 @@
                                        <children>
                                           <ImageView fx:id="dashboard2Towers0" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="2">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers1" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="2">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers2" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="4">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers3" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="4">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers4" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="6">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers5" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="6">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers6" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="8">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard2Towers7" fitHeight="${dashboard2.fitWidth*0.055}" fitWidth="${dashboard2.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="8">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -1037,7 +1037,7 @@
                                     <HBox alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                        <ImageView fx:id="online3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
-                                             <Image url="@../../../../../../../../resources/online.png" />
+                                             <Image url="@../online.png" />
                                           </image>
                                        </ImageView>
                                        <Label fx:id="nameLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="..." />
@@ -1045,7 +1045,7 @@
                                        <Label fx:id="coinsLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
                                        <ImageView fx:id="coin3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
-                                             <Image url="@../../../../../../../../resources/moneta.png" />
+                                             <Image url="@../moneta.png" />
                                           </image>
                                        </ImageView>
                                     </HBox>
@@ -1055,7 +1055,7 @@
                                  <children>
                                     <ImageView fx:id="dashboard3" fitWidth="${centralPane1.width}" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../../resources/Plancia_DEF2.png" />
+                                          <Image url="@../Plancia_DEF2.png" />
                                        </image>
                                     </ImageView>
                                     <GridPane gridLinesVisible="false" minHeight="0" minWidth="0" prefHeight="${dashboard3.fitHeight}" prefWidth="${dashboard3.fitWidth}" scaleShape="false">
@@ -1264,56 +1264,56 @@
                                        <children>
                                           <ImageView fx:id="dashboard3Towers0" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="2">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers1" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="2">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers2" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="4">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers3" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="4">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers4" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="6">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers5" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="6">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers6" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="18" GridPane.rowIndex="8">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard3Towers7" fitHeight="${dashboard3.fitWidth*0.055}" fitWidth="${dashboard3.fitWidth*0.055}" pickOnBounds="true" GridPane.columnIndex="20" GridPane.rowIndex="8">
                                              <image>
-                                                <Image url="@../../../../../../../../resources/Towers/black_tower.png" />
+                                                <Image url="@../Towers/black_tower.png" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -1393,7 +1393,7 @@
                   <children>
                      <ImageView fx:id="card1" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente1.png" />
+                           <Image url="@../Assistants/Assistente1.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1402,7 +1402,7 @@
                   <children>
                      <ImageView fx:id="card2" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente2.png" />
+                           <Image url="@../Assistants/Assistente2.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1411,7 +1411,7 @@
                   <children>
                      <ImageView fx:id="card3" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente3.png" />
+                           <Image url="@../Assistants/Assistente3.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1420,7 +1420,7 @@
                   <children>
                      <ImageView fx:id="card4" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente4.png" />
+                           <Image url="@../Assistants/Assistente4.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1429,7 +1429,7 @@
                   <children>
                      <ImageView fx:id="card5" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente5.png" />
+                           <Image url="@../Assistants/Assistente5.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1438,7 +1438,7 @@
                   <children>
                      <ImageView fx:id="card6" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente6.png" />
+                           <Image url="@../Assistants/Assistente6.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1447,7 +1447,7 @@
                   <children>
                      <ImageView fx:id="card7" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente7.png" />
+                           <Image url="@../Assistants/Assistente7.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1456,7 +1456,7 @@
                   <children>
                      <ImageView fx:id="card8" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente8.png" />
+                           <Image url="@../Assistants/Assistente8.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1465,7 +1465,7 @@
                   <children>
                      <ImageView fx:id="card9" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente9.png" />
+                           <Image url="@../Assistants/Assistente9.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1474,7 +1474,7 @@
                   <children>
                      <ImageView fx:id="card10" fitHeight="${deckGrid.height*0.3}" fitWidth="150.0" onMouseClicked="#cardClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../../../../resources/Assistants/Assistente10.png" />
+                           <Image url="@../Assistants/Assistente10.png" />
                         </image>
                      </ImageView>
                   </children>
@@ -1486,7 +1486,7 @@
          <children>
             <ImageView fx:id="banner" fitHeight="${base.height*0.1}" fitWidth="${base.width*0.7}" pickOnBounds="true" preserveRatio="false">
                <image>
-                  <Image url="@../../../../../../../../resources/banner.png" />
+                  <Image url="@../banner.png" />
                </image>
             </ImageView>
          </children>

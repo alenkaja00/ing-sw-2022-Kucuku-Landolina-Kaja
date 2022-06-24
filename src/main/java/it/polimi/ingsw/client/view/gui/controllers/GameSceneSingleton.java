@@ -16,11 +16,7 @@ public class GameSceneSingleton {
     private GameMapController controller;
 
     private GameSceneSingleton(){ FXMLLoader loader = null;
-        try {
-            loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/gameMap.fxml").toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        loader = new FXMLLoader(getClass().getResource("/fxmlFiles/gameMap.fxml"));
         try {
             root = loader.load();
         } catch (IOException e) {
@@ -29,11 +25,7 @@ public class GameSceneSingleton {
 
         gameScene = new Scene(root);
 
-        try {
-            gameScene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        gameScene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
 
 
         controller = loader.getController();

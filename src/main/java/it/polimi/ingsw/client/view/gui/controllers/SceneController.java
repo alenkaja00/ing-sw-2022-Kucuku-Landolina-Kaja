@@ -46,13 +46,12 @@ public class SceneController {
 
     public void connectionScene(javafx.event.ActionEvent actionEvent) throws IOException {
 
-            FXMLLoader loader = new FXMLLoader(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/connectionScene.fxml").toURI().toURL());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/connectionScene.fxml"));
             root = loader.load();
             root.setId("connectionScene");
-            //Parent root = FXMLLoader.load(new File("src/main/java/it/polimi/ingsw/client/view/gui/connectionScene.fxml").toURI().toURL());
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
             stage.setTitle("Ip and Port");
             stage.setScene(scene);
             stage.show();
@@ -79,11 +78,11 @@ public class SceneController {
 
         if(connectionEstablished)
         {
-            Parent root = FXMLLoader.load(new File("src/main/java/it/polimi/ingsw/client/view/gui/fxmlFiles/playerNumberScene.fxml").toURI().toURL());
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmlFiles/playerNumberScene.fxml"));
             root.setId("playerNumScene");
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().add(new File("src/main/java/it/polimi/ingsw/client/view/gui/cssFiles/main.css").toURI().toURL().toExternalForm());
+            scene.getStylesheets().add(getClass().getResource( "/cssFiles/main.css").toExternalForm());
 
             stage.setTitle("Player Number");
             stage.setScene(scene);

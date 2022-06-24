@@ -27,7 +27,7 @@
   </rowConstraints>
     <children>
         <ImageView GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" fitWidth="${mainPane.width*0.6}" preserveRatio="true">
-            <Image url="@../../../../../../../../resources/Eriantys.png"></Image>
+            <Image url="@../Eriantys.png"></Image>
         </ImageView>
         <Button GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerNumberScene" prefHeight="92.0" prefWidth="258.0" text="PLAY">
         </Button>
