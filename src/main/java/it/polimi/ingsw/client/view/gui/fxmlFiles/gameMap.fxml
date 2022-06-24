@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="base" style="-fx-background-color: rgba(60,60,60,0.2)" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.GameMapController">
+<GridPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.GameMapController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" prefWidth="100.0" />
@@ -24,372 +24,6 @@
       <RowConstraints percentHeight="88.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <ScrollPane fx:id="centralPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
-         <content>
-            <StackPane fx:id="firstStackPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
-               <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
-                     <children>
-                        <GridPane fx:id="parentGrid" gridLinesVisible="false" prefHeight="${firstStackPane.fitHeight}" alignment="CENTER" scaleShape="false" >
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="1" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="16.5" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="1" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="0.0" percentHeight="16.5" prefHeight="15.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <StackPane fx:id="islandStack1" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.valignment="TOP" >
-                                 <children>
-                                    <ImageView fx:id="island1" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane1" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack2"  GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                                 <children>
-                                    <ImageView fx:id="island2" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane2" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island2.fitHeight}" prefWidth="${island2.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack3" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island3" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane3" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack4" GridPane.columnIndex="6" GridPane.rowIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island4" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane4" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack5" GridPane.columnIndex="6" GridPane.rowIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island5" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane5" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack6" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island6" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane6" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack7" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                                 <children>
-                                    <ImageView fx:id="island7" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane7" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack8" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                                 <children>
-                                    <ImageView fx:id="island8" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane8" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack9" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island9" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane9" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack10" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island10" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island1.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane10" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack11" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island11" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true" >
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island2.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane11" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="islandStack12" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="island12" fitHeight="${parentGrid.width*0.20}" fitWidth="${parentGrid.width*0.20}" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/Islands/island3.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TilePane fx:id="tilePane12" maxHeight="${island1.fitHeight*0.5}" maxWidth="${island1.fitWidth*0.5}" onMouseClicked="#islandClicked" prefHeight="${island1.fitHeight}" prefWidth="${island1.fitWidth}" style="-fx-border-color: red;">
-                                    </TilePane>
-                                 </children>
-                              </StackPane>
-
-                              <StackPane fx:id="cloudPane33" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <children>
-                                    <ImageView fx:id="cloud33" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
-                                       </image>
-                                    </ImageView>
-                                    <GridPane fx:id="cloudGrid33" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <ImageView fx:id="studentThree31" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree32" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree33" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree34" fitHeight="${cloudGrid33.width*0.28}" fitWidth="${cloudGrid33.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </StackPane>
-                              <StackPane fx:id="cloudPane31" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                 <children>
-                                    <ImageView fx:id="cloud31" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
-                                       </image>
-                                    </ImageView>
-                                    <GridPane fx:id="cloudGrid31" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <ImageView fx:id="studentThree11" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree12" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree13" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree14" fitHeight="${cloudGrid31.width*0.28}" fitWidth="${cloudGrid31.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </StackPane>
-                              <StackPane fx:id="cloudPane32" disable="true" visible="false" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                 <children>
-                                    <ImageView fx:id="cloud32" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
-                                       </image>
-                                    </ImageView>
-                                    <GridPane fx:id="cloudGrid32" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <ImageView fx:id="studentThree21" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree22" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree23" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="studentThree24" fitHeight="${cloudGrid32.width*0.28}" fitWidth="${cloudGrid32.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </StackPane>
-                              <StackPane fx:id="cloudPane21" disable="false" visible="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <children>
-                                    <ImageView fx:id="cloud21" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
-                                       </image>
-                                    </ImageView>
-                                    <GridPane fx:id="cloudGrid21" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <ImageView fx:id="student11" fitHeight="${cloudGrid21.width*0.28}" fitWidth="${cloudGrid21.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="student12" fitHeight="${cloudGrid21.width*0.28}" fitWidth="${cloudGrid21.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="student13" fitHeight="${cloudGrid21.width*0.28}" fitWidth="${cloudGrid21.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="3" GridPane.valignment="TOP">
-                                             
-                                          </ImageView>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </StackPane>
-                              <StackPane fx:id="cloudPane22" disable="false" visible="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                 <children>
-                                    <ImageView fx:id="cloud22" fitHeight="${parentGrid.width*0.13}" fitWidth="${parentGrid.width*0.13}" onMouseClicked="#cloudClicked" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../resources/cloud_card.png" />
-                                       </image>
-                                    </ImageView>
-                                    <GridPane fx:id="cloudGrid22" gridLinesVisible="false" minHeight="0.0" minWidth="0.0" onMouseClicked="#cloudClicked">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="57.26668701171875" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="11.400012207031246" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="8.0" prefWidth="56.79998779296875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="28.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.26663208007812" minWidth="0.0" percentWidth="18.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="8.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="28.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="53.933326148986815" minHeight="0" percentHeight="18.0" prefHeight="4.866668939590454" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <ImageView fx:id="student21" fitHeight="${cloudGrid22.width*0.28}" fitWidth="${cloudGrid22.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="student22" fitHeight="${cloudGrid22.width*0.28}" fitWidth="${cloudGrid22.width*0.28}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             
-                                          </ImageView>
-                                          <ImageView fx:id="student23" fitHeight="${cloudGrid22.width*0.28}" fitWidth="${cloudGrid22.width*0.28}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.rowSpan="3" GridPane.valignment="TOP">
-                                             
-                                          </ImageView>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </GridPane>
-                     </children></StackPane>
-               </children>
-            </StackPane>
-         </content>
-      </ScrollPane>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <GridPane fx:id="cardsGrid" alignment="TOP_CENTER" gridLinesVisible="true" maxWidth="${centralPane1.width}">
@@ -444,8 +78,8 @@
                                              <Image url="@../../../../../../../../resources/online.png" />
                                           </image>
                                        </ImageView>
-                                       <Label fx:id="nameLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="Endi" />
-                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="   " />
+                                       <Label fx:id="nameLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="..." />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="   " />
                                        <Label fx:id="coinsLabel1" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
                                        <ImageView fx:id="coin1" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
@@ -502,277 +136,277 @@
                                        </rowConstraints>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables0" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables1" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables2" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables3" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables4" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables5" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables6" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables7" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables8" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables9" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors0" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables10" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables11" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables12" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables13" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables14" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables15" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables16" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables17" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables18" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables19" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors1" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables20" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables21" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables22" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables23" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables24" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables25" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables26" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables27" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables28" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables29" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors2" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables30" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables31" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables32" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables33" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables34" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables35" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables36" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables37" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables38" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables39" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors3" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables40" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables41" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables42" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables43" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables44" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables45" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables46" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables47" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables48" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Tables49" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors4" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
@@ -833,47 +467,47 @@
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance0" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance1" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance2" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance3" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance4" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance5" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance6" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance7" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Entrance8" fitHeight="${dashboard1.fitWidth*0.04}" fitWidth="${dashboard1.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                                             
+
                                           </ImageView>
                                        </children>
                                     </GridPane>
@@ -901,8 +535,8 @@
                                              <Image url="@../../../../../../../../resources/online.png" />
                                           </image>
                                        </ImageView>
-                                       <Label fx:id="nameLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="Endi" />
-                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="   " />
+                                       <Label fx:id="nameLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="..." />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="   " />
                                        <Label fx:id="coinsLabel2" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
                                        <ImageView fx:id="coin2" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
@@ -959,277 +593,277 @@
                                        </rowConstraints>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables0" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables1" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables2" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables3" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables4" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables5" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables6" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables7" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables8" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables9" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Professors0" fitHeight="${dashboard2.fitWidth*0.0455}" fitWidth="${dashboard2.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables10" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables11" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables12" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables13" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables14" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables15" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables16" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables17" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables18" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables19" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Professors1" fitHeight="${dashboard2.fitWidth*0.0455}" fitWidth="${dashboard2.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables20" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables21" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables22" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables23" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables24" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables25" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables26" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables27" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables28" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables29" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Professors2" fitHeight="${dashboard2.fitWidth*0.0455}" fitWidth="${dashboard2.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables30" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables31" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables32" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables33" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables34" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables35" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables36" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables37" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables38" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables39" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Professors3" fitHeight="${dashboard2.fitWidth*0.0455}" fitWidth="${dashboard2.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables40" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables41" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables42" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables43" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables44" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables45" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables46" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables47" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables48" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Tables49" fitHeight="${dashboard2.fitWidth*0.047}" fitWidth="${dashboard2.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Professors4" fitHeight="${dashboard2.fitWidth*0.0455}" fitWidth="${dashboard2.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
@@ -1290,47 +924,47 @@
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance0" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance1" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance2" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance3" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance4" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" onMouseClicked="#entranceStudentClicked" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance5" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance6" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance7" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                  </children>
                                  <children>
                                     <ImageView fx:id="dashboard2Entrance8" fitHeight="${dashboard2.fitWidth*0.04}" fitWidth="${dashboard2.fitWidth*0.04}" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                                       
+
                                           </ImageView>
                                     </children>
                                     </GridPane>
@@ -1358,8 +992,8 @@
                                              <Image url="@../../../../../../../../resources/online.png" />
                                           </image>
                                        </ImageView>
-                                       <Label fx:id="nameLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="Endi" />
-                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="   " />
+                                       <Label fx:id="nameLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="..." />
+                                       <Label maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em; -fx-background-color: transparent;" text="   " />
                                        <Label fx:id="coinsLabel3" maxHeight="${centralPane1.width*0.06}" style="-fx-font-size:2em;" text="4" />
                                        <ImageView fx:id="coin3" fitHeight="${centralPane1.width*0.06}" fitWidth="${centralPane1.width*0.06}">
                                           <image>
@@ -1816,7 +1450,7 @@
             </ScrollPane>
          </children>
       </VBox>
-      <StackPane fx:id="deckStack" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS" style="-fx-background-color: rgba(60, 60, 60, 0.4);">
+      <StackPane fx:id="deckStack" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS" style="-fx-background-color: rgba(60, 60, 60, 0.7);">
          <GridPane fx:id="deckGrid" alignment="CENTER" gridLinesVisible="false" prefWidth="${deckStack.width}" prefHeight="${deckStack.height}" >
             <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />

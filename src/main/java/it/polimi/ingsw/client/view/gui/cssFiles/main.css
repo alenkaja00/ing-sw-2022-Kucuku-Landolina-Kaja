@@ -1,12 +1,8 @@
-#startScene, #waitingScene, #wizardScene, #helperScene, #connectionScene, #playerNumScene
+.root, #startScene, #waitingScene, #wizardScene, #helperScene, #connectionScene, #playerNumScene
 {
     -fx-background-image: url("../../../../../../../../resources/islandsinbackground.jpg");
     -fx-background-position: center center;
-}
-.root
-{
-    -fx-background-image: url("../../../../../../../../resources/darkBackground.jpg");
-    -fx-background-position: center center;
+    -fx-background-size: cover;
 }
 
 .scroll-pane > .viewport {

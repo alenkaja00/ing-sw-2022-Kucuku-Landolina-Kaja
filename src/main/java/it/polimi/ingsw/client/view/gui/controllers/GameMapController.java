@@ -878,12 +878,12 @@ public class GameMapController
     private void mouseEntered(MouseEvent mouseEvent)
     {
         ImageView image = (ImageView) mouseEvent.getSource();
-        for(ImageView img : HelperCards)
+        for(ImageView img : deck)
         {
             if(img.equals(image))
             {
-                img.setScaleY(2);
-                img.setScaleX(2);
+                img.setScaleY(1.1);
+                img.setScaleX(1.1);
             }
         }
     }
@@ -891,7 +891,7 @@ public class GameMapController
     @FXML
     private void mouseExited(MouseEvent mouseEvent)
     {
-        for(ImageView img : HelperCards)
+        for(ImageView img : deck)
         {
             img.setScaleY(1);
             img.setScaleX(1);
