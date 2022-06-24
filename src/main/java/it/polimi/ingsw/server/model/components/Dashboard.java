@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+/**
+ * class dashboard represents the school board of each player
+ */
 public class Dashboard {
     private int maxTowers;
     private ColoredDisc[] entranceSpots;
@@ -16,6 +19,11 @@ public class Dashboard {
     public int maxEntrance;
     public HashSet<ColoredDisc> professorSpots = new HashSet<ColoredDisc>();
 
+    /**
+     * dashboard constructor
+     * @param playerNumber can be 2 or 3
+     * @throws IndexOutOfBoundsException if playerNumber is neither 2 nor 3
+     */
     public Dashboard(int playerNumber) throws IndexOutOfBoundsException
     {
         switch (playerNumber)
@@ -38,6 +46,12 @@ public class Dashboard {
         }
     }
 
+    /**
+     * adds a student to the entrance of the dashboard
+     * @param myStudent is the chosen color
+     * @param index is the selected spot for the student in the entrance
+     * @throws IndexOutOfBoundsException if the spot is already occuped
+     */
     public void AddToEntrance(ColoredDisc myStudent, int index) throws IndexOutOfBoundsException
     {
         if (entranceSpots[index]!=null)
@@ -50,6 +64,11 @@ public class Dashboard {
         }
     }
 
+    /**
+     * removes a student from entrance
+     * @param index is the entrance index of the selected student to remove
+     * @throws InvalidParameterException if the selected spot is not occuped
+     */
     public void RemoveFromEntrance(int index) throws InvalidParameterException
     {
         if (entranceSpots[index]!=null)
@@ -62,6 +81,13 @@ public class Dashboard {
         }
     }
 
+    /**
+     * moves a student identified by its index from entrance to tables
+     * @param index is the spot of the student in the entrance
+     * @return the number of students of a specific color (the color of the chosen student)
+     * @throws InvalidParameterException if the selected spot is occuped
+     * @throws IndexOutOfBoundsException if the table has not room for another student
+     */
     public int MoveToTables(int index) throws InvalidParameterException, IndexOutOfBoundsException
     {
         ColoredDisc myStudent = entranceSpots[index];
@@ -77,6 +103,12 @@ public class Dashboard {
         }
     }
 
+    /**
+     * generic method to add a student to tables
+     * @param myStudent is the color of the selected student
+     * @return the number of students of color myStudent in tables
+     * @throws IndexOutOfBoundsException if the table is full and there is no enough room
+     */
     public int addToTables(ColoredDisc myStudent) throws InvalidParameterException, IndexOutOfBoundsException
     {
         if (tables.get(myStudent)<10)
@@ -90,6 +122,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * removes tower from dashboard
+     * @throws IndexOutOfBoundsException if there are no towers to remove
+     */
     public void RemoveTower() throws IndexOutOfBoundsException
     {
         if (towerNumber>0)
@@ -102,6 +138,10 @@ public class Dashboard {
         }
     }
 
+    /**
+     * adds a tower in dashboard
+     * @throws IndexOutOfBoundsException if there is no room for another tower
+     */
     public void AddTower() throws IndexOutOfBoundsException
     {
         if (towerNumber<maxTowers)
@@ -125,9 +165,9 @@ public class Dashboard {
 
 
     /**
-     *
-     * @param myStudent
-     * @throws IndexOutOfBoundsException
+     * removes a student from tables
+     * @param myStudent is the color we want to remove
+     * @throws IndexOutOfBoundsException if the table is empty
      */
     public void RemoveFromTables(ColoredDisc myStudent) throws IndexOutOfBoundsException
     {
@@ -141,6 +181,12 @@ public class Dashboard {
         }
     }
 
+    /**
+     * removes num students from table
+     * @param myStudent is the color we want to remove
+     * @param num is the amount of students we want to remove
+     * @throws IndexOutOfBoundsException
+     */
     public void RemoveFromTables(ColoredDisc myStudent, int num) throws IndexOutOfBoundsException
     {
         if(tables.get(myStudent) - num < 0)
