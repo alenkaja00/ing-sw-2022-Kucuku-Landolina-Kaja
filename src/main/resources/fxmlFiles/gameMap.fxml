@@ -24,7 +24,7 @@
       <RowConstraints percentHeight="88.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <ScrollPane fx:id="centralPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+      <ScrollPane fx:id="centralPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: rgba(60,60,60,0.4);" GridPane.rowIndex="1">
          <content>
             <StackPane fx:id="firstStackPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                <children>
@@ -331,7 +331,7 @@
             </StackPane>
          </content>
       </ScrollPane>
-      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox alignment="CENTER_LEFT" style="-fx-background-color: rgba(60,60,60,0.7); " prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <GridPane fx:id="cardsGrid" style="-fx-padding: 30px;" alignment="TOP_CENTER"  minHeight="-Infinity" maxWidth="${centralPane1.width}">
                <columnConstraints>
@@ -363,7 +363,7 @@
                   <Insets top="20" right="40" bottom="20" left="40"></Insets>
                </VBox.margin>
             </GridPane>
-            <ScrollPane fx:id="centralPane1" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; " VBox.vgrow="SOMETIMES">
+            <ScrollPane fx:id="centralPane1" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" VBox.vgrow="SOMETIMES">
                <content>
                   <StackPane fx:id="columnStack" alignment="CENTER_LEFT" style="-fx-background-color: transparent; ">
                      <children>
@@ -1028,7 +1028,7 @@
                                  </VBox.margin>
                               </StackPane>
 
-                              <StackPane minHeight="${centralPane1.width*0.05}"></StackPane>
+                              <StackPane fx:id="spacer" minHeight="${centralPane1.width*0.05}"></StackPane>
                               <GridPane fx:id="namePanel3" alignment="TOP_CENTER"  maxHeight="${centralPane1.width*0.13}" maxWidth="${centralPane1.width}" minHeight="${centralPane1.width*0.13}" VBox.vgrow="ALWAYS">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="75" />
