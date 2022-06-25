@@ -298,9 +298,9 @@ public class GameMapController
 
 
         CloudThreeGrids = new ArrayList<>();
-        CloudThreeGrids.add(cloudGrid33);
-        CloudThreeGrids.add(cloudGrid32);
         CloudThreeGrids.add(cloudGrid31);
+        CloudThreeGrids.add(cloudGrid32);
+        CloudThreeGrids.add(cloudGrid33);
         StudentsThree1 = new ArrayList<>();
         StudentsThree2 = new ArrayList<>();
         StudentsThree3 = new ArrayList<>();
@@ -724,7 +724,7 @@ public class GameMapController
         int count = 0;
         do
         {
-            bannerMessage("Move a student to an island or to the tables! (" + (3-count) + " left)");
+            bannerMessage("Move a student to an island or to the tables! (" + (4-count) + " left)");
             lockGui();
             entranceClickable = true;
 
@@ -790,7 +790,7 @@ public class GameMapController
 
             System.out.println("ETX executed");
 
-        } while (count <3);
+        } while (count < gameData.players.size()+1);
 
         System.out.println("Exiting ETX phase");
 

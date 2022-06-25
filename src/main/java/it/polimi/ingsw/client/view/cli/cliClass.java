@@ -412,7 +412,7 @@ public class cliClass implements ViewInterface
             {
                 System.out.println("Correctly moved student "+parsedMessage.get(1)+".");
                 countETX++;
-                if (countETX == 3)
+                if (countETX == playerNumber+1)
                 {
                     changeState("NATURE");
                     countETX=0;

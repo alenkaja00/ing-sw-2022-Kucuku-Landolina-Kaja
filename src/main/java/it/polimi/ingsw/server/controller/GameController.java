@@ -187,7 +187,7 @@ public class GameController
     private void actionPhase()
     {
         //action phase
-        for (int i=0; i<players.size(); i++)
+        for (int i=0; i<playerOrder.size(); i++)
         {
             String currentPlayer = playerOrder.get(i).getKey();
 
@@ -254,6 +254,9 @@ public class GameController
                 if (message.get(0).equals("DISCONNECTED")) break;
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
                 {
+                    System.out.println(newGame.playerMaxMoves(0));
+                    System.out.println(newGame.playerMaxMoves(1));
+                    System.out.println(newGame.playerMaxMoves(2));
                     if (Integer.parseInt(message.get(3))<=newGame.playerMaxMoves(players.indexOf(currentPlayer)))
                     {
                         try

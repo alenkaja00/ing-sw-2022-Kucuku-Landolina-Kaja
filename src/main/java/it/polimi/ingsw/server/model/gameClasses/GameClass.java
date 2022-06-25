@@ -170,8 +170,11 @@ public class GameClass {
     {
         for(Cloud cloud: clouds)
         {
-            for(int i=0;i<clouds.get(0).getCloudCapacity();i++) {
-                cloud.AddStudent(bag.popRandom());
+            if (cloud.getStudents().size()==0)
+            {
+                for(int i=0;i<clouds.get(0).getCloudCapacity();i++) {
+                    cloud.AddStudent(bag.popRandom());
+                }
             }
         }
         setClouds(clouds);
