@@ -908,7 +908,7 @@ public class GameMapController
         }
     }
     
-    private void bannerMessage(String text)
+    public void bannerMessage(String text)
     {
         Platform.runLater(()->bannerText.setText(text));
     }

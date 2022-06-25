@@ -45,4 +45,9 @@ public class GameSceneSingleton {
     }
     public GameMapController getController(){return controller;}
 
+    public void reset()
+    {
+        controller = null;
+        gameScene = null;
+    }
 }

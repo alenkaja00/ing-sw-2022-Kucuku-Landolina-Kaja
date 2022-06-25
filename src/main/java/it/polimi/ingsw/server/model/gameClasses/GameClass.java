@@ -260,6 +260,7 @@ public class GameClass {
      */
     public void MoveMotherNature(int moves) throws RuntimeException
     {
+        if (moves==0) throw new RuntimeException();
         CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
 
         int InfluencePlayerIndex = EvaluateInfluence(CurrentIsland);
@@ -268,7 +269,6 @@ public class GameClass {
         Player influencePlayer = players.get(InfluencePlayerIndex);
         if (CurrentIsland.getTowers().length == 0)
         {
-
             CurrentIsland.AddTower(influencePlayer.getTowerColor());
             influencePlayer.myDashboard.RemoveTower();
         }
@@ -302,7 +302,8 @@ public class GameClass {
         {
             Arrays.stream(rightIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
             CurrentIsland.addStudents(rightIsland.getStudents());
-            CurrentIsland.addGraphicalIslands(rightIsland.getID());
+            //CurrentIsland.addGraphicalIslands(rightIsland.getID());
+            rightIsland.getGraphicalIslands().stream().forEach(x->CurrentIsland.addGraphicalIslands(x));
             islands.remove(rightIsland);
         }
 

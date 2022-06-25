@@ -16,7 +16,6 @@ public class ServerController {
 
     public ServerController()
     {
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -37,6 +36,7 @@ public class ServerController {
                         playerLobby.notifyAll();
                     }
                     System.out.println("***OPEN GAME STATUS***");
+                    openGames.removeAll(openGames.stream().filter(x->x.getGameEnded()).collect(Collectors.toList()));
                     if (openGames.size() == 0){System.out.println("   - empty -");};
                     openGames.stream().forEach(x->System.out.println(x.getPlayersOnline()));
                 }

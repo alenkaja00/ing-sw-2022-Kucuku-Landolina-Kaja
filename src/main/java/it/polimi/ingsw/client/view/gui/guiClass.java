@@ -5,7 +5,10 @@ import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.gui.controllers.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
+import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 import javafx.application.Platform;
+
+import javax.sound.midi.Soundbank;
 
 public class guiClass implements ViewInterface
 {
@@ -65,5 +68,14 @@ public class guiClass implements ViewInterface
     @Override
     public void endScene(String endMessage) {
 
+        System.out.println("Player "+endMessage+"won!");
+        GameSceneSingleton.getInstance().getController().bannerMessage("Player "+endMessage+" is the winner!");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        GameSceneSingleton.getInstance().reset();
+        mainstage.startScene();
     }
 }

@@ -57,7 +57,7 @@ public class ClientManager implements Runnable{
                 controller.parseMessage(receivedMessage);
             }
         } catch(Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Client "+nickname+" disconnected");
             if (nickname!= null)
                 controller.managePlayerDisconnection(nickname);

@@ -7,6 +7,7 @@ import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 
+import javax.sound.midi.Soundbank;
 import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 public class GameController
 {
     private GameClass newGame;
+    private Boolean gameEnded = false;
     private boolean expertMode;
     private String ID;
     private int playerNumber;
@@ -56,64 +58,98 @@ public class GameController
                 newGame = new GameClass(ID, playerNumber, players, orderedWizards);
 
             do {
-                //updateView();
-                newGame.BagToCloud();
-                updateView();
+                if (!gameEnded)
+                {
+                    //updateView();
+                    newGame.BagToCloud();
+                    updateView();
+                }
 
-                pianificationPhase();
+                if (!gameEnded)
+                    pianificationPhase();
 
-                actionPhase();
+                if (!gameEnded)
+                    actionPhase();
             }while (true);
         }
         ).start();
 
     }
 
+    public boolean getGameEnded()
+    {
+        synchronized (gameEnded)
+        {
+            return gameEnded;
+        }
+    }
+
     private void acceptWizards()
     {
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true)
+                {
+                    if (playerWizards.size()<playerNumber && players.stream().filter(x->playersOnline.get(x)).count() == 0)
+                }
+            }
+        }).start();*/
         while (playerWizards.size()<playerNumber)
         {
-            ArrayList<String> message = nextMessage();
-            if (message.get(0).equals("PLAY") &&  !playerWizards.keySet().contains(message.get(1)) &&
-                    message.get(2).equals("WIZARD") && !playerWizards.values().contains(Wizard.valueOf(message.get(3))))
+            ArrayList<String> message = nextMessage("");
+            System.out.println("out of the nextm");
+
+            if (!message.get(0).equals("DISCONNECTED"))
             {
+                if (message.get(0).equals("PLAY") &&  !playerWizards.keySet().contains(message.get(1)) &&
+                        message.get(2).equals("WIZARD") && !playerWizards.values().contains(Wizard.valueOf(message.get(3))))
+                {
                     /*
                     System.out.println(playerWizards.values().contains(message.get(3)));
                     System.out.println(playerWizards);
                     System.out.println(message);*/
-                playerSockets.get(message.get(1)).sendMessage("OK");
-                //updateView(message.get(1));
-                playerWizards.put(message.get(1), Wizard.valueOf(message.get(3)));
+                    System.out.println("received "+ message.get(3));
+                    playerSockets.get(message.get(1)).sendMessage("OK");
+                    //updateView(message.get(1));
+                    playerWizards.put(message.get(1), Wizard.valueOf(message.get(3)));
+                }
+                else
+                {
+                    playerSockets.get(message.get(1)).sendMessage("NOK");
+                }
             }
-            else
-            {
-                playerSockets.get(message.get(1)).sendMessage("NOK");
-            }
-
             //add a random wizard if a player disconnects during wizard choice
             for (int i=0; i<playerNumber; i++)
             {
                 if (!playersOnline.get(players.get(i)) && !playerWizards.keySet().contains(players.get(i)))
+                {
+                    System.out.println("selecting random wizard");
                     playerWizards.put(players.get(i), Arrays.stream(Wizard.values()).filter(x->!playerWizards.values().contains(x)).collect(Collectors.toList()).get(0) );
+                }
             }
         }
     }
 
     private void pianificationPhase()
     {
+        players.stream().filter(x-> !playersOnline.get(x)).forEach(x->playerDisconnected(x));
+        if (gameEnded) return;
+        updateView();
+        System.out.println("Entering pianification phase");
         playerOrder.removeAll(playerOrder);
         //pianification phase
         for (int i = 0; i<players.size(); i++)
         {
             String currentPlayer = players.get(i);
+            if (!playersOnline.get(currentPlayer))
+                continue;
             playerSockets.get(currentPlayer).sendMessage("UNLOCK");
             System.out.println(playerOrder);
 
             do {
-                if (!playersOnline.get(currentPlayer))
-                    break;
-
-                ArrayList<String> message = nextMessage();
+                ArrayList<String> message = nextMessage(currentPlayer);
+                if (message.get(0).equals("DISCONNECTED")) break;
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("HELPER"))
                 {
                     try {
@@ -166,9 +202,8 @@ public class GameController
             {
                 do
                 {
-                    if (!playersOnline.get(currentPlayer))
-                        break;
-                    ArrayList<String> message = nextMessage();
+                    ArrayList<String> message = nextMessage(currentPlayer);
+                    if (message.get(0).equals("DISCONNECTED")) break;
                     if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("ETI"))
                     {
                         try {
@@ -215,9 +250,8 @@ public class GameController
             //MOVE MOTHER NATURE
             do
             {
-                if (!playersOnline.get(currentPlayer))
-                    break;
-                ArrayList<String> message = nextMessage();
+                ArrayList<String> message = nextMessage(currentPlayer);
+                if (message.get(0).equals("DISCONNECTED")) break;
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
                 {
                     if (Integer.parseInt(message.get(3))<=newGame.playerMaxMoves(players.indexOf(currentPlayer)))
@@ -265,9 +299,8 @@ public class GameController
             //CLOUD TO ENTRANCE
             do
             {
-                if (!playersOnline.get(currentPlayer))
-                    break;
-                ArrayList<String> message = nextMessage();
+                ArrayList<String> message = nextMessage(currentPlayer);
+                if (message.get(0).equals("DISCONNECTED")) break;
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("CTE"))
                 {
                     try {
@@ -354,7 +387,14 @@ public class GameController
 
     private void gameEnded(int playerID)
     {
-        players.stream().forEach(x->playerSockets.get(x).sendMessage("WINNER|"+players.get(playerID)));
+        synchronized (gameEnded)
+        {
+            gameEnded = true; //the object will be deleted by his creator
+        }
+        players.stream().forEach(x->{
+            if (playerID != -1 && playerSockets.get(x) != null)
+                playerSockets.get(x).sendMessage("WINNER|"+players.get(playerID));
+        });
     }
 
     private void updateView()
@@ -378,7 +418,7 @@ public class GameController
         players.stream().filter(x->x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
     }
 
-    private ArrayList<String> nextMessage()
+/*    private ArrayList<String> nextMessage()
     {
         ArrayList<String> message = new ArrayList<>();
 
@@ -401,6 +441,30 @@ public class GameController
             }
         } while (true);
 
+    }*/
+    private ArrayList<String> nextMessage(String playerNickname)
+    {
+        ArrayList<String> message = new ArrayList<>();
+
+        do {
+            synchronized (inputBuffer) {
+                if (inputBuffer.size() > 0) {
+                    message = inputBuffer.remove(0);
+                    inputBuffer.notifyAll();
+                }
+            }
+            if (message.size() > 0)
+                return (ArrayList<String>) message.clone();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while ((playerNickname.equals("") || playersOnline.get(playerNickname))
+                && playersOnline.values().contains(true)
+                && players.stream().filter(x->(!playersOnline.get(x) && !playerWizards.keySet().contains(x))).collect(Collectors.toList()).size() == 0);
+        message.add("DISCONNECTED");
+        return (ArrayList<String>) message.clone();
     }
     public void parseMessage(ArrayList<String> receivedMessage)
     {
@@ -416,9 +480,37 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, false);
-        newGame.getPlayers().get(players.indexOf(nickname)).online = false;
-        //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
+        if (newGame.getPlayers().get(players.indexOf(nickname)).online = false)
+            return;
+        else
+            newGame.getPlayers().get(players.indexOf(nickname)).online = false;
         System.out.println("Player "+nickname+" disconnected");
+        if (playersOnline.values().stream().filter(x->x==true).collect(Collectors.toList()).size()==1)
+        {
+            String lastPlayer = players.stream().filter(x->playersOnline.get(x)).collect(Collectors.toList()).get(0);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(15000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (playersOnline.values().stream().filter(x->x==true).collect(Collectors.toList()).size()==1)
+                    {
+                        if (playersOnline.get(lastPlayer))
+                            gameEnded(players.indexOf(lastPlayer));
+                    }
+                }
+            }).start();
+        }
+        else if (playersOnline.values().stream().filter(x->x==true).collect(Collectors.toList()).size()==0)
+        {
+            gameEnded(-1);
+        }
+        updateView();
+        //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
+
     }
     public void playerReconnected(String nickname)
     {
@@ -428,7 +520,7 @@ public class GameController
         newGame.getPlayers().get(players.indexOf(nickname)).online = true;
         //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("RECONNECTED|"+nickname));
         System.out.println("Player "+nickname+" reconnected");
-        updateView(nickname);
+        updateView();
     }
 
     public String getID()

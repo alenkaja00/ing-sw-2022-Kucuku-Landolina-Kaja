@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
+import it.polimi.ingsw.client.controller.ClientController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,21 +42,17 @@ public class SceneController {
         connectionEstablished = setconn;
     }
 
-
-
-
-    public void connectionScene(javafx.event.ActionEvent actionEvent) throws IOException {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/connectionScene.fxml"));
-            root = loader.load();
-            root.setId("connectionScene");
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
-            stage.setTitle("Ip and Port");
-            stage.setScene(scene);
-            stage.show();
-
+    public void connectionScene(javafx.event.ActionEvent actionEvent) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/connectionScene.fxml"));
+        root = loader.load();
+        root.setId("connectionScene");
+        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
+        stage.setTitle("Ip and Port");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void quitScene(javafx.event.ActionEvent actionEvent) throws IOException
@@ -72,11 +69,9 @@ public class SceneController {
             }*/
     }
 
-
-
-    public void playerNumberScene(javafx.event.ActionEvent actionEvent) throws IOException {
-
-        if(connectionEstablished)
+    public void playerNumberScene(javafx.event.ActionEvent actionEvent) throws IOException
+    {
+        if(!ClientControllerSingleton.getInstance().getClientController().getServerIP().equals(""))
         {
             Parent root = FXMLLoader.load(getClass().getResource("/fxmlFiles/playerNumberScene.fxml"));
             root.setId("playerNumScene");
@@ -89,9 +84,5 @@ public class SceneController {
 
             stage.show();
         }
-
-
     }
-
-
 }

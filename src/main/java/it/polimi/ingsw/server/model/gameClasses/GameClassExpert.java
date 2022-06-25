@@ -304,6 +304,7 @@ public class GameClassExpert extends GameClass
     @Override
     public void MoveMotherNature(int moves) throws RuntimeException
     {
+        if (moves==0) throw new RuntimeException();
         CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
 
         if (CurrentIsland.prohibited)
@@ -452,7 +453,7 @@ public class GameClassExpert extends GameClass
         {
             Arrays.stream(rightIsland.getTowers()).forEach(x->CurrentIsland.AddTower(CurrentIsland.getTowers()[0]));
             CurrentIsland.addStudents(rightIsland.getStudents());
-            CurrentIsland.addGraphicalIslands(rightIsland.getID());
+            rightIsland.getGraphicalIslands().stream().forEach(x->CurrentIsland.addGraphicalIslands(x));
             islands.remove(rightIsland);
         }
 
