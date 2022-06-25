@@ -43,6 +43,7 @@ public class ClientNetwork{
                 e.printStackTrace();
                 System.out.println("Connection closed");
                 controller.playerDisconnected();
+                controller.lockGUI();
                 connected = false;
             }
             finally

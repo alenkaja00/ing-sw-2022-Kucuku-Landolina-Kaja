@@ -15,4 +15,9 @@ public class WaitingController {
         System.out.println("WAITING");
     }
 
+    public void showMessage(String message)
+    {
+        waitingText.setText(message);
+    }
+
 }

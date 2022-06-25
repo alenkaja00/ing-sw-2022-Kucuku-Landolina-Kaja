@@ -572,6 +572,10 @@ public class cliClass implements ViewInterface
 
     }
 
+    @Override
+    public void manageReconnection() {
+
+    }
 
 
     private void printBlock(ArrayList<String> message)

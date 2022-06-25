@@ -60,4 +60,5 @@ public interface ViewInterface
     void endScene(String endMessage);
 
 
+    void manageReconnection();
 }

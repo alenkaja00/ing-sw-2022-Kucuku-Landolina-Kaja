@@ -112,8 +112,8 @@ public class ClientController
         connectivity.sendMessage("PLAY|"+playerNickname+"|WIZARD|"+wizard);
 
         List<String> message = nextServerMessage();
-        if (message.get(0).equals("OK")) {
-
+        if (message.get(0).equals("OK"))
+        {
             /*
             new Thread(new Runnable() {
                 @Override
@@ -137,7 +137,7 @@ public class ClientController
     private void manageGameProsecution()
     {
         System.out.println("Game prosecution");
-        List<String> message;
+        /*List<String> message;
 
         //receive unlock or JSON
         do {
@@ -155,8 +155,9 @@ public class ClientController
             else
                 System.out.println("FATAL ERROR: waiting for json or unlock, received "+ message);
         } while (true);
-        System.out.println("qui");
-        view.helperScene();
+        System.out.println("qui");*/
+        viewLocked = true;
+        view.manageReconnection();
 
         /*
         do{
@@ -346,5 +347,9 @@ public class ClientController
     {
         view.updateView(jsonString);
         manageGameProsecution();
+    }
+
+    public void lockGUI() {
+        viewLocked = true;
     }
 }

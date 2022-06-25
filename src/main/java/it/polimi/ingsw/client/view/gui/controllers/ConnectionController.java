@@ -157,6 +157,6 @@ public class ConnectionController
             bannerText.setText("This nickname is already taken. Choose another one!");
         }
 
-
+        System.out.println("nickname successfully requested");
     }
 }

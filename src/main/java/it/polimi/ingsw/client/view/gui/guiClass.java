@@ -4,9 +4,13 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.gui.controllers.*;
+import it.polimi.ingsw.server.model.components.Player;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import javax.sound.midi.Soundbank;
 
@@ -39,7 +43,7 @@ public class guiClass implements ViewInterface
     @Override
     public void waitLobbyScene() {
 
-        mainstage.waitingScene();
+        mainstage.waitingScene("");
     }
 
     @Override
@@ -63,6 +67,45 @@ public class guiClass implements ViewInterface
     @Override
     public void messageScene(String message) {
 
+    }
+
+    public void manageReconnection()
+    {
+        Platform.runLater(()->{
+            mainstage.waitingScene("Waiting for readmission to the game...");
+
+            Task waitTurn = new Task<Void>() {
+                @Override
+                public Void call() {
+                    do {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                    return null;
+                }
+            };
+            waitTurn.setOnSucceeded(event -> {
+                Stage stage = StageSingleton.getInstance().getStage();
+                Scene scene = GameSceneSingleton.getInstance().getGameScene();
+
+                stage.setTitle("GameMap");
+                stage.setScene(scene);
+                stage.show();
+
+                Task gameLogic = new Task<Void>() {
+                    @Override
+                    public Void call() {
+                        GameSceneSingleton.getInstance().getController().ETX();
+                        return null;
+                    }
+                };
+                new Thread(gameLogic).start();
+            });
+            new Thread(waitTurn).start();
+        });
     }
 
     @Override

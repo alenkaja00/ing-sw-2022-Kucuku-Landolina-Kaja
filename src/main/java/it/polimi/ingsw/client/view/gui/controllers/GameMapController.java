@@ -724,7 +724,7 @@ public class GameMapController
         int count = 0;
         do
         {
-            bannerMessage("Move a student to an island or to the tables! (" + (4-count) + " left)");
+            bannerMessage("Move a student to an island or to the tables! (" + (gameData.PlayerNumber+1-count) + " left)");
             lockGui();
             entranceClickable = true;
 
@@ -790,7 +790,7 @@ public class GameMapController
 
             System.out.println("ETX executed");
 
-        } while (count < gameData.players.size()+1);
+        } while (count < gameData.PlayerNumber+1);
 
         System.out.println("Exiting ETX phase");
 

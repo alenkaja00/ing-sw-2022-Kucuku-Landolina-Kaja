@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui;
 
 import it.polimi.ingsw.client.view.gui.controllers.StageSingleton;
+import it.polimi.ingsw.client.view.gui.controllers.WaitingController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -88,7 +89,7 @@ public class mainStage extends Application {
             stage.show();
     }
 
-    public void waitingScene() {
+    public void waitingScene(String message) {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
         loader = new FXMLLoader(getClass().getResource(waitingPath));
@@ -103,6 +104,9 @@ public class mainStage extends Application {
         stage.setTitle("Waiting");
         stage.setScene(scene);
         stage.show();
+        if (!message.equals(""))
+            ((WaitingController) loader.getController()).showMessage(message);
+
     }
 
 
