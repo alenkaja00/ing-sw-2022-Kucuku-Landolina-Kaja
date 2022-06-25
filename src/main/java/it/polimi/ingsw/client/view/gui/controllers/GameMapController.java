@@ -77,7 +77,8 @@ public class GameMapController
     private StackPane stack3;
     @FXML
     private GridPane namePanel1, namePanel2, namePanel3;
-
+    @FXML
+    private StackPane spacer;
     ///Online//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @FXML
     private ImageView online1, online2, online3;
@@ -538,6 +539,8 @@ public class GameMapController
             namePanel3.setVisible(false);
             namePanel3.setManaged(false);
             namePanel3.getChildren().removeAll(namePanel3.getChildren());
+            spacer.setVisible(false);
+            spacer.setManaged(false);
 
             cloudPane21.setDisable(false);
             cloudPane21.setVisible(true);
@@ -559,6 +562,8 @@ public class GameMapController
             namePanel3.setDisable(false);
             namePanel3.setVisible(true);
             namePanel3.setManaged(true);
+            spacer.setVisible(true);
+            spacer.setManaged(true);
 
             cloudPane21.setDisable(true);
             cloudPane21.setVisible(false);

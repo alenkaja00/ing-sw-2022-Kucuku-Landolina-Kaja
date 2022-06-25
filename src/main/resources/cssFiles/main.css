@@ -9,11 +9,19 @@
     -fx-background-color: transparent;
 }
 
-#namePanel1, #namePanel2, #namePanel3, #cardsGrid
+#namePanel1, #namePanel2, #namePanel3
 {
     -fx-background-image: url("../stones.jpg");
     -fx-background-position: center center;
     -fx-background-size: cover;
+}
+
+#cardsGrid
+{
+    -fx-background-image: url("../effectDesk.png");
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat no-repeat;
 }
 
 .button, .toggle-button {

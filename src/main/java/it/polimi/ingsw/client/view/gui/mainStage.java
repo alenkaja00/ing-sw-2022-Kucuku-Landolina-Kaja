@@ -22,7 +22,7 @@ public class mainStage extends Application {
 
     private String wizardPath = "/fxmlFiles/wizardScene.fxml";
 
-    private String startPath = "/fxmlFiles/gameMap.fxml";
+    private String startPath = "/fxmlFiles/mainScene.fxml";
 
     private String waitingPath = "/fxmlFiles/waitingScene.fxml";
 
