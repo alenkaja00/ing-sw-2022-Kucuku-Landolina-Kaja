@@ -4,10 +4,10 @@ import it.polimi.ingsw.client.controller.ClientController;
 
 import java.io.IOException;
 
-public class App
+public class CLI
 {
     public static void main( String[] args ) throws IOException
     {
-        ClientController controller = new ClientController("GUI");
+        ClientController controller = new ClientController("CLI");
     }
 }

@@ -164,7 +164,7 @@ public class cliClass implements ViewInterface
                             "EFFECT|MAGICIAN\n" +
                             "EFFECT|MONK|islandID|cardStudentIndex\n" +
                             "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
+                            "EFFECT|QUEEN|cardStudentIndex\n" +
                             "EFFECT|LADY|islandID\n" +
                             "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
                             "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
@@ -180,7 +180,7 @@ public class cliClass implements ViewInterface
                             "EFFECT|MAGICIAN\n" +
                             "EFFECT|MONK|islandID|cardStudentIndex\n" +
                             "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
+                            "EFFECT|QUEEN|cardStudentIndex\n" +
                             "EFFECT|LADY|islandID\n" +
                             "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
                             "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
@@ -196,7 +196,7 @@ public class cliClass implements ViewInterface
                             "EFFECT|MAGICIAN\n" +
                             "EFFECT|MONK|islandID|cardStudentIndex\n" +
                             "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|playerID|cardStudentIndex\n" +
+                            "EFFECT|QUEEN|cardStudentIndex\n" +
                             "EFFECT|LADY|islandID\n" +
                             "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
                             "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +

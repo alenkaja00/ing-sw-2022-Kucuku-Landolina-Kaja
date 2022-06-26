@@ -232,9 +232,15 @@ public class GameController
                             playerSockets.get(currentPlayer).sendMessage("NOK");
                         }
                     }
-                    else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                    else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                     {
-                        manageEffect(players.indexOf(currentPlayer), message);
+                        try
+                        {
+                            manageEffect(players.indexOf(currentPlayer), message);
+                        } catch (Exception e)
+                        {
+                            playerSockets.get(currentPlayer).sendMessage("NOK");
+                        }
                     }
                     else
                     {
@@ -273,7 +279,7 @@ public class GameController
                         playerSockets.get(currentPlayer).sendMessage("NOK");
                     }
                 }
-                else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {
                     manageEffect(players.indexOf(currentPlayer), message);
                 }
@@ -314,7 +320,7 @@ public class GameController
                         playerSockets.get(currentPlayer).sendMessage("NOK");
                     }
                 }
-                else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFF"))
+                else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {
                     manageEffect(players.indexOf(currentPlayer), message);
                 }
@@ -331,6 +337,8 @@ public class GameController
             playerSockets.get(currentPlayer).sendMessage("LOCK");
             updateView();
         }
+        if (expertMode)
+            ((GameClassExpert)newGame).endCardEffect();
     }
 
     private void manageEffect(int playerID, ArrayList<String> message)

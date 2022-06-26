@@ -88,9 +88,6 @@ public class GameClassExpert extends GameClass
         }
     }
 
-
-
-
     public void useCardEffect(int PlayerID, EffectName name)
     {
         EffectCard card = getCardByName(name);
@@ -208,7 +205,7 @@ public class GameClassExpert extends GameClass
         MoveMotherNature(getIslandById(IslandID));
     }
 
-    public void endCardEffect(int PlayerID, EffectCard card)
+    public void endCardEffect()
     {
         extraInfluencePlayers.removeAll(extraInfluencePlayers);
         cookColors.removeAll(cookColors);
