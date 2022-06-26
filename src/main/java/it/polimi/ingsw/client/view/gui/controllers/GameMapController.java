@@ -669,7 +669,7 @@ public class GameMapController
     /**
      * method called when the player has to wait his turn
      */
-    private void lockGui()
+    public void lockGui()
     {
         entranceClickable = false;
         cloudClickable = false;

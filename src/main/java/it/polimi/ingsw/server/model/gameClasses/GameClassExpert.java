@@ -242,6 +242,7 @@ public class GameClassExpert extends GameClass
                 bag.addToBag(color, dimColor);
             }
         }
+        players.stream().forEach(x->evaluateProfessors(players.indexOf(x), color));
     }
 
     /**
