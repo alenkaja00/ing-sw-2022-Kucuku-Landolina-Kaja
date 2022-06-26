@@ -402,6 +402,7 @@ public class cliClass implements ViewInterface
             System.out.println("You selected helper card "+ input);
             changeState("LOCK");
             waitUnlock();
+            playedEffect = false;
             changeState("ETX");
         }
         else

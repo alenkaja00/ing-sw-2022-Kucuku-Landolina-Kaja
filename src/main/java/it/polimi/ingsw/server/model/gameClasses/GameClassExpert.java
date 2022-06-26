@@ -10,10 +10,8 @@ import it.polimi.ingsw.server.model.components.Tower;
 
 import java.awt.*;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.security.PublicKey;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,7 +26,23 @@ public class GameClassExpert extends GameClass
     private ArrayList<Integer> villainContribution = new ArrayList<>();
     private ArrayList<Integer> extraMotherNatureMoves = new ArrayList<>();
     private boolean centaurEffect = false;
+    private HashMap<String, Integer> cardPrices = new HashMap<>(){{
+        put("MONK", 1);
+        put("QUEEN", 2);
+        put("LADY", 2);
 
+        put("JOLLY", 1);
+        put("CAVALIER", 2);
+        put("LORD", 3);
+
+        put("CENTAUR", 3);
+        put("COOK", 3);
+        put("VILLAIN", 2);
+
+        put("MAGICIAN", 1);
+        put("MUSICIAN", 1);
+        put("BANDIT", 3);
+    }};
 
     /**
      * class constructor
@@ -107,7 +121,6 @@ public class GameClassExpert extends GameClass
                 break;
         }
     }
-
 
     /**
      * the appropriate effect is performed
@@ -536,5 +549,15 @@ public class GameClassExpert extends GameClass
     public int playerMaxMoves(int playerID)
     {
         return playerMaxMoves[playerID] + (extraMotherNatureMoves.contains(playerID)?2:0);
+    }
+
+    public HashMap<String, Integer> getCardPrices()
+    {
+        return (HashMap<String, Integer>) cardPrices.clone();
+    }
+
+    public ArrayList<EffectCard> getEffectCards()
+    {
+        return (ArrayList<EffectCard>) ChosenCards.clone();
     }
 }

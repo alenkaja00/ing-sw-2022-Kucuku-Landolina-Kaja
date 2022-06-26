@@ -1,9 +1,11 @@
 package it.polimi.ingsw.server.controller;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.server.model.cards.EffectCard;
 import it.polimi.ingsw.server.model.cards.EffectName;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
+import it.polimi.ingsw.server.model.components.Player;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 
@@ -349,6 +351,20 @@ public class GameController
         }
 
 
+        /*Player currentPlayer = newGame.getPlayers().stream().filter(x->x.getID()==playerID).collect(Collectors.toList()).get(0);
+        int PlayerCoins = currentPlayer.getCoinsAmount();
+        int cardPrice = ((GameClassExpert)newGame).getCardPrices().get(message.get(3));
+        if */
+
+        Player currentPlayer = newGame.getPlayers().stream().filter(x->x.getID()==playerID).collect(Collectors.toList()).get(0);
+        int PlayerCoins = currentPlayer.getCoinsAmount();
+        EffectCard requestedEffect = ((GameClassExpert)newGame).getEffectCards().stream().filter(x->x.getID().toString().equals(message.get(3))).collect(Collectors.toList()).get(0);
+        if (PlayerCoins<requestedEffect.getPrice())
+        {
+            playerSockets.get(players.get(playerID)).sendMessage("NOK");
+            return;
+        }
+
         switch (message.get(3))
         {
             case "CAVALIER":
@@ -389,6 +405,8 @@ public class GameController
                 break;
         }
 
+        currentPlayer.spendCoins(requestedEffect.getPrice());
+        requestedEffect.useCard();
         playerSockets.get(players.get(playerID)).sendMessage("OK");
         updateView();
     }
