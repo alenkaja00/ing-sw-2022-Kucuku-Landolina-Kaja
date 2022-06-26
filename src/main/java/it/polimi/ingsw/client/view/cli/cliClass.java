@@ -353,6 +353,7 @@ public class cliClass implements ViewInterface
         if (!ClientControllerSingleton.getInstance().getClientController().requestNewGame(playerNumber, expertMode))
         {
             System.out.println("The game was not created");
+            changeState("START");
         }
     }
     private void parseLobby(String input)
@@ -454,7 +455,7 @@ public class cliClass implements ViewInterface
     private void parseNature(String input)
     {
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
-        if (parsedMessage.get(0).equals("NATURE"))
+        if (parsedMessage.get(0).equals("NATURE") && parsedMessage.size()==2)
         {
             if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {

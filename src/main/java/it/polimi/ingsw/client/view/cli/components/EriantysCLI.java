@@ -65,8 +65,8 @@ public class EriantysCLI {
 
         if (students != null) {
             labelStudents = "  ║ STUDENTS          ║";
-            for (int i = 0; i < 4; i++) {
-                if (i < students.length) {
+            for (int i = 0; i < 6; i++) {
+                if (students[i]!=null) {
                     switch (students[i].toString()) {
                         case "BLUE":
                             cardStudents.add(ANSIColor.CYAN + "X" + ANSIColor.RESET);
@@ -87,14 +87,14 @@ public class EriantysCLI {
                 } else cardStudents.add(" ");
             }
         } else {
-            for (int i = 0; i < 4; i++) cardStudents.add(" ");
+            for (int i = 0; i < 6; i++) cardStudents.add(" ");
         }
         result.add("  ╔═══════════════════╗");
         result.add("  ║ PRICE        NAME ║");
         result.add("  ║   " + price + spaces + id + " ║");
         result.add("  ║ " +    coin   + " ║");
         result.add(labelStudents);
-        result.add("  ║ " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + "           ║");
+        result.add("  ║ " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + " "+cardStudents.get(4) + " "+ cardStudents.get(5) +"       ║");
         result.add("  ╚═══════════════════╝");
         result.add(" ");
         return result;
@@ -166,7 +166,7 @@ public class EriantysCLI {
      * @param online flag that signals if a player is online or not
      * @param coins number of coins belonging to the current player
      */
-    public ArrayList<String> dashboardElement(ColoredDisc[] entrance, HashSet<ColoredDisc> professors, HashMap<ColoredDisc, Integer> tables, int towers, String towersColor, String nickname, boolean online, int coins) {
+    public ArrayList<String> dashboardElement(boolean expert, ColoredDisc[] entrance, HashSet<ColoredDisc> professors, HashMap<ColoredDisc, Integer> tables, int towers, String towersColor, String nickname, boolean online, int coins) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cliEntrance = new ArrayList<>();
         HashMap<String, String> cliTables = new HashMap<>();
@@ -243,7 +243,7 @@ public class EriantysCLI {
         }
 
         result.add(" ║   Player: " + nickname + " " + padLR("", 40 - nickname.length() - statusLen, 0) + status+" ");
-        if(coins!=0) result.add(" ║   COINS AMOUNT: " + coins + "                                   ");
+        if(expert) result.add(" ║   COINS AMOUNT: " + coins + "                                   ");
         result.add(" ╔═════════╦═════════════════════╦═══════════╦═══════╗ ");
         result.add(" ║Entrance ║Tables               ║Professors ║Towers ║ ");
         result.add(" ║   0:" + cliEntrance.get(0) +  "   ║ " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "║     " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + "     ║  " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + "  ║ ");
@@ -643,12 +643,12 @@ public class EriantysCLI {
      * method that puts together the dashboards of all the players in a single array list
      * @param players list of the players of the game
      */
-    private ArrayList<String> dashboardMap(ArrayList<jPlayer> players)
+    private ArrayList<String> dashboardMap(ArrayList<jPlayer> players, boolean expert)
     {
         ArrayList<String> result = new ArrayList<>();
         result.add("");
         for(jPlayer player : players){
-            ArrayList<String> arr1 = dashboardElement(player.myDashboard.entranceSpots, player.myDashboard.professorSpots, player.myDashboard.tables, player.myDashboard.towerNumber, player.towerColor.toString(), player.nickname, player.online, player.coinsAmount);
+            ArrayList<String> arr1 = dashboardElement(expert, player.myDashboard.entranceSpots, player.myDashboard.professorSpots, player.myDashboard.tables, player.myDashboard.towerNumber, player.towerColor.toString(), player.nickname, player.online, player.coinsAmount);
             result = merge(result, arr1);
         }
         return result;
@@ -695,6 +695,7 @@ public class EriantysCLI {
      * @param myGame is the json of the status of the game
      */
     public ArrayList<String> gameMap(jGameClassExpert myGame){
+        boolean expert = false;
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> padding = new ArrayList<>();
 
@@ -712,9 +713,10 @@ public class EriantysCLI {
             padding.add(padLR("", 10, 1));
             result = merge(result, padding);
             result = merge(result, effectCardsMap(myGame.ChosenCards));
+            expert = true;
         }
 
-        result.addAll(dashboardMap(myGame.players));
+        result.addAll(dashboardMap(myGame.players, expert));
         result.addAll(playedCardsMap(myGame));
 
         return result;
