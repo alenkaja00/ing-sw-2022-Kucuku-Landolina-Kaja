@@ -112,12 +112,16 @@ public class guiClass implements ViewInterface
     public void endScene(String endMessage) {
 
         System.out.println("Player "+endMessage+"won!");
-        GameSceneSingleton.getInstance().getController().bannerMessage("Player "+endMessage+" is the winner!");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for (int i=1; i<11; i++)
+        {
+            GameSceneSingleton.getInstance().getController().bannerMessage("Player "+endMessage+" is the winner! Returning to start screen in "+(11-i)+"s...");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
         GameSceneSingleton.getInstance().reset();
         mainstage.startScene();
     }

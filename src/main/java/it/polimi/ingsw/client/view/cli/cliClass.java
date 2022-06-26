@@ -1,9 +1,12 @@
 package it.polimi.ingsw.client.view.cli;
 
 import com.google.gson.Gson;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.cli.components.EriantysCLI;
+import it.polimi.ingsw.client.view.gui.controllers.ClientControllerSingleton;
+import it.polimi.ingsw.client.view.gui.controllers.GameSceneSingleton;
 import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
 import it.polimi.ingsw.server.model.cards.Wizard;
 
@@ -16,7 +19,6 @@ import java.util.Locale;
 
 public class cliClass implements ViewInterface
 {
-    ClientController controller;
     EriantysCLI eriantysCLI;
     BufferedReader gameConsole = new BufferedReader(new InputStreamReader(System.in));
     Gson gson = new Gson();
@@ -34,9 +36,8 @@ public class cliClass implements ViewInterface
     private String currentState = "START";
     private String nextLineMessage = "";
 
-    public cliClass(ClientController controller)
+    public cliClass()
     {
-        this.controller = controller;
         eriantysCLI = new EriantysCLI();
 
         /*new Thread(
@@ -59,7 +60,7 @@ public class cliClass implements ViewInterface
                 @Override
                 public void run() {
                     flushCLI();
-                    printBlock(eriantysCLI.welcomeScene(controller.getServerIP()));
+                    printBlock(eriantysCLI.welcomeScene(ClientControllerSingleton.getInstance().getClientController().getServerIP()));
                     do {
                         String s = nextLine("");
                         //System.out.println("[CLI LOG]: " + s);
@@ -78,7 +79,7 @@ public class cliClass implements ViewInterface
         {
             case "START":
                 flushCLI();
-                printBlock(eriantysCLI.welcomeScene(controller.getServerIP()));
+                printBlock(eriantysCLI.welcomeScene(ClientControllerSingleton.getInstance().getClientController().getServerIP()));
 
                 //------------
 
@@ -122,6 +123,10 @@ public class cliClass implements ViewInterface
                 break;
             case "CTE":
                 System.out.println("Select a cloud to refill the entrance" + (expertMode == true ? " or play an effect": "")+": ");
+                break;
+            case "RECONNECTION":
+                flushCLI();
+                System.out.println("Waiting for readmission into the game...");
                 break;
 
             case "WAIT":
@@ -291,7 +296,7 @@ public class cliClass implements ViewInterface
             changeState("START");
             return;
         }
-        if (!controller.requestConnection(ip, port))
+        if (!ClientControllerSingleton.getInstance().getClientController().requestConnection(ip, port))
             System.out.println("Server unavailable at the specified ip/port");
         else
         {
@@ -301,7 +306,7 @@ public class cliClass implements ViewInterface
     }
     private void parseNickname(String input)
     {
-        if (controller.requestNickname(input))
+        if (ClientControllerSingleton.getInstance().getClientController().requestNickname(input))
         {
             System.out.println("Nickname accepted");
         }
@@ -342,7 +347,7 @@ public class cliClass implements ViewInterface
             System.out.println("Not a valid option. Insert Again: ");
             return;
         }
-        if (!controller.requestNewGame(playerNumber, expertMode))
+        if (!ClientControllerSingleton.getInstance().getClientController().requestNewGame(playerNumber, expertMode))
         {
             System.out.println("The game was not created");
         }
@@ -351,7 +356,7 @@ public class cliClass implements ViewInterface
     {
         if (input.equals("QUIT"))
         {
-            controller.quitLobby();
+            ClientControllerSingleton.getInstance().getClientController().quitLobby();
         }
     }
 
@@ -359,7 +364,7 @@ public class cliClass implements ViewInterface
     {
         try {
             Wizard selected = Wizard.valueOf(input);
-            if (controller.requestWizard(selected))
+            if (ClientControllerSingleton.getInstance().getClientController().requestWizard(selected))
             {
                 System.out.println("You selected: "+selected);
                 changeState("LOCK");
@@ -389,7 +394,7 @@ public class cliClass implements ViewInterface
             System.out.println("Unavailable selection, try again [1-10]: ");
             return;
         }
-        if (controller.requestHelper(number))
+        if (ClientControllerSingleton.getInstance().getClientController().requestHelper(number))
         {
             System.out.println("You selected helper card "+ input);
             changeState("LOCK");
@@ -408,7 +413,7 @@ public class cliClass implements ViewInterface
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
         if (parsedMessage.get(0).equals("ETT") || parsedMessage.get(0).equals("ETI"))
         {
-            if (controller.requestString(input))
+            if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
                 System.out.println("Correctly moved student "+parsedMessage.get(1)+".");
                 countETX++;
@@ -426,7 +431,7 @@ public class cliClass implements ViewInterface
         }
         else if (parsedMessage.get(0).equals("EFFECT") && playedEffect == false)
         {
-            if (controller.requestString(input))
+            if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
                 System.out.println("Correctly played effect "+parsedMessage.get(1)+".");
                 playedEffect = true;
@@ -448,7 +453,7 @@ public class cliClass implements ViewInterface
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
         if (parsedMessage.get(0).equals("NATURE"))
         {
-            if (controller.requestString(input))
+            if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
                 System.out.println("Correctly moved Mother Nature.");
                 changeState("CTE");
@@ -461,7 +466,7 @@ public class cliClass implements ViewInterface
         }
         else if (parsedMessage.get(0).equals("EFFECT") && playedEffect == false)
         {
-            if (controller.requestString(input))
+            if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
                 System.out.println("Correctly played effect "+parsedMessage.get(1)+".");
                 playedEffect = true;
@@ -483,7 +488,7 @@ public class cliClass implements ViewInterface
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
         if (parsedMessage.get(0).equals("CTE"))
         {
-            if (controller.requestString(input))
+            if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
                 System.out.println("Correctly filled the entrance with students from island "+Integer.parseInt(parsedMessage.get(1))+".");
                 changeState("CTE");
@@ -500,7 +505,7 @@ public class cliClass implements ViewInterface
         }
         else if (parsedMessage.get(0).equals("EFFECT") && playedEffect == false)
         {
-            if (controller.requestString(input))
+            if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
                 System.out.println("Correctly played effect "+parsedMessage.get(1)+".");
                 playedEffect = true;
@@ -536,7 +541,7 @@ public class cliClass implements ViewInterface
         flushCLI();
         gameData = gson.fromJson(json, jGameClassExpert.class);
         printBlock(eriantysCLI.gameMap(gameData));
-        if (controller.getViewLocked())
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked())
             System.out.println("Waiting for your turn");
         else
             System.out.println("Your turn to play");
@@ -568,13 +573,39 @@ public class cliClass implements ViewInterface
     }
 
     @Override
-    public void endScene(String endMessage) {
-
+    public void endScene(String endMessage)
+    {
+        changeState("ENDSCENE");
+        System.out.println("Player "+endMessage+" is the winner!");
+        for (int i=1; i<11; i++)
+        {
+            System.out.println("Returning to start screen in "+(11-i)+"s...");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        changeState("START");
     }
 
     @Override
-    public void manageReconnection() {
-
+    public void manageReconnection()
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                changeState("RECONNECTION");
+                do {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                changeState("HELPER");
+            }
+        }).start();
     }
 
 
@@ -592,7 +623,7 @@ public class cliClass implements ViewInterface
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } while (controller.getViewLocked());
+        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
         System.out.println("It's your turn");
     }
 

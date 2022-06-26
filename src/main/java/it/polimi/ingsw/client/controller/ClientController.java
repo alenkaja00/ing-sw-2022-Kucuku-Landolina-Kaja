@@ -24,13 +24,13 @@ public class ClientController
 
     public ClientController(String viewMode) throws IOException
     {
+        ClientControllerSingleton instance = ClientControllerSingleton.getInstance();
+        instance.setClientController(this);
         if (viewMode.equals("GUI")) {
-            ClientControllerSingleton instance = ClientControllerSingleton.getInstance();
-            instance.setClientController(this);
             view = new guiClass();
         }
         else if (viewMode.equals("CLI"))
-            view = new cliClass(this);
+            view = new cliClass();
     }
 
     public boolean requestConnection(String ip, int port)
