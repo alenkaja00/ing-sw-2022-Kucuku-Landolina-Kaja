@@ -9,7 +9,6 @@ import it.polimi.ingsw.server.model.components.Player;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
 import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 
-import javax.sound.midi.Soundbank;
 import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -262,24 +261,29 @@ public class GameController
                 if (message.get(0).equals("DISCONNECTED")) break;
                 if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("NATURE"))
                 {
-                    if (Integer.parseInt(message.get(3))<=newGame.playerMaxMoves(players.indexOf(currentPlayer)))
-                    {
-                        try
+                    try {
+                        if (Integer.parseInt(message.get(3))<=newGame.playerMaxMoves(players.indexOf(currentPlayer)))
                         {
-                            newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
-                            playerSockets.get(currentPlayer).sendMessage("OK");
-                            break;
+                            try
+                            {
+                                newGame.MoveMotherNature(Integer.parseInt(message.get(3)));
+                                playerSockets.get(currentPlayer).sendMessage("OK");
+                                break;
+                            }
+                            catch (Exception e)
+                            {
+                                e.printStackTrace();
+                                playerSockets.get(currentPlayer).sendMessage("NOK");
+                            }
                         }
-                        catch (Exception e)
+                        else
                         {
-                            e.printStackTrace();
                             playerSockets.get(currentPlayer).sendMessage("NOK");
                         }
-                    }
-                    else
-                    {
+                    }catch(Exception e){
                         playerSockets.get(currentPlayer).sendMessage("NOK");
                     }
+
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {

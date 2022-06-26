@@ -346,6 +346,10 @@ public class GameClassExpert extends GameClass
     @Override
     protected void evaluateProfessors(int PlayerID, ColoredDisc student)
     {
+        players.stream().forEach(x->{
+            if (x.myDashboard.SittedStudents(student) == 0)
+                x.myDashboard.professorSpots.remove(student);
+        });
         Player lastPlayer = players.get(PlayerID);
         for (Player player: players)
         {
