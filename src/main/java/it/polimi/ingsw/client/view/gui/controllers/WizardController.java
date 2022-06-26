@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * this class is used to show the wizard screen, where the player can choose his wizard
+ */
 public class WizardController {
     @FXML
     ImageView wizard1, wizard2, wizard3, wizard4;
@@ -30,6 +33,9 @@ public class WizardController {
     @FXML
     private Label bannerText;
 
+    /**
+     * here we initialize the wizards settings
+     */
     @FXML
     public void initialize(){
         wizards = new ArrayList<>(Arrays.asList(wizard1, wizard2, wizard3, wizard4));
@@ -44,6 +50,9 @@ public class WizardController {
         });
     }
 
+    /**
+     * resets the cards settings
+     */
     private void resetCards()
     {
         wizards.stream().forEach(x-> {
@@ -55,8 +64,12 @@ public class WizardController {
         });
     }
 
+    /**
+     * handles the choise of the wizard
+     * @param mouseEvent triggers this method
+     */
     @FXML
-    private void chooseWizard(MouseEvent mouseEvent) throws IOException
+    private void chooseWizard(MouseEvent mouseEvent)
     {
         clickedWizard = (ImageView) mouseEvent.getSource();
         Wizard wizard = null;
@@ -126,6 +139,10 @@ public class WizardController {
         }
     }
 
+    /**
+     * graohical effect when the mouse enters the area of a wizard
+     * @param mouseEvent
+     */
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
     {

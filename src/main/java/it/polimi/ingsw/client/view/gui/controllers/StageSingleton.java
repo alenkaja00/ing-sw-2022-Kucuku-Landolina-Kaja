@@ -3,6 +3,9 @@ package it.polimi.ingsw.client.view.gui.controllers;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+/**
+ * this class makes the stage visible from all the classes
+ */
 public class StageSingleton {
 
     private Stage stage;

@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * contains method to change screen
+ */
 public class SceneController {
 
     @FXML
@@ -42,10 +45,18 @@ public class SceneController {
         connectionEstablished = setconn;
     }
 
-    public void connectionScene(javafx.event.ActionEvent actionEvent) throws IOException
+    /**
+     * changes scene to connectionScene
+     * @param actionEvent triggers this method
+     */
+    public void connectionScene(javafx.event.ActionEvent actionEvent)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/connectionScene.fxml"));
-        root = loader.load();
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         root.setId("connectionScene");
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -55,7 +66,11 @@ public class SceneController {
         stage.show();
     }
 
-    public void quitScene(javafx.event.ActionEvent actionEvent) throws IOException
+    /**
+     * changes scene to quitScene
+     * @param actionEvent triggers this method
+     */
+    public void quitScene(javafx.event.ActionEvent actionEvent)
     {
         stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
@@ -69,11 +84,21 @@ public class SceneController {
             }*/
     }
 
-    public void playerNumberScene(javafx.event.ActionEvent actionEvent) throws IOException
+    /**
+     * changes the scene to the playernumberscene
+     * @param actionEvent triggers this method
+     * @throws IOException
+     */
+    public void playerNumberScene(javafx.event.ActionEvent actionEvent)
     {
         if(!ClientControllerSingleton.getInstance().getClientController().getServerIP().equals(""))
         {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmlFiles/playerNumberScene.fxml"));
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxmlFiles/playerNumberScene.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             root.setId("playerNumScene");
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);

@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * util that handles some methods related to islands
+ */
 public class IslandHandler {
 
 
@@ -35,6 +38,10 @@ public class IslandHandler {
             "/Islands/United/island3.png","/Islands/United/island4.png","/Islands/United/island5.png",
             "/Islands/United/island6.png","/Islands/United/island7.png","/Islands/United/island8.png"));
 
+    /**
+     * @param disc is the color that specifies the wanted image
+     * @return the appropriate image depending on the chosen color
+     */
     public Image getImageFromColor(ColoredDisc disc)
     {
         Image image = null;
@@ -61,7 +68,11 @@ public class IslandHandler {
     }
 
 
-
+    /**
+     * adds a student to the island
+     * @param tilePane is the pane that contains the student
+     * @param disc is the student we want to add
+     */
     public void addStudent(TilePane tilePane, ColoredDisc disc) {
 
         ImageView newView  = new ImageView();
@@ -74,6 +85,10 @@ public class IslandHandler {
 
     }
 
+    /**
+     * @param disc is the chosen color
+     * @return the string of the chosen color
+     */
     public String getStringFromColor(ColoredDisc disc)
     {
         String ret  = "";
@@ -134,6 +149,13 @@ public class IslandHandler {
 
     }
 
+    /**
+     * given the objects, it updates the graphical island
+     * @param tilePane is the pane that represents the island
+     * @param imageView is the imageview of the united islands
+     * @param island is the object we represent
+     * @param currentIslandID is the ID of the island where mother nature is located
+     */
     public void updateIsland(TilePane tilePane, ImageView imageView, jIsland island, int currentIslandID)
     {
         tilePane.getChildren().removeAll(tilePane.getChildren());

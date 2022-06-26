@@ -21,6 +21,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * this class shows the main game screen, with all the dashboards, clouds, islands, ecc.
+ */
 public class GameMapController
 {
     //scrollpanes
@@ -223,6 +226,9 @@ public class GameMapController
     private Boolean cardsClickable = true;
 
 
+    /**
+     * here we create all the imageviews needed to show the game items
+     */
     @FXML
     public void initialize() throws IOException {
         //deck management
@@ -397,6 +403,10 @@ public class GameMapController
 
     }
 
+    /**
+     * handles the click on a card
+     * @param mouseEvent is the event(click) that triggers the execution of this method
+     */
     @FXML
     private void cardClicked(MouseEvent mouseEvent)
     {
@@ -421,6 +431,11 @@ public class GameMapController
         }
     }
 
+    /**
+     * this method is called whenever an entrance student is clicked
+     * the variable clickedEntrance is set to the index of the selected student
+     * @param mouseEvent
+     */
     public void entranceStudentClicked(MouseEvent mouseEvent)
     {
         if(!entranceClickable) return;
@@ -433,6 +448,10 @@ public class GameMapController
         }
     }
 
+    /**
+     * this method is called whenever a tables student is clicked
+     * we set the flag "tablesClicked" to true
+     */
     public void tablesClicked(MouseEvent mouseEvent)
     {
         if (!tablesClickable) return;
@@ -451,6 +470,11 @@ public class GameMapController
 
     }
 
+    /**
+     * this method is called whenever a cloud is clicked
+     * if used properly, the flag clickedCloud is set to true
+     * @param mouseEvent triggers this method
+     */
     public void cloudClicked(MouseEvent mouseEvent)
     {
         if(!cloudClickable) return;
@@ -473,10 +497,14 @@ public class GameMapController
         if( index != -1)
         {
             clickedCloud = index;
-            System.out.println("CTE " + index + " " + version);
         }
     }
 
+    /**
+     * this method is called whenever an island is clicked
+     * if used properly, the flag clickedIsland is set to true
+     * @param mouseEvent is the event that triggers this method
+     */
     public void islandClicked(MouseEvent mouseEvent)
     {
         if(!islandClickable) return;
@@ -486,7 +514,6 @@ public class GameMapController
         String[] IDchars = ID.split("");
         ID = ID.length()==10? IDchars[8] + IDchars[9]: IDchars[8];
 
-        System.out.println("ETI | "+ ID + " " + clickedEntrance);
 
         clickedIsland = Integer.parseInt(ID);
     }
@@ -498,6 +525,10 @@ public class GameMapController
         //do things with the effects
     }
 
+    /**
+     * given the json it updates al the elements of the screen
+     * @param json is used to create the game class object and change all the elements
+     */
     public void updateView(String json) {
 
         gameData = gson.fromJson(json, jGameClassExpert.class);
@@ -635,7 +666,10 @@ public class GameMapController
         resetDeck();
     }
 
-    public void lockGui()
+    /**
+     * method called when the player has to wait his turn
+     */
+    private void lockGui()
     {
         entranceClickable = false;
         cloudClickable = false;
@@ -645,6 +679,9 @@ public class GameMapController
         cardsClickable = false;
     }
 
+    /**
+     * method used to reset the last click to none
+     */
     private void resetClickedValues()
     {
         clickedCard = -1;
@@ -661,6 +698,10 @@ public class GameMapController
         deckStack.setDisable(!val);
         deckStack.getChildren().forEach(x->{x.setManaged(val); x.setVisible(val); x.setDisable(!val);});
     }
+
+    /**
+     * resets the graphical settings of the deck
+     */
     private void resetDeck()
     {
         for (ImageView card : deck)
@@ -681,6 +722,9 @@ public class GameMapController
         }
     }
 
+    /**
+     * performs the action ETI(EntranceToIsland) or ETT(EntranceToTables)
+     */
     public void ETX()
     {
         //System.out.println("etx function");
@@ -797,6 +841,9 @@ public class GameMapController
         Nature();
     }
 
+    /**
+     * Moves mother nature to the proper island
+     */
     public void Nature()
     {
         bannerMessage("Move mother nature!");
@@ -835,6 +882,9 @@ public class GameMapController
         CTE();
     }
 
+    /**
+     * performs the action CloudToEntrance
+     */
     public void CTE()
     {
         bannerMessage("Select a cloud to refill your entrance!");

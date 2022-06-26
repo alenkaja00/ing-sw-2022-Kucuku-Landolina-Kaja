@@ -7,6 +7,9 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
+/**
+ * util that handles some methods related to clouds
+ */
 public class CloudHandler {
 
     String greenPath = "/StudentDisks/greenDisk.png";
@@ -22,6 +25,11 @@ public class CloudHandler {
     Image blueImage = new Image(bluePath);
 
 
+    /**
+     * if disc is null, the image is set invisble, otherwise the color is changed
+     * @param disc is the new color or null
+     * @param student is the image that is updated
+     */
     public void updateCloudSpot(ColoredDisc disc, ImageView student){
 
         Image image = null;
@@ -55,6 +63,11 @@ public class CloudHandler {
     }
 
 
+    /**
+     * the graphic cloud is updated using the jcloud
+     * @param students us the array of graphical students in the cloud
+     * @param cloud contains the data needed to represent a cloud
+     */
     public void updateCloud(ArrayList<ImageView> students, jCloud cloud)
     {
         ArrayList<ColoredDisc> studentSpots = cloud.studentSpots;

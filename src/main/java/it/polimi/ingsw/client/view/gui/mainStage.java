@@ -51,6 +51,9 @@ public class mainStage extends Application {
 
     }
 
+    /**
+     * shows the start scene, where the player can choose between play, connection or quit
+     */
     public void startScene() {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
@@ -69,6 +72,9 @@ public class mainStage extends Application {
             stage.show();});
     }
 
+    /**
+     * shows the screen where the player can choose the helper card
+     */
     public void helperScene()
     {
         stage = StageSingleton.getInstance().getStage();
@@ -89,6 +95,9 @@ public class mainStage extends Application {
             stage.show();
     }
 
+    /**
+     * this screen acts like a lobby
+     */
     public void waitingScene(String message) {
         Platform.runLater(()->{
             stage = StageSingleton.getInstance().getStage();
@@ -112,6 +121,9 @@ public class mainStage extends Application {
     }
 
 
+    /**
+     * shows the screen where the player can select the wizard
+     */
     public void wizardScene() {
         stage = StageSingleton.getInstance().getStage();
         FXMLLoader loader = null;
