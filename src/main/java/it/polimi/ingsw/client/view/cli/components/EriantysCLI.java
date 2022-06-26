@@ -1,28 +1,28 @@
 package it.polimi.ingsw.client.view.cli.components;
-import com.google.gson.Gson;
 import it.polimi.ingsw.client.view.cli.utils.ANSIColor;
 import it.polimi.ingsw.client.view.jsonObjects.*;
 import it.polimi.ingsw.server.model.cards.EffectName;
-import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Tower;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.lang.reflect.Array;
 import java.security.InvalidParameterException;
 import java.util.*;
-import java.util.stream.Collectors;
 
+/**
+ * this class contains all the command line visible objects stored inside ArrayLists of String type
+ * each element is created by a method which returns the corresponding ArrayList
+ */
 public class EriantysCLI {
 
     public EriantysCLI() {
 
     }
 
-    public ArrayList<String> welcomeScene(String serverIp) {
+    /**
+     * this method contains the welcome scene of the game
+     * @param serverIp address of the server to be shown if the client is connected
+     */
+    public ArrayList<String> welcomeScene(String serverIp)
+    {
         ArrayList<String> result = new ArrayList<>();
         result.add(ANSIColor.CYAN_BOLD);
         result.add("  ______                    _             ");
@@ -36,7 +36,7 @@ public class EriantysCLI {
         result.add("");
         result.add("DEVELOPED BY ENDI, GIOVANNI, ALEN");
         result.add("");
-        if( serverIp != null && serverIp !=""){
+        if( serverIp != null && !serverIp.equals("")){
             result.add("Connected to Server "+serverIp);
         }
         result.add(ANSIColor.RESET);
@@ -44,10 +44,13 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
+    /**
+     * this method builds the ArrayList of an effect card element
+     */
     public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ColoredDisc[] students, int prohibition) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cardStudents = new ArrayList<>();
-        //if the cards has discs on it this will contain the text "STUDENTS:"
+        //if the cards has disks on it this will contain the text "STUDENTS:"
         String labelStudents = "  ║                   ║";
         //fit the name with the shape of the card
         String id = ID.toString();
@@ -97,38 +100,40 @@ public class EriantysCLI {
         return result;
     }
 
+    /**
+     * this method builds the ArrayList of a cloud element
+     */
     public ArrayList<String> cloudElement(int index, int capacity, ArrayList<ColoredDisc> students) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cliStudents = new ArrayList<>();
-        int ind = index + 1;
 
         for (int i = 0; i < capacity; i++) {
             if(students.size() > 0){
-            switch (students.get(i)) {
-                case PINK:
-                    cliStudents.add(ANSIColor.PURPLE_BRIGHT + 'X' + ANSIColor.RESET);
-                    break;
-                case RED:
-                    cliStudents.add(ANSIColor.RED + 'X' + ANSIColor.RESET);
-                    break;
-                case BLUE:
-                    cliStudents.add(ANSIColor.CYAN + 'X' + ANSIColor.RESET);
-                    break;
-                case GREEN:
-                    cliStudents.add(ANSIColor.GREEN + 'X' + ANSIColor.RESET);
-                    break;
-                case YELLOW:
-                    cliStudents.add(ANSIColor.YELLOW + 'X' + ANSIColor.RESET);
-                    break;
-            }
-        }else{
+                switch (students.get(i)) {
+                    case PINK:
+                        cliStudents.add(ANSIColor.PURPLE_BRIGHT + 'X' + ANSIColor.RESET);
+                        break;
+                    case RED:
+                        cliStudents.add(ANSIColor.RED + 'X' + ANSIColor.RESET);
+                        break;
+                    case BLUE:
+                        cliStudents.add(ANSIColor.CYAN + 'X' + ANSIColor.RESET);
+                        break;
+                    case GREEN:
+                        cliStudents.add(ANSIColor.GREEN + 'X' + ANSIColor.RESET);
+                        break;
+                    case YELLOW:
+                        cliStudents.add(ANSIColor.YELLOW + 'X' + ANSIColor.RESET);
+                        break;
+                }
+            }else{
                 for(int j=0;j<4;j++) {
                     cliStudents.add(" ");
                 }
             }
         }
 
-        result.add("            CLOUD # " + ind+"        ");
+        result.add("            CLOUD # " + index +"        ");
         if (capacity == 3)
         {
             result.add("              ╔═══╗          ");
@@ -150,9 +155,20 @@ public class EriantysCLI {
         return result;
     }
 
+    /**
+     * this method builds the ArrayList of the School Board of a player and displays the nickname label and the player's informations
+     * @param entrance array of the entrance section tokens of the dashboard
+     * @param professors set of the professor tokens belonging to a player
+     * @param tables map of the dining room tokens of the dashboard
+     * @param towers number of dashboard towers
+     * @param towersColor the color of the towers
+     * @param nickname player's nickname
+     * @param online flag that signals if a player is online or not
+     * @param coins number of coins belonging to the current player
+     */
     public ArrayList<String> dashboardElement(ColoredDisc[] entrance, HashSet<ColoredDisc> professors, HashMap<ColoredDisc, Integer> tables, int towers, String towersColor, String nickname, boolean online, int coins) {
-        ArrayList<String> result = new ArrayList<String>();
-        ArrayList<String> cliEntrance = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> cliEntrance = new ArrayList<>();
         HashMap<String, String> cliTables = new HashMap<>();
         HashMap<String, String> cliProfessors = new HashMap<>();
         ArrayList<String> cliTowers = new ArrayList<>();
@@ -244,7 +260,10 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-    public ArrayList<String> lastUsedCardElement(String nickname, int cardNumber, int maxMoves, boolean used) {
+    /**
+     * this method shows the cardNumber and mother nature moves of the last card played by each player during the planning phase
+     */
+    public ArrayList<String> lastUsedCardElement(int cardNumber, int maxMoves) {
         ArrayList<String> result = new ArrayList<>();
 
         String space = " ";
@@ -262,13 +281,18 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-    //method that prints an island based to its position
-    private ArrayList<String> islandElement(int ID, HashMap<ColoredDisc, Integer> students, ArrayList<Tower> towers, ArrayList<Integer> graphicalIslands, boolean prohibited, boolean curr) {
+    /**
+     * this method builds the ArrayList of an island based on its id, in order to prepare the island element to be shown in the gameMap
+     * @param ID island identifier
+     * @param students disks to be shown over the island
+     * @param towers towers to be shown over the island
+     * @param prohibited true if the island has prohibition cards over it
+     * @param curr true if the island is the current island
+     */
+    private ArrayList<String> islandElement(int ID, HashMap<ColoredDisc, Integer> students, ArrayList<Tower> towers, boolean prohibited, boolean curr) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> islandStud = new ArrayList<>();
         int tower = 0;
-        //int id = ID+1;
-        int id = ID;
         String motherNature= " ";
         String color = "";
         String towerID = " ";
@@ -286,7 +310,7 @@ public class EriantysCLI {
         if(curr)
             motherNature = ANSIColor.YELLOW_BOLD+"M"+ANSIColor.RESET;
 
-        if(id>=10)
+        if(ID>=10)
             space = "";
 
         if(prohibited) {
@@ -387,7 +411,7 @@ public class EriantysCLI {
         }
 
         result.add(leftUpperMargin + topMargin + rightUpperMargin);
-        result.add(leftMargin + forbidden +" ID: " + id +space+"         "+motherNature+ANSIColor.RESET+rightMargin);
+        result.add(leftMargin + forbidden +" ID: " + ID +space+"         "+motherNature+ANSIColor.RESET+rightMargin);
         result.add(leftMargin +" STUDENTS:       "+rightMargin);
         result.add(leftMargin +" " + islandStud.get(0) + " " + islandStud.get(1) + " " + islandStud.get(2) + " " + islandStud.get(3) + " " + islandStud.get(4) + "       "+rightMargin);
         result.add(leftMargin + color +" TOWER:    " + towerID +" "+ tower + ANSIColor.RESET + "   "+ rightMargin);
@@ -396,7 +420,11 @@ public class EriantysCLI {
         return (ArrayList<String>) result.clone();
     }
 
-    //empty island space of 6 rows
+    /**
+     * method that replaces and island if it is merged with others;
+     * it will return an empty island based on the identifier of the input island in order to fit the gameMap grid
+     * @param type the island that we want to replace with empty space in the grid
+     */
     private ArrayList<String> emptyIsland(int type){
         ArrayList<String> result = new ArrayList<>();
         String blankSpace = "                   ";
@@ -410,7 +438,6 @@ public class EriantysCLI {
         String leftLowerMargin = "";
         String rightLowerMargin = "";
 
-        //this will be improved or removed if i change the idea of the united islands
         switch (type){
             case 1: case 2:
                 bottomMargin = edgeSpace;
@@ -433,7 +460,7 @@ public class EriantysCLI {
                 blankSpace = "                  ";
                 topMargin = blankSpace;
                 bottomMargin = blankSpace;
-            break;
+                break;
             case 0:
                 bottomMargin = "                  ╔";
                 break;
@@ -448,19 +475,21 @@ public class EriantysCLI {
                 break;
 
         }
-        //result.add(leftMargin + topMargin + rightMargin);
         result.add(leftUpperMargin + topMargin + rightUpperMargin);
 
         for(int i=0;i<4;i++) {
             result.add(leftMargin+blankSpace+rightMargin);
         }
 
-        //result.add(leftMargin+bottomMargin+rightMargin);
         result.add(leftLowerMargin + bottomMargin + rightLowerMargin);
 
         return (ArrayList<String>) result.clone();
     }
 
+    /**
+     * utility method that merges 4 ArrayList; it is used in the gameMap method to generate the island grid merging left and right delimiters with the island elements
+     * @param addition is the input ArrayList to whom concatenate the merged result of the input array lists
+     */
     //this method merges 4 arraylists adding them to a given arraylist
     private ArrayList<String> merge4(ArrayList<String> array1, ArrayList<String> array2,ArrayList<String> array3, ArrayList<String> array4, ArrayList<String> addition){
         if(array1.size()!=array3.size()){
@@ -483,6 +512,11 @@ public class EriantysCLI {
 
     }
 
+    /**
+     * this method creates the islands map by putting them in a single ArrayList of String type
+     * @param islands list of the islands of the game
+     * @param current reference of the current island
+     */
     //this is the method which will draw the islands map
     private ArrayList<String> islandsMap(ArrayList<jIsland> islands, jIsland current){
         String horizontalTopDelimiter= "╔════════════════════════════════════════════════════════════════════════════╗";
@@ -497,6 +531,7 @@ public class EriantysCLI {
             islandsID.add(island.ID);
         }
 
+        //nested for that is used to call the islandElement with the right island id (is the j index) and putting them in the array in the i index
         int j = 0;
         for(int i=0; i<12; i++)
         {
@@ -505,7 +540,7 @@ public class EriantysCLI {
                 if(currIslandID==i){
                     curr = true;
                 }
-                myIsland [i] = islandElement(islands.get(j).ID, islands.get(j).students, islands.get(j).towerList, islands.get(j).graphicalIsland, islands.get(j).prohibited, curr);
+                myIsland [i] = islandElement(islands.get(j).ID, islands.get(j).students, islands.get(j).towerList, islands.get(j).prohibited, curr);
                 j++;
                 curr = false;
             }
@@ -515,8 +550,9 @@ public class EriantysCLI {
                 myIsland [i] = emptyIsland(i);
             }
         }
+
+        //builds the grid of islands putting them in the right position in the arraylist
         result.add(padLR("MAP OF THE ISLANDS", 96, 1));
-        //result.add("MAP OF THE ISLANDS");
         result.add(horizontalTopDelimiter);
         result = merge4(myIsland[0], myIsland[1], myIsland[2], myIsland[3],result);
         result = merge4(myIsland[11], emptyIsland(-1), emptyIsland(-1), myIsland[4], result);
@@ -527,7 +563,9 @@ public class EriantysCLI {
         return result;
     }
 
-    //method that merges two array lists
+    /**
+     * utility method that is used to merge two array lists and returns the merged version
+     */
     private ArrayList<String> merge(ArrayList<String> arr1, ArrayList<String> arr2){
         ArrayList<String> merged = new ArrayList<>();
         int maxLen = 0;
@@ -559,6 +597,13 @@ public class EriantysCLI {
         return merged;
     }
 
+    /**
+     * utility method used to append space to a string left or right with respect to the input string
+     * @param input string passed as parameter
+     * @param length amount of white space to add to the string
+     * @param LR adds space to the left of the input string if LR value is = 0 or to the right if LR value is = 1
+     * @return the padded String
+     */
     // LR = 0 for left padding LR = 1 for right padding
     public String padLR(String input, int length, int LR){
         if(input.length() >= length){
@@ -578,11 +623,14 @@ public class EriantysCLI {
         return sb.toString();
     }
 
-
+    /**
+     * method that combines all the effect cards in a column using the method effectCardElement
+     * @param effects list of the current match effect cards
+     */
     private ArrayList<String> effectCardsMap(ArrayList<jEffectCard> effects){
         ArrayList<String> result = new ArrayList<>();
 
-        result.add("  THE 3 EFFECT CARDS  ");
+        result.add("  EFFECT CARDS        ");
         result.add(" ");
         for (jEffectCard effect : effects) {
             ArrayList<String> effectCard = effectCardElement(effect.ID, effect.price, effect.used, effect.students, effect.prohibitionCard);
@@ -591,6 +639,10 @@ public class EriantysCLI {
         return result;
     }
 
+    /**
+     * method that puts together the dashboards of all the players in a single array list
+     * @param players list of the players of the game
+     */
     private ArrayList<String> dashboardMap(ArrayList<jPlayer> players)
     {
         ArrayList<String> result = new ArrayList<>();
@@ -602,34 +654,33 @@ public class EriantysCLI {
         return result;
     }
 
+    /**
+     * method that builds the rows with two or three clouds, using the method cloudElement
+     * @param clouds arraylist of clouds
+     */
     private ArrayList<String> cloudMap(ArrayList<jCloud> clouds){
         ArrayList<String> result = new ArrayList<>();
 
         for(int i=0; i<clouds.size(); i++) {
             ArrayList<String> cloud1 = cloudElement(i, clouds.get(i).cloudCapacity, clouds.get(i).studentSpots);
             result.addAll(cloud1);
-            result.add(padLR("",cloud1.get(0).length(),1));
-            result.add(padLR("",cloud1.get(0).length(),1));
+            result.add(padLR("", cloud1.get(0).length(), 1));
+            result.add(padLR("", cloud1.get(0).length(), 1));
         }
         return result;
     }
 
+    /**
+     * method that builds the rows with information about the last played card of each player
+     * @param myGame is the json of the status of the game
+     */
     public ArrayList<String> playedCardsMap(jGameClass myGame){
         ArrayList<String> result = new ArrayList<>();
         result.add("");
         ArrayList<String> padding = new ArrayList<>();
-        int cardNumber = -1;
-        boolean usedFlag = false;
 
         for(int i = 0; i < myGame.players.size(); i++){
-
-            //added to fix the problem with the last card with id = 10
-            if(myGame.playerCardValue[i] > 0){
-                cardNumber = myGame.playerCardValue[i]-1;
-                usedFlag = myGame.players.get(i).deck.deck.get(cardNumber).used;
-            }
-
-            ArrayList<String> card = lastUsedCardElement(myGame.players.get(i).nickname, myGame.playerCardValue[i], myGame.playerMaxMoves[i], usedFlag);
+            ArrayList<String> card = lastUsedCardElement(myGame.playerCardValue[i], myGame.playerMaxMoves[i]);
             result = merge(result,card);
             padding.add(padLR("",16,1));
             result = merge(result,padding);
@@ -638,6 +689,11 @@ public class EriantysCLI {
         return result;
     }
 
+    /**
+     * method that builds all the gameMap view using array list given by other methods inside the class
+     * it puts in rows the island map, the clouds, the effect cards if present, the played cards and the dashboards
+     * @param myGame is the json of the status of the game
+     */
     public ArrayList<String> gameMap(jGameClassExpert myGame){
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> padding = new ArrayList<>();
@@ -664,6 +720,9 @@ public class EriantysCLI {
         return result;
     }
 
+    /**
+     * this method is used to clear the screen on commmand line version
+     */
     public void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
