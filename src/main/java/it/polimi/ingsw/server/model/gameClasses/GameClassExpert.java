@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * this class extends the normal gameclass and adds functionalities needed to play the expert mode
+ */
 public class GameClassExpert extends GameClass
 {
     protected ArrayList<EffectCard> ChosenCards;
@@ -27,6 +30,13 @@ public class GameClassExpert extends GameClass
     private boolean centaurEffect = false;
 
 
+    /**
+     * class constructor
+     * @param ID is the game id
+     * @param PlayerNumber can be 2 or 3
+     * @param nicknames are the players' nicknames
+     * @param wizards are the chosen wizards
+     */
     public GameClassExpert(String ID, int PlayerNumber, ArrayList<String> nicknames, ArrayList<Wizard> wizards) {
         super(ID, PlayerNumber, nicknames, wizards);
 
@@ -67,6 +77,11 @@ public class GameClassExpert extends GameClass
         }
     }
 
+    /**
+     * the only difference with the normal "EntranceToTables" method is that now we handle coins
+     * @param PlayerID is the ID of the player whose dashboard is updated
+     * @param index is the index of the chosen student to move
+     */
     public void EntranceToTables(int PlayerID, int index)
     {
         ColoredDisc color = players.get(PlayerID).myDashboard.getEntranceSpots()[index];
@@ -74,6 +89,11 @@ public class GameClassExpert extends GameClass
         evaluateProfessors(PlayerID, color);
     }
 
+    /**
+     * if the new students goes in position 3,6 or 9, the player earns a coin
+     * @param PlayerID is the ID of the player who performs the action
+     * @param position is the new student position in the tables
+     */
     private void handleCoins(int PlayerID, int position)
     {
         switch (position)
@@ -89,8 +109,11 @@ public class GameClassExpert extends GameClass
     }
 
 
-
-
+    /**
+     * the appropriate effect is performed
+     * @param PlayerID is the ID of the player who plays the card
+     * @param name is the name of the effectCard
+     */
     public void useCardEffect(int PlayerID, EffectName name)
     {
         EffectCard card = getCardByName(name);
@@ -113,6 +136,11 @@ public class GameClassExpert extends GameClass
         //cosa fare con le carte personaggio
     }
 
+    /**
+     * effect: moves a student from the card to an island
+     * @param Island is the island where we put the student
+     * @param index is the index of the student in the card
+     */
     public void monkEffect(int Island, int index)
     {
         EffectName name = EffectName.MONK;
@@ -123,11 +151,20 @@ public class GameClassExpert extends GameClass
         getIslandById(Island).addStudent(color);
     }
 
+    /**
+     * effect: adds a student to the card
+     * @param color
+     */
     public void cookEffect(ColoredDisc color)
     {
         cookColors.add(color);
     }
 
+    /**
+     * effect: moves a student from the card to the tables
+     * @param PlayerID is the ID of the player who plays the card
+     * @param index is the index of the student in the card
+     */
     public void queenEffect(int PlayerID, int index)
     {
         EffectName name = EffectName.QUEEN;
@@ -139,6 +176,11 @@ public class GameClassExpert extends GameClass
         evaluateProfessors(PlayerID, color);
     }
 
+    /**
+     * effect: the selected island is set to prohibited
+     * @param IslandID is the ID of the selected island
+     * @throws InvalidParameterException if the island is already prohibited
+     */
     public void ladyEffect(int IslandID) throws InvalidParameterException
     {
         if (getIslandById(IslandID).prohibited)
@@ -148,8 +190,10 @@ public class GameClassExpert extends GameClass
     }
 
     /**
-     *
      * the function allows the player to switch up to 3 students from the card to his entrance
+     * @param PlayerID
+     * @param removeIndex
+     * @param addIndex
      */
     public void jollyEffectCall(int PlayerID, int removeIndex, int addIndex)
     {
@@ -164,11 +208,10 @@ public class GameClassExpert extends GameClass
     }
 
     /**
-     *
-     * @param PlayerID
-     * @param entranceColor
-     * @param tableColor
-     * the function allows the player to switch up to 2 students between his entrance and his dining room
+     * effect: allows the player to switch up to 2 students between his entrance and his dining room
+     * @param PlayerID is the ID of the player who plays the card
+     * @param switchIndex is the index of the student that must be switched
+     * @param tableColor identifies the table where the student in the entrance must be put
      */
     public void musicianEffect(int PlayerID, int switchIndex, ColoredDisc tableColor)
     {
@@ -181,10 +224,8 @@ public class GameClassExpert extends GameClass
     }
 
     /**
-     *
-     * @param PlayerID
-     * @param color
-     * this effect removes from all the players dining rooms 3 or less students, putting back to the bag those students
+     * effect: removes from all the players dining rooms 3 or less students, putting back to the bag those students
+     * @param color is the color of the students we want to remove
      */
     public void banditEffect(ColoredDisc color)
     {
@@ -203,10 +244,15 @@ public class GameClassExpert extends GameClass
         }
     }
 
+    /**
+     * effect: we move mothernature to the chosen island
+     * @param IslandID is the ID of the island where mothernature must be moved
+     */
     public void lordEffect(int IslandID)
     {
         MoveMotherNature(getIslandById(IslandID));
     }
+
 
     public void endCardEffect(int PlayerID, EffectCard card)
     {
@@ -403,6 +449,11 @@ public class GameClassExpert extends GameClass
         }*/
     }
 
+    /**
+     * method used in the lordEffect
+     * @param chosenIsland is the island where mothernature is moved
+     * @throws RuntimeException if the player who has the influence has not enough towers
+     */
     private void MoveMotherNature(Island chosenIsland) throws RuntimeException
     {
         Island temp = CurrentIsland;

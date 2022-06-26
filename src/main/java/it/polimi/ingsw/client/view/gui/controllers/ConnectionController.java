@@ -18,6 +18,10 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+
+/**
+ * this class is used to show the connection screen, where the player can submit ip and port
+ */
 public class ConnectionController
 {
 
@@ -50,6 +54,9 @@ public class ConnectionController
     int Port;
     String Nickname;
 
+    /**
+     * initializes the screen with buttons, labels and textfields
+     */
     @FXML
     private void initialize()
     {
@@ -67,6 +74,10 @@ public class ConnectionController
     }
 
 
+    /**
+     * if there are no errors, it connects with the server using the clientcontroller method and
+     * updates the view showing the nickname textfield
+     */
     @FXML
     private void requestConnection()
     {
@@ -124,6 +135,11 @@ public class ConnectionController
     }
 
 
+    /**
+     * without errors it manages to take the input from the nickname field and
+     * pass it to the server using the clientcontroller's method
+     * @throws IOException
+     */
     public void requestNickname() throws IOException {
 
         Nickname = nicknameTextField.getText();

@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+/**
+ * this class makes the gamescene visible from all the classes
+ */
 public class GameSceneSingleton {
 
     private Scene gameScene;
@@ -15,6 +18,10 @@ public class GameSceneSingleton {
     private Parent root;
     private GameMapController controller;
 
+    /**
+     * class constructor
+     * loads the gamemap.fxml file
+     */
     private GameSceneSingleton(){ FXMLLoader loader = null;
         loader = new FXMLLoader(getClass().getResource("/fxmlFiles/gameMap.fxml"));
         try {
@@ -31,6 +38,9 @@ public class GameSceneSingleton {
         controller = loader.getController();
     }
 
+    /**
+     * @return the unique instance of the class
+     */
     public static GameSceneSingleton getInstance() {
         if (instance == null) instance = new GameSceneSingleton();
         return instance;

@@ -10,6 +10,9 @@ import javafx.application.Platform;
 
 import javax.sound.midi.Soundbank;
 
+/**
+ * this class implements the ViewInterface and its methods are called by the ClientController
+ */
 public class guiClass implements ViewInterface
 {
     Gson gson = new Gson();
@@ -17,6 +20,9 @@ public class guiClass implements ViewInterface
     ClientController controller;
     mainStage mainstage;
 
+    /**
+     * class constructor, runs mainstage, which extends application
+     */
     public guiClass()
     {
         mainstage = new mainStage();

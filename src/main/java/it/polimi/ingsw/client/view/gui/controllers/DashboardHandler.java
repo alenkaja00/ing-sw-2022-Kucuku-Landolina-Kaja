@@ -16,6 +16,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * util that handles some methods related to dashboards
+ */
 public class DashboardHandler {
 
 
@@ -62,6 +65,21 @@ public class DashboardHandler {
             "/Assistants/Assistente4.png","/Assistants/Assistente5.png","/Assistants/Assistente6.png","/Assistants/Assistente7.png",
             "/Assistants/Assistente8.png","/Assistants/Assistente9.png","/Assistants/Assistente10.png"));
 
+    /**
+     * uses all the methods before to update the dashboard view using the jdashboard object
+     * @param dashboard is the object we want to represent
+     * @param Entrance contains all the imageviews of the entrance
+     * @param Tables contains all the imageviews of the tables
+     * @param Professors contains all the imageviews of the professors
+     * @param Towers contains all the imageviews of the towers
+     * @param towerColor can be white,black or grey
+     * @param player is the player who owns the dashboard
+     * @param Status is either connected or not
+     * @param Nickname is the player's nickname
+     * @param CoinsAmount is the amount of coins a player has
+     * @param HelperCard is the selected helpercard in that turn
+     * @param CardValue is the value of that card
+     */
     public void updateDashboard(jDashboard dashboard, ArrayList<ImageView> Entrance, ArrayList<ImageView> Tables, ArrayList<ImageView> Professors, ArrayList<ImageView> Towers, Tower towerColor, jPlayer player, ImageView Status, Label Nickname, Label CoinsAmount, ImageView HelperCard, int CardValue)
     {
         //update labels
@@ -118,6 +136,11 @@ public class DashboardHandler {
         }
     }
 
+    /**
+     * @param disk is the wanted color
+     * @param professor specifies if the wanted image is a professor or a student
+     * @return a student or a professor image of the selected color
+     */
     private Image getImageFromColor(ColoredDisc disk, boolean professor){
         Image student = null;
         Image teacher = null;
@@ -150,6 +173,11 @@ public class DashboardHandler {
         return student;
     }
 
+    /**
+     * sets the appropriate image to the imageview
+     * @param disc can be a color or null
+     * @param spot the chosen imageview
+     */
     public void updateSpot(ColoredDisc disc, ImageView spot)
     {
         Image image;
@@ -165,6 +193,12 @@ public class DashboardHandler {
 
     }
 
+    /**
+     * sets the image to the professor spot if bool is true
+     * @param bool flag to control the method
+     * @param color is the professor color
+     * @param professor is the imageview in the screen
+     */
     public void updateProfessorSpot(Boolean bool, ColoredDisc color, ImageView professor)
     {
         if (bool) professor.setOpacity(1.0);
@@ -172,6 +206,11 @@ public class DashboardHandler {
         professor.setImage(getImageFromColor(color,true));
     }
 
+    /**
+     * this util matches an index to a color
+     * @param ind is the index
+     * @return the corrisponding color
+     */
     public ColoredDisc fromIndexToColor(int ind)
     {
         ColoredDisc disc = null;
@@ -196,6 +235,11 @@ public class DashboardHandler {
         return disc;
     }
 
+    /**
+     * changes the color of the tower
+     * @param towerColor can be white, black, grey
+     * @param towerView is the imageview that contains the image
+     */
     public void updateTower(Tower towerColor, ImageView towerView)
     {
         Image image = getImageFromTower(towerColor);
@@ -203,6 +247,11 @@ public class DashboardHandler {
         towerView.setImage(image);
     }
 
+    /**
+     * this util returns an image depending on the wanted color
+     * @param towerColor is the chosen color
+     * @return the corrisponding image
+     */
     public Image getImageFromTower(Tower towerColor)
     {
         Image image = null;
