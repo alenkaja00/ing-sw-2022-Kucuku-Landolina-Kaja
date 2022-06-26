@@ -77,13 +77,7 @@ public class guiClass implements ViewInterface
             Task waitTurn = new Task<Void>() {
                 @Override
                 public Void call() {
-                    do {
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                    ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
                     return null;
                 }
             };
@@ -124,5 +118,11 @@ public class guiClass implements ViewInterface
 
         GameSceneSingleton.getInstance().reset();
         mainstage.startScene();
+    }
+
+    @Override
+    public void lockView()
+    {
+        GameSceneSingleton.getInstance().getController().lockGui();
     }
 }

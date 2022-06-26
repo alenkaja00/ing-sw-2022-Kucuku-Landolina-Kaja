@@ -96,14 +96,8 @@ public class WizardController {
             Task waitTurn = new Task<Void>() {
                 @Override
                 public Void call() {
-                    do {
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
-                    return null;
+                ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
+                return null;
                 }
             };
             waitTurn.setOnSucceeded(event -> {

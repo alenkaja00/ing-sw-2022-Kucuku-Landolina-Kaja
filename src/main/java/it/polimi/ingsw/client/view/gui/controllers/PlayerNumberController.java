@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.controller.ClientController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -85,11 +86,12 @@ public class PlayerNumberController {
     public void Submit(ActionEvent actionEvent) throws IOException
     {
         ClientController clientController = ClientControllerSingleton.getInstance().getClientController();
-        if(!clientController.requestNewGame(playerNumber,expertMode))
-        {
-            // handle error
-            bannerText.setText("Unable to create a game in this moment!");
-        }
-
+        Platform.runLater(()->{
+            if(!clientController.requestNewGame(playerNumber,expertMode))
+            {
+                // handle error
+                bannerText.setText("Unable to create a game in this moment!");
+            }
+        });
     }
 }

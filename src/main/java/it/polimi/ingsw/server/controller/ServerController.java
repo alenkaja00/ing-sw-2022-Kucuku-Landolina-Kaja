@@ -46,7 +46,7 @@ public class ServerController {
 
     public boolean availableNickname(String nickname)
     {
-        if (playerSockets.keySet().contains(nickname))
+        if (playerSockets.keySet().contains(nickname) || nickname.length() > 15)
             return false;
         else
             return true;
@@ -62,9 +62,6 @@ public class ServerController {
      * removes disconnected players from the playerScokets list
      * informs the needed active games that a player disconnected
      */
-
-
-
     public void managePlayerDisconnection(String nickname)
     {
         if (playerSockets.keySet().contains(nickname))
@@ -76,8 +73,9 @@ public class ServerController {
 
     }
 
+
     public void parseMessage(String line){
-        System.out.println("Sono il server, ho ricevuto: "+ line);
+        System.out.println("Server received: "+ line);
 
         ArrayList<String> parameters = new ArrayList<String>();
         parameters.addAll(List.of(line.split("\\|")));
@@ -98,12 +96,9 @@ public class ServerController {
 
 
     /**
-     * checks the lobby if there are enough, players, creates the game and informs all players
+     * checks the lobby if there are enough players, creates the game and informs all players
      * GAME|playerNickname|playerNumber|expertModeEnabled
      */
-
-
-
     private void manageGameMessage(ArrayList<String> message) {
         String nickname = message.get(1);
         Integer playerNumber = Integer.valueOf(message.get(2));
@@ -128,27 +123,26 @@ public class ServerController {
         {
             playerLobby.add(Map.entry(nickname, Map.entry(playerNumber, expertOn)));
             playerSockets.get(nickname).sendMessage("WAIT");
+            System.out.println("[LOG] putting player in a waiting list");
         }
     }
+
 
     /**
      * removes a player from the lobby in order to make him make another request if he wants
      * QUITLOBBY|playerNickname
      */
-
-
     private void manageQuitLobbyMessage(ArrayList<String> message)
     {
         playerLobby.removeAll(playerLobby.stream().filter(x->x.getKey().equals(message.get(1))).collect(Collectors.toList()));
         playerSockets.get(message.get(1)).sendMessage("NOK");
     }
 
+
     /**
      * sends the PLAY message to the relevant controller
      * PLAY|playerNickname|otherstuff
      */
-
-
     private void managePlayMessage(ArrayList<String> parameters)
     {
         openGames.stream().filter(x->x.getPlayers().contains(parameters.get(1))).forEach(x->x.parseMessage((ArrayList<String>) parameters.clone()));

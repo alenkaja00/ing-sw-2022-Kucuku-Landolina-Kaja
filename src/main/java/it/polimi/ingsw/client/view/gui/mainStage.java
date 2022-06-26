@@ -90,22 +90,24 @@ public class mainStage extends Application {
     }
 
     public void waitingScene(String message) {
-        stage = StageSingleton.getInstance().getStage();
-        FXMLLoader loader = null;
-        loader = new FXMLLoader(getClass().getResource(waitingPath));
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Platform.runLater(()->{
+            stage = StageSingleton.getInstance().getStage();
+            FXMLLoader loader = null;
+            loader = new FXMLLoader(getClass().getResource(waitingPath));
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
-        stage.setTitle("Waiting");
-        stage.setScene(scene);
-        stage.show();
-        if (!message.equals(""))
-            ((WaitingController) loader.getController()).showMessage(message);
+            scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
+            stage.setTitle("Waiting");
+            stage.setScene(scene);
+            stage.show();
+            if (!message.equals(""))
+                ((WaitingController) loader.getController()).showMessage(message);
+        });
 
     }
 

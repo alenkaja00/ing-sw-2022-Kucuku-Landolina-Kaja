@@ -47,7 +47,6 @@ public class GameSceneSingleton {
 
     public void reset()
     {
-        controller = null;
-        gameScene = null;
+        instance = new GameSceneSingleton();
     }
 }

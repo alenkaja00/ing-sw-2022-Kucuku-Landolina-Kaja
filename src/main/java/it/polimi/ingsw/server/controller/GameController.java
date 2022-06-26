@@ -468,6 +468,7 @@ public class GameController
     }
     public void parseMessage(ArrayList<String> receivedMessage)
     {
+        if (gameEnded) return;
         synchronized (inputBuffer)
         {
             inputBuffer.add(receivedMessage);

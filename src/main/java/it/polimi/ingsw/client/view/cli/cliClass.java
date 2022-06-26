@@ -139,6 +139,9 @@ public class cliClass implements ViewInterface
             case "QUIT":
                 System.out.println("Are you sure? [yes/no]: ");
                 break;
+
+            default:
+                break;
         }
     }
 
@@ -309,12 +312,12 @@ public class cliClass implements ViewInterface
         if (ClientControllerSingleton.getInstance().getClientController().requestNickname(input))
         {
             System.out.println("Nickname accepted");
+            changeState("START");
         }
         else
         {
             System.out.println("Unavailable nickname");
         }
-        changeState("START");
     }
 
     //NEWGAME
@@ -590,24 +593,22 @@ public class cliClass implements ViewInterface
     }
 
     @Override
+    public void lockView() {
+        changeState("LOCK");
+    }
+
+    @Override
     public void manageReconnection()
     {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 changeState("RECONNECTION");
-                do {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+                ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
                 changeState("HELPER");
             }
         }).start();
     }
-
 
     private void printBlock(ArrayList<String> message)
     {
@@ -617,13 +618,7 @@ public class cliClass implements ViewInterface
     private void waitUnlock()
     {
         System.out.println("Waiting for your turn");
-        do {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+        ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
         System.out.println("It's your turn");
     }
 

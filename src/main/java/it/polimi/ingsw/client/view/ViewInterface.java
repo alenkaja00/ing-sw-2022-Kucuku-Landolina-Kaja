@@ -59,6 +59,7 @@ public interface ViewInterface
     //game ends with the following message
     void endScene(String endMessage);
 
+    void lockView();
 
     void manageReconnection();
 }

@@ -19,11 +19,12 @@ public class ClientController
     private String serverIP = "";
     private ViewInterface view;
     private String playerNickname;
-    private Thread currentView;
     private Boolean viewLocked = false;
+    private String viewMode = "";
 
     public ClientController(String viewMode) throws IOException
     {
+        this.viewMode = viewMode;
         ClientControllerSingleton instance = ClientControllerSingleton.getInstance();
         instance.setClientController(this);
         if (viewMode.equals("GUI")) {
@@ -262,6 +263,17 @@ public class ClientController
         return serverIP;
     }
 
+    public void waitViewUnlock()
+    {
+        do {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+    }
+
     public Boolean getViewLocked()
     {
         return viewLocked;
@@ -304,7 +316,7 @@ public class ClientController
 
     public void parseServerMessage(String message)
     {
-        //System.out.println("LOG [parseServerMessage]: I am the client and I received: " + message);
+        System.out.println("[LOG] Client received: " + message);
 
         List<String> parsedMessage = Arrays.asList(message.split("\\|"));
 

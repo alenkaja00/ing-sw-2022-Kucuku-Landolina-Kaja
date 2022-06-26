@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
+import javax.xml.stream.FactoryConfigurationError;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -216,8 +217,10 @@ public class GameMapController
 
     private Boolean expertMode = false;
     private Boolean effectPlayed = false;
+    private Boolean effectsClickable = false;
 
     private int clickedCard = -1;
+    private Boolean cardsClickable = true;
 
 
     @FXML
@@ -397,7 +400,8 @@ public class GameMapController
     @FXML
     private void cardClicked(MouseEvent mouseEvent)
     {
-        System.out.println("chiamato");
+        if (!cardsClickable) return;
+        System.out.println("Card selected");
         ImageView chosen = (ImageView) mouseEvent.getSource();
 
         for(int i =0; i<deck.size();i++)
@@ -631,12 +635,14 @@ public class GameMapController
         resetDeck();
     }
 
-    private void lockGui()
+    public void lockGui()
     {
         entranceClickable = false;
         cloudClickable = false;
         islandClickable = false;
         tablesClickable = false;
+        effectsClickable = false;
+        cardsClickable = false;
     }
 
     private void resetClickedValues()
@@ -713,13 +719,7 @@ public class GameMapController
         } while (true);
 
         bannerMessage("Waiting for your turn...");
-        do {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+        ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
 
         int count = 0;
         do
@@ -870,13 +870,7 @@ public class GameMapController
         System.out.println("ONE ROUND OK");
 
         bannerMessage("Waiting for your turn...");
-        do {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (ClientControllerSingleton.getInstance().getClientController().getViewLocked());
+        ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
         ETX();
     }
 
