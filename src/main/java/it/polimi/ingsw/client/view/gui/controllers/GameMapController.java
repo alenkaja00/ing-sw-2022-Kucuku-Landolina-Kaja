@@ -841,6 +841,7 @@ public class GameMapController
      */
     public void ETX()
     {
+        resetEffects();
         //helper card selection
         showDeck(true);
         do {
@@ -1029,7 +1030,6 @@ public class GameMapController
                 break;
             }
         } while (true);
-        resetEffects();
         System.out.println("ONE ROUND OK");
 
         bannerMessage("Waiting for your turn...");

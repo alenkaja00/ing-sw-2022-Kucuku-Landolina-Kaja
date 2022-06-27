@@ -142,37 +142,42 @@ public class ConnectionController
      */
     public void requestNickname() throws IOException {
 
-        Nickname = nicknameTextField.getText();
-        if (Nickname==null || Nickname.equals(""))
-        {
-            bannerText.setText("The field is empty! Insert a nickname to proceed!");
-            return;
-        }
+        Platform.runLater(()->{
+            Nickname = nicknameTextField.getText();
+            if (Nickname==null || Nickname.equals(""))
+            {
+                bannerText.setText("The field is empty! Insert a nickname to proceed!");
+                return;
+            }
 
-        if(clientController.requestNickname(Nickname))
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/mainScene.fxml"));
-            root = loader.load();
-            root.setId("startScene");
-            SceneController controller = loader.getController();
-            controller.setConnectionEstablished(true);
+            if(clientController.requestNickname(Nickname))
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/mainScene.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                root.setId("startScene");
+                SceneController controller = loader.getController();
+                controller.setConnectionEstablished(true);
 
-            //stage = (Stage) ((Node) submitButton).getScene().getWindow();
-            stage = StageSingleton.getInstance().getStage();
-            scene = new Scene(root);
+                //stage = (Stage) ((Node) submitButton).getScene().getWindow();
+                stage = StageSingleton.getInstance().getStage();
+                scene = new Scene(root);
 
-            scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
-            stage.setTitle("Main Scene");
-            stage.setScene(scene);
+                scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
+                stage.setTitle("Main Scene");
+                stage.setScene(scene);
 
-            stage.show();
+                stage.show();
+            }
+            else
+            {
+                bannerText.setText("This nickname is already taken. Choose another one!");
+            }
 
-        }
-        else
-        {
-            bannerText.setText("This nickname is already taken. Choose another one!");
-        }
-
-        System.out.println("nickname successfully requested");
+            System.out.println("nickname successfully requested");
+        });
     }
 }
