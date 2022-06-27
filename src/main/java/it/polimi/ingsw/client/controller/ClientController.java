@@ -316,7 +316,7 @@ public class ClientController
 
     public void parseServerMessage(String message)
     {
-        System.out.println("[LOG] Client received: " + message);
+        //System.out.println("[LOG] Client received: " + message);
 
         List<String> parsedMessage = Arrays.asList(message.split("\\|"));
 

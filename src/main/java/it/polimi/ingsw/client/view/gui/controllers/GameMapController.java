@@ -7,6 +7,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.image.ImageView;
@@ -14,11 +16,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
-import javax.xml.stream.FactoryConfigurationError;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -68,6 +67,20 @@ public class GameMapController
     private GridPane cardsGrid;
     @FXML
     private ImageView effectOne, effectTwo, effectThree;
+    private HashMap<String,String> effectPaths = new HashMap<>(){{
+        put("/Effects/monk.jpg","MONK");
+        put("/Effects/queen.jpg","QUEEN");
+        put("/Effects/lady.jpg","LADY");
+        put("/Effects/jolly.jpg","JOLLY");
+        put("/Effects/cavalier.jpg","CAVALIER");
+        put("/Effects/lord.jpg","LORD");
+        put("/Effects/centaur.jpg","CENTAUR");
+        put("/Effects/cook.jpg","COOK");
+        put("/Effects/villain.jpg","VILLAIN");
+        put("/Effects/magician.jpg","MAGICIAN");
+        put("/Effects/musician.jpg","MUSICIAN");
+        put("/Effects/bandit.jpg","BANDIT");
+    }};
 
 
     ///island
@@ -191,6 +204,7 @@ public class GameMapController
     private ArrayList<ArrayList<ImageView>> AllTowers;
     //
     private ArrayList<ImageView> deck;
+    private ArrayList<ImageView> effectList;
 
     private ArrayList<StackPane> IslandStacks;
     private ArrayList<ImageView> IslandImages;
@@ -223,8 +237,6 @@ public class GameMapController
     private Boolean effectsClickable = false;
 
     private int clickedCard = -1;
-    private Boolean cardsClickable = true;
-
 
     /**
      * here we create all the imageviews needed to show the game items
@@ -234,6 +246,8 @@ public class GameMapController
         //deck management
         deck = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10));
         showDeck(false);
+
+        effectList = new ArrayList<>(Arrays.asList(effectOne, effectTwo, effectThree));
 
         //IslandStacks
         IslandStacks = new ArrayList<>(Arrays.asList(islandStack1, islandStack2, islandStack3, islandStack4, islandStack5, islandStack6, islandStack7, islandStack8, islandStack9, islandStack10, islandStack11, islandStack12));
@@ -410,7 +424,6 @@ public class GameMapController
     @FXML
     private void cardClicked(MouseEvent mouseEvent)
     {
-        if (!cardsClickable) return;
         System.out.println("Card selected");
         ImageView chosen = (ImageView) mouseEvent.getSource();
 
@@ -518,11 +531,102 @@ public class GameMapController
         clickedIsland = Integer.parseInt(ID);
     }
 
+    private void selectEffect(ImageView card)
+    {
+        //card.setStyle(style);
+        card.setScaleY(1.2);
+        card.setScaleX(1.2);
+        Glow effect = new Glow();
+        card.setEffect(effect);
+    }
+
+    private void effectFailed()
+    {
+        resetEffects();
+        Platform.runLater(()->{
+            String previousMessage = bannerText.getText();
+            bannerMessage("Unable to play effect Card!");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            bannerMessage(previousMessage);
+        });
+    }
+    private void resetEffects()
+    {
+        effectPlayed = false;
+        Platform.runLater(()->{
+            effectList.stream().forEach(x->{
+                x.setEffect(null);
+                x.setScaleY(1);
+                x.setScaleX(1);
+            });
+        });
+    }
     public void effectClicked(MouseEvent mouseEvent)
     {
-        if (!expertMode || effectPlayed) return;
+        Platform.runLater(()->{
+            if (!expertMode || effectPlayed) return;
+            System.out.println("inside the effect click");
+            effectPlayed = true;
 
-        //do things with the effects
+
+            ImageView card = (ImageView) mouseEvent.getSource();
+            String url = ((Image) card.getImage()).getUrl();
+            url = url.substring(url.indexOf("/Effect"));
+            System.out.println(url);
+
+            selectEffect(card);
+
+            switch (effectPaths.get(url))
+            {
+                case "CAVALIER":
+                case "CENTAUR":
+                case "VILLAIN":
+                case "MAGICIAN":
+                    if (ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|"+effectPaths.get(url)))
+                    {
+                        return;
+                    }
+                    break;
+            /*case "MONK":
+                ((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                break;
+            case "QUEEN":
+                ((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
+                break;
+            case "LADY":
+                ((GameClassExpert)newGame).ladyEffect(Integer.parseInt(message.get(4)));
+                break;
+            case "JOLLY":
+                ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                if (message.size()>6)
+                    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(6)), Integer.parseInt(message.get(7)));
+                if (message.size()>8)
+                    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(8)), Integer.parseInt(message.get(9)));
+                break;
+            case "LORD":
+                ((GameClassExpert)newGame).lordEffect(Integer.parseInt(message.get(4)));
+                break;
+            case "COOK":
+                ((GameClassExpert)newGame).cookEffect(ColoredDisc.valueOf(message.get(4)));
+                break;
+            case "BANDIT":
+                ((GameClassExpert)newGame).banditEffect(ColoredDisc.valueOf(message.get(4)));
+                break;
+            case "MUSICIAN":
+                ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(4)), ColoredDisc.valueOf(message.get(5)));
+                if (message.size()>6)
+                    ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(6)), ColoredDisc.valueOf(message.get(7)));
+                break;*/
+                default:
+                    break;
+            }
+
+            effectFailed();
+        });
     }
 
     /**
@@ -562,6 +666,18 @@ public class GameMapController
             CoinsImages.stream().forEach(x->x.setDisable(false));
             CoinsImages.stream().forEach(x->x.setVisible(true));
             CoinsImages.stream().forEach(x->x.setManaged(true));
+
+
+            for (int i=0; i<3; i++)
+            {
+                for (Map.Entry<String,String> entry: effectPaths.entrySet())
+                {
+                    if (gameData.ChosenCards.get(i).ID.toString().equals(entry.getValue()))
+                    {
+                        effectList.get(i).setImage(new Image(entry.getKey()));
+                    }
+                }
+            }
         }
 
         //enable or disable view elements based on the player number
@@ -675,8 +791,6 @@ public class GameMapController
         cloudClickable = false;
         islandClickable = false;
         tablesClickable = false;
-        effectsClickable = false;
-        cardsClickable = false;
     }
 
     /**
@@ -727,9 +841,7 @@ public class GameMapController
      */
     public void ETX()
     {
-        //System.out.println("etx function");
-
-
+        //helper card selection
         showDeck(true);
         do {
             bannerMessage("Select a card!");
@@ -762,6 +874,7 @@ public class GameMapController
             }
         } while (true);
 
+        //wait for turn
         bannerMessage("Waiting for your turn...");
         ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
 
@@ -916,7 +1029,7 @@ public class GameMapController
                 break;
             }
         } while (true);
-        effectPlayed = false;
+        resetEffects();
         System.out.println("ONE ROUND OK");
 
         bannerMessage("Waiting for your turn...");

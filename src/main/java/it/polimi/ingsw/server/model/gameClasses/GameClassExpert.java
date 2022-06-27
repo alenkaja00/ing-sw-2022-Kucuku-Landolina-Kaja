@@ -26,23 +26,6 @@ public class GameClassExpert extends GameClass
     private ArrayList<Integer> villainContribution = new ArrayList<>();
     private ArrayList<Integer> extraMotherNatureMoves = new ArrayList<>();
     private boolean centaurEffect = false;
-    private HashMap<String, Integer> cardPrices = new HashMap<>(){{
-        put("MONK", 1);
-        put("QUEEN", 2);
-        put("LADY", 2);
-
-        put("JOLLY", 1);
-        put("CAVALIER", 2);
-        put("LORD", 3);
-
-        put("CENTAUR", 3);
-        put("COOK", 3);
-        put("VILLAIN", 2);
-
-        put("MAGICIAN", 1);
-        put("MUSICIAN", 1);
-        put("BANDIT", 3);
-    }};
 
     /**
      * class constructor
@@ -65,10 +48,14 @@ public class GameClassExpert extends GameClass
         //piazzare 3 carte personaggio e inizializzare
         ArrayList<EffectName> randomCards = (ArrayList<EffectName>) Arrays.stream(EffectName.values()).collect(Collectors.toList());
         Collections.shuffle(randomCards);
-        for (int i = 0; i<3; i++)
+        /*for (int i = 0; i<3; i++)
         {
             ChosenCards.add(new EffectCard(randomCards.get(i)));
-        }
+        }*/
+        ChosenCards.add(new EffectCard(EffectName.MAGICIAN));
+        ChosenCards.add(new EffectCard(EffectName.CENTAUR));
+        ChosenCards.add(new EffectCard(EffectName.VILLAIN));
+
         for (EffectCard card:ChosenCards)
         {
             int maxS  = 0;
@@ -139,6 +126,8 @@ public class GameClassExpert extends GameClass
                 break;
             case VILLAIN:
                 villainContribution.add(PlayerID);
+                for (ColoredDisc color: ColoredDisc.values())
+                    evaluateProfessors(PlayerID, color);
                 break;
             case MAGICIAN:
                 extraMotherNatureMoves.add(PlayerID);
@@ -353,7 +342,8 @@ public class GameClassExpert extends GameClass
         Player lastPlayer = players.get(PlayerID);
         for (Player player: players)
         {
-            if (lastPlayer.myDashboard.SittedStudents(student) + (villainContribution.contains(PlayerID)?1:0) <= player.myDashboard.SittedStudents(student) && lastPlayer != player)
+            int sittedStudents = lastPlayer.myDashboard.SittedStudents(student);
+            if (sittedStudents + (villainContribution.contains(PlayerID) && sittedStudents>0?1:0) <= player.myDashboard.SittedStudents(student) && lastPlayer != player)
                 return;
         }
         for (Player player: players)
@@ -555,10 +545,6 @@ public class GameClassExpert extends GameClass
         return playerMaxMoves[playerID] + (extraMotherNatureMoves.contains(playerID)?2:0);
     }
 
-    public HashMap<String, Integer> getCardPrices()
-    {
-        return (HashMap<String, Integer>) cardPrices.clone();
-    }
 
     public ArrayList<EffectCard> getEffectCards()
     {
