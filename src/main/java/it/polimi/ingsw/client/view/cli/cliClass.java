@@ -1,12 +1,9 @@
 package it.polimi.ingsw.client.view.cli;
 
 import com.google.gson.Gson;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.cli.components.EriantysCLI;
 import it.polimi.ingsw.client.view.gui.controllers.ClientControllerSingleton;
-import it.polimi.ingsw.client.view.gui.controllers.GameSceneSingleton;
 import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
 import it.polimi.ingsw.server.model.cards.Wizard;
 
@@ -17,6 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * class that implements the view interface and contains the logic of the command line version of the game
+ * the methods work as a finite state machine and move from one state to the other in order to show different screens of the cli
+ */
 public class cliClass implements ViewInterface
 {
     EriantysCLI eriantysCLI;
@@ -36,6 +37,9 @@ public class cliClass implements ViewInterface
     private String currentState = "START";
     private String nextLineMessage = "";
 
+    /**
+     * the constructor method starts the thread used to parse the user's input
+     */
     public cliClass()
     {
         eriantysCLI = new EriantysCLI();
@@ -72,6 +76,10 @@ public class cliClass implements ViewInterface
         mainThread.start();
     }
 
+    /**
+     * method used to change the displayed screen
+     * @param screen is the input string that determines the screen to be shown at a specific point
+     */
     private void changeState(String screen)
     {
         currentState = screen;
@@ -80,10 +88,6 @@ public class cliClass implements ViewInterface
             case "START":
                 flushCLI();
                 printBlock(eriantysCLI.welcomeScene(ClientControllerSingleton.getInstance().getClientController().getServerIP()));
-
-                //------------
-
-                //---------
                 break;
 
             case "IP":
@@ -134,8 +138,6 @@ public class cliClass implements ViewInterface
                 System.out.println("... Waiting ...");
                 break;
 
-
-
             case "QUIT":
                 System.out.println("Are you sure? [yes/no]: ");
                 break;
@@ -145,6 +147,9 @@ public class cliClass implements ViewInterface
         }
     }
 
+    /**
+     * method that prints info in order to help the user and suggest the command to type
+     */
     private void helpMessages()
     {
         switch (currentState)
@@ -206,6 +211,10 @@ public class cliClass implements ViewInterface
         }
     }
 
+    /**
+     * this method parses the user's input and calls other methods of the class that will parse the input
+     * @param input string coming from the user input
+     */
     private void parseInput(String input)
     {
         input = input.toUpperCase(Locale.ROOT);
@@ -268,6 +277,10 @@ public class cliClass implements ViewInterface
         }
     }
 
+    /**
+     * this method handles the input in the start screen and changes state to the next one based on the input command
+     * @param input string coming from the user input
+     */
     private void parseStart(String input)
     {
         switch (input)
@@ -287,6 +300,10 @@ public class cliClass implements ViewInterface
         }
     }
 
+    /**
+     * this method handles the input in the connection screen and changes state to the next one based on the input command
+     * @param input string coming from the user input
+     */
     //CONNECTION
     private void parsePort(String input)
     {
@@ -307,6 +324,11 @@ public class cliClass implements ViewInterface
             changeState("NICKNAME");
         }
     }
+
+    /**
+     * this method handles the input in the nickname screen and changes state to the next one based on the input command
+     * @param input user input string
+     */
     private void parseNickname(String input)
     {
         if (ClientControllerSingleton.getInstance().getClientController().requestNickname(input))
@@ -320,6 +342,10 @@ public class cliClass implements ViewInterface
         }
     }
 
+    /**
+     * this method handles the input in the newgame screen and changes state to the next one based on the input command
+     * @param input user input string
+     */
     //NEWGAME
     private void parseNewGame(String input)
     {
@@ -335,6 +361,11 @@ public class cliClass implements ViewInterface
             }
         } catch (Exception e) {System.out.println("Not a valid number. Insert again: ");}
     }
+
+    /**
+     * this method handles the input in the expert mode screen and changes state to the next one based on the input command
+     * @param input user input string
+     */
     private void parseExpert(String input)
     {
         if (input.equals("YES") )
@@ -356,6 +387,11 @@ public class cliClass implements ViewInterface
             changeState("START");
         }
     }
+
+    /**
+     * this method handles the input in the lobby screen
+     * @param input user input string
+     */
     private void parseLobby(String input)
     {
         if (input.equals("QUIT"))
@@ -364,6 +400,10 @@ public class cliClass implements ViewInterface
         }
     }
 
+    /**
+     * this method handles the input in the wizard selection screen and changes state to the next one based on the server response
+     * @param input user input string
+     */
     private void parseWizard(String input)
     {
         try {
@@ -383,6 +423,10 @@ public class cliClass implements ViewInterface
         }catch (Exception e){System.out.println("Unavailable selection. Try again [WIZARD1-4]: ");};
     }
 
+    /**
+     * this method handles the input in the helper card screen
+     * @param input user input string
+     */
     private void parseHelper(String input)
     {
         int number = 0;
@@ -413,6 +457,12 @@ public class cliClass implements ViewInterface
 
     }
 
+    /**
+     * this method handles the input during the entrance to tables or entrance to island moves
+     * it requests to the server the moves and based on the response changes state
+     * it also includes the management of an effect card selection
+     * @param input  user input string
+     */
     private void parseETX(String input)
     {
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
@@ -453,6 +503,10 @@ public class cliClass implements ViewInterface
         System.out.println("You can still move a student" + (expertMode == true ? " or play an effect card": "") +": ");
     }
 
+    /**
+     * this method handles the move mother nature action of the player and includes the management of the effect card selection
+     * @param input user input string
+     */
     private void parseNature(String input)
     {
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
@@ -488,6 +542,10 @@ public class cliClass implements ViewInterface
         System.out.println("You still need to move mother nature" + (expertMode == true ? " or play an effect card": "") +": ");
     }
 
+    /**
+     * this method handles the selection of a cloud from the user
+     * @param input user input string
+     */
     private void parseCTE(String input)
     {
         List<String> parsedMessage = Arrays.asList(input.split("\\|"));
@@ -527,6 +585,10 @@ public class cliClass implements ViewInterface
         System.out.println("You still need to select a cloud" + (expertMode == true ? " or play an effect card": "") +": ");
     }
 
+    /**
+     * this method handles the quit from the game
+     * @param input user input string
+     */
     //QUIT
     private void parseQuit(String input)
     {
@@ -540,7 +602,11 @@ public class cliClass implements ViewInterface
 
     }
 
-
+    /**
+     * this method is used to update the view visualizing the data from the json
+     * it prints the gameMap calling the method that prints the ArrayList containing all the elements
+     * @param json the input state of the game, contains all the data
+     */
     @Override
     public void updateView(String json) {
         flushCLI();
@@ -552,31 +618,48 @@ public class cliClass implements ViewInterface
             System.out.println("Your turn to play");
     }
 
+    /**
+     * this method changes state to the Start Scene
+     */
     @Override
     public void startScene(String serverIP) {
         changeState("START");
     }
 
+    /**
+     * this method changes state to the Wizard Scene
+     */
     @Override
     public void wizardScene() {
         changeState("WIZARD");
     }
 
+    /**
+     * this method changes state to the Helper Scene
+     */
     @Override
     public void helperScene() {
         changeState("HELPER");
     }
 
+    /**
+     * this method changes state to the Wait Lobby
+     */
     @Override
     public void waitLobbyScene() {
         changeState("WAITLOBBY");
     }
+
 
     @Override
     public void messageScene(String message) {
 
     }
 
+    /**
+     * this method displays the winner of the game and brings back to the start screen where the user can play a newgame
+     * @param endMessage message that is shown
+     */
     @Override
     public void endScene(String endMessage)
     {
@@ -594,11 +677,17 @@ public class cliClass implements ViewInterface
         changeState("START");
     }
 
+    /**
+     * method that locks the view
+     */
     @Override
     public void lockView() {
         changeState("LOCK");
     }
 
+    /**
+     * this method handles the reconnection functionality from the command line version
+     */
     @Override
     public void manageReconnection()
     {
@@ -612,11 +701,18 @@ public class cliClass implements ViewInterface
         }).start();
     }
 
+    /**
+     * method used to print an ArrayList of string
+     * @param message the ArrayList to be printed
+     */
     private void printBlock(ArrayList<String> message)
     {
         message.stream().forEach(x->System.out.println(x));
     }
 
+    /**
+     * this method blocks the input waiting for the server unlock
+     */
     private void waitUnlock()
     {
         System.out.println("Waiting for your turn");
@@ -624,12 +720,20 @@ public class cliClass implements ViewInterface
         System.out.println("It's your turn");
     }
 
+    /**
+     * this method clears the screen
+     */
     private void flushCLI()
     {
         System.out.println("_______________________________________________________________________________________________");
         eriantysCLI.clearConsole();
     }
 
+    /**
+     * method that prints a message and reads the input from the dedicated thread
+     * @param str string that is printed
+     * @return the read string
+     */
     private String nextLine(String str)
     {
         String s = "";
