@@ -52,9 +52,12 @@ public class GameClassExpert extends GameClass
         {
             ChosenCards.add(new EffectCard(randomCards.get(i)));
         }*/
-        ChosenCards.add(new EffectCard(EffectName.MAGICIAN));
-        ChosenCards.add(new EffectCard(EffectName.CENTAUR));
-        ChosenCards.add(new EffectCard(EffectName.VILLAIN));
+        ChosenCards.add(new EffectCard(EffectName.LADY));
+        //ChosenCards.add(new EffectCard(EffectName.MONK));
+        //ChosenCards.add(new EffectCard(EffectName.JOLLY));
+        ChosenCards.add(new EffectCard(EffectName.CAVALIER));
+        //ChosenCards.add(new EffectCard(EffectName.CENTAUR));
+        ChosenCards.add(new EffectCard(EffectName.LORD));
 
         for (EffectCard card:ChosenCards)
         {

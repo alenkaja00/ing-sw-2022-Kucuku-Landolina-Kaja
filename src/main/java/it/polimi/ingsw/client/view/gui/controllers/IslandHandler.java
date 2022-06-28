@@ -1,6 +1,9 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
+import it.polimi.ingsw.client.view.jsonObjects.jEffectCard;
 import it.polimi.ingsw.client.view.jsonObjects.jIsland;
+import it.polimi.ingsw.server.model.cards.EffectCard;
+import it.polimi.ingsw.server.model.cards.EffectName;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Tower;
 import javafx.collections.ObservableList;
@@ -9,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import org.w3c.dom.events.Event;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,21 +24,22 @@ import java.util.HashMap;
 public class IslandHandler {
 
 
-    String greenPath = "/StudentDisks/greenDisk.png";
-    String redPath = "/StudentDisks/redDisk.png";
-    String yellowPath = "/StudentDisks/yellowDisk.png";
-    String pinkPath = "/StudentDisks/pinkDisk.png";
-    String bluePath = "/StudentDisks/blueDisk.png";
-    String motherNaturePath = "mother_nature.png";
+    private String greenPath = "/StudentDisks/greenDisk.png";
+    private String redPath = "/StudentDisks/redDisk.png";
+    private String yellowPath = "/StudentDisks/yellowDisk.png";
+    private String pinkPath = "/StudentDisks/pinkDisk.png";
+    private String bluePath = "/StudentDisks/blueDisk.png";
+    private String motherNaturePath = "mother_nature.png";
+    private String denialPath = "/denial.png";
 
-    Image greenImage = new Image(greenPath);
-    Image redImage = new Image(redPath);
-    Image yellowImage = new Image(yellowPath);
-    Image pinkImage = new Image(pinkPath);
-    Image blueImage = new Image(bluePath);
+    private Image greenImage = new Image(greenPath);
+    private Image redImage = new Image(redPath);
+    private Image yellowImage = new Image(yellowPath);
+    private Image pinkImage = new Image(pinkPath);
+    private Image blueImage = new Image(bluePath);
 
-    ArrayList<String> towersPath = new ArrayList<>(Arrays.asList("/Towers/black_tower.png","/Towers/grey_tower.png","/Towers/white_tower.png"));
-    ArrayList<String> unitedIslands = new ArrayList<>(Arrays.asList("/Islands/United/island2.png",
+    private ArrayList<String> towersPath = new ArrayList<>(Arrays.asList("/Towers/black_tower.png","/Towers/grey_tower.png","/Towers/white_tower.png"));
+    private ArrayList<String> unitedIslands = new ArrayList<>(Arrays.asList("/Islands/United/island2.png",
             "/Islands/United/island3.png","/Islands/United/island4.png","/Islands/United/island5.png",
             "/Islands/United/island6.png","/Islands/United/island7.png","/Islands/United/island8.png"));
 
@@ -73,8 +78,8 @@ public class IslandHandler {
      * @param tilePane is the pane that contains the student
      * @param disc is the student we want to add
      */
-    public void addStudent(TilePane tilePane, ColoredDisc disc) {
-
+    public ImageView addStudent(TilePane tilePane, ColoredDisc disc)
+    {
         ImageView newView  = new ImageView();
         Image image = getImageFromColor(disc);
 
@@ -82,7 +87,7 @@ public class IslandHandler {
         newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
         newView.setImage(image);
         tilePane.getChildren().add(newView);
-
+        return newView;
     }
 
     /**
@@ -164,6 +169,18 @@ public class IslandHandler {
             imageView.setImage(new Image(unitedIslands.get(island.graphicalIsland.size()-2)));
 
 
+
+        if (island.prohibited)
+        {
+            ImageView newView  = new ImageView();
+            Image image = new Image(denialPath);
+
+            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
+            newView.setImage(image);
+            tilePane.getChildren().add(newView);
+        }
+
         if (island.ID == currentIslandID)
         {
             ImageView newView  = new ImageView();
@@ -225,12 +242,5 @@ public class IslandHandler {
             tilePane.getChildren().add(newView);
         }
     }
-
-
-
-
-
-
-
 
 }

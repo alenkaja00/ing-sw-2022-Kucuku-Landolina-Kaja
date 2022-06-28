@@ -3,7 +3,9 @@ package it.polimi.ingsw.client.view.gui.controllers;
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.jsonObjects.*;
+import it.polimi.ingsw.server.model.components.ColoredDisc;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -19,6 +21,8 @@ import javafx.scene.layout.TilePane;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static it.polimi.ingsw.server.model.cards.EffectName.*;
 
 /**
  * this class shows the main game screen, with all the dashboards, clouds, islands, ecc.
@@ -67,6 +71,11 @@ public class GameMapController
     private GridPane cardsGrid;
     @FXML
     private ImageView effectOne, effectTwo, effectThree;
+    @FXML
+    private ImageView usedEffectOne, usedEffectTwo, usedEffectThree;
+    @FXML
+    private TilePane effectPane1, effectPane2, effectPane3;
+
     private HashMap<String,String> effectPaths = new HashMap<>(){{
         put("/Effects/monk.jpg","MONK");
         put("/Effects/queen.jpg","QUEEN");
@@ -81,6 +90,14 @@ public class GameMapController
         put("/Effects/musician.jpg","MUSICIAN");
         put("/Effects/bandit.jpg","BANDIT");
     }};
+    private HashMap<ColoredDisc,String> studentsPath = new HashMap<>(){{
+        put(ColoredDisc.RED,"/StudentDisks/redDisk.png");
+        put(ColoredDisc.YELLOW,"/StudentDisks/yellowDisk.png");
+        put(ColoredDisc.BLUE,"/StudentDisks/blueDisk.png");
+        put(ColoredDisc.PINK,"/StudentDisks/pinkDisk.png");
+        put(ColoredDisc.GREEN,"/StudentDisks/greenDisk.png");
+    }};
+    private String denialPath = "/denial.png";
 
 
     ///island
@@ -205,6 +222,8 @@ public class GameMapController
     //
     private ArrayList<ImageView> deck;
     private ArrayList<ImageView> effectList;
+    private ArrayList<ImageView> usedEffectList;
+    private ArrayList<TilePane> effectPanesList;
 
     private ArrayList<StackPane> IslandStacks;
     private ArrayList<ImageView> IslandImages;
@@ -234,7 +253,7 @@ public class GameMapController
 
     private Boolean expertMode = false;
     private Boolean effectPlayed = false;
-    private Boolean effectsClickable = false;
+    private Boolean runningEffect = false;
 
     private int clickedCard = -1;
 
@@ -248,6 +267,8 @@ public class GameMapController
         showDeck(false);
 
         effectList = new ArrayList<>(Arrays.asList(effectOne, effectTwo, effectThree));
+        usedEffectList = new ArrayList<>(Arrays.asList(usedEffectOne, usedEffectTwo, usedEffectThree));
+        effectPanesList = new ArrayList<>(Arrays.asList(effectPane1, effectPane2, effectPane3));
 
         //IslandStacks
         IslandStacks = new ArrayList<>(Arrays.asList(islandStack1, islandStack2, islandStack3, islandStack4, islandStack5, islandStack6, islandStack7, islandStack8, islandStack9, islandStack10, islandStack11, islandStack12));
@@ -565,68 +586,139 @@ public class GameMapController
             });
         });
     }
+
+    @FXML
+    private void effectChildClicked()
+    {
+
+    }
+
     public void effectClicked(MouseEvent mouseEvent)
     {
-        Platform.runLater(()->{
-            if (!expertMode || effectPlayed) return;
-            System.out.println("inside the effect click");
-            effectPlayed = true;
+        if (!expertMode || effectPlayed || ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
+        Task effectTask = new Task<Void>() {
+            @Override
+            public Void call() {
+                effectPlayed = true;
+                runningEffect = true;
+                Boolean success = false;
+                System.out.println("inside the effect click");
+
+                String oldBanner = bannerText.getText();
+
+                int oldClickedCard = clickedCard;
+                int oldClickedIsland = clickedIsland;
+                int oldClickedEntrance = clickedEntrance;
+                Boolean oldTablesClicked = tablesClicked;
+                int oldClickedCloud = clickedCloud;
+
+                resetClickedValues();
+
+                Boolean oldEntranceClickable = entranceClickable;
+                Boolean oldCloudClickable = cloudClickable;
+                Boolean oldIslandClickable = islandClickable;
+                Boolean oldTablesClickable = tablesClickable;
+
+                lockGui();
 
 
-            ImageView card = (ImageView) mouseEvent.getSource();
-            String url = ((Image) card.getImage()).getUrl();
-            url = url.substring(url.indexOf("/Effect"));
-            System.out.println(url);
+                ImageView card = (ImageView) mouseEvent.getSource();
+                String url = ((Image) card.getImage()).getUrl();
+                url = url.substring(url.indexOf("/Effect"));
+                System.out.println(url);
 
-            selectEffect(card);
+                selectEffect(card);
 
-            switch (effectPaths.get(url))
-            {
-                case "CAVALIER":
-                case "CENTAUR":
-                case "VILLAIN":
-                case "MAGICIAN":
-                    if (ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|"+effectPaths.get(url)))
-                    {
-                        return;
+                switch (effectPaths.get(url))
+                {
+                    case "CAVALIER":
+                    case "CENTAUR":
+                    case "VILLAIN":
+                    case "MAGICIAN":
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|"+effectPaths.get(url));
+                        break;
+                    case "MONK":
+                        bannerMessage("Move a student from the card to an Island");
+                        //((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                        break;
+                    case "QUEEN":
+                        bannerMessage("Click on the student you want to move to your tables!");
+                        //((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
+                        break;
+                    case "LADY":
+                        bannerMessage("Click on the island to lock!");
+                        islandClickable = true;
+                        while (clickedIsland == -1) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            System.out.println("waiting click on island");
+                        }
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|LADY|"+(clickedIsland-1));
+                        islandClickable = false;
+                        break;
+                    case "JOLLY":
+                        bannerMessage("Switch up to tree couples of students from the card to your entrance");
+                        //((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                        //if (message.size()>6)
+                        //    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(6)), Integer.parseInt(message.get(7)));
+                        //if (message.size()>8)
+                        //    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(8)), Integer.parseInt(message.get(9)));
+                        break;
+                    case "LORD":
+                        bannerMessage("Click on the desired island!");
+                        //((GameClassExpert)newGame).lordEffect(Integer.parseInt(message.get(4)));
+                        break;
+                    case "COOK":
+                        bannerMessage("Choose the desired color!");
+                        //((GameClassExpert)newGame).cookEffect(ColoredDisc.valueOf(message.get(4)));
+                        break;
+                    case "BANDIT":
+                        bannerMessage("Choose a color!");
+
+                        //((GameClassExpert)newGame).banditEffect(ColoredDisc.valueOf(message.get(4)));
+                        break;
+                    case "MUSICIAN":
+                        bannerMessage("You can switch up to two couples of students between the dashboard and the tables");
+                    /*((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(4)), ColoredDisc.valueOf(message.get(5)));
+                    if (message.size()>6)
+                        ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(6)), ColoredDisc.valueOf(message.get(7)));*/
+                        break;
+                    default:
+                        break;
+                }
+
+
+                entranceClickable = oldEntranceClickable;
+                cloudClickable = oldCloudClickable;
+                islandClickable = oldIslandClickable;
+                tablesClickable = oldTablesClickable;
+
+                clickedCard= oldClickedCard;
+                clickedIsland= oldClickedIsland;
+                clickedEntrance=oldClickedEntrance;
+                tablesClicked=oldTablesClicked;
+                clickedCloud=oldClickedCloud;
+                runningEffect = false;
+                if (!success)
+                {//effectFailed();
+                    String previousMessage = bannerText.getText();
+                    bannerMessage("Unable to play effect card!");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    break;
-            /*case "MONK":
-                ((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
-                break;
-            case "QUEEN":
-                ((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
-                break;
-            case "LADY":
-                ((GameClassExpert)newGame).ladyEffect(Integer.parseInt(message.get(4)));
-                break;
-            case "JOLLY":
-                ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
-                if (message.size()>6)
-                    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(6)), Integer.parseInt(message.get(7)));
-                if (message.size()>8)
-                    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(8)), Integer.parseInt(message.get(9)));
-                break;
-            case "LORD":
-                ((GameClassExpert)newGame).lordEffect(Integer.parseInt(message.get(4)));
-                break;
-            case "COOK":
-                ((GameClassExpert)newGame).cookEffect(ColoredDisc.valueOf(message.get(4)));
-                break;
-            case "BANDIT":
-                ((GameClassExpert)newGame).banditEffect(ColoredDisc.valueOf(message.get(4)));
-                break;
-            case "MUSICIAN":
-                ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(4)), ColoredDisc.valueOf(message.get(5)));
-                if (message.size()>6)
-                    ((GameClassExpert)newGame).musicianEffect(playerID, Integer.parseInt(message.get(6)), ColoredDisc.valueOf(message.get(7)));
-                break;*/
-                default:
-                    break;
+                    //bannerMessage(oldBanner);
+                    resetEffects();
+                }
+                bannerMessage(oldBanner);
+                return null;
             }
-
-            effectFailed();
-        });
+        };
+        new Thread(effectTask).start();
     }
 
     /**
@@ -670,12 +762,46 @@ public class GameMapController
 
             for (int i=0; i<3; i++)
             {
+                jEffectCard effect = gameData.ChosenCards.get(i);
+
                 for (Map.Entry<String,String> entry: effectPaths.entrySet())
                 {
-                    if (gameData.ChosenCards.get(i).ID.toString().equals(entry.getValue()))
+                    if (effect.ID.toString().equals(entry.getValue()))
                     {
                         effectList.get(i).setImage(new Image(entry.getKey()));
                     }
+                }
+
+                usedEffectList.get(i).setVisible(effect.used);
+
+                switch (effect.ID)
+                {
+                    case LADY:
+                        for (int k=0; k<6; k++)
+                            if (k<effect.prohibitionCard)
+                            {
+                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(new Image(denialPath));
+                            }
+                            else
+                            {
+                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(null);
+                            }
+                        break;
+                    case MONK:
+                    case QUEEN:
+                    case JOLLY:
+                        for (int k=0; k< effect.students.length; k++)
+                            if (effect.students[k] != null)
+                            {
+                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(new Image(studentsPath.get(effect.students[k])));
+                            }
+                            else
+                            {
+                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(null);
+                            }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -886,7 +1012,7 @@ public class GameMapController
             lockGui();
             entranceClickable = true;
 
-            while (clickedEntrance ==-1)
+            while (clickedEntrance ==-1 || runningEffect)
             {
                 try {
                     Thread.sleep(100);
@@ -900,7 +1026,7 @@ public class GameMapController
             islandClickable = true;
             tablesClickable = true;
 
-            while (clickedIsland == -1 && !tablesClicked)
+            while ((clickedIsland == -1 && !tablesClicked) || runningEffect)
             {
                 try {
                     Thread.sleep(100);
@@ -966,7 +1092,7 @@ public class GameMapController
             lockGui();
             islandClickable = true;
 
-            while (clickedIsland ==-1)
+            while (clickedIsland ==-1 || runningEffect)
             {
                 try {
                     Thread.sleep(100);
@@ -1007,7 +1133,7 @@ public class GameMapController
             lockGui();
             cloudClickable = true;
 
-            while (clickedCloud ==-1)
+            while (clickedCloud ==-1 || runningEffect)
             {
                 try {
                     Thread.sleep(100);
@@ -1044,25 +1170,25 @@ public class GameMapController
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
     {
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
         ImageView image = (ImageView) mouseEvent.getSource();
-        for(ImageView img : deck)
-        {
-            if(img.equals(image))
-            {
-                img.setScaleY(1.1);
-                img.setScaleX(1.1);
-            }
-        }
+        image.setScaleX(1.1);
+        image.setScaleY(1.1);
     }
 
     @FXML
     private void mouseExited(MouseEvent mouseEvent)
     {
-        for(ImageView img : deck)
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
+        ImageView image = (ImageView) mouseEvent.getSource();
+        image.setScaleX(1);
+        image.setScaleY(1);
+        /*for(ImageView img : deck)
         {
             img.setScaleY(1);
             img.setScaleX(1);
         }
+        for(ImageView img : )*/
     }
     
     public void bannerMessage(String text)

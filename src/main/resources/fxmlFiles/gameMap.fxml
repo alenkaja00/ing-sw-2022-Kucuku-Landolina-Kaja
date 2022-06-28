@@ -343,21 +343,57 @@
                   <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fx:id="effectOne" onMouseClicked="#effectClicked" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-                     <image>
-                        <Image url="@../Effects/lord.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="effectTwo" onMouseClicked="#effectClicked" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                     <image>
-                        <Image url="@../Effects/musician.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="effectThree" onMouseClicked="#effectClicked" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                     <image>
-                        <Image url="@../Effects/queen.jpg" />
-                     </image>
-                  </ImageView>
+                  <StackPane GridPane.columnIndex="0" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
+                     <ImageView fx:id="effectOne" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
+                     </ImageView>
+                     <ImageView fx:id="usedEffectOne" StackPane.alignment="TOP_RIGHT" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <image>
+                           <Image url="@../usedCoins.png" />
+                        </image>
+                     </ImageView>
+                     <TilePane fx:id="effectPane1" alignment="CENTER" StackPane.alignment="BOTTOM_RIGHT" maxWidth="${effectOne.fitWidth*0.3}" maxHeight="${effectOne.fitWidth*0.3}">
+                        <ImageView fitWidth="${effectOne.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectOne.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectOne.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectOne.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectOne.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectOne.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                     </TilePane>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="1" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
+                     <ImageView fx:id="effectTwo" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
+                     </ImageView>
+                     <ImageView fx:id="usedEffectTwo" StackPane.alignment="TOP_RIGHT" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <image>
+                           <Image url="@../usedCoins.png" />
+                        </image>
+                     </ImageView>
+                     <TilePane fx:id="effectPane2" alignment="CENTER" StackPane.alignment="BOTTOM_RIGHT" maxWidth="${effectOne.fitWidth*0.3}" maxHeight="${effectOne.fitWidth*0.3}">
+                        <ImageView fitWidth="${effectTwo.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectTwo.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectTwo.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectTwo.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectTwo.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectTwo.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                     </TilePane>
+                  </StackPane>
+                  <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
+                     <ImageView fx:id="effectThree" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
+                     </ImageView>
+                     <ImageView fx:id="usedEffectThree" StackPane.alignment="TOP_RIGHT" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <image>
+                           <Image url="@../usedCoins.png" />
+                        </image>
+                     </ImageView>
+                     <TilePane fx:id="effectPane3" alignment="CENTER" StackPane.alignment="BOTTOM_RIGHT" maxWidth="${effectOne.fitWidth*0.3}" maxHeight="${effectOne.fitWidth*0.3}">
+                        <ImageView fitWidth="${effectThree.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectThree.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectThree.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectThree.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectThree.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                        <ImageView fitWidth="${effectThree.fitWidth*0.2}" preserveRatio="true" onMouseClicked="#effectChildClicked"></ImageView>
+                     </TilePane>
+                  </StackPane>
                </children>
                <VBox.margin>
                   <Insets top="20" right="40" bottom="20" left="40"></Insets>
