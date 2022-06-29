@@ -346,7 +346,7 @@
                   <StackPane GridPane.columnIndex="0" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectOne" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
-                     <ImageView fx:id="usedEffectOne" StackPane.alignment="TOP_RIGHT" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <ImageView fx:id="usedEffectOne" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                            <Image url="@../usedCoins.png" />
                         </image>
@@ -363,7 +363,7 @@
                   <StackPane GridPane.columnIndex="1" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectTwo" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
-                     <ImageView fx:id="usedEffectTwo" StackPane.alignment="TOP_RIGHT" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <ImageView fx:id="usedEffectTwo" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                            <Image url="@../usedCoins.png" />
                         </image>
@@ -380,7 +380,7 @@
                   <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectThree" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
-                     <ImageView fx:id="usedEffectThree" StackPane.alignment="TOP_RIGHT" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <ImageView fx:id="usedEffectThree" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                            <Image url="@../usedCoins.png" />
                         </image>

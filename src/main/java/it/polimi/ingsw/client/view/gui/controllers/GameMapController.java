@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import com.google.gson.Gson;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.jsonObjects.*;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
@@ -9,6 +10,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -17,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.*;
@@ -254,6 +257,8 @@ public class GameMapController
     private Boolean expertMode = false;
     private Boolean effectPlayed = false;
     private Boolean runningEffect = false;
+    private ColoredDisc clickedEffectChild = null;
+    private StackPane clickedEffectParent = null;
 
     private int clickedCard = -1;
 
@@ -588,9 +593,15 @@ public class GameMapController
     }
 
     @FXML
-    private void effectChildClicked()
+    private void effectChildClicked(MouseEvent mouseEvent)
     {
-
+        ImageView sourceImage = (ImageView) mouseEvent.getSource();
+        String source = (sourceImage).getImage().getUrl();
+        String sourceUrl = source.substring(source.indexOf("/Student"));
+        //System.out.println(sourceUrl);
+        clickedEffectChild = studentsPath.entrySet().stream().filter(x->x.getValue().equals(sourceUrl)).map(x->x.getKey()).collect(Collectors.toList()).get(0);
+        //System.out.println(clickedEffectChild);
+        clickedEffectParent = (StackPane)((TilePane) sourceImage.getParent()).getParent();
     }
 
     public void effectClicked(MouseEvent mouseEvent)
@@ -637,14 +648,6 @@ public class GameMapController
                     case "MAGICIAN":
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|"+effectPaths.get(url));
                         break;
-                    case "MONK":
-                        bannerMessage("Move a student from the card to an Island");
-                        //((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
-                        break;
-                    case "QUEEN":
-                        bannerMessage("Click on the student you want to move to your tables!");
-                        //((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
-                        break;
                     case "LADY":
                         bannerMessage("Click on the island to lock!");
                         islandClickable = true;
@@ -654,10 +657,56 @@ public class GameMapController
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            System.out.println("waiting click on island");
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|LADY|"+(clickedIsland-1));
                         islandClickable = false;
+                        break;
+                    case "LORD":
+                        bannerMessage("Click on the island to evalutate!");
+                        islandClickable = true;
+                        while (clickedIsland == -1) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|LORD|"+(clickedIsland-1));
+                        islandClickable = false;
+                        break;
+                    case "COOK":
+                        clickedEffectParent = null;
+                        clickedEffectChild = null;
+                        bannerMessage("Choose the color to block!");
+                        while (clickedEffectChild == null || clickedEffectParent != ((StackPane)card.getParent()))
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|COOK|"+clickedEffectChild.toString());
+                        break;
+                    case "BANDIT":
+                        clickedEffectParent = null;
+                        clickedEffectChild = null;
+                        bannerMessage("Choose the color to steal!");
+                        while (clickedEffectChild == null || clickedEffectParent != ((StackPane)card.getParent()))
+                        {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|BANDIT|"+clickedEffectChild.name());
+                        break;
+                    case "MONK":
+                        bannerMessage("Move a student from the card to an Island");
+                        //((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                        break;
+                    case "QUEEN":
+                        bannerMessage("Click on the student you want to move to your tables!");
+                        //((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
                         break;
                     case "JOLLY":
                         bannerMessage("Switch up to tree couples of students from the card to your entrance");
@@ -666,19 +715,6 @@ public class GameMapController
                         //    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(6)), Integer.parseInt(message.get(7)));
                         //if (message.size()>8)
                         //    ((GameClassExpert)newGame).jollyEffectCall(playerID, Integer.parseInt(message.get(8)), Integer.parseInt(message.get(9)));
-                        break;
-                    case "LORD":
-                        bannerMessage("Click on the desired island!");
-                        //((GameClassExpert)newGame).lordEffect(Integer.parseInt(message.get(4)));
-                        break;
-                    case "COOK":
-                        bannerMessage("Choose the desired color!");
-                        //((GameClassExpert)newGame).cookEffect(ColoredDisc.valueOf(message.get(4)));
-                        break;
-                    case "BANDIT":
-                        bannerMessage("Choose a color!");
-
-                        //((GameClassExpert)newGame).banditEffect(ColoredDisc.valueOf(message.get(4)));
                         break;
                     case "MUSICIAN":
                         bannerMessage("You can switch up to two couples of students between the dashboard and the tables");
@@ -794,6 +830,19 @@ public class GameMapController
                             if (effect.students[k] != null)
                             {
                                 ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(new Image(studentsPath.get(effect.students[k])));
+                            }
+                            else
+                            {
+                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(null);
+                            }
+                        break;
+                    case COOK:
+                    case BANDIT:
+                        ArrayList<ColoredDisc> colorsArray = (ArrayList<ColoredDisc>) Arrays.stream(ColoredDisc.values()).collect(Collectors.toList());
+                        for (int k=0; k<6; k++)
+                            if (k<5)
+                            {
+                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(new Image(studentsPath.get(colorsArray.get(k))));
                             }
                             else
                             {
@@ -1172,6 +1221,10 @@ public class GameMapController
     {
         if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
         ImageView image = (ImageView) mouseEvent.getSource();
+        DropShadow effect = new DropShadow();
+        effect.setColor(Color.YELLOW);
+        effect.setRadius(30);
+        image.setEffect(effect);
         image.setScaleX(1.1);
         image.setScaleY(1.1);
     }
@@ -1183,6 +1236,7 @@ public class GameMapController
         ImageView image = (ImageView) mouseEvent.getSource();
         image.setScaleX(1);
         image.setScaleY(1);
+        image.setEffect(null);
         /*for(ImageView img : deck)
         {
             img.setScaleY(1);
