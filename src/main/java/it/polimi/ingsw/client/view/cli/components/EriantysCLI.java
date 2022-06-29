@@ -50,8 +50,6 @@ public class EriantysCLI {
     public ArrayList<String> effectCardElement(EffectName ID, int price, boolean used, ColoredDisc[] students, int prohibition) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> cardStudents = new ArrayList<>();
-        //if the cards has disks on it this will contain the text "STUDENTS:"
-        String labelStudents = "  ║                   ║";
         //fit the name with the shape of the card
         String id = ID.toString();
 
@@ -64,37 +62,40 @@ public class EriantysCLI {
         }
 
         if (students != null) {
-            labelStudents = "  ║ STUDENTS          ║";
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < students.length; i++) {
                 if (students[i]!=null) {
                     switch (students[i].toString()) {
                         case "BLUE":
-                            cardStudents.add(ANSIColor.CYAN + "X" + ANSIColor.RESET);
+                            cardStudents.add(i +":"+ ANSIColor.CYAN + "X" + ANSIColor.RESET);
                             break;
                         case "PINK":
-                            cardStudents.add(ANSIColor.PURPLE_BRIGHT + "X" + ANSIColor.RESET);
+                            cardStudents.add(i +":"+ANSIColor.PURPLE_BRIGHT + "X" + ANSIColor.RESET);
                             break;
                         case "RED":
-                            cardStudents.add(ANSIColor.RED + "X" + ANSIColor.RESET);
+                            cardStudents.add(i +":"+ANSIColor.RED + "X" + ANSIColor.RESET);
                             break;
                         case "YELLOW":
-                            cardStudents.add(ANSIColor.YELLOW + "X" + ANSIColor.RESET);
+                            cardStudents.add(i +":"+ANSIColor.YELLOW + "X" + ANSIColor.RESET);
                             break;
                         case "GREEN":
-                            cardStudents.add(ANSIColor.GREEN + "X" + ANSIColor.RESET);
+                            cardStudents.add(i +":"+ANSIColor.GREEN + "X" + ANSIColor.RESET);
                             break;
                     }
-                } else cardStudents.add(" ");
+                } else cardStudents.add("   ");
+            }
+            for(int l=students.length; l<6; l++)
+            {
+                cardStudents.add("   ");
             }
         } else {
-            for (int i = 0; i < 6; i++) cardStudents.add(" ");
+            for (int i = 0; i < 6; i++) cardStudents.add("   ");
         }
         result.add("  ╔═══════════════════╗");
         result.add("  ║ PRICE        NAME ║");
         result.add("  ║   " + price + spaces + id + " ║");
         result.add("  ║ " +    coin   + " ║");
-        result.add(labelStudents);
-        result.add("  ║ " + cardStudents.get(0) + " " + cardStudents.get(1) + " " + cardStudents.get(2) + " " + cardStudents.get(3) + " "+cardStudents.get(4) + " "+ cardStudents.get(5) +"       ║");
+        result.add("  ║ "+ cardStudents.get(0) +"  "+ cardStudents.get(1) +"  "+ cardStudents.get(2) +"  "+ cardStudents.get(3) +"║");
+        result.add("  ║     "+ cardStudents.get(4) +"  "+ cardStudents.get(5) +"      ║");
         result.add("  ╚═══════════════════╝");
         result.add(" ");
         return result;
@@ -184,23 +185,23 @@ public class EriantysCLI {
             if (i < entrance.length && entrance[i] != null) {
                 switch (entrance[i]) {
                     case PINK:
-                        cliEntrance.add(ANSIColor.PURPLE_BRIGHT + "X" + ANSIColor.RESET);
+                        cliEntrance.add(i+":"+ANSIColor.PURPLE_BRIGHT + "X" + ANSIColor.RESET);
                         break;
                     case BLUE:
-                        cliEntrance.add(ANSIColor.CYAN + "X" + ANSIColor.RESET);
+                        cliEntrance.add(i+":"+ANSIColor.CYAN + "X" + ANSIColor.RESET);
                         break;
                     case RED:
-                        cliEntrance.add(ANSIColor.RED + "X" + ANSIColor.RESET);
+                        cliEntrance.add(i+":"+ANSIColor.RED + "X" + ANSIColor.RESET);
                         break;
                     case GREEN:
-                        cliEntrance.add(ANSIColor.GREEN + "X" + ANSIColor.RESET);
+                        cliEntrance.add(i+":"+ANSIColor.GREEN + "X" + ANSIColor.RESET);
                         break;
                     case YELLOW:
-                        cliEntrance.add(ANSIColor.YELLOW + "X" + ANSIColor.RESET);
+                        cliEntrance.add(i+":"+ANSIColor.YELLOW + "X" + ANSIColor.RESET);
                         break;
                 }
             } else {
-                cliEntrance.add(" ");
+                cliEntrance.add("   ");
             }
         }
         for (ColoredDisc disc : tables.keySet()) {
@@ -246,15 +247,15 @@ public class EriantysCLI {
         if(expert) result.add(" ║   COINS AMOUNT: " + coins + "                                   ");
         result.add(" ╔═════════╦═════════════════════╦═══════════╦═══════╗ ");
         result.add(" ║Entrance ║Tables               ║Professors ║Towers ║ ");
-        result.add(" ║   0:" + cliEntrance.get(0) +  "   ║ " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "║     " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + "     ║  " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║   " + cliEntrance.get(0) +  "   ║ " + ANSIColor.GREEN + cliTables.get("GREEN") + ANSIColor.RESET + "║     " + ANSIColor.GREEN + cliProfessors.get("GREEN") + ANSIColor.RESET + "     ║  " + cliTowers.get(0) + " " + cliTowers.get(1) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║ 1:" + cliEntrance.get(1) + " 2:" + cliEntrance.get(2) + " ║ " + ANSIColor.RED + cliTables.get("RED") + ANSIColor.RESET + "║     " +ANSIColor.RED + cliProfessors.get("RED") + ANSIColor.RESET + "     ║  " + cliTowers.get(2) + " " + cliTowers.get(3) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║ " + cliEntrance.get(1) + " " + cliEntrance.get(2) + " ║ " + ANSIColor.RED + cliTables.get("RED") + ANSIColor.RESET + "║     " +ANSIColor.RED + cliProfessors.get("RED") + ANSIColor.RESET + "     ║  " + cliTowers.get(2) + " " + cliTowers.get(3) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║ 3:" + cliEntrance.get(3) + " 4:" + cliEntrance.get(4) + " ║ " + ANSIColor.YELLOW + cliTables.get("YELLOW") + ANSIColor.RESET +  "║     " + ANSIColor.YELLOW + cliProfessors.get("YELLOW") + ANSIColor.RESET + "     ║  " + cliTowers.get(4) + " " + cliTowers.get(5) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║ " + cliEntrance.get(3) + " " + cliEntrance.get(4) + " ║ " + ANSIColor.YELLOW + cliTables.get("YELLOW") + ANSIColor.RESET +  "║     " + ANSIColor.YELLOW + cliProfessors.get("YELLOW") + ANSIColor.RESET + "     ║  " + cliTowers.get(4) + " " + cliTowers.get(5) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║ 5:" + cliEntrance.get(5) + " 6:" + cliEntrance.get(6) + " ║ " + ANSIColor.PURPLE_BRIGHT + cliTables.get("PINK") + ANSIColor.RESET +  "║     " + ANSIColor.PURPLE_BRIGHT + cliProfessors.get("PINK") + ANSIColor.RESET + "     ║  " + cliTowers.get(6) + " " + cliTowers.get(7) + ANSIColor.RESET + "  ║ ");
+        result.add(" ║ " + cliEntrance.get(5) + " " + cliEntrance.get(6) + " ║ " + ANSIColor.PURPLE_BRIGHT + cliTables.get("PINK") + ANSIColor.RESET +  "║     " + ANSIColor.PURPLE_BRIGHT + cliProfessors.get("PINK") + ANSIColor.RESET + "     ║  " + cliTowers.get(6) + " " + cliTowers.get(7) + ANSIColor.RESET + "  ║ ");
         result.add(" ║---------║---------------------║-----------║-------║ ");
-        result.add(" ║ 7:" + cliEntrance.get(7) + " 8:" + cliEntrance.get(8) + " ║ " + ANSIColor.CYAN + cliTables.get("BLUE") + ANSIColor.RESET +  "║     " + ANSIColor.CYAN + cliProfessors.get("BLUE") + ANSIColor.RESET + "     ║  " + "     ║ ");
+        result.add(" ║ " + cliEntrance.get(7) + " " + cliEntrance.get(8) + " ║ " + ANSIColor.CYAN + cliTables.get("BLUE") + ANSIColor.RESET +  "║     " + ANSIColor.CYAN + cliProfessors.get("BLUE") + ANSIColor.RESET + "     ║  " + "     ║ ");
         result.add(" ╚═════════╩═════════════════════╩═══════════╩═══════╝ ");
 
         return (ArrayList<String>) result.clone();
