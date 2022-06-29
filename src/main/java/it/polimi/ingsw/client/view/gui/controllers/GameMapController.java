@@ -1,7 +1,6 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import com.google.gson.Gson;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.jsonObjects.*;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
@@ -24,8 +23,6 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static it.polimi.ingsw.server.model.cards.EffectName.*;
 
 /**
  * this class shows the main game screen, with all the dashboards, clouds, islands, ecc.
@@ -257,7 +254,8 @@ public class GameMapController
     private Boolean expertMode = false;
     private Boolean effectPlayed = false;
     private Boolean runningEffect = false;
-    private ColoredDisc clickedEffectChild = null;
+    private ColoredDisc clickedEffectChildValue = null;
+    private ImageView clickedEffectChildImage = null;
     private StackPane clickedEffectParent = null;
 
     private int clickedCard = -1;
@@ -595,13 +593,13 @@ public class GameMapController
     @FXML
     private void effectChildClicked(MouseEvent mouseEvent)
     {
-        ImageView sourceImage = (ImageView) mouseEvent.getSource();
-        String source = (sourceImage).getImage().getUrl();
+        clickedEffectChildImage = (ImageView) mouseEvent.getSource();
+        String source = (clickedEffectChildImage).getImage().getUrl();
         String sourceUrl = source.substring(source.indexOf("/Student"));
         //System.out.println(sourceUrl);
-        clickedEffectChild = studentsPath.entrySet().stream().filter(x->x.getValue().equals(sourceUrl)).map(x->x.getKey()).collect(Collectors.toList()).get(0);
+        clickedEffectChildValue = studentsPath.entrySet().stream().filter(x->x.getValue().equals(sourceUrl)).map(x->x.getKey()).collect(Collectors.toList()).get(0);
         //System.out.println(clickedEffectChild);
-        clickedEffectParent = (StackPane)((TilePane) sourceImage.getParent()).getParent();
+        clickedEffectParent = (StackPane)((TilePane) clickedEffectChildImage.getParent()).getParent();
     }
 
     public void effectClicked(MouseEvent mouseEvent)
@@ -676,21 +674,21 @@ public class GameMapController
                         break;
                     case "COOK":
                         clickedEffectParent = null;
-                        clickedEffectChild = null;
+                        clickedEffectChildValue = null;
                         bannerMessage("Choose the color to block!");
-                        while (clickedEffectChild == null || clickedEffectParent != ((StackPane)card.getParent()))
+                        while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane)card.getParent()))
                             try {
                                 Thread.sleep(100);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|COOK|"+clickedEffectChild.toString());
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|COOK|"+ clickedEffectChildValue.toString());
                         break;
                     case "BANDIT":
                         clickedEffectParent = null;
-                        clickedEffectChild = null;
+                        clickedEffectChildValue = null;
                         bannerMessage("Choose the color to steal!");
-                        while (clickedEffectChild == null || clickedEffectParent != ((StackPane)card.getParent()))
+                        while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane)card.getParent()))
                         {
                             try {
                                 Thread.sleep(100);
@@ -698,15 +696,46 @@ public class GameMapController
                                 e.printStackTrace();
                             }
                         }
-                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|BANDIT|"+clickedEffectChild.name());
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|BANDIT|"+ clickedEffectChildValue.name());
                         break;
-                    case "MONK":
-                        bannerMessage("Move a student from the card to an Island");
-                        //((GameClassExpert)newGame).monkEffect(Integer.parseInt(message.get(4)), Integer.parseInt(message.get(5)));
+                    case "MONK": {
+                        clickedEffectParent = null;
+                        clickedEffectChildValue = null;
+                        bannerMessage("Choose the student you want to move!");
+                        while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane) card.getParent())) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        int clickedIndex = ((TilePane) clickedEffectChildImage.getParent()).getChildren().indexOf(clickedEffectChildImage);
+                        bannerMessage("Select the destination island!");
+                        islandClickable = true;
+                        while (clickedIsland == -1) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        islandClickable = false;
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|MONK|" + (clickedIsland-1) + "|" + clickedIndex);
+                    }
                         break;
-                    case "QUEEN":
+                    case "QUEEN": {
+                        clickedEffectParent = null;
+                        clickedEffectChildValue = null;
                         bannerMessage("Click on the student you want to move to your tables!");
-                        //((GameClassExpert)newGame).queenEffect(playerID, Integer.parseInt(message.get(4)));
+                        while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane) card.getParent())) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|QUEEN|" + ((TilePane) clickedEffectChildImage.getParent()).getChildren().indexOf(clickedEffectChildImage));
+                    }
                         break;
                     case "JOLLY":
                         bannerMessage("Switch up to tree couples of students from the card to your entrance");
@@ -1232,7 +1261,9 @@ public class GameMapController
     @FXML
     private void mouseExited(MouseEvent mouseEvent)
     {
-        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
+        if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
+
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         image.setScaleX(1);
         image.setScaleY(1);
