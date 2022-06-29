@@ -346,7 +346,7 @@
                   <StackPane GridPane.columnIndex="0" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectOne" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
-                     <ImageView fx:id="usedEffectOne" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <ImageView fx:id="usedEffectOne" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" fitHeight="${cardsGrid.width*0.1}" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                            <Image url="@../usedCoins.png" />
                         </image>
@@ -363,7 +363,7 @@
                   <StackPane GridPane.columnIndex="1" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectTwo" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
-                     <ImageView fx:id="usedEffectTwo" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <ImageView fx:id="usedEffectTwo" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" fitHeight="${cardsGrid.width*0.1}" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                            <Image url="@../usedCoins.png" />
                         </image>
@@ -380,7 +380,7 @@
                   <StackPane GridPane.columnIndex="2" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectThree" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
-                     <ImageView fx:id="usedEffectThree" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <ImageView fx:id="usedEffectThree" StackPane.alignment="BOTTOM_CENTER" fitWidth="${cardsGrid.width*0.08}" fitHeight="${cardsGrid.width*0.1}" pickOnBounds="true" preserveRatio="true" visible="false">
                         <image>
                            <Image url="@../usedCoins.png" />
                         </image>
@@ -480,166 +480,166 @@
                                           <RowConstraints minHeight="0.0" percentHeight="12.5" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables0" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables0"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables1" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables1"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables2" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables2"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables3" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables3"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables4" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables4"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables5" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables5"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables6" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables6"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables7" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables7"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables8" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables8"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables9" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="1"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables9"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors0" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="1"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables10" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables10"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables11" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables11"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables12" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables12"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables13" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables13"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables14" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables14"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables15" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables15"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables16" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables16"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables17" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables17"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables18" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables18"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables19" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="3"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables19"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors1" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="3"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables20" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables20"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables21" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables21"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables22" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables22"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables23" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables23"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables24" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables24"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables25" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables25"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables26" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables26"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables27" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables27"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables28" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables28"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables29" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="5"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables29"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors2" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="5"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables30" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables30"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables31" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables31"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables32" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables32"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables33" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables33"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables34" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables34"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables35" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables35"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables36" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables36"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables37" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables37"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables38" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables38"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables39" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="7"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables39"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors3" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="7"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables40" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables40"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables41" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables41"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables42" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables42"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables43" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables43"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables44" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables44"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables45" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables45"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="10" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables46" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables46"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="11" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables47" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables47"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="12" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables48" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables48"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="13" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
-                                          <ImageView fx:id="dashboard1Tables49" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="9"></ImageView>
+                                          <ImageView fx:id="dashboard1Tables49"  onMouseClicked="#tableStudentClicked" fitHeight="${dashboard1.fitWidth*0.047}" fitWidth="${dashboard1.fitWidth*0.047}" pickOnBounds="true" GridPane.columnIndex="14" GridPane.rowIndex="9"></ImageView>
                                        </children>
                                        <children>
                                           <ImageView fx:id="dashboard1Professors4" fitHeight="${dashboard1.fitWidth*0.0455}" fitWidth="${dashboard1.fitWidth*0.0455}" pickOnBounds="true" GridPane.columnIndex="16" GridPane.rowIndex="9"></ImageView>
