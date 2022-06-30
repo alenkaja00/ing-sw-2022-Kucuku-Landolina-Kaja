@@ -2,15 +2,18 @@ package it.polimi.ingsw.server.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.*;
 
 public class ClientManager implements Runnable{
 
     private String nickname = null;
     private Socket socket;
-    ServerController controller;
-    PrintWriter socketOut;
+    private Scanner socketIn;
+    private ServerController controller;
+    private PrintWriter socketOut;
     private boolean online;
 
     public ClientManager(Socket socket, ServerController controller) throws IOException {
@@ -23,12 +26,41 @@ public class ClientManager implements Runnable{
     {
         online = true;
         System.out.println("Connection established");
-        Scanner socketIn = null;
+        socketIn = null;
         try {
             socketIn = new Scanner(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        new Thread(()->{
+            InetAddress inet = null;
+            while (true)
+            {
+                try {
+                    Thread.sleep(15000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    inet = InetAddress.getByName(String.valueOf(socket.getInetAddress()).substring(1));
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (inet== null || !inet.isReachable(5000))
+                    {
+                        catchException();
+                        finalException();
+                    }
+                } catch (IOException e) {
+                    //e.printStackTrace();
+                    System.out.println("network disconnection");
+                }
+            }
+        }).start();
+
+
         try {
             while (true) {
                 //setup nickname && subscription to controller clientSockets list
@@ -57,19 +89,29 @@ public class ClientManager implements Runnable{
                 controller.parseMessage(receivedMessage);
             }
         } catch(Exception e) {
-            //e.printStackTrace();
-            System.out.println("Client "+nickname+" disconnected");
-            if (nickname!= null)
-                controller.managePlayerDisconnection(nickname);
-            online = false;
+            catchException();
         } finally {
-            socketIn.close();
-            socketOut.close();
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            finalException();
+        }
+    }
+
+    private void catchException()
+    {
+        //e.printStackTrace();
+        System.out.println("Client "+nickname+" disconnected");
+        if (nickname!= null)
+            controller.managePlayerDisconnection(nickname);
+        online = false;
+    }
+
+    private void finalException()
+    {
+        socketIn.close();
+        socketOut.close();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

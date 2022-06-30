@@ -2,13 +2,16 @@ package it.polimi.ingsw.client.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.file.FileStore;
 import java.util.*;
 
 public class ClientNetwork{
 
     Socket socket;
+    Scanner socketIn;
     ClientController controller;
     PrintWriter socketOut;
     Boolean connected = false;
@@ -17,11 +20,38 @@ public class ClientNetwork{
         this.socket = new Socket(ip, port);
         this.controller = controller;
         socketOut = new PrintWriter(socket.getOutputStream());
-        Scanner socketIn = new Scanner(socket.getInputStream());
+        socketIn = new Scanner(socket.getInputStream());
+        connected = true;
+
+        new Thread(()->{
+            InetAddress inet = null;
+            while (true)
+            {
+                try {
+                    Thread.sleep(15000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    inet = InetAddress.getByName(ip);
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (inet== null || !inet.isReachable(5000))
+                    {
+                        catchException();
+                        finalException();
+                    }
+                } catch (IOException e) {
+                    //e.printStackTrace();
+                    System.out.println("network disconnection");
+                }
+            }
+        }).start();
 
         new Thread(()->{
             //System.out.println("Connection established");
-            connected = true;
             try
             {
                 //manage reconnection
@@ -40,25 +70,35 @@ public class ClientNetwork{
             }
             catch(Exception e)
             {
-                e.printStackTrace();
-                System.out.println("Connection closed");
-                controller.playerDisconnected();
-                controller.lockGUI();
-                connected = false;
+                catchException();
             }
             finally
             {
-                socketIn.close();
-                socketOut.close();
-                try {
-                    socket.close();
-                } catch (IOException e) {
-                    //e.printStackTrace();
-                }
+                finalException();
             }
         }).start();
 
         //Executors.newCachedThreadPool().execute(new ServerManager(socket, controller));
+    }
+
+    private void catchException()
+    {
+        //e.printStackTrace();
+        System.out.println("Connection closed");
+        controller.playerDisconnected();
+        controller.lockGUI();
+        connected = false;
+    }
+
+    private void finalException()
+    {
+        socketIn.close();
+        socketOut.close();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            //e.printStackTrace();
+        }
     }
 
     public void sendMessage(String message) {
