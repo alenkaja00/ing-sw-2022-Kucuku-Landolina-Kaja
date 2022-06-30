@@ -60,7 +60,7 @@ public class GameClassExpert extends GameClass
         //ChosenCards.add(new EffectCard(EffectName.LORD));
         //ChosenCards.add(new EffectCard(EffectName.COOK));
         //ChosenCards.add(new EffectCard(EffectName.BANDIT));
-        ChosenCards.add(new EffectCard(EffectName.MONK));
+        ChosenCards.add(new EffectCard(EffectName.MUSICIAN));
         ChosenCards.add(new EffectCard(EffectName.QUEEN));
         ChosenCards.add(new EffectCard(EffectName.JOLLY));
 

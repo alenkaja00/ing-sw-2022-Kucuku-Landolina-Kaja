@@ -879,20 +879,26 @@ public class GameMapController
                                 e.printStackTrace();
                             }
                         }
+                        if(gameData.players.stream().filter(x->x.nickname.equals(clientController.getNickname())).collect(Collectors.toList()).get(0).myDashboard.tables.entrySet().stream().mapToInt(x->x.getValue()).sum() < musicianCondition.counter )
+                        {
+                            success = false;
+                            break;
+                        }
 
                         for (int i=0; i<musicianCondition.counter; i++)
                         {
-                            clickedEffectParent = null;
-                            clickedEffectChildValue = null;
+                            resetClickedValues();
+                            entranceClickable = true;
+
                             bannerMessage("Choose the student you want to move! ("+(musicianCondition.counter-i)+" left)");
-                            while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane) card.getParent())) {
+                            while (clickedEntrance ==-1 ) {
                                 try {
                                     Thread.sleep(100);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
-                            musicianMessage += "|" + ((TilePane) clickedEffectChildImage.getParent()).getChildren().indexOf(clickedEffectChildImage);
+                            musicianMessage += "|" + clickedEntrance;
                             tableStudent = null;
                             while (tableStudent == null) {
                                 try {
