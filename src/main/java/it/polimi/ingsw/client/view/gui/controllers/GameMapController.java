@@ -7,10 +7,7 @@ import it.polimi.ingsw.server.model.components.ColoredDisc;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -536,18 +533,15 @@ public class GameMapController
     {
         if(!cloudClickable) return;
         int index = -1;
-        String version = "";
 
         for(int i=0;i<CloudTwoGrids.size();i++) {
             if (mouseEvent.getSource().equals(CloudTwoGrids.get(i))) {
                 index = i;
-                version = "TwoPlayers";
             }
         }
         for(int i=0;i<CloudThreeGrids.size();i++) {
             if (mouseEvent.getSource().equals(CloudThreeGrids.get(i))) {
                 index = i;
-                version = "ThreePlayers";
             }
         }
 
@@ -627,7 +621,7 @@ public class GameMapController
         if (!expertMode || effectPlayed || ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         Task effectTask = new Task<Void>() {
             @Override
-            public Void call() {
+            public Void call() throws InterruptedException {
                 effectPlayed = true;
                 runningEffect = true;
                 Boolean success = false;
@@ -681,7 +675,7 @@ public class GameMapController
                     }
                         break;
                     case "LORD": {
-                        bannerMessage("Click on the island to evalutate!");
+                        bannerMessage("Click on the island to evaluate!");
                         islandClickable = true;
                         while (clickedIsland == -1) {
                             try {
@@ -762,12 +756,65 @@ public class GameMapController
                         break;
                     case "JOLLY":
                         String jollyMessage = "EFFECT|JOLLY";
-                        for (int i=0; i<3; i++)
+
+                        var condition = new Object()
+                        {
+                            int counter = 0;
+                            boolean move = false;
+                        };
+
+
+                        Platform.runLater(() ->
+                        {
+                            System.out.println("inside alert 0" );
+                            Alert alert = new Alert(Alert.AlertType.NONE);
+
+                            ButtonType b1 = new ButtonType("1");
+                            ButtonType b2 = new ButtonType("2");
+                            ButtonType b3 = new ButtonType("3");
+
+                            alert.getButtonTypes().add(b1);
+                            alert.getButtonTypes().add(b2);
+                            alert.getButtonTypes().add(b3);
+
+                            alert.setTitle("Play effect");
+                            alert.setHeaderText("How many students would you like to switch?");
+                            alert.setContentText("Jolly allows you to switch up to 3 students between the card and your entrance");
+
+                            Optional<ButtonType> result = alert.showAndWait();
+
+                            if(result.get()==b1)
+                            {
+                                condition.counter = 1;
+                            }
+                            else if(result.get()==b2)
+                            {
+                                condition.counter = 2;
+                            }
+                            else if(result.get()==b3)
+                            {
+                                condition.counter = 3;
+                            }
+                            else
+                                condition.counter = 3;
+                            condition.move = true;
+
+                            alert.setOnCloseRequest(event->{ alert.close();});
+                        });
+                        while (!condition.move) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        for (int i=0 ; i< condition.counter ; i++)
                         {
                             resetClickedValues();
                             clickedEffectParent = null;
                             clickedEffectChildValue = null;
-                            bannerMessage("Choose the student you want to move! ("+(3-i)+" left)");
+                            bannerMessage("Choose the student you want to move! ("+(condition.counter-i)+" left)");
                             while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane) card.getParent())) {
                                 try {
                                     Thread.sleep(100);
@@ -787,17 +834,7 @@ public class GameMapController
                             }
                             entranceClickable = false;
                             jollyMessage += "|" + clickedEntrance;
-                            System.out.println("out whith value " + clickedEntrance);
-                            /*if (i!=2)
-                            {
-                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                alert.setTitle("Play effect again");
-                                alert.setHeaderText("Do you want to play this effect again? ");
-                                if(alert.showAndWait().get() != ButtonType.OK)
-                                {
-                                    break;
-                                }
-                            }*/
+                            System.out.println("out with value " + clickedEntrance);
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString(jollyMessage);
                         break;
