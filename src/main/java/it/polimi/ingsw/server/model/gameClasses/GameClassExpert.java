@@ -202,19 +202,19 @@ public class GameClassExpert extends GameClass
     /**
      * the function allows the player to switch up to 3 students from the card to his entrance
      * @param PlayerID
-     * @param removeIndex
-     * @param addIndex
+     * @param jollyIndex
+     * @param entranceIndex
      */
-    public void jollyEffectCall(int PlayerID, int removeIndex, int addIndex)
+    public void jollyEffectCall(int PlayerID, int jollyIndex, int entranceIndex)
     {
         EffectName name = EffectName.JOLLY;
-        ColoredDisc cardColor = getCardByName(name).getStudents()[removeIndex];
-        ColoredDisc entranceColor = players.get(PlayerID).myDashboard.getEntranceSpots()[addIndex]; ;
+        ColoredDisc cardColor = getCardByName(name).getStudents()[jollyIndex];
+        ColoredDisc entranceColor = players.get(PlayerID).myDashboard.getEntranceSpots()[entranceIndex]; ;
         EffectCard card = getCardByName(name);
-        card.removeStudent(removeIndex);
-        players.get(PlayerID).myDashboard.RemoveFromEntrance(removeIndex);
-        players.get(PlayerID).myDashboard.AddToEntrance(cardColor, addIndex);
-        card.addStudent(entranceColor, addIndex);
+        card.removeStudent(jollyIndex);
+        players.get(PlayerID).myDashboard.RemoveFromEntrance(entranceIndex);
+        players.get(PlayerID).myDashboard.AddToEntrance(cardColor, entranceIndex);
+        card.addStudent(entranceColor, jollyIndex);
     }
 
     /**
