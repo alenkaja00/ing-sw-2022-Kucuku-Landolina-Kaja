@@ -757,22 +757,18 @@ public class GameMapController
                     case "JOLLY":
                         String jollyMessage = "EFFECT|JOLLY";
 
-                        var condition = new Object()
+                        var jollyCondition = new Object()
                         {
                             int counter = 0;
                             boolean move = false;
                         };
 
-
                         Platform.runLater(() ->
                         {
-                            System.out.println("inside alert 0" );
                             Alert alert = new Alert(Alert.AlertType.NONE);
-
                             ButtonType b1 = new ButtonType("1");
                             ButtonType b2 = new ButtonType("2");
                             ButtonType b3 = new ButtonType("3");
-
                             alert.getButtonTypes().add(b1);
                             alert.getButtonTypes().add(b2);
                             alert.getButtonTypes().add(b3);
@@ -785,23 +781,24 @@ public class GameMapController
 
                             if(result.get()==b1)
                             {
-                                condition.counter = 1;
+                                jollyCondition.counter = 1;
                             }
                             else if(result.get()==b2)
                             {
-                                condition.counter = 2;
+                                jollyCondition.counter = 2;
                             }
                             else if(result.get()==b3)
                             {
-                                condition.counter = 3;
+                                jollyCondition.counter = 3;
                             }
                             else
-                                condition.counter = 3;
-                            condition.move = true;
+                                jollyCondition.counter = 3;
+                            jollyCondition.move = true;
 
                             alert.setOnCloseRequest(event->{ alert.close();});
                         });
-                        while (!condition.move) {
+
+                        while (!jollyCondition.move) {
                             try {
                                 Thread.sleep(100);
                             } catch (InterruptedException e) {
@@ -809,12 +806,12 @@ public class GameMapController
                             }
                         }
 
-                        for (int i=0 ; i< condition.counter ; i++)
+                        for (int i=0 ; i< jollyCondition.counter ; i++)
                         {
                             resetClickedValues();
                             clickedEffectParent = null;
                             clickedEffectChildValue = null;
-                            bannerMessage("Choose the student you want to move! ("+(condition.counter-i)+" left)");
+                            bannerMessage("Choose the student you want to move! ("+(jollyCondition.counter-i)+" left)");
                             while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane) card.getParent())) {
                                 try {
                                     Thread.sleep(100);
@@ -840,11 +837,54 @@ public class GameMapController
                         break;
                     case "MUSICIAN":
                         String musicianMessage = "EFFECT|MUSICIAN";
-                        for (int i=0; i<2; i++)
+
+                        var musicianCondition = new Object()
+                        {
+                            int counter = 0;
+                            boolean move = false;
+                        };
+
+                        Platform.runLater(() ->
+                        {
+                            Alert alert = new Alert(Alert.AlertType.NONE);
+                            ButtonType b1 = new ButtonType("1");
+                            ButtonType b2 = new ButtonType("2");
+                            alert.getButtonTypes().add(b1);
+                            alert.getButtonTypes().add(b2);
+
+                            alert.setTitle("Musician Effect");
+                            alert.setHeaderText("How many students would you like to switch?");
+                            alert.setContentText("Musician allows you to switch up to 2 students between your entrance and your tables");
+
+                            Optional<ButtonType> result = alert.showAndWait();
+
+                            if(result.get()==b1)
+                            {
+                                musicianCondition.counter = 1;
+                            }
+                            else if(result.get()==b2)
+                            {
+                                musicianCondition.counter = 2;
+                            }
+                            else
+                                musicianCondition.counter = 2;
+                            musicianCondition.move = true;
+
+                            alert.setOnCloseRequest(event->{ alert.close();});
+                        });
+                        while (!musicianCondition.move) {
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        for (int i=0; i<musicianCondition.counter; i++)
                         {
                             clickedEffectParent = null;
                             clickedEffectChildValue = null;
-                            bannerMessage("Choose the student you want to move! ("+(3-i)+" left)");
+                            bannerMessage("Choose the student you want to move! ("+(musicianCondition.counter-i)+" left)");
                             while (clickedEffectChildValue == null || clickedEffectParent != ((StackPane) card.getParent())) {
                                 try {
                                     Thread.sleep(100);
@@ -863,16 +903,6 @@ public class GameMapController
                             }
                             bannerMessage("Select a student to switch with from the tables!");
                             musicianMessage += "|" + tableStudent.name();
-                            /*if (i!=2)
-                            {
-                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                alert.setTitle("Play effect again");
-                                alert.setHeaderText("Do you want to play this effect again? ");
-                                if(alert.showAndWait().get() != ButtonType.OK)
-                                {
-                                    break;
-                                }
-                            }*/
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString(musicianMessage);
                         break;
@@ -1365,7 +1395,6 @@ public class GameMapController
         ClientControllerSingleton.getInstance().getClientController().waitViewUnlock();
         ETX();
     }
-
 
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
