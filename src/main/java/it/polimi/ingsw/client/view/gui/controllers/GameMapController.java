@@ -1403,7 +1403,8 @@ public class GameMapController
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
     {
-        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
+        if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         DropShadow effect = new DropShadow();
         effect.setColor(Color.YELLOW);
@@ -1417,7 +1418,6 @@ public class GameMapController
     private void mouseExited(MouseEvent mouseEvent)
     {
         if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
-
         if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         image.setScaleX(1);
