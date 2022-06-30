@@ -2,7 +2,6 @@ package it.polimi.ingsw.server.model.components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 /**
  * class Island handles all the data needed to represent an island
@@ -12,7 +11,7 @@ public class Island {
     private ArrayList<Integer> graphicalIsland = new ArrayList<>();
     private HashMap<ColoredDisc, Integer> students = new HashMap<ColoredDisc, Integer>();
     private ArrayList<Tower> towerList = new ArrayList<Tower>();
-    public boolean prohibited;
+    public int prohibitedValue = 0;
 
     /**
      * class constructor
@@ -36,32 +35,6 @@ public class Island {
         this.graphicalIsland.add(ID);
     }
 
-    /*
-    public  int returnInfluenceData()
-    {
-        int player;
-        int influence[] = new int[playerNumber];
-        for(int i=0;i<this.playerNumber;i++)
-        {
-            influence[i]=this.islandTowers[i];
-        }
-        for(int i=0;i<this.students.size();i++)
-        {
-            // player=Dashboard.getProfessor(students.get(i));
-            // i need to know who owns the professors
-            // influence[player] ++;
-        }
-        int pos=0,max=0;
-        for(int i=0;i<playerNumber;i++)
-        {
-            if(influence[i]>max)
-            {
-                max = influence[i];
-                pos =i;
-            }
-        }
-        return pos;
-    }*/
 
     public HashMap<ColoredDisc, Integer> getStudents()
     {
@@ -108,14 +81,6 @@ public class Island {
         {
             throw new IllegalArgumentException();
         }
-//        for(int i= 0; i<students.size();i++)
-//        {
-//            if(students.get(i).equals(newStudent))
-//            {
-//                students.remove(i);
-//                return newStudent;
-//            }
-//        }
     }
 
     public Tower[] getTowers() throws IllegalStateException

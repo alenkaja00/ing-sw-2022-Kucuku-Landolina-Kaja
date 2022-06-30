@@ -673,7 +673,7 @@ public class GameMapController
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|LADY|" + (clickedIsland - 1));
                         islandClickable = false;
                     }
-                        break;
+                    break;
                     case "LORD": {
                         bannerMessage("Click on the island to evaluate!");
                         islandClickable = true;
@@ -687,7 +687,7 @@ public class GameMapController
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|LORD|" + (clickedIsland - 1));
                         islandClickable = false;
                     }
-                        break;
+                    break;
                     case "COOK": {
                         clickedEffectParent = null;
                         clickedEffectChildValue = null;
@@ -700,7 +700,7 @@ public class GameMapController
                             }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|COOK|" + clickedEffectChildValue.toString());
                     }
-                        break;
+                    break;
                     case "BANDIT": {
                         clickedEffectParent = null;
                         clickedEffectChildValue = null;
@@ -714,7 +714,7 @@ public class GameMapController
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|BANDIT|" + clickedEffectChildValue.name());
                     }
-                        break;
+                    break;
                     case "MONK": {
                         clickedEffectParent = null;
                         clickedEffectChildValue = null;
@@ -739,7 +739,7 @@ public class GameMapController
                         islandClickable = false;
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|MONK|" + (clickedIsland-1) + "|" + clickedIndex);
                     }
-                        break;
+                    break;
                     case "QUEEN": {
                         clickedEffectParent = null;
                         clickedEffectChildValue = null;
@@ -753,7 +753,7 @@ public class GameMapController
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString("EFFECT|QUEEN|" + ((TilePane) clickedEffectChildImage.getParent()).getChildren().indexOf(clickedEffectChildImage));
                     }
-                        break;
+                    break;
                     case "JOLLY":
                         String jollyMessage = "EFFECT|JOLLY";
 
@@ -1003,15 +1003,13 @@ public class GameMapController
                 switch (effect.ID)
                 {
                     case LADY:
-                        for (int k=0; k<6; k++)
-                            if (k<effect.prohibitionCard)
-                            {
-                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(new Image(denialPath));
+                        for (int k=0; k < gameData.prohibitionCards; k++) {
+                            if (effect.prohibitionCard > k) {
+                                ((ImageView) ((TilePane) effectPanesList.get(i)).getChildren().get(k)).setImage(new Image(denialPath));
+                            } else {
+                                ((ImageView) ((TilePane) effectPanesList.get(i)).getChildren().get(k)).setImage(null);
                             }
-                            else
-                            {
-                                ((ImageView)((TilePane)effectPanesList.get(i)).getChildren().get(k)).setImage(null);
-                            }
+                        }
                         break;
                     case MONK:
                     case QUEEN:
@@ -1405,9 +1403,7 @@ public class GameMapController
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
     {
-        if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
-        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
-
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         DropShadow effect = new DropShadow();
         effect.setColor(Color.YELLOW);
@@ -1421,8 +1417,8 @@ public class GameMapController
     private void mouseExited(MouseEvent mouseEvent)
     {
         if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
-        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
 
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         image.setScaleX(1);
         image.setScaleY(1);
@@ -1434,7 +1430,7 @@ public class GameMapController
         }
         for(ImageView img : )*/
     }
-    
+
     public void bannerMessage(String text)
     {
         Platform.runLater(()->bannerText.setText(text));

@@ -287,7 +287,13 @@ public class GameController
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {
-                    manageEffect(players.indexOf(currentPlayer), message);
+                    try
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    } catch (Exception e)
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 }
                 else
                 {
@@ -328,7 +334,13 @@ public class GameController
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {
-                    manageEffect(players.indexOf(currentPlayer), message);
+                    try
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    } catch (Exception e)
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 }
                 else
                 {
@@ -448,30 +460,30 @@ public class GameController
         players.stream().filter(x->x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
     }
 
-/*    private ArrayList<String> nextMessage()
-    {
-        ArrayList<String> message = new ArrayList<>();
-
-        do
+    /*    private ArrayList<String> nextMessage()
         {
-            synchronized (inputBuffer)
-            {
-                if (inputBuffer.size()>0)
-                {
-                    message=inputBuffer.remove(0);
-                    inputBuffer.notifyAll();
-                }
-            }
-            if (message.size()>0)
-                return (ArrayList<String>) message.clone();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (true);
+            ArrayList<String> message = new ArrayList<>();
 
-    }*/
+            do
+            {
+                synchronized (inputBuffer)
+                {
+                    if (inputBuffer.size()>0)
+                    {
+                        message=inputBuffer.remove(0);
+                        inputBuffer.notifyAll();
+                    }
+                }
+                if (message.size()>0)
+                    return (ArrayList<String>) message.clone();
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (true);
+
+        }*/
     private ArrayList<String> nextMessage(String playerNickname)
     {
         ArrayList<String> message = new ArrayList<>();
