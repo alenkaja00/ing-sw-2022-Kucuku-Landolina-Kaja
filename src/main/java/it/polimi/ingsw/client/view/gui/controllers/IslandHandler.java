@@ -173,7 +173,10 @@ public class IslandHandler {
             newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
             newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
             newView.setImage(image);
-            tilePane.getChildren().add(newView);
+            for(int i=0;i<island.prohibitedValue;i++)
+            {
+                tilePane.getChildren().add(newView);
+            }
         }
 
         if (island.ID == currentIslandID)
@@ -196,29 +199,6 @@ public class IslandHandler {
             }
         }
 
-
-        /*// Update Students
-        HashMap<ColoredDisc,Integer> students = island.getStudents();
-        for(ColoredDisc color : ColoredDisc.values())
-        {
-            int colorNumber = students.get(color);
-            int currentStudentsNumber = calculateStudents(tilePane,color);
-            if(currentStudentsNumber < colorNumber)
-            {
-                for(int i =0; i< colorNumber-currentStudentsNumber;i++)
-                {
-                    addStudent(tilePane,color);
-                }
-            }
-            else if(currentStudentsNumber > colorNumber)
-            {
-                for(int i=0; i<currentStudentsNumber-colorNumber;i++)
-                {
-                    removeStudent(tilePane,color);
-                }
-            }
-        }*/
-
         // Update Towers
         for(Tower tower : island.towerList)
         {
@@ -237,5 +217,4 @@ public class IslandHandler {
             tilePane.getChildren().add(newView);
         }
     }
-
 }

@@ -523,6 +523,9 @@ public class GameController
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, false);
+
+        playerOrder.removeAll(playerOrder.stream().filter(x->x.getKey().equals(nickname)).collect(Collectors.toList()));
+
         if (newGame.getPlayers().get(players.indexOf(nickname)).online = false)
             return;
         else
