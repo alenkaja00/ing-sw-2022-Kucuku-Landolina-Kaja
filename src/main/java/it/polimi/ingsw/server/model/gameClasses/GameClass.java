@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server.model.gameClasses;
 
+import it.polimi.ingsw.server.Logger;
 import it.polimi.ingsw.server.model.cards.Wizard;
 import it.polimi.ingsw.server.model.components.*;
 
@@ -387,7 +388,7 @@ public class GameClass {
         {
             if(player.myDashboard.TowerNumber()==0)
             {
-                System.out.println("player "+player.getNickname() +" has no towers");
+                Logger.storeLog("Player "+player.getNickname() +" has no towers");
                 return true;
             }
         }
@@ -404,7 +405,7 @@ public class GameClass {
 
         if(islands.size() <= 3)
         {
-            System.out.println("There are less than 3 islands");
+            Logger.storeLog("There are less than 3 islands");
             return true;
         }
 
@@ -427,14 +428,14 @@ public class GameClass {
 
         if(bag.getSize()==0)
         {
-            System.out.println("The bag size is 0");
+            Logger.storeLog("The bag size is 0");
             return true;
         }
         for(Player player: players)
         {
             if(player.deck.returnUnused().size()==0)
             {
-                System.out.println("player "+player.getNickname()+"has no cards");
+                Logger.storeLog("Player "+player.getNickname()+"has no cards");
                 return true;
             }
         }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.server.controller;
 
+import it.polimi.ingsw.server.Logger;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +96,7 @@ public class ServerController {
      * @param line received string
      */
     public void parseMessage(String line){
-        System.out.println("Server received: "+ line);
+        Logger.storeLog("Server received: "+ line);
 
         ArrayList<String> parameters = new ArrayList<String>();
         parameters.addAll(List.of(line.split("\\|")));
@@ -136,13 +138,13 @@ public class ServerController {
             playerLobby.removeAll(compatiblePlayers);
             players.stream().forEach(x-> playerSockets.get(x).sendMessage("OK"));
             openGames.add(new GameController(playerNumber, expertOn, newGameID, (ArrayList<String>) players.clone(), playerSockets));
-            System.out.println("[LOG] game successfully created");
+            Logger.storeLog("Game successfully created");
         }
         else
         {
             playerLobby.add(Map.entry(nickname, Map.entry(playerNumber, expertOn)));
             playerSockets.get(nickname).sendMessage("WAIT");
-            System.out.println("[LOG] putting player in a waiting list");
+            Logger.storeLog("Putting player in a waiting list");
         }
     }
 

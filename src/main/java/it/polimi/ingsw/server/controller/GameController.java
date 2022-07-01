@@ -1,6 +1,7 @@
 package it.polimi.ingsw.server.controller;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.server.Logger;
 import it.polimi.ingsw.server.model.cards.EffectCard;
 import it.polimi.ingsw.server.model.cards.EffectName;
 import it.polimi.ingsw.server.model.cards.Wizard;
@@ -120,14 +121,14 @@ public class GameController
         while (playerWizards.size()<playerNumber)
         {
             ArrayList<String> message = nextMessage("");
-            System.out.println("out of the next");
+            //System.out.println("out of the next");
 
             if (!message.get(0).equals("DISCONNECTED"))
             {
                 if (message.get(0).equals("PLAY") &&  !playerWizards.keySet().contains(message.get(1)) &&
                         message.get(2).equals("WIZARD") && !playerWizards.values().contains(Wizard.valueOf(message.get(3))))
                 {
-                    System.out.println("received "+ message.get(3));
+                    //System.out.println("received "+ message.get(3));
                     playerSockets.get(message.get(1)).sendMessage("OK");
                     //updateView(message.get(1));
                     playerWizards.put(message.get(1), Wizard.valueOf(message.get(3)));
@@ -142,7 +143,7 @@ public class GameController
             {
                 if (!playersOnline.get(players.get(i)) && !playerWizards.keySet().contains(players.get(i)))
                 {
-                    System.out.println("selecting random wizard");
+                    Logger.storeLog("Selecting a random wizard for a disconnected player");
                     playerWizards.put(players.get(i), Arrays.stream(Wizard.values()).filter(x->!playerWizards.values().contains(x)).collect(Collectors.toList()).get(0) );
                 }
             }
@@ -160,7 +161,7 @@ public class GameController
         players.stream().filter(x-> !playersOnline.get(x)).forEach(x->playerDisconnected(x));
         if (gameEnded) return;
         updateView();
-        System.out.println("Entering pianification phase");
+        Logger.storeLog("Entering pianification phase");
         playerOrder.removeAll(playerOrder);
         //pianification phase
         for (int i = 0; i<players.size(); i++)
@@ -169,7 +170,7 @@ public class GameController
             if (!playersOnline.get(currentPlayer))
                 continue;
             playerSockets.get(currentPlayer).sendMessage("UNLOCK");
-            System.out.println(playerOrder);
+            //System.out.println(playerOrder);
 
             do {
                 ArrayList<String> message = nextMessage(currentPlayer);
@@ -396,7 +397,7 @@ public class GameController
     private void manageEffect(int playerID, ArrayList<String> message)
     {
         if (!expertMode) {
-            System.out.println("ERROR. Trying to play effect card in non expert game.");
+            Logger.storeLog("ERROR. Trying to play effect card in non expert game.");
             return;
         }
 
@@ -578,7 +579,7 @@ public class GameController
             return;
         else
             newGame.getPlayers().get(players.indexOf(nickname)).online = false;
-        System.out.println("Player "+nickname+" disconnected");
+        Logger.storeLog("Player "+nickname+" disconnected");
         if (playersOnline.values().stream().filter(x->x==true).collect(Collectors.toList()).size()==1)
         {
             String lastPlayer = players.stream().filter(x->playersOnline.get(x)).collect(Collectors.toList()).get(0);
@@ -618,7 +619,7 @@ public class GameController
         playersOnline.put(nickname, true);
         newGame.getPlayers().get(players.indexOf(nickname)).online = true;
         //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("RECONNECTED|"+nickname));
-        System.out.println("Player "+nickname+" reconnected");
+        Logger.storeLog("Player "+nickname+" reconnected");
         updateView();
     }
 

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.server.controller;
 
+import it.polimi.ingsw.server.Logger;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -35,7 +37,7 @@ public class ServerNetwork
             return;
         }
 
-        System.out.println("Server ready");
+        Logger.storeLog("Server ready");
         while (true) {
             try {
                 Socket openSocket = serverSocket.accept();
