@@ -50,21 +50,10 @@ public class GameClassExpert extends GameClass
         //piazzare 3 carte personaggio e inizializzare
         ArrayList<EffectName> randomCards = (ArrayList<EffectName>) Arrays.stream(EffectName.values()).collect(Collectors.toList());
         Collections.shuffle(randomCards);
-        /*for (int i = 0; i<3; i++)
+        for (int i = 0; i<3; i++)
         {
             ChosenCards.add(new EffectCard(randomCards.get(i)));
-        }*/
-        //ChosenCards.add(new EffectCard(EffectName.LADY));
-        //ChosenCards.add(new EffectCard(EffectName.MONK));
-        //ChosenCards.add(new EffectCard(EffectName.JOLLY));
-        //ChosenCards.add(new EffectCard(EffectName.CAVALIER));
-        //ChosenCards.add(new EffectCard(EffectName.CENTAUR));
-        //ChosenCards.add(new EffectCard(EffectName.LORD));
-        //ChosenCards.add(new EffectCard(EffectName.COOK));
-        //ChosenCards.add(new EffectCard(EffectName.BANDIT));
-        ChosenCards.add(new EffectCard(EffectName.LADY));
-        ChosenCards.add(new EffectCard(EffectName.QUEEN));
-        ChosenCards.add(new EffectCard(EffectName.JOLLY));
+        }
 
         for (EffectCard card:ChosenCards)
         {
