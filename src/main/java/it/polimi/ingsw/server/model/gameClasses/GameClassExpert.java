@@ -195,7 +195,7 @@ public class GameClassExpert extends GameClass
      */
     public void ladyEffect(int IslandID) throws InvalidParameterException
     {
-        if(getIslandById(IslandID).prohibitedValue > prohibitionCards)
+        if(getIslandById(IslandID).prohibitedValue > prohibitionCards || getCardByName(EffectName.LADY).getProhibitionCard()==0)
             throw new InvalidParameterException();
         else {
             getIslandById(IslandID).prohibitedValue++;
@@ -263,7 +263,7 @@ public class GameClassExpert extends GameClass
     }
 
     /**
-     * effect: we move mothernature to the chosen island
+     * effect: we move mother nature to the chosen island
      * @param IslandID is the ID of the island where mothernature must be moved
      */
     public void lordEffect(int IslandID)

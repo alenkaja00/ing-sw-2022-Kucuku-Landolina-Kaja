@@ -19,17 +19,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameClassTest {
 
     GameClass game;
-    @BeforeEach
-    void setUp() {
-        String id = "asd";
-        int playNum = 2;
-        ArrayList<String> nick = new ArrayList<>(Arrays.asList("A","B"));
-        ArrayList<Wizard> wiz = new ArrayList<>(Arrays.asList(Wizard.WIZARD1,Wizard.WIZARD2));
+    String id = "asd";
+    int playNum = 2;
+    ArrayList<String> nick =  new ArrayList<>(Arrays.asList("A","B"));
+    ArrayList<Wizard> wiz =  new ArrayList<>(Arrays.asList(Wizard.WIZARD1,Wizard.WIZARD2));
+
+    void initialize(){
         game = new GameClass(id, playNum, nick, wiz);
     }
 
     @Test
     void bagToEntrance() {
+        initialize();
+
         game.players.get(0).myDashboard.RemoveFromEntrance(2);
         game.players.get(0).myDashboard.RemoveFromEntrance(4);
         assertNull(game.players.get(0).myDashboard.getEntranceSpots()[2]);
@@ -43,6 +45,7 @@ class GameClassTest {
 
     @Test
     void cloudToEntrance() {
+        initialize();
         for(int i=4;i<7;i++){
             game.getPlayers().get(0).myDashboard.RemoveFromEntrance(i);
             assertNull(game.getPlayers().get(0).myDashboard.getEntranceSpots()[i]);
@@ -59,6 +62,7 @@ class GameClassTest {
 
     @Test
     void bagToCloud() {
+        initialize();
         assertEquals(0, game.getClouds().get(0).getStudents().size());
         game.BagToCloud();
         assertEquals(3,game.getClouds().get(0).getStudents().size());
@@ -66,6 +70,7 @@ class GameClassTest {
 
     @Test
     void entranceToTables() {
+        initialize();
         assertNotNull(game.players.get(0).myDashboard.getEntranceSpots()[5]);
         game.EntranceToTables(game.getPlayers().get(0).getID(), 5);
         assertNull(game.players.get(0).myDashboard.getEntranceSpots()[5]);
@@ -78,6 +83,7 @@ class GameClassTest {
 
     @Test
     void entranceToIsland() {
+        initialize();
         int n;
         ColoredDisc color = game.getPlayers().get(0).myDashboard.getEntranceSpots()[0];
         n = game.getIslandById(1).getStudents().get(color);
@@ -87,6 +93,7 @@ class GameClassTest {
 
     @Test
     void useHelperCard() throws InvalidKeyException {
+        initialize();
         assertEquals(0,game.playerCardValue[0]);
         game.useHelperCard(0, 8);
         assertEquals(8,game.playerCardValue[0]);
@@ -100,29 +107,35 @@ class GameClassTest {
 
     @Test
     void moveMotherNature() {
+        initialize();
         int currPos = game.CurrentIsland.getID();
         int moves = 3;
         game.MoveMotherNature(moves);
         assertEquals((currPos+moves)%12,game.CurrentIsland.getID());
 
-        setUp();
+
+        initialize();
         int currPos2 = game.CurrentIsland.getID();
         game.getIslandById((currPos2+moves)%12).addStudent(GREEN);
         game.getPlayers().get(0).myDashboard.professorSpots.add(GREEN);
         game.MoveMotherNature(moves);
 
-        setUp();
+
+        initialize();
         int currPos3 = game.CurrentIsland.getID();
+        int num = game.getPlayers().get(0).myDashboard.TowerNumber();
         Tower t = game.getPlayers().get(0).getTowerColor();
         game.getIslandById((currPos3+moves)%12).addStudent(GREEN);
         game.getPlayers().get(0).myDashboard.professorSpots.add(GREEN);
         game.getIslandById((currPos3+moves-1)%12).AddTower(t);
         game.getIslandById((currPos3+moves+1)%12).AddTower(t);
         game.MoveMotherNature(moves);
+        assertEquals(num-1,game.getPlayers().get(0).myDashboard.TowerNumber());
 
 
-        setUp();
+        initialize();
         int currPos4 = game.CurrentIsland.getID();
+        int num2 = game.getPlayers().get(0).myDashboard.TowerNumber();
         Tower t2 = game.getPlayers().get(0).getTowerColor();
         game.getIslandById((currPos4+moves)%12).addStudent(RED);
         game.getIslandById((currPos4+moves)%12).addStudent(RED);
@@ -131,7 +144,10 @@ class GameClassTest {
         game.getPlayers().get(0).myDashboard.professorSpots.add(GREEN);
         game.getIslandById((currPos4+moves)%12).AddTower(game.getPlayers().get(1).getTowerColor());
         game.getPlayers().get(1).myDashboard.RemoveTower();
+
         game.MoveMotherNature(moves);
+        assertEquals(num2-1, game.getPlayers().get(0).myDashboard.TowerNumber());
+        assertEquals(8, game.getPlayers().get(1).myDashboard.TowerNumber());
     }
 
     @Test
@@ -140,6 +156,7 @@ class GameClassTest {
 
     @Test
     void towerGameEnded() {
+        initialize();
         assertFalse(game.towerGameEnded());
         int init = game.getPlayers().get(1).myDashboard.TowerNumber();
         for(int i=0;i<init;i++){
@@ -150,6 +167,7 @@ class GameClassTest {
 
     @Test
     void islandsGameEnded() {
+        initialize();
         assertFalse(game.islandsGameEnded());
         for(int i = 10; i>1 ; i--) {
             game.islands.remove(0);
@@ -159,6 +177,7 @@ class GameClassTest {
 
     @Test
     void roundGameEnded() {
+        initialize();
         int value = game.bag.getSize();
         for(int i=0;i<value;i++){
             game.bag.popRandom();
@@ -180,6 +199,7 @@ class GameClassTest {
 
     @Test
     void lessTowersMoreProfessors() {
+        initialize();
         int init = game.getPlayers().get(1).myDashboard.TowerNumber();
         for(int i=0;i<init;i++){
             game.getPlayers().get(1).myDashboard.RemoveTower();
@@ -215,6 +235,7 @@ class GameClassTest {
 
     @Test
     void setPlayers() {
+        initialize();
         Player p1 = new Player(0,"C", Tower.GREY,Wizard.WIZARD3, 2);
         Player p2 = new Player(1,"D", Tower.WHITE,Wizard.WIZARD4, 2);
         ArrayList<Player> playersNew = new ArrayList<>(Arrays.asList(p1,p2));
