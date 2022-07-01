@@ -271,6 +271,9 @@ public class GameClassExpert extends GameClass
         MoveMotherNature(getIslandById(IslandID));
     }
 
+    /**
+     * this method resets the effects after the end of their influence
+     */
     public void endCardEffect()
     {
         extraInfluencePlayers.removeAll(extraInfluencePlayers);
@@ -320,7 +323,6 @@ public class GameClassExpert extends GameClass
             }
         }
 
-        //temporary can be substituted by functional
         int index = -1;
         int max = 0;
         //for(int i=0 ; i < players.size(); i++)
@@ -555,6 +557,11 @@ public class GameClassExpert extends GameClass
         CurrentIsland = temp;
     }
 
+    /**
+     * returns the mother nature moves of a certain player
+     * @param playerID
+     * @return
+     */
     public int playerMaxMoves(int playerID)
     {
         return playerMaxMoves[playerID] + (extraMotherNatureMoves.contains(playerID)?2:0);
