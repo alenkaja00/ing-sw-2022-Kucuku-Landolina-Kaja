@@ -42,6 +42,7 @@
   </rowConstraints>
    <children>
        <Button fx:id="submit" onAction="#Submit" prefHeight="94.0" prefWidth="256.0" text="Submit" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+       <Button fx:id="home" onAction="#Home" prefHeight="94.0" prefWidth="256.0" text="Home" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
       <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-background-color: rgba(60,60,60,0.4);" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" GridPane.rowSpan="3" />
       <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-background-color: rgba(60,60,60,0.4);" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="6" GridPane.rowSpan="3" />
       <ToggleButton fx:id="twoPlayers" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="${mainGrid.height*0.05}" prefWidth="${mainGrid.width*0.4}" text="2 Players" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />

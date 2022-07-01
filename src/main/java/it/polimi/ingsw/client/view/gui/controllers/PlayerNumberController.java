@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.controller.ClientController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -108,5 +109,27 @@ public class PlayerNumberController {
                 bannerText.setText("Unable to create a game in this moment!");
             }
         });
+    }
+
+    public void Home(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/mainScene.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        root.setId("startScene");
+        SceneController controller = loader.getController();
+        controller.setConnectionEstablished(true);
+
+        //stage = (Stage) ((Node) submitButton).getScene().getWindow();
+        stage = StageSingleton.getInstance().getStage();
+        scene = new Scene(root);
+
+        scene.getStylesheets().add(getClass().getResource("/cssFiles/main.css").toExternalForm());
+        stage.setTitle("Main Scene");
+        stage.setScene(scene);
+
+        stage.show();
     }
 }
