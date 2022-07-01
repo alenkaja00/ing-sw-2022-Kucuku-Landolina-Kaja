@@ -26,6 +26,7 @@ public class GameClassExpert extends GameClass
     private ArrayList<Integer> villainContribution = new ArrayList<>();
     private ArrayList<Integer> extraMotherNatureMoves = new ArrayList<>();
     private boolean centaurEffect = false;
+    private int prohibitionCards;
 
     /**
      * class constructor
@@ -43,6 +44,7 @@ public class GameClassExpert extends GameClass
         }
 
         //inizialization
+        prohibitionCards = 4;
         ChosenCards = new ArrayList<>();
 
         //piazzare 3 carte personaggio e inizializzare
@@ -60,7 +62,7 @@ public class GameClassExpert extends GameClass
         //ChosenCards.add(new EffectCard(EffectName.LORD));
         //ChosenCards.add(new EffectCard(EffectName.COOK));
         //ChosenCards.add(new EffectCard(EffectName.BANDIT));
-        ChosenCards.add(new EffectCard(EffectName.MUSICIAN));
+        ChosenCards.add(new EffectCard(EffectName.LADY));
         ChosenCards.add(new EffectCard(EffectName.QUEEN));
         ChosenCards.add(new EffectCard(EffectName.JOLLY));
 
@@ -189,14 +191,19 @@ public class GameClassExpert extends GameClass
     /**
      * effect: the selected island is set to prohibited
      * @param IslandID is the ID of the selected island
-     * @throws InvalidParameterException if the island is already prohibited
+     * @throws InvalidParameterException if the island is already prohibited with the maximum of prohibition cards
      */
     public void ladyEffect(int IslandID) throws InvalidParameterException
     {
-        if (getIslandById(IslandID).prohibited)
+        if(getIslandById(IslandID).prohibitedValue > prohibitionCards)
             throw new InvalidParameterException();
-        else
-            getIslandById(IslandID).prohibited = true;
+        else {
+            getIslandById(IslandID).prohibitedValue++;
+            EffectCard card = getCardByName(EffectName.LADY);
+            card.prohibitionCard--;
+        }
+
+
     }
 
     /**
@@ -264,6 +271,9 @@ public class GameClassExpert extends GameClass
         MoveMotherNature(getIslandById(IslandID));
     }
 
+    /**
+     * this method resets the effects after the end of their influence
+     */
     public void endCardEffect()
     {
         extraInfluencePlayers.removeAll(extraInfluencePlayers);
@@ -313,7 +323,6 @@ public class GameClassExpert extends GameClass
             }
         }
 
-        //temporary can be substituted by functional
         int index = -1;
         int max = 0;
         //for(int i=0 ; i < players.size(); i++)
@@ -368,9 +377,9 @@ public class GameClassExpert extends GameClass
         if (moves==0) throw new RuntimeException();
         CurrentIsland = islands.get((islands.indexOf(CurrentIsland)+moves) % islands.size() );
 
-        if (CurrentIsland.prohibited)
+        if (CurrentIsland.prohibitedValue > 0)
         {
-            CurrentIsland.prohibited = false;
+            CurrentIsland.prohibitedValue--;
             getCardByName(EffectName.LADY).prohibitionCard++;
             return;
         }
@@ -474,9 +483,9 @@ public class GameClassExpert extends GameClass
         Island temp = CurrentIsland;
         CurrentIsland = chosenIsland;
 
-        if (CurrentIsland.prohibited)
+        if (CurrentIsland.prohibitedValue > 0)
         {
-            CurrentIsland.prohibited = false;
+            CurrentIsland.prohibitedValue--;
             getCardByName(EffectName.LADY).prohibitionCard++;
             return;
         }
@@ -548,6 +557,11 @@ public class GameClassExpert extends GameClass
         CurrentIsland = temp;
     }
 
+    /**
+     * returns the mother nature moves of a certain player
+     * @param playerID
+     * @return
+     */
     public int playerMaxMoves(int playerID)
     {
         return playerMaxMoves[playerID] + (extraMotherNatureMoves.contains(playerID)?2:0);

@@ -1,18 +1,13 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
-import it.polimi.ingsw.client.view.jsonObjects.jEffectCard;
 import it.polimi.ingsw.client.view.jsonObjects.jIsland;
-import it.polimi.ingsw.server.model.cards.EffectCard;
-import it.polimi.ingsw.server.model.cards.EffectName;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import it.polimi.ingsw.server.model.components.Tower;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import org.w3c.dom.events.Event;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -170,15 +165,18 @@ public class IslandHandler {
 
 
 
-        if (island.prohibited)
+        if (island.prohibitedValue > 0 )
         {
-            ImageView newView  = new ImageView();
-            Image image = new Image(denialPath);
+            for(int i=0;i<island.prohibitedValue;i++)
+            {
+                ImageView newView  = new ImageView();
+                Image image = new Image(denialPath);
 
-            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
-            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
-            newView.setImage(image);
-            tilePane.getChildren().add(newView);
+                newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+                newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
+                newView.setImage(image);
+                tilePane.getChildren().add(newView);
+            }
         }
 
         if (island.ID == currentIslandID)
@@ -201,29 +199,6 @@ public class IslandHandler {
             }
         }
 
-
-        /*// Update Students
-        HashMap<ColoredDisc,Integer> students = island.getStudents();
-        for(ColoredDisc color : ColoredDisc.values())
-        {
-            int colorNumber = students.get(color);
-            int currentStudentsNumber = calculateStudents(tilePane,color);
-            if(currentStudentsNumber < colorNumber)
-            {
-                for(int i =0; i< colorNumber-currentStudentsNumber;i++)
-                {
-                    addStudent(tilePane,color);
-                }
-            }
-            else if(currentStudentsNumber > colorNumber)
-            {
-                for(int i=0; i<currentStudentsNumber-colorNumber;i++)
-                {
-                    removeStudent(tilePane,color);
-                }
-            }
-        }*/
-
         // Update Towers
         for(Tower tower : island.towerList)
         {
@@ -242,5 +217,4 @@ public class IslandHandler {
             tilePane.getChildren().add(newView);
         }
     }
-
 }

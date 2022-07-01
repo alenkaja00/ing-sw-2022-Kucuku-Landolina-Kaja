@@ -7,6 +7,10 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.*;
 
+/**
+ * Class ClientManager communicates with the socket, accepts the messages from the associated client and sends them to the controller
+ * this class contains references and attributes of the socket out, the player nickname, the server controller and the online/offline status of the relative client
+ */
 public class ClientManager implements Runnable{
 
     private String nickname = null;
@@ -16,12 +20,23 @@ public class ClientManager implements Runnable{
     private PrintWriter socketOut;
     private boolean online;
 
+    /**
+     * Constructor method initializes the sockets and the controller associated to the class
+     * @param socket
+     * @param controller
+     * @throws IOException
+     */
     public ClientManager(Socket socket, ServerController controller) throws IOException {
         this.socket = socket;
         this.controller = controller;
         socketOut = new PrintWriter(socket.getOutputStream());
     }
 
+    /**
+     * method responsible for communication with the client, it sends the received messages to the controller
+     * initially it waits for the choice of the nickname; after connecting it will receive all the messages of the relative player
+     * it contains also a ping method to keep the connection alive between client/server
+     */
     public void run()
     {
         online = true;
@@ -95,6 +110,9 @@ public class ClientManager implements Runnable{
         }
     }
 
+    /**
+     * method called after a disconnection event
+     */
     private void catchException()
     {
         //e.printStackTrace();
@@ -104,6 +122,9 @@ public class ClientManager implements Runnable{
         online = false;
     }
 
+    /**
+     * closes the socket after a disconnection
+     */
     private void finalException()
     {
         socketIn.close();
@@ -115,6 +136,10 @@ public class ClientManager implements Runnable{
         }
     }
 
+    /**
+     * this method prints a message string on the socketOut
+     * @param message
+     */
     public void sendMessage(String message) {
         if (online)
         {

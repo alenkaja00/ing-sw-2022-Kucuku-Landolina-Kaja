@@ -52,6 +52,7 @@ public class EriantysCLI {
         ArrayList<String> cardStudents = new ArrayList<>();
         //fit the name with the shape of the card
         String id = ID.toString();
+        ArrayList<String> prohibitionCards = new ArrayList<>();
 
         //coin over the card after first usage
         String coin = used ? " USED, PRICE +1  ": "                 ";
@@ -90,12 +91,34 @@ public class EriantysCLI {
         } else {
             for (int i = 0; i < 6; i++) cardStudents.add("   ");
         }
+
+        //prohibition tokens
+        if(ID.equals(EffectName.LADY))
+        {
+            for (int i = 0; i < prohibition; i++)
+            {
+                prohibitionCards.add(ANSIColor.RED + "[X]" + ANSIColor.RESET);
+            }
+            for (int i = prohibition; i < 4; i++)
+            {
+                prohibitionCards.add("   ");
+            }
+        }
+
+
         result.add("  ╔═══════════════════╗");
         result.add("  ║ PRICE        NAME ║");
         result.add("  ║   " + price + spaces + id + " ║");
         result.add("  ║ " +    coin   + " ║");
-        result.add("  ║ "+ cardStudents.get(0) +"  "+ cardStudents.get(1) +"  "+ cardStudents.get(2) +"  "+ cardStudents.get(3) +"║");
-        result.add("  ║     "+ cardStudents.get(4) +"  "+ cardStudents.get(5) +"      ║");
+        if(ID.equals(EffectName.LADY))
+        {
+            result.add("  ║ PROHIBITION CARDS ║");
+            result.add("  ║  "+prohibitionCards.get(0) +" "+prohibitionCards.get(1)+" "+prohibitionCards.get(2)+" "+prohibitionCards.get(3)+"  ║");
+        }
+        else{
+            result.add("  ║ "+ cardStudents.get(0) +"  "+ cardStudents.get(1) +"  "+ cardStudents.get(2) +"  "+ cardStudents.get(3) +"║");
+            result.add("  ║     "+ cardStudents.get(4) +"  "+ cardStudents.get(5) +"      ║");
+        }
         result.add("  ╚═══════════════════╝");
         result.add(" ");
         return result;
@@ -287,13 +310,14 @@ public class EriantysCLI {
      * @param ID island identifier
      * @param students disks to be shown over the island
      * @param towers towers to be shown over the island
-     * @param prohibited true if the island has prohibition cards over it
+     * @param prohibition value of the prohibition cards over the island
      * @param curr true if the island is the current island
      */
-    private ArrayList<String> islandElement(int ID, HashMap<ColoredDisc, Integer> students, ArrayList<Tower> towers, boolean prohibited, boolean curr) {
+    private ArrayList<String> islandElement(int ID, HashMap<ColoredDisc, Integer> students, ArrayList<Tower> towers, int prohibition, boolean curr) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<String> islandStud = new ArrayList<>();
         int tower = 0;
+        String prohibitionTokens = "         ";
         String motherNature= " ";
         String color = "";
         String towerID = " ";
@@ -314,9 +338,13 @@ public class EriantysCLI {
         if(ID>=10)
             space = "";
 
-        if(prohibited) {
+        if(prohibition>0)
+        {
             forbidden = ANSIColor.RED;
+            prohibitionTokens = "  "+(prohibition) + "[X]   ";
         }
+
+
 
         if (students != null) {
             for (ColoredDisc d : students.keySet()) {
@@ -412,7 +440,7 @@ public class EriantysCLI {
         }
 
         result.add(leftUpperMargin + topMargin + rightUpperMargin);
-        result.add(leftMargin + forbidden +" ID: " + ID +space+"         "+motherNature+ANSIColor.RESET+rightMargin);
+        result.add(leftMargin + forbidden +" ID: " + ID + space + prohibitionTokens + motherNature + ANSIColor.RESET + rightMargin);
         result.add(leftMargin +" STUDENTS:       "+rightMargin);
         result.add(leftMargin +" " + islandStud.get(0) + " " + islandStud.get(1) + " " + islandStud.get(2) + " " + islandStud.get(3) + " " + islandStud.get(4) + "       "+rightMargin);
         result.add(leftMargin + color +" TOWER:    " + towerID +" "+ tower + ANSIColor.RESET + "   "+ rightMargin);
@@ -541,7 +569,7 @@ public class EriantysCLI {
                 if(currIslandID==i){
                     curr = true;
                 }
-                myIsland [i] = islandElement(islands.get(j).ID, islands.get(j).students, islands.get(j).towerList, islands.get(j).prohibited, curr);
+                myIsland [i] = islandElement(islands.get(j).ID, islands.get(j).students, islands.get(j).towerList, islands.get(j).prohibitedValue, curr);
                 j++;
                 curr = false;
             }

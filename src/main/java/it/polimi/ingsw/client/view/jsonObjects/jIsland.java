@@ -11,5 +11,5 @@ public class jIsland {
     public ArrayList<Integer> graphicalIsland = new ArrayList<>();
     public HashMap<ColoredDisc, Integer> students = new HashMap<ColoredDisc, Integer>();
     public ArrayList<Tower> towerList = new ArrayList<Tower>();
-    public boolean prohibited;
+    public int prohibitedValue = 0;
 }

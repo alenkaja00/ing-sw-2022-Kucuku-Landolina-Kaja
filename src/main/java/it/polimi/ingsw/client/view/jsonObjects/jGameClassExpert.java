@@ -12,4 +12,5 @@ public class jGameClassExpert extends jGameClass {
     public ArrayList<Integer> villainContribution = new ArrayList<>();
     public ArrayList<Integer> extraMotherNatureMoves = new ArrayList<>();
     public boolean centaurEffect = false;
+    public int prohibitionCards;
 }

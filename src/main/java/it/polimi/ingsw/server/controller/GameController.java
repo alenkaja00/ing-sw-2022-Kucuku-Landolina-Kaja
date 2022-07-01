@@ -13,6 +13,11 @@ import java.security.InvalidParameterException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Class GameController is the main controller class, it handles the phases of the game and coordinates them
+ * the phases are the wizard selection, the pianification, the action , the effects, the game ended
+ * it also handles the reconnection / disconnection of a player
+ */
 public class GameController
 {
     private GameClass newGame;
@@ -27,6 +32,15 @@ public class GameController
     private HashMap<String, Wizard> playerWizards = new HashMap<>();;
     private ArrayList<ArrayList<String>> inputBuffer = new ArrayList<ArrayList<String>>();
 
+    /**
+     * Constructor instantiates a thread which manages the game calling other methods of the class
+     * it establishes the turn logic by calling the phases of the game
+     * @param playerNumber number of players
+     * @param expertMode true if the game is in the expert variant
+     * @param ID the identifier of the game Controller
+     * @param nicknames list of player's nicknames
+     * @param playerSockets hashmap of nicknames and client manager classes
+     */
     public GameController(int playerNumber, Boolean expertMode, String ID, ArrayList<String> nicknames, HashMap<String, ClientManager> playerSockets)
     {
         new Thread(()->
@@ -77,6 +91,9 @@ public class GameController
 
     }
 
+    /**
+     * @return true if the game has ended
+     */
     public boolean getGameEnded()
     {
         synchronized (gameEnded)
@@ -85,6 +102,10 @@ public class GameController
         }
     }
 
+    /**
+     * this method accepts the player's wizard choice
+     * if a player disconnects in this phase, a random wizard will be associated to him
+     */
     private void acceptWizards()
     {
         /*new Thread(new Runnable() {
@@ -99,17 +120,13 @@ public class GameController
         while (playerWizards.size()<playerNumber)
         {
             ArrayList<String> message = nextMessage("");
-            System.out.println("out of the nextm");
+            System.out.println("out of the next");
 
             if (!message.get(0).equals("DISCONNECTED"))
             {
                 if (message.get(0).equals("PLAY") &&  !playerWizards.keySet().contains(message.get(1)) &&
                         message.get(2).equals("WIZARD") && !playerWizards.values().contains(Wizard.valueOf(message.get(3))))
                 {
-                    /*
-                    System.out.println(playerWizards.values().contains(message.get(3)));
-                    System.out.println(playerWizards);
-                    System.out.println(message);*/
                     System.out.println("received "+ message.get(3));
                     playerSockets.get(message.get(1)).sendMessage("OK");
                     //updateView(message.get(1));
@@ -132,6 +149,12 @@ public class GameController
         }
     }
 
+    /**
+     * this method handles the planification phase: each player has to play his helper card, so the method will accept the request of the player and send OK in case of success
+     * in case of not success it will send NOK
+     * the method also sends LOCK/UNLOCK messages to the client
+     * based on the card value played it orders the players in the round
+     */
     private void pianificationPhase()
     {
         players.stream().filter(x-> !playersOnline.get(x)).forEach(x->playerDisconnected(x));
@@ -185,6 +208,11 @@ public class GameController
         orderByValue(playerOrder);
     }
 
+    /**
+     * this method handles the action phase where the player has to accomplish many steps: the method accepts the requests of ETI|ETT moves, NATURE moves or, CTE moves
+     * in addition it calls the method manage effect in case of expert variant of the game
+     * if the action is permitted or not it will send OK/NOK and LOCK/UNLOCK the interaction
+     */
     private void actionPhase()
     {
         //action phase
@@ -287,7 +315,13 @@ public class GameController
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {
-                    manageEffect(players.indexOf(currentPlayer), message);
+                    try
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    } catch (Exception e)
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 }
                 else
                 {
@@ -328,7 +362,13 @@ public class GameController
                 }
                 else if (message.get(0).equals("PLAY") && message.get(1).equals(currentPlayer) && message.get(2).equals("EFFECT"))
                 {
-                    manageEffect(players.indexOf(currentPlayer), message);
+                    try
+                    {
+                        manageEffect(players.indexOf(currentPlayer), message);
+                    } catch (Exception e)
+                    {
+                        playerSockets.get(currentPlayer).sendMessage("NOK");
+                    }
                 }
                 else
                 {
@@ -347,6 +387,12 @@ public class GameController
             ((GameClassExpert)newGame).endCardEffect();
     }
 
+    /**
+     * this method is called if an effect card message is received
+     * based on the requested effect it applies it by calling the GameClass
+     * @param playerID the identifier of the player who requested the effect
+     * @param message the message string which contains the request
+     */
     private void manageEffect(int playerID, ArrayList<String> message)
     {
         if (!expertMode) {
@@ -415,6 +461,10 @@ public class GameController
         updateView();
     }
 
+    /**
+     * if the game has ended it will send to all the connected player a message containing the winner's nickname
+     * @param playerID identifier of the winner
+     */
     private void gameEnded(int playerID)
     {
         synchronized (gameEnded)
@@ -427,6 +477,10 @@ public class GameController
         });
     }
 
+    /**
+     * this method is responsible for sending to the sockets the json containing the game data
+     * it is called several times by other methods, for example after a movement or after accomplishing a task
+     */
     private void updateView()
     {
         Gson gson = new Gson();
@@ -437,41 +491,37 @@ public class GameController
             result = gson.toJson(newGame);
         players.stream().filter(x->playersOnline.get(x)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
     }
-    private void updateView(String nickname)
-    {
-        Gson gson = new Gson();
-        String result;
-        if (expertMode)
-            result = gson.toJson((GameClassExpert) newGame);
-        else
-            result = gson.toJson(newGame);
-        players.stream().filter(x->x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("JSON|"+result));
-    }
 
-/*    private ArrayList<String> nextMessage()
-    {
-        ArrayList<String> message = new ArrayList<>();
-
-        do
+    /*    private ArrayList<String> nextMessage()
         {
-            synchronized (inputBuffer)
-            {
-                if (inputBuffer.size()>0)
-                {
-                    message=inputBuffer.remove(0);
-                    inputBuffer.notifyAll();
-                }
-            }
-            if (message.size()>0)
-                return (ArrayList<String>) message.clone();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } while (true);
+            ArrayList<String> message = new ArrayList<>();
 
-    }*/
+            do
+            {
+                synchronized (inputBuffer)
+                {
+                    if (inputBuffer.size()>0)
+                    {
+                        message=inputBuffer.remove(0);
+                        inputBuffer.notifyAll();
+                    }
+                }
+                if (message.size()>0)
+                    return (ArrayList<String>) message.clone();
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (true);
+
+        }*/
+
+    /**
+     * this method extracts from the buffer the first message that has to be evaluated
+     * @param playerNickname nickname of the player who is online or is not already in the game
+     * @return the first extracted method from the buffer
+     */
     private ArrayList<String> nextMessage(String playerNickname)
     {
         ArrayList<String> message = new ArrayList<>();
@@ -496,6 +546,10 @@ public class GameController
         message.add("DISCONNECTED");
         return (ArrayList<String>) message.clone();
     }
+
+    /**
+     * @param receivedMessage message added to the input buffer in order to be parsed
+     */
     public void parseMessage(ArrayList<String> receivedMessage)
     {
         if (gameEnded) return;
@@ -506,11 +560,20 @@ public class GameController
         }
     }
 
+    /**
+     * this method handles the disconnection of a player: his status will be "offline" and it removes him from the online players list and from the player order
+     * if there is only 1 player left in the game after a timeout he will be considered as winner
+     * if all of the players disconnected the match will be canceled
+     * @param nickname nicnkame of the disconnected player
+     */
     public void playerDisconnected(String nickname)
     {
         if (!players.contains(nickname))
             throw new InvalidParameterException();
         playersOnline.put(nickname, false);
+
+        playerOrder.removeAll(playerOrder.stream().filter(x->x.getKey().equals(nickname)).collect(Collectors.toList()));
+
         if (newGame.getPlayers().get(players.indexOf(nickname)).online = false)
             return;
         else
@@ -543,6 +606,11 @@ public class GameController
         //players.stream().filter(x->!x.equals(nickname)).forEach(x->playerSockets.get(x).sendMessage("DISCONNECTED|"+nickname));
 
     }
+
+    /**
+     * this method handles the reconnection of a player and informs the others of him by updating his status to "ONLINE"
+     * @param nickname nicnkame of the reconnected player
+     */
     public void playerReconnected(String nickname)
     {
         if (!players.contains(nickname))
@@ -554,6 +622,9 @@ public class GameController
         updateView();
     }
 
+    /**
+     * @return the ID of the game Controller
+     */
     public String getID()
     {
         return ID;
@@ -564,11 +635,14 @@ public class GameController
         return (ArrayList<String>) players.clone();
     }
 
-
     public HashMap<String, Boolean> getPlayersOnline() {
         return (HashMap<String, Boolean>) playersOnline.clone();
     }
 
+    /**
+     * this method is used to order the players in the round based on the integer associated to the number of their last played helper card
+     * @param playerList contains the players identifiers both with their played card number
+     */
     public void orderByValue(ArrayList<Map.Entry<String, Integer>> playerList)
     {
         List<Map.Entry<String, Integer>> copy = (List<Map.Entry<String, Integer>>) playerList.clone();

@@ -3,16 +3,16 @@ package it.polimi.ingsw.client.view.cli;
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.cli.components.EriantysCLI;
+import it.polimi.ingsw.client.view.cli.utils.ANSIColor;
 import it.polimi.ingsw.client.view.gui.controllers.ClientControllerSingleton;
+import it.polimi.ingsw.client.view.jsonObjects.jEffectCard;
 import it.polimi.ingsw.client.view.jsonObjects.jGameClassExpert;
 import it.polimi.ingsw.server.model.cards.Wizard;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * class that implements the view interface and contains the logic of the command line version of the game
@@ -37,6 +37,13 @@ public class cliClass implements ViewInterface
     private String currentState = "START";
     private String nextLineMessage = "";
 
+    private HashMap<jEffectCard, String> effectCommands;
+    private HashMap<jEffectCard, String> effectDescriptions;
+    private ArrayList<String> effectStrings = new ArrayList<>(Arrays.asList("EFFECT|CAVALIER","EFFECT|CENTAUR", "EFFECT|VILLAIN",
+            "EFFECT|MAGICIAN", "EFFECT|MONK|islandID|cardStudentIndex", "EFFECT|COOK|coloredDisc", "EFFECT|QUEEN|cardStudentIndex",
+            "EFFECT|LADY|islandID", "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]",
+            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]","EFFECT|BANDIT|studentColor", "EFFECT|LORD|islandID"));
+
     /**
      * the constructor method starts the thread used to parse the user's input
      */
@@ -44,34 +51,22 @@ public class cliClass implements ViewInterface
     {
         eriantysCLI = new EriantysCLI();
 
-        /*new Thread(
+        effectCommands = new HashMap<>();
+        effectDescriptions = new HashMap<>();
+
+        mainThread = new Thread(
                 new Runnable() {
                     @Override
                     public void run() {
+                        flushCLI();
+                        printBlock(eriantysCLI.welcomeScene(ClientControllerSingleton.getInstance().getClientController().getServerIP()));
                         do {
-                            try {
-                                Thread.sleep(10000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            printBlock(eriantysCLI.welcomeScene(""));
+                            String s = nextLine("");
+                            //System.out.println("[CLI LOG]: " + s);
+                            parseInput(s);
                         }while (true);
                     }
                 }
-        ).start();*/
-        mainThread = new Thread(
-            new Runnable() {
-                @Override
-                public void run() {
-                    flushCLI();
-                    printBlock(eriantysCLI.welcomeScene(ClientControllerSingleton.getInstance().getClientController().getServerIP()));
-                    do {
-                        String s = nextLine("");
-                        //System.out.println("[CLI LOG]: " + s);
-                        parseInput(s);
-                    }while (true);
-                }
-            }
         );
         mainThread.start();
     }
@@ -152,6 +147,13 @@ public class cliClass implements ViewInterface
      */
     private void helpMessages()
     {
+        if(expertMode) {
+            for (jEffectCard card: gameData.ChosenCards) {
+                effectCommands.put(card, effectStrings.stream().filter(x -> x.contains(card.ID.toString())).collect(Collectors.toList()).get(0));
+                effectDescriptions.put(card, card.description);
+            }
+        }
+
         switch (currentState)
         {
             case "START":
@@ -162,51 +164,15 @@ public class cliClass implements ViewInterface
             case "ETX":
                 System.out.println("ETT|entranceIndex");
                 System.out.println("ETI|islandIndex|entranceIndex");
-                if (expertMode)
-                    System.out.println("EFFECT|CAVALIER\n" +
-                            "EFFECT|CENTAUR\n" +
-                            "EFFECT|VILLAIN\n" +
-                            "EFFECT|MAGICIAN\n" +
-                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
-                            "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|cardStudentIndex\n" +
-                            "EFFECT|LADY|islandID\n" +
-                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
-                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
-                            "EFFECT|BANDIT|studentColor\n" +
-                            "EFFECT|LORD|islandID");
+                showEffectsMenu();
                 break;
             case "NATURE":
                 System.out.println("NATURE|motherNatureMoves");
-                if (expertMode)
-                    System.out.println("EFFECT|CAVALIER\n" +
-                            "EFFECT|CENTAUR\n" +
-                            "EFFECT|VILLAIN\n" +
-                            "EFFECT|MAGICIAN\n" +
-                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
-                            "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|cardStudentIndex\n" +
-                            "EFFECT|LADY|islandID\n" +
-                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
-                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
-                            "EFFECT|BANDIT|studentColor\n" +
-                            "EFFECT|LORD|islandID");
+                showEffectsMenu();
                 break;
             case "CTE":
                 System.out.println("CTE|cloudIndex");
-                if (expertMode)
-                    System.out.println("EFFECT|CAVALIER\n" +
-                            "EFFECT|CENTAUR\n" +
-                            "EFFECT|VILLAIN\n" +
-                            "EFFECT|MAGICIAN\n" +
-                            "EFFECT|MONK|islandID|cardStudentIndex\n" +
-                            "EFFECT|COOK|coloredDisc\n" +
-                            "EFFECT|QUEEN|cardStudentIndex\n" +
-                            "EFFECT|LADY|islandID\n" +
-                            "EFFECT|JOLLY|indexCard1|indexEntrance1|[indexCard2]|[indexEntrance2]|[indexCard3]|[indexEntrance3]\n" +
-                            "EFFECT|MUSICIAN|entranceIndex1|switchColor1|[entranceIndex2]|[switchColor2]\n" +
-                            "EFFECT|BANDIT|studentColor\n" +
-                            "EFFECT|LORD|islandID");
+                showEffectsMenu();
                 break;
         }
     }
@@ -553,7 +519,7 @@ public class cliClass implements ViewInterface
         {
             if (ClientControllerSingleton.getInstance().getClientController().requestString(input))
             {
-                System.out.println("Correctly filled the entrance with students from island "+Integer.parseInt(parsedMessage.get(1))+".");
+                System.out.println("Correctly filled the entrance with students from cloud "+Integer.parseInt(parsedMessage.get(1))+".");
                 changeState("CTE");
                 changeState("LOCK");
                 waitUnlock();
@@ -720,6 +686,20 @@ public class cliClass implements ViewInterface
         System.out.println("It's your turn");
     }
 
+
+    private void showEffectsMenu()
+    {
+        if(expertMode)
+        {
+            System.out.println("Effects: " + ANSIColor.CYAN + "commands" + ANSIColor.RESET + " and " + ANSIColor.YELLOW_BOLD + "descriptions" + ANSIColor.RESET);
+            for (jEffectCard card : gameData.ChosenCards)
+            {
+                System.out.print(ANSIColor.CYAN + effectCommands.get(card) + ANSIColor.RESET + " -> ");
+                System.out.println(ANSIColor.YELLOW_BOLD + effectDescriptions.get(card) + ANSIColor.RESET);
+            }
+        }
+    }
+
     /**
      * this method clears the screen
      */
@@ -746,4 +726,3 @@ public class cliClass implements ViewInterface
         return s;
     }
 }
-
