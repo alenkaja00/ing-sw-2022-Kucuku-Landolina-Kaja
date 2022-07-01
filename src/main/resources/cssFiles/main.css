@@ -49,14 +49,14 @@
 }
 
 #cardLabel1{
-
+    -fx-text-fill: white;
     -fx-font-size:22;
 }
 #cardLabel2{
-
+    -fx-text-fill: white;
     -fx-font-size:22;
 }
 #cardLabel3{
-
+    -fx-text-fill: white;
     -fx-font-size:22;
 }
