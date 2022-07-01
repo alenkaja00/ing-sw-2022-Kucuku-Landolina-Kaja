@@ -5,9 +5,13 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.file.FileStore;
 import java.util.*;
 
+/**
+ * Class ClientNetwork manages the flow of information on client side
+ * it sends to the client controller the messages received from the server
+ * similarly it sends to the server requests from the client controller
+ */
 public class ClientNetwork{
 
     Socket socket;
@@ -16,6 +20,12 @@ public class ClientNetwork{
     PrintWriter socketOut;
     Boolean connected = false;
 
+    /**
+     * Constructor initializes the ClientNetwork instance, sets the ip and port on the socket
+     * it contains a "ping" logic in order to keep the connection "alive"
+     * @param controller reference of the ClientController
+     * @throws IOException because of the socket nextLine method
+     */
     public ClientNetwork(String ip, int port, ClientController controller) throws IOException {
         this.socket = new Socket(ip, port);
         this.controller = controller;
@@ -81,6 +91,9 @@ public class ClientNetwork{
         //Executors.newCachedThreadPool().execute(new ServerManager(socket, controller));
     }
 
+    /**
+     * informs the controller of a disconnected player
+     */
     private void catchException()
     {
         //e.printStackTrace();
@@ -90,6 +103,9 @@ public class ClientNetwork{
         connected = false;
     }
 
+    /**
+     * closes the connection after an exception, such as a disconnection
+     */
     private void finalException()
     {
         socketIn.close();
@@ -101,9 +117,11 @@ public class ClientNetwork{
         }
     }
 
+    /**
+     * sends a message out on the socket
+     */
     public void sendMessage(String message) {
         socketOut.println(message);
         socketOut.flush();
     }
-
 }
