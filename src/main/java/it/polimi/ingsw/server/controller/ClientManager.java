@@ -1,5 +1,7 @@
 package it.polimi.ingsw.server.controller;
 
+import it.polimi.ingsw.server.Logger;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -40,7 +42,7 @@ public class ClientManager implements Runnable{
     public void run()
     {
         online = true;
-        System.out.println("Connection established");
+        Logger.storeLog("Connection established");
         socketIn = null;
         try {
             socketIn = new Scanner(socket.getInputStream());
@@ -70,7 +72,7 @@ public class ClientManager implements Runnable{
                     }
                 } catch (IOException e) {
                     //e.printStackTrace();
-                    System.out.println("network disconnection");
+                    Logger.storeLog("Network disconnection");
                 }
             }
         }).start();
@@ -89,12 +91,12 @@ public class ClientManager implements Runnable{
                         {
                             nickname = parameters.get(1);
                             controller.addPlayersocket(nickname, this);
-                            System.out.println("Client " + nickname + " connected");
+                            Logger.storeLog("Client " + nickname + " connected");
                             sendMessage("OK");
                         }
                         else
                         {
-                            System.out.println("unavailable");
+                            Logger.storeLog("Unavailable nickname requested.");
                             sendMessage("NOK");
                         }
                     }
@@ -116,7 +118,7 @@ public class ClientManager implements Runnable{
     private void catchException()
     {
         //e.printStackTrace();
-        System.out.println("Client "+nickname+" disconnected");
+        Logger.storeLog("Client "+nickname+" disconnected");
         if (nickname!= null)
             controller.managePlayerDisconnection(nickname);
         online = false;
@@ -148,7 +150,7 @@ public class ClientManager implements Runnable{
         }
         else
         {
-            System.out.println("Message for "+ nickname+" ignored. Player offline.");
+            Logger.storeLog("Message for "+ nickname+" ignored. Player offline.");
         }
 
     }

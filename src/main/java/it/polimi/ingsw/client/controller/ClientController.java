@@ -42,6 +42,15 @@ public class ClientController
     }
 
     /**
+     * Returns the view modE
+     * @return a value that can be "GUI" or "CLI"
+     */
+    public String getViewMode()
+    {
+        return viewMode;
+    }
+
+    /**
      * sends a connection request from a client
      */
     public boolean requestConnection(String ip, int port)
@@ -169,7 +178,7 @@ public class ClientController
      */
     private void manageGameProsecution()
     {
-        System.out.println("Game prosecution");
+        System.out.println("Reconnecting to existing game");
         /*List<String> message;
 
         //receive unlock or JSON

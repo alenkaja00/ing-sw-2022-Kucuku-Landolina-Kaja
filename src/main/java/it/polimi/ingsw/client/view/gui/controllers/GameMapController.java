@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.view.jsonObjects.*;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -18,6 +19,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.*;
@@ -28,6 +31,12 @@ import java.util.stream.Collectors;
  */
 public class GameMapController
 {
+    @FXML
+    ImageView effectOneImage, effectTwoImage, effectThreeImage;
+    @FXML
+    Label cardLabel1, cardLabel2, cardLabel3;
+    @FXML
+    StackPane helpStack;
     //scrollpanes
     @FXML
     private ScrollPane centralPane, centralPane1;
@@ -483,9 +492,13 @@ public class GameMapController
                 clickedEntrance = i;
             }
         }
-        System.out.println("entrance "+clickedEntrance);
+        System.out.println("Clicked entrance student "+clickedEntrance);
     }
 
+    /**
+     * handles click on a table student
+     * @param mouseEvent
+     */
     @FXML
     private void tableStudentClicked(MouseEvent mouseEvent)
     {
@@ -625,7 +638,7 @@ public class GameMapController
                 effectPlayed = true;
                 runningEffect = true;
                 Boolean success = false;
-                System.out.println("inside the effect click");
+                //System.out.println("inside the effect click");
 
                 String oldBanner = bannerText.getText();
 
@@ -831,7 +844,7 @@ public class GameMapController
                             }
                             entranceClickable = false;
                             jollyMessage += "|" + clickedEntrance;
-                            System.out.println("out with value " + clickedEntrance);
+                            //System.out.println("out with value " + clickedEntrance);
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString(jollyMessage);
                         break;
@@ -1168,6 +1181,10 @@ public class GameMapController
         clickedCloud = -1;
     }
 
+    /**
+     * shows the helper cards deck
+     * @param val
+     */
     private void showDeck(boolean val)
     {
         deckStack.setManaged(val);
@@ -1258,7 +1275,7 @@ public class GameMapController
                 }
             }
 
-            System.out.println("clicked entrance student: " + clickedEntrance);
+            System.out.println("Clicked entrance student: " + clickedEntrance);
             entranceClickable = false;
             islandClickable = true;
             tablesClickable = true;
@@ -1271,7 +1288,7 @@ public class GameMapController
                     e.printStackTrace();
                 }
             }
-            System.out.println("out of the box");
+            //System.out.println("out of the box");
 
             islandClickable = false;
             tablesClickable = false;
@@ -1287,7 +1304,7 @@ public class GameMapController
                     }
                 }
                 else {
-                    System.out.println("played eti");
+                    System.out.println("Played ETI");
                     count++;
                 }
             }
@@ -1302,7 +1319,7 @@ public class GameMapController
                     }
                 }
                 else {
-                    System.out.println("played ett");
+                    System.out.println("Played ETT");
                     count++;
                 }
             }
@@ -1338,7 +1355,7 @@ public class GameMapController
                 }
             }
 
-            System.out.println("clicked island: " + clickedIsland);
+            System.out.println("Clicked island: " + clickedIsland);
             islandClickable = false;
 
             int currentIslandPosition = islandsData.stream().filter(x->x.ID == currentIslandID).map(x->islandsData.indexOf(x)).collect(Collectors.toList()).get(0);
@@ -1379,7 +1396,7 @@ public class GameMapController
                 }
             }
 
-            System.out.println("clicked cloud: " + (clickedCloud));
+            System.out.println("Clicked cloud: " + (clickedCloud));
             cloudClickable = false;
 
             if (!clientController.requestCTE(clickedCloud))
@@ -1400,10 +1417,15 @@ public class GameMapController
         ETX();
     }
 
+    /**
+     * handles graphical effects for cards on mouseEnter
+     * @param mouseEvent user generated event
+     */
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
     {
-        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked() || runningEffect) return;
+        if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
+        if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         DropShadow effect = new DropShadow();
         effect.setColor(Color.YELLOW);
@@ -1413,11 +1435,14 @@ public class GameMapController
         image.setScaleY(1.1);
     }
 
+    /**
+     * handles graphical effects for cards on mouseExit
+     * @param mouseEvent
+     */
     @FXML
     private void mouseExited(MouseEvent mouseEvent)
     {
         if (effectList.contains((ImageView) mouseEvent.getSource()) && effectPlayed) return;
-
         if (ClientControllerSingleton.getInstance().getClientController().getViewLocked()) return;
         ImageView image = (ImageView) mouseEvent.getSource();
         image.setScaleX(1);
@@ -1431,8 +1456,41 @@ public class GameMapController
         for(ImageView img : )*/
     }
 
+    /**
+     * shows a message on the game scene top banner
+     * @param text the text to be shown
+     */
     public void bannerMessage(String text)
     {
         Platform.runLater(()->bannerText.setText(text));
+    }
+
+    /**
+     * initializes the effect card with descriptions
+     * @param actionEvent user generated event
+     */
+    public void activateHelp(ActionEvent actionEvent)
+    {
+        cardLabel1.setText(gameData.ChosenCards.get(0).description);
+        cardLabel2.setText(gameData.ChosenCards.get(1).description);
+        cardLabel3.setText(gameData.ChosenCards.get(2).description);
+
+        effectOneImage.setImage(effectList.get(0).getImage());
+        effectTwoImage.setImage(effectList.get(1).getImage());
+        effectThreeImage.setImage(effectList.get(2).getImage());
+
+        helpStack.setDisable(false);
+        helpStack.setManaged(true);
+        helpStack.setVisible(true);
+    }
+
+    /**
+     * shows or hided the go back button
+     * @param actionEvent
+     */
+    public void hideButton(ActionEvent actionEvent) {
+            helpStack.setDisable(true);
+            helpStack.setManaged(false);
+            helpStack.setVisible(false);
     }
 }
