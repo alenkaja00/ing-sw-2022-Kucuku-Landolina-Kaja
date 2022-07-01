@@ -32,9 +32,6 @@ public class GameClass {
     protected int NumOfIslands = 12;
     protected Island CurrentIsland;
 
-    //protected Player PlayerRound;
-    //protected HashMap<Integer, Integer> RoundOrder = new HashMap<Integer, Integer>();
-    //public int firstPlayer;
 
     /**
      * creates the islands,clouds arrays, creates the player objects with their nicknames and wizards
@@ -347,7 +344,6 @@ public class GameClass {
 
         int index = -1;
         int max = 0;
-        //for(int i=0 ; i < players.size(); i++)
         for(int i=0 ; i < PlayersInfluence.length; i++)
         {
             if(PlayersInfluence[i] > max)
@@ -406,7 +402,7 @@ public class GameClass {
     {
         // 2)
 
-        if(NumOfIslands <= 3)
+        if(islands.size() <= 3)
         {
             System.out.println("There are less than 3 islands");
             return true;
@@ -442,9 +438,7 @@ public class GameClass {
                 return true;
             }
         }
-
         return false;
-
     }
 
     /**
@@ -472,7 +466,6 @@ public class GameClass {
     public ArrayList<Cloud> getClouds() {
         return (ArrayList<Cloud>) clouds.clone();
     }
-
 
     public ArrayList<Player> getPlayers() {
         return (ArrayList<Player>) players.clone();
