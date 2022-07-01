@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.view.jsonObjects.*;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -28,6 +29,9 @@ import java.util.stream.Collectors;
  */
 public class GameMapController
 {
+    Boolean toShow;
+    @FXML
+    StackPane helpStack;
     //scrollpanes
     @FXML
     private ScrollPane centralPane, centralPane1;
@@ -265,6 +269,7 @@ public class GameMapController
      */
     @FXML
     public void initialize() throws IOException {
+        toShow=true;
         //deck management
         deck = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10));
         showDeck(false);
@@ -1438,5 +1443,17 @@ public class GameMapController
     public void bannerMessage(String text)
     {
         Platform.runLater(()->bannerText.setText(text));
+    }
+
+    public void activateHelp(ActionEvent actionEvent) {
+            helpStack.setDisable(false);
+            helpStack.setManaged(true);
+            helpStack.setVisible(true);
+    }
+
+    public void hideButton(ActionEvent actionEvent) {
+            helpStack.setDisable(true);
+            helpStack.setManaged(false);
+            helpStack.setVisible(false);
     }
 }
