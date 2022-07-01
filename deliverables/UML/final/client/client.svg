@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="244px" preserveAspectRatio="none" style="width:402px;height:244px;background:#FFFFFF;" version="1.1" viewBox="0 0 402 244" width="402px" zoomAndPan="magnify"><defs/><g><rect height="45.2188" style="stroke:#00000000;stroke-width:1.0;fill:none;" width="173" x="110.5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="163" x="115.5" y="24.5332">CLIENT's Class Diagram</text><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="4" x="195" y="42.1426"> </text><!--MD5=[1254e979b773d7dd91b2a0f20daaeac0]
+cluster it.polimi.ingsw.client--><g id="cluster_it.polimi.ingsw.client"><path d="M106.5,62.2188 L250.5,62.2188 A3.75,3.75 0 0 1 253,64.7188 L260,85.8281 L300.5,85.8281 A2.5,2.5 0 0 1 303,88.3281 L303,177.7188 A2.5,2.5 0 0 1 300.5,180.2188 L106.5,180.2188 A2.5,2.5 0 0 1 104,177.7188 L104,64.7188 A2.5,2.5 0 0 1 106.5,62.2188 " style="stroke:#000000;stroke-width:1.5;fill:none;"/><line style="stroke:#000000;stroke-width:1.5;fill:none;" x1="104" x2="260" y1="85.8281" y2="85.8281"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="143" x="108" y="78.752">it.polimi.ingsw.client</text></g><!--MD5=[d66f00c5b163adde441486fcab37681c]
+class it.polimi.ingsw.client.CLI--><g id="elem_it.polimi.ingsw.client.CLI"><rect codeLine="5" fill="#F1F1F1" height="65.6094" id="it.polimi.ingsw.client.CLI" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="66" x="221" y="98.2188"/><ellipse cx="241.85" cy="114.2188" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M243.85,110.7188 Q244.0531,110.2188 244.2875,109.9688 Q244.5219,109.7188 244.7875,109.7188 Q245.2563,109.7188 245.5531,110 Q245.85,110.2813 245.85,110.9375 L245.85,112.5 Q245.85,113.1563 245.5688,113.4375 Q245.2875,113.7188 244.85,113.7188 Q244.4594,113.7188 244.2094,113.5469 Q243.9594,113.375 243.85,112.9219 Q243.8031,112.6094 243.6313,112.4375 Q243.3188,112.1094 242.7563,111.9219 Q242.1938,111.7188 241.6313,111.7188 Q240.9281,111.7188 240.3344,112 Q239.7563,112.2813 239.3031,112.9063 Q238.85,113.5313 238.85,114.3906 L238.85,115.3125 Q238.85,116.3438 239.6938,117.0313 Q240.5375,117.7188 242.0375,117.7188 Q242.9281,117.7188 243.5531,117.5156 Q243.9125,117.4063 244.3188,117.0469 Q244.5844,116.8438 244.725,116.7813 Q244.8656,116.7188 245.0375,116.7188 Q245.3656,116.7188 245.6,116.9844 Q245.85,117.2344 245.85,117.5938 Q245.85,117.9375 245.5063,118.3438 Q245.0063,118.9375 244.2094,119.2656 Q243.1625,119.7188 241.8813,119.7188 Q240.3813,119.7188 239.1781,119.125 Q238.2094,118.6563 237.5219,117.6406 Q236.85,116.625 236.85,115.4219 L236.85,114.3281 Q236.85,113.0781 237.4438,111.9844 Q238.0531,110.8906 239.1,110.3125 Q240.1625,109.7188 241.35,109.7188 Q242.0688,109.7188 242.6938,109.9688 Q243.3188,110.2188 243.85,110.7188 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="21" x="257.15" y="119.9473">CLI</text><line style="stroke:#181818;stroke-width:0.5;" x1="222" x2="286" y1="130.2188" y2="130.2188"/><line style="stroke:#181818;stroke-width:0.5;" x1="222" x2="286" y1="138.2188" y2="138.2188"/><ellipse cx="232" cy="149.2188" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="40" x="241" y="156.752">main()</text></g><!--MD5=[5bec0bebfb18dfb1538e87560d52ed15]
+class it.polimi.ingsw.client.GUI--><g id="elem_it.polimi.ingsw.client.GUI"><rect codeLine="12" fill="#F1F1F1" height="65.6094" id="it.polimi.ingsw.client.GUI" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="66" x="120" y="98.2188"/><ellipse cx="139.95" cy="114.2188" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M141.95,110.7188 Q142.1531,110.2188 142.3875,109.9688 Q142.6219,109.7188 142.8875,109.7188 Q143.3563,109.7188 143.6531,110 Q143.95,110.2813 143.95,110.9375 L143.95,112.5 Q143.95,113.1563 143.6688,113.4375 Q143.3875,113.7188 142.95,113.7188 Q142.5594,113.7188 142.3094,113.5469 Q142.0594,113.375 141.95,112.9219 Q141.9031,112.6094 141.7313,112.4375 Q141.4188,112.1094 140.8563,111.9219 Q140.2938,111.7188 139.7313,111.7188 Q139.0281,111.7188 138.4344,112 Q137.8563,112.2813 137.4031,112.9063 Q136.95,113.5313 136.95,114.3906 L136.95,115.3125 Q136.95,116.3438 137.7938,117.0313 Q138.6375,117.7188 140.1375,117.7188 Q141.0281,117.7188 141.6531,117.5156 Q142.0125,117.4063 142.4188,117.0469 Q142.6844,116.8438 142.825,116.7813 Q142.9656,116.7188 143.1375,116.7188 Q143.4656,116.7188 143.7,116.9844 Q143.95,117.2344 143.95,117.5938 Q143.95,117.9375 143.6063,118.3438 Q143.1063,118.9375 142.3094,119.2656 Q141.2625,119.7188 139.9813,119.7188 Q138.4813,119.7188 137.2781,119.125 Q136.3094,118.6563 135.6219,117.6406 Q134.95,116.625 134.95,115.4219 L134.95,114.3281 Q134.95,113.0781 135.5438,111.9844 Q136.1531,110.8906 137.2,110.3125 Q138.2625,109.7188 139.45,109.7188 Q140.1688,109.7188 140.7938,109.9688 Q141.4188,110.2188 141.95,110.7188 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="23" x="155.05" y="119.9473">GUI</text><line style="stroke:#181818;stroke-width:0.5;" x1="121" x2="185" y1="130.2188" y2="130.2188"/><line style="stroke:#181818;stroke-width:0.5;" x1="121" x2="185" y1="138.2188" y2="138.2188"/><ellipse cx="131" cy="149.2188" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="40" x="140" y="156.752">main()</text></g><rect height="50.3125" style="stroke:#00000000;stroke-width:1.0;fill:none;" width="394" x="0" y="186.2188"/><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="3" x="195.5" y="196.5996"> </text><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="3" x="195.5" y="209.1777"> </text><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="392" x="1" y="221.7559">PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)</text><text fill="#888888" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="394" x="0" y="234.334">For more information about this tool, please contact philippe.mesmeur@gmail.com</text><!--MD5=[02d6fb1378c7e05157378ad16291bd25]
+@startuml
+
+title __CLIENT's Class Diagram__\n
+
+  namespace it.polimi.ingsw.client {
+    class it.polimi.ingsw.client.CLI {
+        {static} + main()
+    }
+  }
+  
+
+  namespace it.polimi.ingsw.client {
+    class it.polimi.ingsw.client.GUI {
+        {static} + main()
+    }
+  }
+  
+
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
+
+PlantUML version 1.2022.5(Sat Apr 30 12:55:52 CEST 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>
