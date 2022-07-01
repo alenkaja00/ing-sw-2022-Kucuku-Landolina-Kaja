@@ -18,7 +18,7 @@
                       <Image url="@../neterror.png" />
                   </image>
               </ImageView>
-              <Label text="Network eror :( The app is closing." />
+              <Label text="Network error :( The app is closing." />
               <Label text="Open the app again to continue the game" />
           </children>
        </VBox>
