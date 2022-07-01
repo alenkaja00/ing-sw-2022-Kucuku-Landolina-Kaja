@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.controller.ClientController;
+import it.polimi.ingsw.client.controller.ClientControllerSingleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javax.xml.stream.FactoryConfigurationError;
 import java.io.IOException;
 
 /**

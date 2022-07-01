@@ -2,7 +2,6 @@ package it.polimi.ingsw.client.controller;
 
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.cli.cliClass;
-import it.polimi.ingsw.client.view.gui.controllers.ClientControllerSingleton;
 import it.polimi.ingsw.client.view.gui.guiClass;
 import it.polimi.ingsw.server.model.cards.Wizard;
 

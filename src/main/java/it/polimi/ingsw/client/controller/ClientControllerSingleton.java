@@ -1,6 +1,4 @@
-package it.polimi.ingsw.client.view.gui.controllers;
-
-import it.polimi.ingsw.client.controller.ClientController;
+package it.polimi.ingsw.client.controller;
 
 /**
  * this class makes the clientcontroller visible from all the classes

@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui.controllers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
+import it.polimi.ingsw.client.controller.ClientControllerSingleton;
 import it.polimi.ingsw.client.view.jsonObjects.*;
 import it.polimi.ingsw.server.model.components.ColoredDisc;
 import javafx.application.Platform;
@@ -19,8 +20,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.*;

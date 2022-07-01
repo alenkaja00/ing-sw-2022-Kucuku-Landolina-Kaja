@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.view.gui;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
+import it.polimi.ingsw.client.controller.ClientControllerSingleton;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.gui.controllers.*;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;

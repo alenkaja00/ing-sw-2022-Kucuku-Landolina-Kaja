@@ -1,18 +1,14 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
-import it.polimi.ingsw.client.controller.ClientController;
-import javafx.application.Platform;
+import it.polimi.ingsw.client.controller.ClientControllerSingleton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
