@@ -41,6 +41,10 @@ public class ClientController
             view = new cliClass();
     }
 
+    /**
+     * Returns the view modE
+     * @return a value that can be "GUI" or "CLI"
+     */
     public String getViewMode()
     {
         return viewMode;

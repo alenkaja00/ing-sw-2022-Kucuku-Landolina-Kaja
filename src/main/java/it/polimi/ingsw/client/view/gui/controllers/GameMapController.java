@@ -495,6 +495,10 @@ public class GameMapController
         System.out.println("Clicked entrance student "+clickedEntrance);
     }
 
+    /**
+     * handles click on a table student
+     * @param mouseEvent
+     */
     @FXML
     private void tableStudentClicked(MouseEvent mouseEvent)
     {
@@ -1177,6 +1181,10 @@ public class GameMapController
         clickedCloud = -1;
     }
 
+    /**
+     * shows the helper cards deck
+     * @param val
+     */
     private void showDeck(boolean val)
     {
         deckStack.setManaged(val);
@@ -1409,6 +1417,10 @@ public class GameMapController
         ETX();
     }
 
+    /**
+     * handles graphical effects for cards on mouseEnter
+     * @param mouseEvent user generated event
+     */
     @FXML
     private void mouseEntered(MouseEvent mouseEvent)
     {
@@ -1423,6 +1435,10 @@ public class GameMapController
         image.setScaleY(1.1);
     }
 
+    /**
+     * handles graphical effects for cards on mouseExit
+     * @param mouseEvent
+     */
     @FXML
     private void mouseExited(MouseEvent mouseEvent)
     {
@@ -1440,25 +1456,38 @@ public class GameMapController
         for(ImageView img : )*/
     }
 
+    /**
+     * shows a message on the game scene top banner
+     * @param text the text to be shown
+     */
     public void bannerMessage(String text)
     {
         Platform.runLater(()->bannerText.setText(text));
     }
 
-    public void activateHelp(ActionEvent actionEvent) {
-            cardLabel1.setText(gameData.ChosenCards.get(0).description);
-            cardLabel2.setText(gameData.ChosenCards.get(1).description);
-            cardLabel3.setText(gameData.ChosenCards.get(2).description);
+    /**
+     * initializes the effect card with descriptions
+     * @param actionEvent user generated event
+     */
+    public void activateHelp(ActionEvent actionEvent)
+    {
+        cardLabel1.setText(gameData.ChosenCards.get(0).description);
+        cardLabel2.setText(gameData.ChosenCards.get(1).description);
+        cardLabel3.setText(gameData.ChosenCards.get(2).description);
 
-            effectOneImage.setImage(effectList.get(0).getImage());
-            effectTwoImage.setImage(effectList.get(1).getImage());
-            effectThreeImage.setImage(effectList.get(2).getImage());
+        effectOneImage.setImage(effectList.get(0).getImage());
+        effectTwoImage.setImage(effectList.get(1).getImage());
+        effectThreeImage.setImage(effectList.get(2).getImage());
 
-            helpStack.setDisable(false);
-            helpStack.setManaged(true);
-            helpStack.setVisible(true);
+        helpStack.setDisable(false);
+        helpStack.setManaged(true);
+        helpStack.setVisible(true);
     }
 
+    /**
+     * shows or hided the go back button
+     * @param actionEvent
+     */
     public void hideButton(ActionEvent actionEvent) {
             helpStack.setDisable(true);
             helpStack.setManaged(false);

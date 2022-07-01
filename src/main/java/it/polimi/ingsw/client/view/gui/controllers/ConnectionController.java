@@ -182,6 +182,10 @@ public class ConnectionController
         });
     }
 
+    /**
+     * returns to the main scene
+     * @param actionEvent user generated event
+     */
     public void goBack(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFiles/mainScene.fxml"));
         try {
