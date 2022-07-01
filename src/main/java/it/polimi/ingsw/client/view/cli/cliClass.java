@@ -693,11 +693,11 @@ public class cliClass implements ViewInterface
     {
         if(expertMode)
         {
-            System.out.println("Effects: " + ANSIColor.CYAN + "commands" + ANSIColor.RESET + " and " + ANSIColor.YELLOW_BOLD + "descriptions" + ANSIColor.RESET);
+            System.out.println("Effects: commands and descriptions");
             for (jEffectCard card : gameData.ChosenCards)
             {
-                System.out.print(ANSIColor.CYAN + effectCommands.get(card) + ANSIColor.RESET + " -> ");
-                System.out.println(ANSIColor.YELLOW_BOLD + effectDescriptions.get(card) + ANSIColor.RESET);
+                System.out.print(effectCommands.get(card) + " -> ");
+                System.out.println(effectDescriptions.get(card));
             }
         }
     }
