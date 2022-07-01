@@ -4,15 +4,12 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.client.controller.ClientController;
 import it.polimi.ingsw.client.view.ViewInterface;
 import it.polimi.ingsw.client.view.gui.controllers.*;
-import it.polimi.ingsw.server.model.components.Player;
 import it.polimi.ingsw.server.model.gameClasses.GameClass;
-import it.polimi.ingsw.server.model.gameClasses.GameClassExpert;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.sound.midi.Soundbank;
 
 /**
  * this class implements the ViewInterface and its methods are called by the ClientController
@@ -41,14 +38,11 @@ public class guiClass implements ViewInterface
 
     @Override
     public void startScene(String serverIP) {
-
         mainstage.startScene();
-
     }
 
     @Override
     public void waitLobbyScene() {
-
         mainstage.waitingScene("");
     }
 
