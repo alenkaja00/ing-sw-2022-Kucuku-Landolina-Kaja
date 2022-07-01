@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
@@ -26,6 +27,15 @@ public class WaitingController {
     @FXML
     private ProgressBar progressBar;
 
+    @FXML
+    private Button home;
+
+    @FXML
+    public void initialize()
+    {
+        showButton(true);
+    }
+
     public void connectionRequest(int playerNum, boolean expert){
         System.out.println("WAITING");
     }
@@ -33,6 +43,12 @@ public class WaitingController {
     public void showMessage(String message)
     {
         waitingText.setText(message);
+    }
+
+    public void showButton(Boolean val)
+    {
+        home.setDisable(!val);
+        home.setVisible(val);
     }
 
     public void Home(ActionEvent actionEvent) {

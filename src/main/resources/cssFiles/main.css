@@ -47,16 +47,3 @@
     -fx-font-weight: 900;
     -fx-background-color: rgba(60,60,60,0.5);
 }
-
-#cardLabel1{
-    -fx-text-fill: white;
-    -fx-font-size:22;
-}
-#cardLabel2{
-    -fx-text-fill: white;
-    -fx-font-size:22;
-}
-#cardLabel3{
-    -fx-text-fill: white;
-    -fx-font-size:22;
-}

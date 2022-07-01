@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.Button?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="it.polimi.ingsw.client.view.gui.controllers.WaitingController">
+<GridPane fx:id="mainGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="it.polimi.ingsw.client.view.gui.controllers.WaitingController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
@@ -38,6 +38,6 @@
             </Label>
          </children>
       </AnchorPane>
-       <Button fx:id="home" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" onAction="#Home" prefHeight="94.0" prefWidth="256.0" text="Home" />
+       <Button fx:id="home" onAction="#Home" style="-fx-background-radius: 0px; -fx-border-radius:0px" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="10" GridPane.rowSpan="20" mnemonicParsing="false" prefHeight="${mainGrid.width*0.03}" prefWidth="${mainGrid.width*0.18}" text="← QUIT LOBBY" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM"/>
    </children>
 </GridPane>

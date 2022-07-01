@@ -1,5 +1,12 @@
 package it.polimi.ingsw.client.controller;
 
+import it.polimi.ingsw.client.view.gui.controllers.StageSingleton;
+import it.polimi.ingsw.client.view.gui.controllers.WaitingController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -55,7 +62,6 @@ public class ClientNetwork{
                     }
                 } catch (IOException e) {
                     //e.printStackTrace();
-                    System.out.println("network disconnection");
                 }
             }
         }).start();
@@ -115,6 +121,33 @@ public class ClientNetwork{
         } catch (IOException e) {
             //e.printStackTrace();
         }
+
+        System.out.println("Network disconnection. Close the game and reopen it to continue.");
+        if (controller.getViewMode().equals("GUI"))
+        {
+            Parent root = null;
+            Stage stage;
+            Scene scene;
+            stage = StageSingleton.getInstance().getStage();
+            FXMLLoader loader = null;
+            loader = new FXMLLoader(getClass().getResource("/fxmlFiles/networkDisconnected.fxml"));
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            scene = new Scene(root);
+            stage.setTitle("Network error");
+            stage.setScene(scene);
+            stage.show();
+        }
+        for (int i=0; i<10; i++)
+        {
+            System.out.println("Closing in "+(10-i)+"s...");
+        }
+        System.exit(0);
+
     }
 
     /**

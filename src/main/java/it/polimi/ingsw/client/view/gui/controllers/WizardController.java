@@ -75,19 +75,19 @@ public class WizardController {
         Wizard wizard = null;
 
         if(mouseEvent.getSource().equals(wizard1)){
-            System.out.println("MAGO1");
+            System.out.println("WIZARD1");
             wizard = Wizard.WIZARD1;
         }
         if(mouseEvent.getSource().equals(wizard2)){
-            System.out.println("MAGO2");
+            System.out.println("WIZARD2");
             wizard = Wizard.WIZARD2;
         }
         if(mouseEvent.getSource().equals(wizard3)){
-            System.out.println("MAGO3");
+            System.out.println("WIZARD3");
             wizard = Wizard.WIZARD3;
         }
         if(mouseEvent.getSource().equals(wizard4)){
-            System.out.println("MAGO4");
+            System.out.println("WIZARD4");
             wizard = Wizard.WIZARD4;
         }
 

@@ -347,7 +347,7 @@
                   <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button onAction="#activateHelp" fx:id="showHelpButton" GridPane.columnIndex="3" GridPane.rowIndex="0" text="show"> </Button>
+                  <Button onAction="#activateHelp" fx:id="showHelpButton" GridPane.columnIndex="3" GridPane.rowIndex="0" text="i"> </Button>
                   <StackPane GridPane.columnIndex="0" GridPane.halignment="CENTER" maxWidth="${cardsGrid.width*0.15}">
                      <ImageView fx:id="effectOne" onMouseClicked="#effectClicked" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" fitHeight="150.0" fitWidth="${cardsGrid.width*0.15}" pickOnBounds="true" preserveRatio="true">
                      </ImageView>
@@ -1538,9 +1538,9 @@
                <ImageView fx:id="effectOneImage" GridPane.rowIndex="1" GridPane.columnIndex="0" fitHeight="${helpGrid.height*0.4}" fitWidth="${helpGrid.width*0.33}" preserveRatio="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER"></ImageView>
                <ImageView fx:id="effectTwoImage" GridPane.rowIndex="1" GridPane.columnIndex="1" fitHeight="${helpGrid.height*0.4}" fitWidth="${helpGrid.width*0.33}" preserveRatio="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER"> </ImageView>
                <ImageView fx:id="effectThreeImage" GridPane.rowIndex="1" GridPane.columnIndex="2" fitHeight="${helpGrid.height*0.4}" fitWidth="${helpGrid.width*0.33}" preserveRatio="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER"> </ImageView>
-               <Text fx:id="cardLabel1" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.valignment="CENTER" GridPane.halignment="CENTER" wrappingWidth="250"></Text>
-               <Text fx:id="cardLabel2" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.valignment="CENTER" GridPane.halignment="CENTER" wrappingWidth="250"></Text>
-               <Text fx:id="cardLabel3" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.valignment="CENTER" GridPane.halignment="CENTER"  wrappingWidth="250"></Text>
+               <Label textAlignment="JUSTIFY" wrapText="true" fx:id="cardLabel1" style="-fx-text-fill: white; -fx-font-size:22; -fx-background-color: rgba(60,60,60,0.9);" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.valignment="TOP" GridPane.halignment="CENTER" prefWidth="250"></Label>
+               <Label textAlignment="JUSTIFY" wrapText="true" fx:id="cardLabel2" style="-fx-text-fill: white; -fx-font-size:22; -fx-background-color: rgba(60,60,60,0.9);" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.valignment="TOP" GridPane.halignment="CENTER" prefWidth="250"></Label>
+               <Label textAlignment="JUSTIFY" wrapText="true" fx:id="cardLabel3" style="-fx-text-fill: white; -fx-font-size:22; -fx-background-color: rgba(60,60,60,0.9);" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.valignment="TOP" GridPane.halignment="CENTER" prefWidth="250"></Label>
                <Button prefWidth="${helpGrid.width*0.17}" text="HIDE" fx:id="hideButton" onAction="#hideButton" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.valignment="CENTER" GridPane.halignment="CENTER"> </Button>
             </children>
          </GridPane>

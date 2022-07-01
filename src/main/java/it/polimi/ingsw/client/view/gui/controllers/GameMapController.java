@@ -34,11 +34,7 @@ public class GameMapController
     @FXML
     ImageView effectOneImage, effectTwoImage, effectThreeImage;
     @FXML
-    Text cardLabel1;
-    @FXML
-    Text cardLabel2;
-    @FXML
-    Text cardLabel3;
+    Label cardLabel1, cardLabel2, cardLabel3;
     @FXML
     StackPane helpStack;
     //scrollpanes
@@ -496,7 +492,7 @@ public class GameMapController
                 clickedEntrance = i;
             }
         }
-        System.out.println("entrance "+clickedEntrance);
+        System.out.println("Clicked entrance student "+clickedEntrance);
     }
 
     @FXML
@@ -638,7 +634,7 @@ public class GameMapController
                 effectPlayed = true;
                 runningEffect = true;
                 Boolean success = false;
-                System.out.println("inside the effect click");
+                //System.out.println("inside the effect click");
 
                 String oldBanner = bannerText.getText();
 
@@ -844,7 +840,7 @@ public class GameMapController
                             }
                             entranceClickable = false;
                             jollyMessage += "|" + clickedEntrance;
-                            System.out.println("out with value " + clickedEntrance);
+                            //System.out.println("out with value " + clickedEntrance);
                         }
                         success = ClientControllerSingleton.getInstance().getClientController().requestString(jollyMessage);
                         break;
@@ -1271,7 +1267,7 @@ public class GameMapController
                 }
             }
 
-            System.out.println("clicked entrance student: " + clickedEntrance);
+            System.out.println("Clicked entrance student: " + clickedEntrance);
             entranceClickable = false;
             islandClickable = true;
             tablesClickable = true;
@@ -1284,7 +1280,7 @@ public class GameMapController
                     e.printStackTrace();
                 }
             }
-            System.out.println("out of the box");
+            //System.out.println("out of the box");
 
             islandClickable = false;
             tablesClickable = false;
@@ -1300,7 +1296,7 @@ public class GameMapController
                     }
                 }
                 else {
-                    System.out.println("played eti");
+                    System.out.println("Played ETI");
                     count++;
                 }
             }
@@ -1315,7 +1311,7 @@ public class GameMapController
                     }
                 }
                 else {
-                    System.out.println("played ett");
+                    System.out.println("Played ETT");
                     count++;
                 }
             }
@@ -1351,7 +1347,7 @@ public class GameMapController
                 }
             }
 
-            System.out.println("clicked island: " + clickedIsland);
+            System.out.println("Clicked island: " + clickedIsland);
             islandClickable = false;
 
             int currentIslandPosition = islandsData.stream().filter(x->x.ID == currentIslandID).map(x->islandsData.indexOf(x)).collect(Collectors.toList()).get(0);
@@ -1392,7 +1388,7 @@ public class GameMapController
                 }
             }
 
-            System.out.println("clicked cloud: " + (clickedCloud));
+            System.out.println("Clicked cloud: " + (clickedCloud));
             cloudClickable = false;
 
             if (!clientController.requestCTE(clickedCloud))

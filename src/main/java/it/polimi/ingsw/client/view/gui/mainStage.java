@@ -115,7 +115,10 @@ public class mainStage extends Application {
             stage.setScene(scene);
             stage.show();
             if (!message.equals(""))
+            {
                 ((WaitingController) loader.getController()).showMessage(message);
+                ((WaitingController) loader.getController()).showButton(false);
+            }
         });
 
     }
