@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
 <GridPane fx:id="base" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0"
           xmlns="http://javafx.com/javafx/18"
           xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.controllers.GameMapController">
@@ -25,6 +26,7 @@
       <RowConstraints percentHeight="88.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
+
       <ScrollPane fx:id="centralPane" fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefWidth="300.0" style="-fx-background-color: rgba(60,60,60,0.4);" GridPane.rowIndex="1">
          <content>
             <StackPane fx:id="firstStackPane" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent;">
@@ -1519,26 +1521,29 @@
             <Label fx:id="bannerText" StackPane.alignment="TOP_CENTER" style="-fx-font-size: 2em; -fx-text-fill: black; -fx-background-color: transparent;" prefHeight="${banner.fitHeight}" text="..."></Label>
          </children>
       </StackPane>
-      <StackPane disable="true" visible="false" fx:id="helpStack" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
-         <GridPane fx:id="helpGrid" alignment="CENTER"  prefWidth="${deckStack.width}" prefHeight="${deckStack.height}" >
+      <StackPane disable="true" visible="false" fx:id="helpStack"  GridPane.columnSpan="2147483647"  GridPane.rowSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" style="-fx-background-color: rgba(60, 60, 60, 0.7);">
+         <GridPane fx:id="helpGrid" gridLinesVisible="false" alignment="CENTER"  prefWidth="${deckStack.width}" prefHeight="${deckStack.height}" >
             <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="16.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.4" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" percentHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES" />
                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Label text="effetto prima carta"  GridPane.columnIndex="1" GridPane.rowIndex="1"> </Label>
-               <Label text="effetto seconda carta" GridPane.columnIndex="2" GridPane.rowIndex="1"> </Label>
-               <Label text="effetto terza carta" GridPane.columnIndex="3" GridPane.rowIndex="1"></Label>
-               <Button fx:id="hideButton" onAction="#hideButton" GridPane.rowIndex="2" GridPane.columnIndex="2"> </Button>
+               <ImageView fx:id="effectOneImage" GridPane.rowIndex="1" GridPane.columnIndex="0" fitHeight="${helpGrid.height*0.4}" fitWidth="${helpGrid.width*0.33}" preserveRatio="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER"></ImageView>
+               <ImageView fx:id="effectTwoImage" GridPane.rowIndex="1" GridPane.columnIndex="1" fitHeight="${helpGrid.height*0.4}" fitWidth="${helpGrid.width*0.33}" preserveRatio="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER"> </ImageView>
+               <ImageView fx:id="effectThreeImage" GridPane.rowIndex="1" GridPane.columnIndex="2" fitHeight="${helpGrid.height*0.4}" fitWidth="${helpGrid.width*0.33}" preserveRatio="true" GridPane.valignment="CENTER" GridPane.halignment="CENTER"> </ImageView>
+               <Text fx:id="cardLabel1" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.valignment="CENTER" GridPane.halignment="CENTER" wrappingWidth="250"></Text>
+               <Text fx:id="cardLabel2" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.valignment="CENTER" GridPane.halignment="CENTER" wrappingWidth="250"></Text>
+               <Text fx:id="cardLabel3" GridPane.rowIndex="2" GridPane.columnIndex="2" GridPane.valignment="CENTER" GridPane.halignment="CENTER"  wrappingWidth="250"></Text>
+               <Button prefWidth="${helpGrid.width*0.17}" text="HIDE" fx:id="hideButton" onAction="#hideButton" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.valignment="CENTER" GridPane.halignment="CENTER"> </Button>
             </children>
          </GridPane>
       </StackPane >
-
    </children>
 </GridPane>

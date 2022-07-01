@@ -19,6 +19,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.*;
@@ -29,7 +31,14 @@ import java.util.stream.Collectors;
  */
 public class GameMapController
 {
-    Boolean toShow;
+    @FXML
+    ImageView effectOneImage, effectTwoImage, effectThreeImage;
+    @FXML
+    Text cardLabel1;
+    @FXML
+    Text cardLabel2;
+    @FXML
+    Text cardLabel3;
     @FXML
     StackPane helpStack;
     //scrollpanes
@@ -269,7 +278,6 @@ public class GameMapController
      */
     @FXML
     public void initialize() throws IOException {
-        toShow=true;
         //deck management
         deck = new ArrayList<>(Arrays.asList(card1, card2, card3, card4, card5, card6, card7, card8, card9, card10));
         showDeck(false);
@@ -1442,6 +1450,14 @@ public class GameMapController
     }
 
     public void activateHelp(ActionEvent actionEvent) {
+            cardLabel1.setText(gameData.ChosenCards.get(0).description);
+            cardLabel2.setText(gameData.ChosenCards.get(1).description);
+            cardLabel3.setText(gameData.ChosenCards.get(2).description);
+
+            effectOneImage.setImage(effectList.get(0).getImage());
+            effectTwoImage.setImage(effectList.get(1).getImage());
+            effectThreeImage.setImage(effectList.get(2).getImage());
+
             helpStack.setDisable(false);
             helpStack.setManaged(true);
             helpStack.setVisible(true);
