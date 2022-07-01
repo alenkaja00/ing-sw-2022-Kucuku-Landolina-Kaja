@@ -32,9 +32,6 @@ public class GameClass {
     protected int NumOfIslands = 12;
     protected Island CurrentIsland;
 
-    //protected Player PlayerRound;
-    //protected HashMap<Integer, Integer> RoundOrder = new HashMap<Integer, Integer>();
-    //public int firstPlayer;
 
     /**
      * creates the islands,clouds arrays, creates the player objects with their nicknames and wizards
@@ -92,14 +89,6 @@ public class GameClass {
             bagToEntrance(player.myDashboard.maxEntrance,player);
         }
 
-        /*
-        //select first player of the game
-        firstPlayer = selectRandomPlayer(1);
-
-        for (int i=0; i<PlayerNumber; i++)
-            RoundOrder.put(i, (new Random()).nextInt(PlayerNumber-1));
-
-        deprecated*/
 
     }
 
@@ -126,15 +115,6 @@ public class GameClass {
         }
     }
 
-
-
-    public int selectRandomPlayer(int flag)
-    {
-        switch(flag){
-            case 1: return (new Random()).nextInt(PlayerNumber-1);
-            default: return 0;
-        }
-    }
 
     /**
      moves all the students from cloud to the player's entrance
@@ -244,8 +224,6 @@ public class GameClass {
         //added
         playerCardValue[playerID] = cardNumber;
     }
-
-
 
 
 
@@ -364,10 +342,8 @@ public class GameClass {
             }
         }
 
-        //temporary can be substituted by functional
         int index = -1;
         int max = 0;
-        //for(int i=0 ; i < players.size(); i++)
         for(int i=0 ; i < PlayersInfluence.length; i++)
         {
             if(PlayersInfluence[i] > max)
@@ -426,7 +402,7 @@ public class GameClass {
     {
         // 2)
 
-        if(NumOfIslands <= 3)
+        if(islands.size() <= 3)
         {
             System.out.println("There are less than 3 islands");
             return true;
@@ -462,9 +438,7 @@ public class GameClass {
                 return true;
             }
         }
-
         return false;
-
     }
 
     /**
@@ -493,59 +467,16 @@ public class GameClass {
         return (ArrayList<Cloud>) clouds.clone();
     }
 
-    public ArrayList<Island> getIslands() {
-        return (ArrayList<Island>) islands.clone();
-    }
-
-    public int getPlayerNumber() {
-        return PlayerNumber;
-    }
-
-    public String getGameID() {
-        return GameID;
-    }
-
-    public ArrayList<String> getNicknames() {
-        return (ArrayList<String>) nicknames.clone();
-    }
-
     public ArrayList<Player> getPlayers() {
         return (ArrayList<Player>) players.clone();
-    }
-
-    public ArrayList<ColoredDisc> getStudentBag() {
-        return (ArrayList<ColoredDisc>) StudentBag.clone();
     }
 
     public void setClouds(ArrayList<Cloud> clouds) {
         this.clouds = clouds;
     }
 
-    public void setGameID(String gameID) {
-        GameID = gameID;
-    }
-
-    public void setIslands(ArrayList<Island> islands) {
-        this.islands = islands;
-    }
-
-    public void setNicknames(ArrayList<String> nicknames) {
-        this.nicknames = nicknames;
-    }
-
-
-    public void setPlayerNumber(int playerNumber) {
-        PlayerNumber = playerNumber;
-    }
-
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
-
-    public void setStudentBag(ArrayList<ColoredDisc> studentBag) {
-        StudentBag = studentBag;
-    }
-
-
 
 }

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.server.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,12 +7,19 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+/**
+ * Class ServerController contains references of the players sockets, the player lobby and the open games
+ * it can handle multiple games since keeps track of all the associated Game Controller instances and the sockets
+ */
 public class ServerController {
 
     private HashMap<String, ClientManager> playerSockets = new HashMap<String, ClientManager>();
     private ArrayList<Map.Entry<String, Map.Entry<Integer, Boolean>>> playerLobby = new ArrayList<Map.Entry<String, Map.Entry<Integer, Boolean>>>();
     private ArrayList<GameController> openGames = new ArrayList<GameController>();
 
+    /**
+     * Constructor method starts a thread which displays information about the openGames and the playerLobby status
+     */
     public ServerController()
     {
         new Thread(new Runnable() {
@@ -44,6 +50,9 @@ public class ServerController {
         }).start();
     }
 
+    /**
+     * @return true if the nickname is available, false otherwise
+     */
     public boolean availableNickname(String nickname)
     {
         if (playerSockets.keySet().contains(nickname) || nickname.length() > 15)
@@ -51,6 +60,13 @@ public class ServerController {
         else
             return true;
     }
+
+    /**
+     * adds to the player socket list the new client
+     * if a previous connected socket is reconnected informs all the players of reconnection
+     * @param nickname nickname of the client
+     * @param hisManager reference of the associated ClientManager class
+     */
     public void addPlayersocket(String nickname, ClientManager hisManager)
     {
         playerSockets.put(nickname, hisManager);
@@ -59,7 +75,7 @@ public class ServerController {
 
     /**
      * removes disconnected players from the playerLobby
-     * removes disconnected players from the playerScokets list
+     * removes disconnected players from the playerSockets list
      * informs the needed active games that a player disconnected
      */
     public void managePlayerDisconnection(String nickname)
@@ -73,7 +89,10 @@ public class ServerController {
 
     }
 
-
+    /**
+     * parses the received message and, based on the first substring, redirects to the manage of Game, QuitLobby or Play message
+     * @param line received string
+     */
     public void parseMessage(String line){
         System.out.println("Server received: "+ line);
 
@@ -141,12 +160,10 @@ public class ServerController {
 
     /**
      * sends the PLAY message to the relevant controller
-     * PLAY|playerNickname|otherstuff
+     * PLAY|playerNickname|[other parameters]
      */
     private void managePlayMessage(ArrayList<String> parameters)
     {
         openGames.stream().filter(x->x.getPlayers().contains(parameters.get(1))).forEach(x->x.parseMessage((ArrayList<String>) parameters.clone()));
     }
 }
-
-

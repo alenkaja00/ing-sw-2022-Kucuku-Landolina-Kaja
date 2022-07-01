@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * ClientController class sends the requests of actions from the user view classes to the connectivity
+ */
 public class ClientController
 {
     private ArrayList<List<String>> serverBuffer = new ArrayList<List<String>>();
@@ -22,6 +25,10 @@ public class ClientController
     private Boolean viewLocked = false;
     private String viewMode = "";
 
+    /**
+     * Constructor method initializes the view Mode and sets the instance of the ClientControllerSingleton
+     * @param viewMode input view mode, can be CLI (command line version) or GUI (graphical user interface)
+     */
     public ClientController(String viewMode) throws IOException
     {
         this.viewMode = viewMode;
@@ -34,6 +41,9 @@ public class ClientController
             view = new cliClass();
     }
 
+    /**
+     * sends a connection request from a client
+     */
     public boolean requestConnection(String ip, int port)
     {
         try {
@@ -48,6 +58,11 @@ public class ClientController
         }
     }
 
+    /**
+     * sends a request of nickname selection
+     * @param nickname desired nickname
+     * @return true in case of success, false otherwise
+     */
     public boolean requestNickname(String nickname)
     {
         clearServerBuffer();
@@ -66,6 +81,12 @@ public class ClientController
         return playerNickname;
     }
 
+    /**
+     * called when a player wants to create a new game
+     * @param playerNumber number of players of the game
+     * @param expertMode true in case of expert game
+     * @return true in case of success, false otherwise
+     */
     public boolean requestNewGame(int playerNumber, Boolean expertMode)
     {
         if (connectivity== null || !connectivity.connected)
@@ -101,12 +122,20 @@ public class ClientController
         }
     }
 
+    /**
+     * informs of a quit lobby action
+     */
     public void quitLobby()
     {
         connectivity.sendMessage("QUITLOBBY|"+playerNickname);
         clearServerBuffer();
     }
 
+    /**
+     * sends the selected wizard requested
+     * @param wizard the wanted wizard
+     * @return true if the selection is allowed, false otherwise
+     */
     public Boolean requestWizard(Wizard wizard)
     {
         clearServerBuffer();
@@ -135,6 +164,9 @@ public class ClientController
         return false;
     }
 
+    /**
+     * called after the reconnection of a player
+     */
     private void manageGameProsecution()
     {
         System.out.println("Game prosecution");
@@ -196,6 +228,11 @@ public class ClientController
         } while (true);*/
     }
 
+    /**
+     * sends a generic request
+     * @param message string containing the request
+     * @return true in case of success, false otherwise
+     */
     public boolean requestString(String message)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|"+message);
@@ -205,6 +242,11 @@ public class ClientController
             return false;
     }
 
+    /**
+     * sends a request of helper card selection
+     * @param helperID id of the card to play
+     * @return true in case of success, false otherwise
+     */
     public boolean requestHelper(int helperID)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|HELPER|"+helperID);
@@ -223,6 +265,12 @@ public class ClientController
             return false;
     }
 
+    /**
+     * sends a request of entrance to island move
+     * @param IslandIndex index of the destination island
+     * @param entranceIndex index of the student to move
+     * @return true in case of success, false otherwise
+     */
     public boolean requestETI(int IslandIndex, int entranceIndex)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|ETI|"+IslandIndex+"|"+entranceIndex);
@@ -232,6 +280,11 @@ public class ClientController
             return false;
     }
 
+    /**
+     * sends a request of entrance to tables move
+     * @param entranceIndex index of the student to remove from entrance
+     * @return true in case of success, false otherwise
+     */
     public boolean requestETT(int entranceIndex)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|ETT|"+entranceIndex);
@@ -241,6 +294,11 @@ public class ClientController
             return false;
     }
 
+    /**
+     * sends to the ClientNetwork instance the message of cloud selection
+     * @param mNatureMoves number of requested moves
+     * @return true in case of success, false otherwise
+     */
     public boolean requestNature(int mNatureMoves)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|NATURE|"+mNatureMoves);
@@ -250,6 +308,11 @@ public class ClientController
             return false;
     }
 
+    /**
+     * sends to the ClientNetwork instance the message of cloud selection
+     * @param cloudIndex index of the wanted cloud
+     * @return true in case of success, false otherwise
+     */
     public boolean requestCTE(int cloudIndex)
     {
         connectivity.sendMessage("PLAY|"+playerNickname+"|CTE|"+cloudIndex);
@@ -263,6 +326,9 @@ public class ClientController
         return serverIP;
     }
 
+    /**
+     * locks until the view is locked
+     */
     public void waitViewUnlock()
     {
         do {
@@ -279,6 +345,10 @@ public class ClientController
         return viewLocked;
     }
 
+    /**
+     * the next instruction to be processed
+     * @return the first message of the buffer extracted in order to be processed
+     */
     private List<String> nextServerMessage()
     {
         List<String> message = new ArrayList<>();
@@ -305,6 +375,9 @@ public class ClientController
 
     }
 
+    /**
+     * empties the server buffer from the messages contained in it
+     */
     private void clearServerBuffer()
     {
         synchronized (serverBuffer)
@@ -314,6 +387,10 @@ public class ClientController
         }
     }
 
+    /**
+     * accepts a message from the server and depending on it calls view scenes or puts it in the buffer to later process the message
+     * @param message server string message
+     */
     public void parseServerMessage(String message)
     {
         //System.out.println("[LOG] Client received: " + message);
@@ -348,6 +425,9 @@ public class ClientController
         }
     }
 
+    /**
+     * calls the start scene of the view and shows a disconnection message
+     */
     public void playerDisconnected()
     {
         clearServerBuffer();
@@ -355,6 +435,9 @@ public class ClientController
         view.startScene("");
     }
 
+    /**
+     * after reconnection updates the view and calls the game prosecution
+     */
     public void reconnected(String jsonString)
     {
         view.updateView(jsonString);

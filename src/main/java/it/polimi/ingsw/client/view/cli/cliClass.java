@@ -686,7 +686,9 @@ public class cliClass implements ViewInterface
         System.out.println("It's your turn");
     }
 
-
+    /**
+     * this method filters the effect card descriptions and shows the current game helper cards' commands and descriptions
+     */
     private void showEffectsMenu()
     {
         if(expertMode)

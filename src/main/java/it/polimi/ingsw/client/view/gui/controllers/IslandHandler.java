@@ -167,14 +167,14 @@ public class IslandHandler {
 
         if (island.prohibitedValue > 0 )
         {
-            ImageView newView  = new ImageView();
-            Image image = new Image(denialPath);
-
-            newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
-            newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
-            newView.setImage(image);
             for(int i=0;i<island.prohibitedValue;i++)
             {
+                ImageView newView  = new ImageView();
+                Image image = new Image(denialPath);
+
+                newView.fitHeightProperty().bind(tilePane.widthProperty().multiply(0.25));
+                newView.fitWidthProperty().bind(tilePane.widthProperty().multiply(0.25));
+                newView.setImage(image);
                 tilePane.getChildren().add(newView);
             }
         }
